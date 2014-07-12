@@ -3,7 +3,7 @@ Quiz 4.
 ### Problem 1.
 
 <pre><code>
-data <- read.csv("./data/microdata.csv")
+data = read.csv("./data/microdata.csv")
 names(data)[123]
 strsplit(names(data)[123], "wgtp")
 # [[1]]
@@ -12,7 +12,7 @@ strsplit(names(data)[123], "wgtp")
 
 ### Problem 2.
 <pre></code>
-gdpData <- read.csv("./data/gdp.csv")
+gdpData = read.csv("./data/gdp.csv")
 cleanedData <- gsub(",", "", gdpData[5:194, 5])
 numData <- as.numeric(cleanedData)
 mean(numData) 
