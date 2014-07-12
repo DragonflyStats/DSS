@@ -5,17 +5,22 @@ names(data)[123]
 strsplit(names(data)[123], "wgtp")
 # [[1]]
 # [1] ""   "15"
-# Problem 2.
+
+### Problem 2.
+<pre></code>
 gdpData <- read.csv("./data/gdp.csv")
 cleanedData <- gsub(",", "", gdpData[5:194, 5])
 numData <- as.numeric(cleanedData)
 mean(numData) 
 # [1] 377652.4
-# Problem 3.
+</code></pre>
+### Problem 3.
+<pre><code>
 countryNames <- gdpData[5:194,4]
 regexec("^United", countryNames)
 # 3
-# Problem 4. 
+</code></pre>
+### Problem 4. 
 newGdpData <- gdpData[6:194, c(1, 2, 4, 5)]
 colnames(newGdpData) <- c("CountryCode", "Ranking", "Economy", "GDP")
 rownames(newGdpData) <- NULL # renumbering
