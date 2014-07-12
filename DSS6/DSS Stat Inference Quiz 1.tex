@@ -1,0 +1,101 @@
+\documentclass[]{article}
+
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+
+\section{Statistical Inference Quiz 1}
+
+
+\subsection{Question 1}
+
+\begin{itemize}
+\item Consider influenza epidemics for two parent heterosexual families. 
+\item Suppose that the probability is 17\% that at least one of the parents has contracted the disease. 
+\item The probability that the father has contracted influenza is 12\% while the probability that both the mother and father have contracted the disease is 6\%. 
+\item What is the probability that the mother has contracted influenza?
+\end{itemize}
+Express your answer as a percentage to the nearest percentage point.
+\textbf{Answer for Question 1}
+%-------------------------------------------------------------%
+\subsection{Question 2}
+A random variable, X is uniform, a box from 0 to 1 of height 1. (So that it's density is $f(x)=1$ for $0\leq x\leq 1$.) What is it's 75th percentile?
+
+Express your answer to two decimal places.
+\textbf{Answer for Question 2}
+%-------------------------------------------------------------%
+\subsection{Question 3}
+You are playing a game with a friend where you flip a coin and if it comes up heads you give her X dollars and if it comes up tails she gives you Y dollars. 
+The probability that the coin is heads in p (some number between 0 and 1.) 
+What has to be true about X and Y to make so that both of your expected total earnings is 0. 
+(The game would then be called “fair”.)
+
+\begin{itemize}
+\item[(i)] p1−p=XY
+\item[(ii)] p1−p=YX
+\item[(iii)] X=Y
+\item[(iv)] p=XY
+\end{itemize}
+
+%-------------------------------------------------------------%
+\subsection{Question 4}
+You are playing a game with a friend where you flip a coin and if it comes up heads you give her 1 dollar and if it comes up tails she gives you one dollar. What would be the variance of your earnings?
+
+Express your answer to two decimal places.
+\textbf{Answer for Question 4}
+%-------------------------------------------------------------%
+\subsection{Question 5}
+Let X1,…,Xn1 be random variables independent of Y1,…,Yn2, where both groups are iid with associated population means $\mu$1 and $\mu$2 and population variances \sigma^2_1 and \sigma^2_2, respectively. Let X¯ and Y¯ be their sample means. What is the variance of X¯+Y¯?
+
+\begin{itemize}
+\item \sigma^2_1n1+\sigma^2_2n2
+\item \sigma^2_1−\sigma^2_2
+\item \sigma^2_1+\sigma^2_2
+\item \sigma^2_1n1−\sigma^2_2n2
+\end{itemize}
+%-------------------------------------------------------------%
+\subsection{Question 6}
+If a random variable, X, is so that E[X]=$\mu$  and Var(X)=\sigma^2_   what is the mean and variance of Z=X−$\mu$σ?
+
+\begin{itemize}
+\item Z has mean 0 and variance 1
+\item Z has mean $\mu$ and variance $\sigma^2$
+\item Z has mean 0 and variance $\sigma^2$
+\item Z has mean $\mu$ and variance 1
+\end{itemize}
+%-------------------------------------------------------------%
+\subsection{Question 7}
+If a continuous density that never touches the horizontal axis is symmetric about zero, can we say that its associated median is zero?
+
+\begin{itemize}
+\item We can't conclude that the median is 0.
+\item Yes, the median must be 0.
+\item No, the median is definitely not 0.
+\end{itemize}
+
+
+%-------------------------------------------------------------%
+
+\subsection{Question 8}
+Consider the following PMF generated in R
+
+\begin{verbatim}
+x <- 1:4
+p <- x/sum(x)
+temp <- rbind(x, p)
+rownames(temp) <- c("X", "Prob")
+temp
+##      [,1] [,2] [,3] [,4]
+## X     1.0  2.0  3.0  4.0
+## Prob  0.1  0.2  0.3  0.4
+\end{verbatim}
+What is the mean? Express your answer to one decimal place.
+
+\textbf{Answer for Question8
+
+
+
+\end{document}

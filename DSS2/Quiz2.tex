@@ -1,0 +1,248 @@
+
+
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 1}
+\Large
+R was developed by statisticians working at
+Insightful
+Bell Labs
+The University of New South Wales
+The University of Auckland
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 2}
+\Large
+The definition of free software consists of four freedoms (freedoms 0 through 3). \\ Which of the following is NOT one of the freedoms that are part of the definition?
+\begin{itemize}
+\item The freedom to study how the program works, and adapt it to your needs.
+\item The freedom to improve the program, and release your improvements to the public, so that the whole community benefits.
+\item The freedom to run the program, for any purpose.
+\item The freedom to sell the software for any price.
+\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 3}
+\Large
+In \texttt{R} the following are all \textbf{atomic data types} EXCEPT
+\begin{itemize}
+\item \texttt{logical}
+\item \texttt{complex}
+\item \texttt{list}
+\item \texttt{integer}
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 4}
+\Large
+If I execute the expression x <- 4 in R, what is the class of the object `x' as determined by the `class()' function?
+\begin{itemize}
+\item \texttt{vector}
+\item \texttt{numeric}
+\item \texttt{complex}
+\item \texttt{real}
+\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 5}
+\Large
+What is the class of the object defined by the expression x <- c(4, "a", TRUE)?
+mixed
+logical
+character
+integer
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 6}
+\Large
+If I have two vectors x <- c(1,3, 5) and y <- c(3, 2, 10), what is produced by the expression rbind(x, y)?
+a vector of length 2
+a 2 by 3 matrix
+a vector of length 3
+a 2 by 2 matrix
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 7}
+\Large
+A key property of vectors in R is that
+the length of a vector must be less than 32,768
+elements of a vector all must be of the same class
+elements of a vector can only be character or numeric
+elements of a vector can be of different classes
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 8}
+\Large
+Suppose I have a list defined as x <- list(2, "a", "b", TRUE). What does x[[2]] give me?
+a list containing the number 2 and the letter "a".
+a character vector with the elements "a" and "b".
+a character vector containing the letter "a".
+a list containing a character vector with the elements "a" and "b".
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 9}
+\Large
+Suppose I have a vector $x <- 1:4$ and a vector y <- 2. What is produced by the expression x + y?
+\begin{itemize}
+\item a numeric vector with elements 3, 4, 5, 6.
+\item an integer vector with elements 3, 2, 3, 4.
+\item a numeric vector with elements 3, 2, 3, 4.
+\item an integer vector with elements 3, 2, 3, 6.
+\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 10}
+\Large
+Suppose I have a vector 
+\begin{verbatim}
+x <- c(3, 5, 1, 10, 12, 6) 
+\end{verbatim}
+and I want to set all elements of this vector that are less than 6 to be equal to zero. What R code achieves this?
+x[x > 0] <- 6
+x[x < 6] <- 0
+x[x > 6] <- 0
+x[x == 6] <- 0
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 11}
+\Large
+In the dataset provided for this Quiz, what are the column names of the dataset?
+Ozone, Solar.R, Wind, Temp, Month, Day
+Ozone, Solar.R, Wind
+Month, Day, Temp, Wind
+1, 2, 3, 4, 5, 6
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 12}
+\Large
+Extract the first 2 rows of the data frame and print them to the console. What does the output look like?
+
+  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+ 
+  Ozone Solar.R Wind Temp Month Day
+1     7      NA  6.9   74     5  11
+2    35     274 10.3   82     7  17
+ 
+  Ozone Solar.R Wind Temp Month Day
+1    18     224 13.8   67     9  17
+2    NA     258  9.7   81     7  22
+ 
+  Ozone Solar.R Wind Temp Month Day
+1     9      24 10.9   71     9  14
+2    18     131  8.0   76     9  29
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 13}
+\Large
+How many observations (i.e. rows) are in this data frame?
+129
+153
+160
+45
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 14}
+\Large
+Extract the last 2 rows of the data frame and print them to the console. What does the output look like?
+
+\begin{verbatim}
+    Ozone Solar.R Wind Temp Month Day
+152    11      44  9.7   62     5  20
+153   108     223  8.0   85     7  25
+ 
+    Ozone Solar.R Wind Temp Month Day
+152    34     307 12.0   66     5  17
+153    13      27 10.3   76     9  18
+\end{verbatim}
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 14 - Continued}
+\Large
+\begin{verbatim} 
+    Ozone Solar.R Wind Temp Month Day
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30
+ 
+    Ozone Solar.R Wind Temp Month Day
+152    31     244 10.9   78     8  19
+153    29     127  9.7   82     6   7
+\end{verbatim}
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 15}
+\Large
+What is the value of Ozone in the 47th row?
+63
+34
+18
+21
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 16}
+\Large
+How many missing values are in the Ozone column of this data frame?
+37
+78
+43
+9
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 17}
+\Large
+What is the mean of the Ozone column in this dataset? Exclude missing values (coded as NA) from this calculation.
+42.1
+18.0
+53.2
+31.5
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 18}
+\Large
+Extract the subset of rows of the data frame where Ozone values are above 31 and Temp values are above 90. What is the mean of Solar.R in this subset?
+185.9
+212.8
+334.0
+205.0
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 19}
+\Large
+What is the mean of "Temp" when "Month" is equal to 6?
+90.2
+85.6
+79.1
+75.3
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Question 20}
+\Large
+What was the maximum ozone value in the month of May (i.e. Month = 5)?
+100
+115
+18
+97
+\end{frame}
+%---------------------------------------------------------------------------------------------------------%
+
+\end{document}
