@@ -1,0 +1,18 @@
+
+
+
+http://developer.r-project.org/methodDefinition.html
+
+S is a functional language, and methods in the language are function-based, not class-based.
+The most commonly encountered languages emphasizing methods follow what is generally called the Object-Oriented Programming (OOP) model; more precisely, the languages follow a class-based organization of software. For the most part, programming is organized around the definition of classes of objects. Methods are invoked on an object. In S-style notation,
+
+
+        x$plot(y)
+      
+invokes the plot method on the object x, passing it an argument y.
+
+
+
+
+
+http://stat.ethz.ch/R-manual/R-devel/library/methods/html/genericFunction-class.html
