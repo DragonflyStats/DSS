@@ -1,6 +1,8 @@
+\documentclass[DSS8main.tex]{subfiles}
+\begin{document}
 %----------------------------------------------------------------------------------------%
-
-Question 1
+\section*{Week 2}
+\subsection*{Question 1}
 Load the Alzheimer's disease data using the commands:
 library(AppliedPredictiveModeling)
 library(caret)
@@ -27,7 +29,7 @@ training = adData[-testIndex,]
 testing = adData[testIndex,]
 
 %----------------------------------------------------------------------------------------%
-Question 2
+\subsection*{Question 2}
 Load the cement data using the commands:
 library(AppliedPredictiveModeling)
 data(concrete)
@@ -41,8 +43,12 @@ The data show a step like pattern that is perfectly explained by the Age variabl
 The data show a step like pattern that is perfectly explained by the Age variable.
 The data show a step like pattern that is perfectly explained by the FlyAsh variable so there may be a variable missing.
 There is a step-like pattern in the plot of outcome versus index in the training set that isn't explained by any of the predictor variables so there may be a variable missing.
-Question 3
+
+%--------------------------------------------------------------------------------------%
+\subsection*{Question 3}
 Load the cement data using the commands:
+\begin{framed}
+\begin{verbatim}
 library(AppliedPredictiveModeling)
 data(concrete)
 library(caret)
@@ -50,16 +56,18 @@ set.seed(975)
 inTrain = createDataPartition(mixtures$CompressiveStrength, p = 3/4)[[1]]
 training = mixtures[ inTrain,]
 testing = mixtures[-inTrain,]
+\end{verbatim}
+\end{framed}
 Make a histogram and confirm the SuperPlasticizer variable is skewed. Normally you might use the log transform to try to make the data more symmetric. Why would that be a poor choice for this variable?
 The log transform is not a monotone transformation of the data.
 The SuperPlasticizer data include negative values so the log transform can not be performed.
 There are a large number of values that are the same and even if you took the log(SuperPlasticizer + 1) they would still all be identical so the distribution would not be symmetric.
 The log transform produces negative values which can not be used by some classifiers.
 %----------------------------------------------------------------------------------------%
-
-Question 4
-
+\subsection*{Question 4}
 Load the Alzheimer's disease data using the commands:
+\begin{framed}
+\begin{verbatim}
 library(caret)
 library(AppliedPredictiveModeling)
 set.seed(3433)
@@ -68,17 +76,21 @@ adData = data.frame(diagnosis,predictors)
 inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
 training = adData[ inTrain,]
 testing = adData[-inTrain,]
+\end{verbatim}
+\end{framed}
 Find all the predictor variables in the training set that begin with IL. Perform principal components on these variables with the preProcess() function from the caret package. Calculate the number of principal components needed to capture 90% of the variance. How many are there?
-8
-11
-7
-9
+
+\begin{itemize}
+\item 8
+\item 11
+\item 7
+\item 9
+\end{itemize}
 %----------------------------------------------------------------------------------------%
-
-Question 5
-
+\subsection*{Question 5}
 Load the Alzheimer's disease data using the commands:
-
+\begin{framed}
+\begin{verbatim}
 library(caret)
 library(AppliedPredictiveModeling)
 set.seed(3433)
@@ -87,6 +99,8 @@ adData = data.frame(diagnosis,predictors)
 inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
 training = adData[ inTrain,]
 testing = adData[-inTrain,]
+\end{verbatim}
+\end{framed}
 Create a training data set consisting of only the predictors with variable names beginning with IL and the diagnosis. Build two predictive models, one using the predictors as they are and one using PCA with principal components explaining 80% of the variance in the predictors. Use method="glm" in the train function. What is the accuracy of each method in the test set? Which is more accurate?
 Non-PCA Accuracy: 0.65 
 PCA Accuracy: 0.72
@@ -96,3 +110,5 @@ Non-PCA Accuracy: 0.91
 PCA Accuracy: 0.93
 Non-PCA Accuracy: 0.75 
 PCA Accuracy: 0.71
+
+\end{document}
