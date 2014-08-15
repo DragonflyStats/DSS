@@ -1,11 +1,11 @@
-Module 1: probability and probability distributions
+Module 1: probability and Probability Distributions
 ===================================================
 
-- 01.1 Introduction
-- 01.2 Probability
-- 01.3 Expectations
-- 01.4 Independence
-- 01.5 Conditional probability
+- 1.1 Introduction
+- 1.2 Probability
+- 1.3 Expectations
+- 1.4 Independence
+- 1.5 Conditional probability
 
 <hr>
 
