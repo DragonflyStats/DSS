@@ -21,10 +21,28 @@
 Express your answer as a percentage to the nearest percentage point.
 \textbf{Answer for Question 1}
 %-------------------------------------------------------------%
+% Uniform Distribution
 \subsection{Question 2}
-A random variable, X is uniform, a box from 0 to 1 of height 1. (So that it's density is $f(x)=1$ for $0\leq x\leq 1$.) What is it's 75th percentile?
+A random variable, X is uniform, a box from 0 to 1 of height 1. (So that it's density is $f(x)=1$ for $0\leq x\leq 1$.) 
+What is it's 75th percentile?
 
 Express your answer to two decimal places.
+\subsubsecton{Using \texttt{R}}
+\begin{verbatim}
+> X<-runif(20)
+> sort(X)
+ [1] 0.04072102 0.06952471 0.07260518 0.10968119 0.11164281
+ [6] 0.24502397 0.26483832 0.33702175 0.41157263 0.44588699
+[11] 0.46461517 0.52120201 0.63389649 0.64879975 0.74126249
+[16] 0.76873648 0.85552313 0.92665064 0.97780178 0.97977485
+> X<-runif(20)
+> sort(X)
+ [1] 0.009058821 0.025291159 0.107304686 0.110596883 0.225791117
+ [6] 0.247623788 0.316807160 0.340841283 0.496293882 0.562722453
+[11] 0.627004402 0.639200010 0.668796364 0.676932374 0.765855561
+[16] 0.767786264 0.780400117 0.795518954 0.903478133 0.922662708
+\end{verbatim}
+
 \textbf{Answer for Question 2}
 %-------------------------------------------------------------%
 \subsection{Question 3}
@@ -42,10 +60,27 @@ What has to be true about X and Y to make so that both of your expected total ea
 
 %-------------------------------------------------------------%
 \subsection{Question 4}
-You are playing a game with a friend where you flip a coin and if it comes up heads you give her 1 dollar and if it comes up tails she gives you one dollar. What would be the variance of your earnings?
+You are playing a game with a friend where you flip a coin and if it comes up heads you give her 1 dollar and 
+if it comes up tails she gives you one dollar. What would be the variance of your earnings?
 
 Express your answer to two decimal places.
 \textbf{Answer for Question 4}
+
+\begin{verbatim}
+#Generate a sequence of 1s or -1s
+Winnings <- 2*floor(2*runif(100))-1
+
+#> Winnings
+#  [1] -1  1 -1 -1  1  1 -1  1  1 -1 -1 -1 -1 -1 -1  1  1  1  1 -1  1
+# [22]  1  1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1  1 -1 -1 -1  1 -1  1 -1  1
+# [43] -1 -1  1  1  1  1  1  1  1  1  1 -1 -1 -1  1 -1 -1 -1  1 -1 -1
+# [64]  1  1  1  1  1 -1  1  1 -1 -1 -1  1 -1 -1 -1 -1 -1  1 -1 -1  1
+# [85] -1 -1 -1  1 -1 -1 -1 -1  1  1 -1 -1 -1  1 -1 -1
+
+var(Winnings)
+# [1] 0.9842424
+\end{verbatim}
+
 %-------------------------------------------------------------%
 \subsection{Question 5}
 Let X1,…,Xn1 be random variables independent of Y1,…,Yn2, where both groups are iid with associated population means $\mu$1 and $\mu$2 and population variances \sigma^2_1 and \sigma^2_2, respectively. Let X¯ and Y¯ be their sample means. What is the variance of X¯+Y¯?
@@ -58,7 +93,8 @@ Let X1,…,Xn1 be random variables independent of Y1,…,Yn2, where both groups 
 \end{itemize}
 %-------------------------------------------------------------%
 \subsection{Question 6}
-If a random variable, X, is so that E[X]=$\mu$  and Var(X)=\sigma^2_   what is the mean and variance of Z=X−$\mu$σ?
+Suppose a random variable, X, is such that E[X]=$\mu$  and $Var(X)=\sigma^2$. 
+What is the mean and variance of $Z= \frac{X−\mu}{\sigma}$
 
 \begin{itemize}
 \item Z has mean 0 and variance 1
@@ -66,6 +102,9 @@ If a random variable, X, is so that E[X]=$\mu$  and Var(X)=\sigma^2_   what is t
 \item Z has mean 0 and variance $\sigma^2$
 \item Z has mean $\mu$ and variance 1
 \end{itemize}
+
+Theory Question : Standard Normal (Z) Distribution.
+
 %-------------------------------------------------------------%
 \subsection{Question 7}
 If a continuous density that never touches the horizontal axis is symmetric about zero, can we say that its associated median is zero?
@@ -94,7 +133,19 @@ temp
 \end{verbatim}
 What is the mean? Express your answer to one decimal place.
 
-\textbf{Answer for Question8
+\textbf{Answer for Question 8}
+\begin{verbatim}
+> temp[1,]
+[1] 1 2 3 4
+> temp[2,]
+[1] 0.1 0.2 0.3 0.4
+> temp[1,] * temp[2,]
+[1] 0.1 0.4 0.9 1.6
+> sum(temp[1,] * temp[2,])
+[1] 3
+> 
+\end{verbatim}
+
 
 
 
