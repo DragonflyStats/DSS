@@ -1,0 +1,43 @@
+\subsection{Simulation Study of Dice Rolls Sums Experiment}
+Lets consider this Dice Roll Summation experiment. We will perform the experiment 100000 times, and see what sort of distribution of summations we get.
+We will save the results in a vector called \texttt{sums}.
+\begin{framed}
+\begin{verbatim}
+Sums=numeric()    # Initialize An Empty Vector
+M=100000  # Number of Iterations
+
+for (i in 1:M)
+    {
+     NewSum=sum(sample(Dice,100,replace=TRUE))
+     Sums = c(Sums, NewSum)
+     }
+\end{verbatim}
+\end{framed}
+
+We can perform some basic statistical operations to study this vector. In particular we are interested in the extremes: How many times was there a summation less than 300, and how many times was there a summation greated than 400? (around 1.5\% probability in each case)
+
+\begin{verbatim}
+> length(Sums[Sums<300])
+[1] 144
+> length(Sums[Sums>400])
+[1] 160  
+\end{verbatim}
+
+Lets us look at a histogram (a type of bar chart) of the \texttt{Sums} vector ( Use around breaks =100 to specify more intervals). What sort of shape is this histogram?
+\begin{framed}
+\begin{verbatim}
+hist(Sums, breaks=100)
+\end{verbatim}
+\end{framed}
+
+This is a ver crude introduction to the Central Limit Theorem. Even though the Dice Rolls are not normally distributed, the distribution of summations, are described in this experiment, are from a normally distributed sampling population. Also consider the probability of getting a sum more than 400. Recalling that dice simulation is for fair dice, the probability of getting a score more extreme than 400 is 1.5\% approximately. This provides (again crudely) an introduction to the idea of p-values , which are used a lot in statistical inference procedures. 
+
+Suppose it was not certain whether a die was fair or crooked favouring higher values such as 4,5 and 6. The 100 roll experiment was performed and the score turned out to be 400.  It would be a very unusual outcome for a fair die, but not impossible. For crooked dice, larger summations would be expected and a score of approximately 400 would be common. Would you think the die was fair or crooked.
+
+Footnote: Arbitrarily, let us consider a crooked dice, where 4,5 and 6 are twice a likely to appear. Try out the following code.
+\begin{verbatim}
+CrookedDice=c(1,2,3,4,4,5,5,6,6)
+sum(sample(CrookedDice,100,replace=TRUE))
+\end{verbatim}
+
+%----------------------------------------------------------------------------------------------------------------------------------------%
