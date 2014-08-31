@@ -1,0 +1,62 @@
+
+
+## Read in the iris dataset
+```{r}
+#This step is not necessary as "iris" is installed automatically in "R".
+#iris2 <- read.csv("iris.csv",header=T)
+```
+##
+```{r}
+iris2 <- read.csv("iris.csv",header=T)
+```
+##
+```{r}
+#What are the iris data set column names?
+colnames(iris)
+```
+##
+```{r}
+#Extract the first two rows of the irisset and print them.
+iris[1:2,]
+```
+##
+```{r}
+#How many rows are in the irisset?
+nrow(iris)
+```
+##
+```{r}
+#Extract the last two rows of the iris set and print them.
+rows <- nrow(iris)
+iris[(rows-1):rows,]
+```
+##
+```{r}
+#What is the iris value in the 47th row?
+iris[47,1]
+```
+##
+```{r}
+#What is mean Solar.R value of subset with Ozone > 31 and Temp > 90?
+mean(subset(iris, Ozone>31 & Temp > 90)[,2])
+```
+## Ozone 
+```{r}
+#What is the iris type of the Month column?
+class(iris[,5])
+```
+## Ozone 
+```{r}
+#What is the mean of Temp when Month is 6?
+mean(subset(iris, iris[,5]==6)[,4])
+```
+## Ozone 
+```{r}
+#How many missing values are in the Ozone column?
+sum(!complete.cases(iris[,1]))
+```
+## Ozone 
+```{r}
+#What is the mean value of the Ozone column (excluding missing values)?
+mean(iris[complete.cases(iris),1])
+```

@@ -1,0 +1,145 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+  
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+
+\begin{document}
+
+%=======================================%
+\begin{frame}
+\frametitle{Statistical Inference : Question 2}
+\Large
+\vspace{-1cm}
+\textbf{Question 2}
+\begin{itemize}
+\item A random variable, X is uniform, which os often graphically depicted as a box from 0 to 1 with a height 1. \\(Such that it's density is $f(x)=1$ for $0\leq x\leq 1$.) 
+\item What is it's 75th percentile?
+
+\item Express your answer to two decimal places.
+
+\end{itemize}
+\end{frame}
+%=======================================%
+\begin{frame}[fragile]
+\frametitle{Statistical Inference : Question 4}
+\Large
+
+\vspace{-1cm}
+
+\textbf{Using \texttt{R}}
+\begin{framed}
+\begin{verbatim}
+# Generate 100 realizations of 
+# the random variable X.
+X<-runif(100)
+
+X<-round(X,3)
+
+sort(X)
+\end{verbatim}
+\end{framed}
+\end{frame}
+%=======================================%
+\begin{frame}[fragile]
+\frametitle{Statistical Inference : Question 2}
+
+\begin{framed}
+\begin{verbatim}
+> sort(X)
+  [1] 0.016 0.018 0.040 0.087 0.096 0.101
+  [7] 0.110 0.137 0.146 0.149 0.149 0.157
+  .......................................
+  .......................................
+ [61] 0.666 0.667 0.669 0.674 0.680 0.680
+ [67] 0.686 0.715 0.721 0.726 0.733 0.756
+ [73] 0.759 0.759 0.764 0.780 0.782 0.786
+ [79] 0.801 0.835 0.846 0.850 0.850 0.858
+ [85] 0.862 0.866 0.884 0.893 0.895 0.905
+ [91] 0.914 0.916 0.918 0.921 0.922 0.926
+ [97] 0.934 0.955 0.963 0.970
+\end{verbatim}
+\end{framed}
+\end{frame}
+%=======================================%
+\begin{frame}[fragile]
+\frametitle{Statistical Inference : Question 2}
+
+\begin{framed}
+\begin{verbatim}
+
+X <-runif(50000)
+
+quantile(X,0.75)
+\end{verbatim}
+\end{framed}
+\end{frame}
+%=======================================%
+\begin{frame}
+\frametitle{Statistical Inference : Question 4}
+\Large
+\textbf{Question 4}
+\begin{itemize}
+\item 
+You are playing a game with a friend where you flip a coin and if it comes up heads you give her 1 dollar and 
+if it comes up tails she gives you one dollar. 
+
+\item What would be the variance of your earnings?
+
+\item 
+Express your answer to two decimal places.
+\end{itemize}
+\end{frame}
+%=======================================%
+\begin{frame}
+\frametitle{Statistical Inference : Question 4}
+\Large
+\vspace{-2cm}
+
+\begin{itemize}
+\item Probability of winning a round $p$ = 0.5
+\bigskip
+\item  Probability of losing a round $q$ = $1-p$ = 0.5
+
+
+\end{itemize}
+\end{frame}
+%=======================================%
+\begin{frame}[fragile]
+\frametitle{\texttt{R} Code}
+\Large
+\begin{verbatim}
+#Generate a sequence of 1s or -1s
+X <- runif(40)
+Winnings <- sign(X-0.5)
+
+# > Winnings
+# [1]   1  1 -1 -1 -1 -1  1  1
+# [9]  -1 -1 -1 -1  1 -1  1 -1
+# [17]  1  1  1  1 -1  1  1 -1
+# [25]  1  1  1  1 -1 -1 -1  1
+# [33] -1 -1 -1 -1 -1  1  1  1
+
+\end{verbatim}
+\end{frame}
+%=======================================%
+\begin{frame}[fragile]
+\frametitle{\texttt{R} Code}
+\Large
+\begin{verbatim}
+
+var(Winnings)
+
+
+\end{verbatim}
+\end{frame}
+%=======================================%
+\end{document}
+
+

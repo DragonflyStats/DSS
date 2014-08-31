@@ -1,9 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.13)  15 APR 2014 23:48
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.3.6)  17 AUG 2014 18:20
 entering extended mode
 **DSS1*Weekly*Quiz.tex
-
-("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\DSSpec\DSS1 Weekly Qu
-iz.tex"
+("E:\DSS-master\DSS-master\DSS1\DSS1 Weekly Quiz.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -32,7 +30,7 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\Users\Computer5\AppData\Roaming\MiKTeX\2.9\tex\latex\framed\framed.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty"
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip43
 \fb@frw=\dimen103
@@ -40,8 +38,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \FrameRule=\dimen105
 \FrameSep=\dimen106
 )
-("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\DSSpec\DSS1 Weekly Qu
-iz.aux")
+("E:\DSS-master\DSS-master\DSS1\DSS1 Weekly Quiz.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
@@ -57,36 +54,41 @@ LaTeX Font Info:    ... okay on input line 3.
 Missing character: There is no â in font cmbx12!
 Missing character: There is no € in font cmbx12!
 Missing character: There is no ™ in font cmbx12!
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--11
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
  [1
 
-{C:/Users/Computer5/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 Missing character: There is no â in font cmbx12!
 Missing character: There is no € in font cmbx12!
 Missing character: There is no ™ in font cmbx12!
- [2] [3] [4]
-("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\DSSpec\DSS1 Weekly Qu
-iz.aux") ) 
+ [3] [4] [5]
+("E:\DSS-master\DSS-master\DSS1\DSS1 Weekly Quiz.aux") ) 
 Here is how much of TeX's memory you used:
  288 strings out of 493921
- 3833 string characters out of 3147270
+ 3548 string characters out of 3147283
  52031 words of memory out of 3000000
  3655 multiletter control sequences out of 15000+200000
  5575 words of font info for 21 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 22i,4n,19p,537b,169s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on "DSS1 Weekly Quiz.pdf" (4 pages, 50742 bytes).
+ 22i,6n,19p,290b,167s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmtt12.pfb>
+Output written on "DSS1 Weekly Quiz.pdf" (5 pages, 52006 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 34 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

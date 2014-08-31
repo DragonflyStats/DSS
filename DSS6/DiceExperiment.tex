@@ -1,5 +1,13 @@
-\subsection{Simulation Study of Dice Rolls Sums Experiment}
-Lets consider this Dice Roll Summation experiment. We will perform the experiment 100000 times, and see what sort of distribution of summations we get.
+\documentclass[]{article}
+
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+\section*{Simulation Study of Dice Rolls Sums Experiment}
+Lets considerthis Dice Roll Summation experiment. We will perform the experiment 100000 times, and see what sort of distribution of summations we get.
 We will save the results in a vector called \texttt{sums}.
 \begin{framed}
 \begin{verbatim}
@@ -30,7 +38,8 @@ hist(Sums, breaks=100)
 \end{verbatim}
 \end{framed}
 
-This is a ver crude introduction to the Central Limit Theorem. Even though the Dice Rolls are not normally distributed, the distribution of summations, are described in this experiment, are from a normally distributed sampling population. Also consider the probability of getting a sum more than 400. Recalling that dice simulation is for fair dice, the probability of getting a score more extreme than 400 is 1.5\% approximately. This provides (again crudely) an introduction to the idea of p-values , which are used a lot in statistical inference procedures. 
+\subsection{Central Limit Theorem}
+This is a very crude introduction to the Central Limit Theorem. Even though the Dice Rolls are not normally distributed, the distribution of summations, are described in this experiment, are from a normally distributed sampling population. Also consider the probability of getting a sum more than 400. Recalling that dice simulation is for fair dice, the probability of getting a score more extreme than 400 is 1.5\% approximately. This provides (again crudely) an introduction to the idea of p-values , which are used a lot in statistical inference procedures. 
 
 Suppose it was not certain whether a die was fair or crooked favouring higher values such as 4,5 and 6. The 100 roll experiment was performed and the score turned out to be 400.  It would be a very unusual outcome for a fair die, but not impossible. For crooked dice, larger summations would be expected and a score of approximately 400 would be common. Would you think the die was fair or crooked.
 
@@ -40,4 +49,5 @@ CrookedDice=c(1,2,3,4,4,5,5,6,6)
 sum(sample(CrookedDice,100,replace=TRUE))
 \end{verbatim}
 
+\end{document}
 %----------------------------------------------------------------------------------------------------------------------------------------%

@@ -1,0 +1,161 @@
+---
+title: "Untitled"
+output: slidy_presentation
+font_adjustment: +1
+---
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+
+
+## Read in the iris dataset
+
+```{r}
+#This step is not necessary as "iris" is installed automatically in "R".
+#iris2 <- read.csv("iris.csv",header=T)
+```
+
+## [A1] Using Help Functions
+
+- Suppose you want to find out more about a command (for example `lm`).
+- At the command line, type `help(lm)`
+- Question: What does the command `fivenum` do?
+- Question: What does the command `runif` do?
+
+
+## [A2] The iris data set
+
+- Famous Data Set commonly used in Introductory Stats Courses
+- Measurements on 4 variables for 150 iris flowers.
+- Pre-installed in R (just type in " `iris` " and it is there)
+- For more information, type `help(iris)` at the command line
+
+## [A3] The mtcars data set
+
+- Another famous Data Set commonly used in Introductory Stats Courses
+- Pre-installed in R (just type in " `mtcars` " and it is there)
+- For more information, type `help(iris)` at the command line
+
+## The iris and mtcars data sets
+- What are the iris data set column names?
+```{r}
+
+colnames(iris)
+```
+- What are the mtcars data set column names?
+```{r}
+colnames(mtcars)
+
+```
+
+## The iris and mtcars data sets
+ What are the mtcars data set row names?
+```{r}
+rownames(mtcars)
+```
+
+## Setting up sequences using the ":" operator
+```{r}
+1:4
+0:10
+10:1
+-1:5
+```
+
+#### N.B. 
+- R is a "1-index" programming language. 
+- As a counter-point, Python is a "0-index" language
+
+## The iris data set
+Extract the first four rows of the iris data set and print them.
+```{r}
+iris[1:4,]
+```
+
+## The iris data set
+- How many rows are in the irisset?
+```{r}
+
+nrow(iris)
+```
+## Useful R commands
+- dim
+- nrow
+- ncol
+- head
+- tail
+- The default number of cases for ``head`` and ``tail`` is 6 cases, but a different number of cases can be specified.
+
+
+## The iris data set
+Extract the last two rows of the iris set and print them.
+```{r}
+
+rows <- nrow(iris)
+iris[(rows-1):rows,]
+```
+
+## The iris data set
+Extract the first five values in the last column of the  mtcars set and print them.
+```{r}
+
+rows <- nrow(iris)
+iris[(rows-1):rows,]
+```
+
+## The iris data set
+What is the iris value in the 47th row?
+```{r}
+
+iris[47,1]
+```
+
+## Ozone 
+What is the iris type of the Month column?
+```{r}
+
+class(iris[,5])
+```
+
+## Ozone 
+What is the mean of Temp when Month is 6?
+```{r}
+
+mean(subset(iris, iris[,5]==6)[,4])
+```
+
+## Ozone 
+```{r}
+#How many missing values are in the Ozone column?
+sum(!complete.cases(iris[,1]))
+```
+
+## Ozone 
+```{r}
+#What is the mean value of the Ozone column (excluding missing values)?
+mean(iris[complete.cases(iris),1])
+```
+
+## Slide with R Code and Output
+
+```{r}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
