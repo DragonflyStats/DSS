@@ -1,0 +1,32 @@
+homs1 <- readLines("homicides.txt",encoding="UTF-8")
+scan("homicides.txt", character(0)) # separate each word
+
+
+
+
+homs2 <- scan("homicides.txt", character(0)) # separate each word
+homs3 <- matrix(homs2,ncol=6,byrow=T)
+homs4 <- data.frame(homs3)
+
+
+
+# Cleaning
+homs4[,1]<-gsub(",","",homs4[,1])
+homs4[,2]<-gsub(",","",homs4[,2])
+homs4[,1]<-as.numeric(homs4[,1])
+homs4[,2]<-as.numeric(homs4[,2])
+
+homs4[,3]<-gsub("iconHomicide","",homs4[,3])
+homs4[,3]<-gsub("icon_homicide_","",homs4[,3])
+homs4<-homs4[-5]
+
+
+
+%-----------------------------------------------------------%
+
+
+> age=17
+> regQuery <- sprintf(" %s years old", age);
+>
+> regQuery
+[1] " 17 years old"

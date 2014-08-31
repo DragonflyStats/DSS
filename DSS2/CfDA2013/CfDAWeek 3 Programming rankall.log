@@ -1,0 +1,205 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.13)  10 OCT 2013 10:01
+entering extended mode
+**CfDAWeek*3*Programming*rankall.tex
+
+("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDAWeek 3 Programmin
+g rankall.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\Users\Computer5\AppData\Roaming\MiKTeX\2.9\tex\latex\framed\framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen103
+\fb@frh=\dimen104
+\FrameRule=\dimen105
+\FrameSep=\dimen106
+)
+("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDAWeek 3 Programmin
+g rankall.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 18.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
+
+Overfull \hbox (30.79688pt too wide) in paragraph at lines 43--43
+[]\OT1/cmtt/m/n/10 ## Return a data frame with the hospital names and the (abbr
+eviated)[] 
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+[1
+
+{C:/Users/Computer5/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+
+[2] [3] [4]
+Overfull \hbox (46.54674pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 Hosp<-read.csv("outcome-of-care-measures.csv",colClasses = "
+character")[] 
+ []
+
+
+Overfull \hbox (62.2966pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 # We will immediately discard every column except columns 2,
+7,11,17 and 23[] 
+ []
+
+
+Overfull \hbox (20.29697pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 # [11] "Hospital.30.Day.Death..Mortality..Rates.from.Heart.A
+ttack"[] 
+ []
+
+
+Overfull \hbox (25.54692pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 # [17] "Hospital.30.Day.Death..Mortality..Rates.from.Heart.F
+ailure"[] 
+ []
+
+
+Overfull \hbox (4.5471pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 # [23] "Hospital.30.Day.Death..Mortality..Rates.from.Pneumon
+ia"[] 
+ []
+
+
+Overfull \hbox (4.5471pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 # We will also give the data frame more manageable column na
+mes[] 
+ []
+
+
+Overfull \hbox (36.04683pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 names(Hosp) <- c("Hosp.Name", "State", "Heart.At","Heart.Fa"
+,"Pneum")[] 
+ []
+
+
+Overfull \hbox (9.79706pt too wide) in paragraph at lines 255--255
+[]  \OT1/cmtt/m/n/10 ValidOutcomes <- c("heart attack","heart failure","pneumon
+ia")[] 
+ []
+
+
+Overfull \hbox (15.04701pt too wide) in paragraph at lines 255--255
+[]   \OT1/cmtt/m/n/10 InputtedOutcome=c("heart attack","heart failure","pneumon
+ia"),[] 
+ []
+
+
+Overfull \hbox (15.04701pt too wide) in paragraph at lines 255--255
+[]\OT1/cmtt/m/n/10 VarCol <- outcome.df[outcome.df$InputtedOutcome==outcome,]$U
+seCol[] 
+ []
+
+[5]
+Underfull \vbox (badness 10000) detected at line 256
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 256
+ []
+
+[6] [7]
+("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDAWeek 3 Programmin
+g rankall.aux") ) 
+Here is how much of TeX's memory you used:
+ 291 strings out of 493921
+ 3950 string characters out of 3147270
+ 58031 words of memory out of 3000000
+ 3656 multiletter control sequences out of 15000+200000
+ 6031 words of font info for 22 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 23i,6n,19p,313b,192s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+bx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on "CfDAWeek 3 Programming rankall.pdf" (7 pages, 99883 bytes).
+PDF statistics:
+ 50 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

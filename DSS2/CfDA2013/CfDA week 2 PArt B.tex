@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+
+
+\usepackage{framed}
+
+% http://rstudio-pubs-static.s3.amazonaws.com/1940_f7997f0ead914ae897a445f5c94bc96f.html
+
+%https://github.com/pcward/coursera_programming-r/blob/master/rankhospital.r
+
+\begin{document}
+
+\section*{Quiz for Week 2 Part B}
+
+\subsection*{Quiz Question 6}
+Load the '\textit{\textbf{mtcars}}' dataset in \texttt{R} with the following code
+
+\begin{framed}
+\begin{verbatim}
+library(datasets)
+data(mtcars)
+\end{verbatim}
+\end{framed}
+
+\begin{itemize}
+\item There will be an object names '\textit{\textbf{mtcars}}' in your workspace. You can find some information about the dataset by running
+\texttt{?mtcars}.
+
+\item How can one calculate the average miles per gallon (mpg) by number of cylinders in the car (cyl)?
+\end{itemize}
+\textbf{Options}
+\begin{verbatim}
+tapply(mtcars$cyl, mtcars$mpg, mean)
+split(mtcars, mtcars$cyl)
+mean(mtcars$mpg, mtcars$cyl)
+tapply(mtcars$mpg, mtcars$cyl, mean)
+\end{verbatim}
+
+\begin{itemize}
+\item Cars can have either 4, 6 or 8 cylinders.
+\begin{verbatim}
+> table(mtcars$cyl)
+
+ 4  6  8 
+11  7 14 
+\end{verbatim}
+\item using the \texttt{tapply()} function
+\begin{verbatim}
+> tapply(mtcars$mpg, mtcars$cyl, mean)
+       4        6        8 
+26.66364 19.74286 15.10000
+\end{verbatim}
+\end{itemize}
+\newpage
+%--------------------------------------------------------------%
+\subsection*{Quiz Question 7}
+Continuing with the \textit{\textbf{mtcars}} dataset from Question 6, what is the absolute difference between the average horsepower of 4-cylinder cars and the average horsepower of 8-cylinder cars?
+
+\bigskip
+\textbf{Remarks}\\
+This is another question where the \texttt{aggregate()} command comes in handy. (We will use \texttt{attach()} and \texttt{detach()} to avoid unnecessary typing)
+\begin{verbatim}
+> attach(mtcars)
+> Smry <- aggregate(hp,by=list(Cyls=cyl),mean)
+> Smry 
+  Cyls         x
+1    4  82.63636
+2    6 122.28571
+3    8 209.21429
+> detach(mtcars)
+>
+> Smry$x
+[1]  82.63636 122.28571 209.21429
+>
+> Smry$x[3]-Smry$x[1]
+[1] 126.5779
+\end{verbatim}
+
+
+\newpage
+%--------------------------------------------------------------%
+\subsection*{Quiz Question 8}
+What is the difference between the '\texttt{sapply()}' function and the '\texttt{lapply()}' function?
+
+\textbf{Options}
+\begin{enumerate}
+\item There is no difference; 'sapply' and 'lapply' are two names for the same function
+\item '\texttt{sapply()}' always returns a 2-dimensional matrix while 'lapply' returns a list.
+\item '\texttt{lapply()}' always returns a list while '\texttt{sapply()}' attempts to simplify the result. (\textbf{Correct})
+\item '\texttt{lapply()}' always returns an atomic vector and 'sapply' always returns a list.
+\end{enumerate}
+
+\noindent The question can be easily solved by reading the help files for both commands.
+\begin{verbatim}
+help(sapply)
+\end{verbatim}
+\newpage
+%-------------------------------------------------------%
+\subsection*{Quiz Question 9}
+Consider the following function
+\begin{verbatim}
+f <- function(x) {
+        g <- function(y) {
+                y + z
+        }
+        z <- 4
+        x + g(x)
+}
+\end{verbatim}
+
+If I then run in R
+\begin{verbatim}
+z <- 10
+f(3)
+\end{verbatim}
+What value is returned by 'f'?
+%7
+%10
+%16
+%4
+
+\newpage
+\subsection*{Quiz Question 10}
+If you run
+\texttt{debug(ls)}
+what happens when you next call the '\texttt{ls}' function?
+\begin{enumerate}
+\item Execution of '\texttt{ls}' will suspend at the beginning of the function and you will be in the browser.
+\item The '\texttt{ls}' function will execute as usual. (\textbf{FALSE})
+\item The '\texttt{ls}' function will return an error. (\textbf{FALSE})
+\item Execution of the '\texttt{ls}' function will suspend at the 4th line of the function and you will be in the browser.
+\item You will be prompted to specify at which line of the function you would like to suspend execution and enter the browser.
+\end{enumerate}
+
+\end{document}

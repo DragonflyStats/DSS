@@ -1,0 +1,109 @@
+
+#--------------------------------#
+
+y <- c(letters[1:10],letter[20:100])
+x <- sample(1:15,20,replace=T)
+z <- x #jitter(x)
+
+
+which.min(z)
+
+#--------------------------------#
+
+DF <- data.frame(Y=y,Z=z)
+
+
+DF[which.min(DF$Z),]
+
+DF[which.min(DF$Z),]$Y
+
+as.character(DF[which.min(DF$Z),]$Y)
+
+DF[order(DF$Z),]
+#--------------------------------#
+
+DF1 = DF
+DF1$Z[10]=NA
+DF1
+
+
+DF1[which.min(DF1$Z),]
+
+DF1[which.min(DF1$Z),]$Y
+
+DF1[order(DF1$Z),]
+
+#--------------------------------#
+# Best and Worst
+which(x == min(x))
+which(x == max(x))
+
+
+
+
+#####################################
+#Part 1 : Inputs
+
+type="virginica"
+outcome ="SL"
+
+#####################################
+#Part 2 : Check that inputed value is OK
+
+
+
+#####################################
+#Part 3a : Subset data set by selected type
+iris2 = iris[iris$Species==type,]
+
+
+#####################################
+#Part 3b : Built a temporary data frame called outcome.df
+
+# Function is a simple "look-up table"
+# For specified input, can find required column number
+
+outcome.df <- data.frame(Vars=c("SL","SW","PL","PW"),Cols=c(1,2,3,4))
+
+
+#For given input for "outcome" return the column number 
+
+# > outcome.df
+#   Vars Cols
+# 1   SL    1
+# 2   SW    2
+# 3   PL    3
+# 4   PW    4
+#
+# Pick outcome.df$Cols when outcome.df$Vars is equal to "outcome"
+# save the column number as VarCol
+
+VarCol <- outcome.df[outcome.df$Vars==outcome,]$Cols
+
+
+#####################################
+#Part 3c : Subset data set by outcome
+
+# We will use the column selected by VarCol, and also column 5
+
+UseCol <- c(5,VarCol)
+
+iris3 <- iris2[,UseCol]
+
+####################################
+# Part 4a location of minimum value or values
+
+which(iris3[,2] == min(iris3[,2])
+
+####################################
+# Part 4b Extract case of minima location 
+
+iris3[which(iris3[,2] == min(iris3[,2])), ]
+
+ # Can do it for maximaum as well
+ # iris3[which(iris3[,2] == max(iris3[,2])), ]
+
+####################################
+# Part 5 Order by rankings
+
+iris3[order(iris3[,2]),]

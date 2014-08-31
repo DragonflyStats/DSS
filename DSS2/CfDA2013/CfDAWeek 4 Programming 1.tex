@@ -1,0 +1,44 @@
+\documentclass[]{article}
+
+\usepackage{framed}
+%opening
+\title{Coursera - Computing For Data Analysis Week 4}
+
+%https://github.com/pcward/coursera_programming-r/blob/master/rankhospital.r
+%https://github.com/ConAntonakos/Computing_for_Data_Analysis/blob/master/rankhospital.R
+
+% http://rpubs.com/flintt/3694
+\begin{document}
+
+\maketitle
+
+
+
+\section{Week 4 Programming Assignment Part 1}
+
+\subsection{How many of each cause of homicide?}
+
+The goal of this problem is to count the number of different types of homicides that are
+in this dataset. In each record there is a field with the word ``Cause" in it indicating the
+cause of death (e.g. ``Cause: shooting"). The basic goal is to extract this field and count the
+number of instances of each cause.
+
+\bigskip
+\noindent
+Write a function named count that takes one argument, a character string indicating the
+cause of death. The function should then return an integer representing the number of
+homicides from that cause in the dataset. If no cause of death is specified, then the function
+should return an error message via the stop function.
+
+\begin{itemize}
+\item  Your function should read the homicides dataset in the manner indicated above.
+\item The options for cause of death are ``asphyxiation", ``blunt force", ``other", ``shooting",
+``stabbing", ``unknown". 
+\item No other causes are allowed. If a cause of death is specified
+that is not one of these, then the function should throw an error with the stop function.
+\item Note that some homicides in the dataset do not have a cause of death listed and those
+records should be ignored.
+\item Your function should deal with some irregularities in the dataset like capitalization.
+For example ``Shooting" and ``shooting" should be counted as the same cause of death.
+\end{itemize}
+\end{document}

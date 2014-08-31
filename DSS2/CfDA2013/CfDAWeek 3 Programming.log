@@ -1,0 +1,226 @@
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2010.4.3)  11 OCT 2013 16:04
+entering extended mode
+**CfDAWeek*3*Programming.tex
+("CfDAWeek 3 Programming.tex"
+LaTeX2e <2005/12/01>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman, ngerman, german-x-2008-06-18, ngerman-x-2008-06-18, french, loaded.
+("C:\Program Files\MiKTeX 2.7\tex\latex\base\article.cls"
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.7\tex\latex\base\size10.clo"
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.7\tex\latex\ltxmisc\framed.sty"
+Package: framed 2007/10/04 v 0.95: framed or shaded text with page breaks
+\fb@frw=\dimen103
+\fb@frh=\dimen104
+\FrameRule=\dimen105
+\FrameSep=\dimen106
+)
+("CfDAWeek 3 Programming.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 21.
+[1
+
+{C:/Documents and Settings/All Users/Application Data/MiKTeX/2.7/pdftex/config/
+pdftex.map}] [2] [3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 131.
+
+ ("C:\Program Files\MiKTeX 2.7\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 131.
+[4] [5]
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 203--203
+[] \OT1/cmtt/m/n/10 AK  AL  AR  AZ  CA  CO  CT  DC  DE  FL  GA  GU  HI  IA  ID 
+ IL  IN  KS[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 203--203
+[] \OT1/cmtt/m/n/10 17  98  77  77 341  72  32   8   6 180 132   1  19 109  30 
+179 124 118[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 203--203
+[] \OT1/cmtt/m/n/10 KY  LA  MA  MD  ME  MI  MN  MO  MS  MT  NC  ND  NE  NH  NJ 
+ NM  NV  NY[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 203--203
+[] \OT1/cmtt/m/n/10 96 114  68  45  37 134 133 108  83  54 112  36  90  26  65 
+ 40  28 185[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 203--203
+[] \OT1/cmtt/m/n/10 OH  OK  OR  PA  PR  RI  SC  SD  TN  TX  UT  VA  VI  VT  WA 
+ WI  WV  WY[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 203--203
+[]\OT1/cmtt/m/n/10 170 126  59 175  51  12  63  48 116 370  42  87   2  15  88 
+125  54  29[] 
+ []
+
+[6] [7] [8]
+Overfull \hbox (4.5471pt too wide) in paragraph at lines 288--288
+[]\OT1/cmtt/m/n/10 # We will also give the data frame more manageable column na
+mes[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]                                  \OT1/cmtt/m/n/9 Hospital.Name State  Heart.
+Attack Heart.Failure     Pneumonia[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3655          MEMORIAL HOSPITAL OF RHODE ISLAND    RI        
+  14.9          12.8          12.8[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3656              ROGER WILLIAMS MEDICAL CENTER    RI        
+  16.3          10.8          11.6[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3657            ST JOSEPH HEALTH SERVICES OF RI    RI        
+  15.5          11.9          14.6[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3658                           NEWPORT HOSPITAL    RI        
+  15.6          13.7          10.0[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3659                      RHODE ISLAND HOSPITAL    RI        
+  13.9          10.8          11.3[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3660                  SOUTH COUNTY HOSPITAL INC    RI        
+  14.7          15.6          14.9[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3661              KENT COUNTY MEMORIAL HOSPITAL    RI        
+  14.4          11.3          10.4[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3662 WOMEN AND INFANTS HOSPITAL OF RHODE ISLAND    RI Not Ava
+ilable Not Available Not Available[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3663              LANDMARK MEDICAL CENTER,  INC    RI        
+  14.2          12.9          14.8[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3664                            MIRIAM HOSPITAL    RI        
+  11.9          11.6          11.9[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3665                          WESTERLY HOSPITAL    RI        
+  17.7          10.1          12.5[] 
+ []
+
+
+Overfull \hbox (103.86978pt too wide) in paragraph at lines 309--309
+[]\OT1/cmtt/m/n/9 3666               PROVIDENCE VA MEDICAL CENTER    RI        
+  15.3          11.7          14.0[] 
+ []
+
+[9] [10]
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 384--384
+[]\OT1/cmtt/m/n/10 # N.B. UseCols is different from the variable UseCol, which 
+we used previously[] 
+ []
+
+
+Overfull \hbox (18.42552pt too wide) in paragraph at lines 385--388
+\OT1/cmr/m/n/10 ter data. We will trans-form it to nu-meric data. We will use t
+he \OT1/cmtt/m/n/10 suppressWarnings()
+ []
+
+[11] [12]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 449.
+ [13] ("CfDAWeek 3 Programming.aux") ) 
+Here is how much of TeX's memory you used:
+ 298 strings out of 95304
+ 3294 string characters out of 1183033
+ 52625 words of memory out of 1500000
+ 3560 multiletter control sequences out of 110000
+ 9403 words of font info for 34 fonts, out of 3000000 for 5000
+ 14 hyphenation exceptions out of 8191
+ 23i,6n,20p,259b,243s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.7/fonts/type1/
+bluesky/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx1
+2.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbxti10.pfb><C:/Prog
+ram Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmr10.pfb><C:/Program Files/MiKTeX 
+2.7/fonts/type1/bluesky/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/b
+luesky/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.
+pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmtt10.pfb><C:/Program 
+Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmtt12.pfb><C:/Program Files/MiKTeX 2.7
+/fonts/type1/bluesky/cm/cmtt9.pfb>
+Output written on "CfDAWeek 3 Programming.pdf" (13 pages, 96484 bytes).
+PDF statistics:
+ 85 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

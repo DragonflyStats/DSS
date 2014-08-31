@@ -1,0 +1,168 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.6.13)  13 DEC 2013 17:42
+entering extended mode
+**CfDA*week*2*Quiz.tex
+("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDA week 2 Quiz.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\Users\Computer5\AppData\Roaming\MiKTeX\2.9\tex\latex\framed\framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen103
+\fb@frh=\dimen104
+\FrameRule=\dimen105
+\FrameSep=\dimen106
+)
+("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDA week 2 Quiz.aux"
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+ ("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDA week 2 Quiz.toc
+"
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 2.
+)
+\tf@toc=\write3
+ [1
+
+{C:/Users/Computer5/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+[2] [3] [4]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 85.
+ [5] [6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 152.
+
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 152.
+
+[7]
+Overfull \hbox (16.04988pt too wide) in paragraph at lines 186--186
+ []  \OT1/cmtt/m/n/12 Sepal.Length    Sepal.Width     Petal.Length    Petal.Wid
+th[] 
+ []
+
+
+Overfull \hbox (22.22488pt too wide) in paragraph at lines 186--186
+ [] \OT1/cmtt/m/n/12 Min.   :4.900   Min.   :2.200   Min.   :4.500   Min.   :1.
+400[] 
+ []
+
+
+Overfull \hbox (22.22488pt too wide) in paragraph at lines 186--186
+ [] \OT1/cmtt/m/n/12 1st Qu.:6.225   1st Qu.:2.800   1st Qu.:5.100   1st Qu.:1.
+800[] 
+ []
+
+
+Overfull \hbox (22.22488pt too wide) in paragraph at lines 186--186
+ [] \OT1/cmtt/m/n/12 Median :6.500   Median :3.000   Median :5.550   Median :2.
+000[] 
+ []
+
+
+Overfull \hbox (22.22488pt too wide) in paragraph at lines 186--186
+ [] \OT1/cmtt/m/n/12 Mean   :6.588   Mean   :2.974   Mean   :5.552   Mean   :2.
+026[] 
+ []
+
+
+Overfull \hbox (22.22488pt too wide) in paragraph at lines 186--186
+ [] \OT1/cmtt/m/n/12 3rd Qu.:6.900   3rd Qu.:3.175   3rd Qu.:5.875   3rd Qu.:2.
+300[] 
+ []
+
+
+Overfull \hbox (22.22488pt too wide) in paragraph at lines 186--186
+ [] \OT1/cmtt/m/n/12 Max.   :7.900   Max.   :3.800   Max.   :6.900   Max.   :2.
+500[] 
+ []
+
+[8]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 194.
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+ [9]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ì in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+ [10]
+Overfull \hbox (19.44022pt too wide) in paragraph at lines 254--255
+\OT1/cmr/m/n/12 vec-tor of the means of the vari-ables 'Sepal.Length', 'Sepal.W
+idth', 'Petal.Length',
+ []
+
+[11] [12] [13] [14] [15] [16]
+("C:\Users\Computer5\Dropbox\Public\Coursera Data Science\CfDA week 2 Quiz.aux"
+) ) 
+Here is how much of TeX's memory you used:
+ 316 strings out of 493921
+ 4225 string characters out of 3147270
+ 53031 words of memory out of 3000000
+ 3671 multiletter control sequences out of 15000+200000
+ 8938 words of font info for 32 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 22i,6n,20p,300b,223s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on "CfDA week 2 Quiz.pdf" (16 pages, 86847 bytes).
+PDF statistics:
+ 74 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,71 @@
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage{framed}
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{framed}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+\begin{document}
+\tableofcontents
+\newpage
+%------------------------------------------------------%
+\section{Computing For Data Analysis Week 4}
+
+\subsection{The \texttt{grep()} function }
+ What does the \texttt{grep()} function do when called with its default arguments?
+ 
+ It returns the indices for strings in a character that match a given regular expression.
+
+\subsection{Regular Expressions}
+%Question 7
+\begin{framed}
+\begin{verbatim}
+^s(.*?)r
+\end{verbatim}
+\end{framed}
+%------------------------------------------------------%
+\subsection{Generic Functions}
+%Question 8
+In the R system of classes and methods, what is a generic function?
+
+
+\subsection{S4 Methods}
+What function is used to obtain the function body for an S4 method function?
+
+Not \texttt{getS3method()}. 
+
+What does the setOldClass function do?
+
+\end{document}

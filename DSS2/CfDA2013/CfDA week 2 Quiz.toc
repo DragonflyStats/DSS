@@ -1,0 +1,7 @@
+\contentsline {subsection}{\numberline {0.1}The \texttt {aggregate()} function}{5}
+\contentsline {subsection}{\numberline {0.2}The \texttt {apply()} function}{9}
+\contentsline {subsection}{\numberline {0.3}Quiz Question 6}{12}
+\contentsline {subsection}{\numberline {0.4}Quiz Question 7}{13}
+\contentsline {subsection}{\numberline {0.5}Quiz Question 8}{14}
+\contentsline {subsection}{\numberline {0.6}Quiz Question 9}{15}
+\contentsline {subsection}{\numberline {0.7}Quiz Question 10}{16}
