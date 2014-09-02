@@ -1,0 +1,369 @@
+\documentclass[]{article}
+\usepackage{framed}
+
+\begin{document}
+
+
+
+\section{Data Analysis : Week 2 Quiz}
+
+
+\subsection*{Question 1}
+
+In the text of the final write-up of a data analysis, how should the analyses be reported?
+
+\begin{itemize} 
+\item[(i)] Every analysis performed should be reported with a measure of uncertainty. (Not all data analyses contain an element of "uncertainty"- censuses)
+\item[(ii)] Analyses should be reported in the order that they appear in the raw scripts files.
+\item[(iii)] Analyses should be reported in an order to convey the story being told with the data analysis.
+\item[(iv)] Analyses should be reported in chronological order of when they are performed. (useful but not a major concern)
+\end{itemize}
+
+%**Analyses should be reported in an order to convey the story being told with the data analysis.**
+
+%----------------------------------------------------------------%
+\newpage
+\subsection*{Question 2}
+
+\begin{itemize}
+\item Open a connection to the old version of my blog: `http://simplystatistics.tumblr.com/`, 
+\item read the first 150 lines of the file and assign them to a vector `simplyStats`. 
+\item Apply the `\texttt{nchar()}` function to `simplyStats` to count the characters in each element of `simplyStats`. 
+\item How many characters long are the lines 2, 45, and 122?
+\end{itemize}
+
+
+\begin{framed}
+\begin{verbatim}
+
+# open a connection to http://simplystatistics.tumblr.com/ 
+# assign to vector `simplyStats`
+simplyStats <- readLines( 
+ url('http://simplystatistics.tumblr.com/'), 150)
+\end{verbatim}
+\end{framed}
+
+How many characters are in each element of `simplyStats`. 
+\begin{framed}
+\begin{verbatim}
+# apply `nchar()`
+simplyStatsChars <- nchar(simplyStats)
+\end{verbatim}
+\end{framed}
+
+How many characters long are the lines 2, 45, and 122?
+\begin{framed}
+\begin{verbatim}
+# how many characters long is line 2?
+nchar(simplyStats)[2]
+
+# how many characters long is line 45?
+nchar(simplyStats)[45]
+
+# how many characters long is line 122?
+nchar(simplyStats)[122]
+\end{verbatim}
+\end{framed}
+
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{Question 3}
+
+The American Community Survey distributes downloadable data about United States communities. 
+Download the 2006 microdata survey about housing for the state of Idaho using \texttt{download.file()} from here: 
+
+\begin{verbatim}
+https://dl.dropbox.com/u/7710864/data/csv_hid/ss06hid.csv
+
+or here:
+
+https://spark-public.s3.amazonaws.com/dataanalysis/ss06hid.csv 
+\end{verbatim}
+and load the data into \texttt{R}. You will use this data for the next several questions. 
+
+\noindent \textbf{\textit{Code Book}}\\
+The code book, describing the variable names is here: 
+
+\begin{verbatim}
+https://dl.dropbox.com/u/7710864/data/PUMSDataDict06.pdf
+
+or here: 
+
+https://spark-public.s3.amazonaws.com/dataanalysis/PUMSDataDict06.pdf
+\end{verbatim}
+\bigskip
+How many housing units in this survey were worth more than \$1,000,000?
+% **53**
+
+\begin{framed}
+\begin{verbatim}
+# Download 2006 microdata survey 
+# re: housing for Idaho using download.file()
+# setwd("~/DA")
+download.file(
+ 'https://spark-public.s3.amazonaws.com/dataanalysis/ss06hid.csv',
+              "ss06hid.csv", method="curl")
+
+# Download the code book:
+# download.file(
+ 'https://spark-public.s3.amazonaws.com/dataanalysis/PUMSDataDict06.pdf',
+              "PUMSDataDict06.pdf", method="curl")
+
+# load the data into R
+idahoData <- read.csv("ss06hid.csv", header=TRUE)
+
+# are we sure it's just Idaho data?
+table(idahoData$ST)
+#Check the PDF - what does 16 mean?
+
+#any missing data?
+summary(idahoData$ST)
+
+# How many housing units [are] worth more than $1,000,000?
+table(idahoData$TYPE,idahoData$VAL)
+\end{verbatim}
+\end{framed}
+
+\begin{framed}
+\begin{verbatim}
+#from local files
+idahoData <- read.csv("daquiz2.csv", header=TRUE)
+
+\end{verbatim}
+\end{framed}
+
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{ Question 4}
+
+\begin{itemize}
+\item Use the data you loaded from Question 3. 
+\item Consider the variable FES. 
+\item Which of the "tidy data" principles does this variable violate?
+\end{itemize}
+
+%READY
+\textbf{\textit{Revision}}\\
+What are the three characteristics of tidy data?
+
+\begin{itemize}
+\item ``\textit{\textbf{Tidy data}}" by Hadley Wickham (RStudio)
+\item Submission to Journal of Statistical Software
+\item (http://vita.had.co.nz/papers/tidy-data.pdf)
+\end{itemize}
+Three Principles from Hadley Wickham's paper
+\begin{itemize}
+\item[1.] Each variable forms a column, 
+\item[2.] Each observation forms a row, 
+\item[3.] Each table/file stores data about one kind of observation.
+\end{itemize}
+
+\begin{framed} 
+\begin{verbatim}
+# let's look!
+unique(idahoData$FES)
+\end{verbatim}
+\end{framed} 
+\textbf{Options}
+\begin{itemize}
+\item[(i)]  Each tidy data table contains information about only one type of observation.\\
+(Not so)
+
+\item[(ii)]  Each variable in a tidy data set has been transformed to be interpretable.
+(No)
+
+\item[(iii)]  Tidy data has no missing values.
+
+\item[(iv)]  Tidy data has one variable per column.
+\end{itemize}
+  
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{ Question 5 }
+
+Use the data you loaded from Question 3. 
+
+\begin{itemize}
+\item How many households have 3 bedrooms and and 4 total rooms? 
+\item How many households have 2 bedrooms and 5 total rooms? 
+\item How many households have 2 bedrooms and 7 total rooms?
+\end{itemize}
+\begin{framed}
+\begin{verbatim}
+#USING TABLE
+#Rooms on Rows , Bedrooms on Columns
+#dnn adds dimension names
+
+table(idahoData$RMS,idahoData$BDS,dnn=list("RMS","BDS"))
+
+\end{verbatim}
+\end{framed}
+Another Way of Doing it
+\begin{framed}
+\begin{verbatim}
+# How many households have 3 bedrooms and 4 total rooms?
+nrow(idahoData[!is.na(idahoData$BDS) & idahoData$BDS==3 &
+                 !is.na(idahoData$BDS) & idahoData$RMS==4,])
+# How many households have 2 bedrooms and 5 total rooms?
+nrow(idahoData[!is.na(idahoData$BDS) & idahoData$BDS==2 &
+                 !is.na(idahoData$BDS) & idahoData$RMS==5,])
+# How many households have 2 bedrooms and 7 total rooms?
+nrow(idahoData[!is.na(idahoData$BDS) & idahoData$BDS==2 &
+                 !is.na(idahoData$BDS) & idahoData$RMS==7,])
+
+\end{verbatim}
+\end{framed}
+% **148, 386, 49**
+
+
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{Question 6}
+\begin{itemize}
+\item Use the data from Question 3. 
+\item Create a logical vector that identifies the households on greater than 10 acres who sold more than \$10,000 worth of agriculture products. 
+\item Assign that logical vector to the variable `\texttt{agricultureLogical}`. 
+\item Apply the `\texttt{which()} function like this to identify the rows of the data frame where the logical vector is `TRUE`.
+\end{itemize}
+
+\begin{framed} 
+\begin{verbatim}
+# Like this (this wont run yet)
+ which(agricultureLogical) 
+\end{verbatim}
+\end{framed} 
+
+What are the first 3 values that result?
+
+\begin{framed} \begin{verbatim}
+# Showing off a bit
+q6cols <- c("ACR", "AGS")
+which(names(idahoData) %in% q6cols)  
+
+# logical vector
+agricultureLogical <- idahoData$ACR==3 & idahoData$AGS==6
+
+# and:
+ which(agricultureLogical) 
+\end{verbatim}\end{framed} 
+
+%**125, 238, 262**
+
+%-----------------------------------------------------------------%
+\newpage
+\subsection{Question 7}
+
+\begin{itemize}
+\item Use the data from Question 3. 
+\item Create a logical vector that identifies the households on greater than 10 acres who
+ sold more than \$10,000 worth of agriculture products. 
+\item Assign that logical vector to the variable \texttt{agricultureLogical}. 
+\item Apply the \texttt{which()} function like this to identify the rows of the 
+data frame where the logical vector is TRUE and assign it to the variable indexes. 
+\end{itemize}
+
+\begin{framed} \begin{verbatim}
+indexes =  which(agricultureLogical) 
+\end{verbatim}\end{framed} 
+
+If your data frame for the complete data is called \texttt{dataFrame} you can create a data frame 
+with only the above subset with the command: 
+
+\begin{framed} 
+\begin{verbatim}
+subsetDataFrame  = dataFrame[indexes,] 
+\end{verbatim}
+\end{framed} 
+
+\noindent Note that we are subsetting this way because the NA values in the variables 
+will cause problems if you subset directly with the logical statement. 
+
+
+\noindent How many households in the subsetDataFrame have a missing value for the mortgage status 
+(MRGX) variable?
+
+\begin{framed} 
+\begin{verbatim}
+indexes <- which(agricultureLogical)
+subsetIdahoData <- idahoData[indexes,]
+
+# And then:
+nrow(subsetIdahoData[is.na(subsetIdahoData$MRGX),])
+\end{verbatim}
+\end{framed} 
+
+%**8**
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{Question 8}
+\begin{itemize}
+\item Use the data from Question 3.
+\item Apply `\texttt{strsplit()}` to split all the names of the data frame on the characters "wgtp". 
+\item What is the value of the 123 element of the resulting list?
+\end{itemize}
+
+\begin{framed} \begin{verbatim}
+List <- strsplit(names(idahoData), "wgtp")
+List[123]
+\end{verbatim}\end{framed} 
+
+%**"" "15"**
+
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{Question 9}
+
+What are the 0\% and 100\% quantiles of the variable \texttt{YBL}? Is there anything wrong with these values?
+\textit{ Hint: you may need to use the \texttt{na.rm} parameter.}
+
+\begin{framed} 
+\begin{verbatim}
+quantile(idahoData$YBL, na.rm=TRUE)
+#  0%  25%  50%  75% 100% 
+#  -1    3    5    7   25 
+\end{verbatim}
+\end{framed} 
+
+%-----------------------------------------------------------------%
+\newpage
+\subsection*{Question 10}
+
+In addition to the data from Question 3, the American Community Survey also collects data about populations. 
+Using `download.file()`, download the population record data from: 
+
+\begin{verbatim}
+https://dl.dropbox.com/u/7710864/data/csv_hid/ss06pid.csv 
+
+or here:
+
+https://spark-public.s3.amazonaws.com/dataanalysis/ss06pid.csv
+\end{verbatim}
+
+\begin{itemize}
+\item Load the data into \texttt{R}. Assign the housing data from Question 3 to a data frame `\texttt{housingData}` and the population data from above to a data frame `populationData`.
+
+\item Use the merge command to merge these data sets based only on the common identifier "SERIALNO". 
+
+\item What is the dimension of the resulting data set? 
+\end{itemize}
+%[OPTIONAL] For fun, you might look at the data and see what happened when they merged.
+
+\begin{framed} 
+\begin{verbatim}
+download.file(
+'https://spark-public.s3.amazonaws.com/dataanalysis/ss06pid.csv',
+              'ss06pid.csv', method='curl')
+
+rm(idahoData)
+housingData <- read.csv("ss06hid.csv", header=TRUE)
+populationData <- read.csv("ss06pid.csv", header=TRUE)
+
+dim(merge(housingData, 
+ populationData, by="SERIALNO", all=TRUE))
+\end{verbatim}
+\end{framed} 
+
+% **number of rows = 15451, number of columns = 426**
+
+\end{document}
+\end{document}
