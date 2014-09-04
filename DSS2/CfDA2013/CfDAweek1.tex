@@ -1,0 +1,1612 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{Coding Grace} \rhead{8th June 2013}
+\chead{A Taste of \texttt{R}}
+%\input{tcilatex}
+
+
+% http://www.norusis.com/pdf/SPC_v13.pdf
+\begin{document}
+
+\tableofcontents
+\newpage
+%------------------------------------------%
+
+\section{Introduction to \texttt{R}}
+\emph{Source: \texttt{R} project website (http://www.r-project.org)}\\
+
+\noindent \texttt{R} is a language and environment for statistical computing and graphics. It is a GNU project which is similar to the S language and environment which was developed at Bell Laboratories (formerly AT\&T, now Lucent Technologies) by John Chambers and colleagues. \texttt{R} can be considered as a different implementation of \texttt{S}. There are some important differences, but much code written for \texttt{S} runs unaltered under \texttt{R}.\\
+
+\noindent \texttt{R} provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, ...) and graphical techniques, and is highly extensible. The \texttt{S} language is often the vehicle of choice for research in statistical methodology, and \texttt{R} provides an Open Source route to participation in that activity.\\
+
+\noindent One of \texttt{R}'s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. Great care has been taken over the defaults for the minor design choices in graphics, but the user retains full control.\\
+
+\noindent \texttt{R} is available as Free Software under the terms of the Free Software Foundation's GNU General Public License in source code form. It compiles and runs on a wide variety of UNIX platforms and similar systems (including FreeBSD and Linux), Windows and MacOS.\\
+%----------------------------------------------------------------------%
+
+
+\texttt{R} is a programming environment
+\begin{itemize}
+\item uses a well-developed but simple programming language
+\item allows for rapid development of new tools according to user demand
+\item these tools are distributed as packages, which any user can download to customize the \texttt{R} environment.
+\end{itemize}
+Base R and most R packages are available for download from the Comprehensive \texttt{R} Archive Network (CRAN)
+\textbf{\textit{cran.r-project.org}}. Base R comes with a number of basic data management, analysis, and graphical tools
+\texttt{R}'s power and flexibility, however, lie in its array of \textbf{packages} (currently more than 4,000!)
+
+\subsection{Installing \texttt{R}}
+\texttt{R} is very easily installed by downloading it from the CRAN website. Installation usually takes about 2 minutes. When Installation of \texttt{R} is complete, the distinctive \texttt{R} Icon will appear on your desktop. To start \texttt{R}, simply click this Icon. It is common to re-install \texttt{R} once a year or so. The current version of \texttt{R}, version 3.0.0. was released quite recently.
+%-------------------------------------------%
+\subsection{Command Line Interface}
+When you start \texttt{R}, the command line interface window will appear on screen. This is one of many windows in the \texttt{R} environment, others including graphical output windows, or script editors. 
+\texttt{R} code can be entered into the command line directly. Alternatively code can be saved to a script, which can be run inside a session using the \texttt{source()} function.
+
+
+
+%--------------------------------------------%
+\subsection{The Assignment operator}
+The assignment operator is used to assign names to particular values.
+Historically the assignment operator was ) a "\texttt{<-}".
+The assignment operator can also be \texttt{=}. This is valid as of R version 1.4.0. 
+
+Both will be used, although, you should learn one and stick with it.
+Many long term R users prefer the arrow approach.
+You can also use \texttt{->} as an assignment operator, reversing the usual assignment positions. (This is actually really useful).
+Commands are separated either by a semi colon or by a newline.
+\begin{framed}
+\begin{verbatim}
+> a <- 6
+> b = 5
+> a + b ->c
+> c
+[1] 11
+>e=7;f<-4
+\end{verbatim}
+\end{framed}
+
+Before we continue, try using the up and down keys, and see what happens. Previously typed commands are re-presented, and can be re-executed.
+
+\texttt{R} stores both data and output from data analysis (as well as everything else) in \textbf{objects}. The variables we have created so far are objects.
+A list of all objects in the current session can be obtained with \texttt{ls()}.
+%-----------------------%
+\subsubsection{Reserved Words}
+
+Some names are used by the system, e.g.\texttt{T}, \texttt{F},\texttt{q},\texttt{c} etc . Avoid using these.
+
+%--------------------------------------------%
+\subsection{Commenting}
+For the sake of readability, it is good practice to comment code. 
+The $\#$ character at the beginning of a line signifies a comment, which is not executed. % To add comments to code, use the hash symbol.  
+Lines of hashtags can be used to identify the beginning and end of code segments
+\begin{verbatim}
+# This is a comment
+
+#####################
+#  Start of  Segment 1
+
+#####################
+\end{verbatim}
+
+\subsection{Defining Variables}
+A convention is to use define a variable name with a capital letter (\texttt{R} is case sensitive).
+This reduces the chance of overwriting in-build \texttt{R} functions, which are usually written in lowercase letters.
+Commonly used variable names such as x,y and z (in lower case letters) are not ``reserved".
+
+
+\subsection{Help Functions}
+
+Help files for \texttt{R} functions are accessed by preceding the name of the function with ? (e.g. \texttt{?sort} ).
+Alternatively you can use the command \texttt{help()}  (e.g. \texttt{help(sqrt)} ) 
+
+A HTML document appears on screen with information on the function typed in. As well as the list of arguments that the particular function accepts, and how to specify them, there is example code at the bottom of the file. These code segments are often invaluable in learning how to master the function.
+
+\subsection{The \texttt{help.start()} command}
+As mentioned by the text on the main console, the \texttt{help.start()} command can be usd to access detailed help documentation that comes as part of the installation.
+
+
+%------------------------------------------%
+\subsection{Basic Maths Operations}
+
+The most commonly used mathematical operators are all supported by \texttt{R}. Here are a few examples: 
+\begin{verbatim}
+ 5 + 3 * 5      # Note the order of operations. 
+ log (10)       # Natural logarithm with base e=2.718282 
+log(8,2)   	# Log to the base 2
+4^2            # 4 raised to the second power 
+7/2            # Division 
+factorial(4) 	#Factorial of Four
+sqrt (25)      # Square root 
+abs (3-7)      # Absolute value of 3-7 
+pi             # The mysterious number \\\
+exp(2)         # exponential function 
+\end{verbatim}
+
+\texttt{R} can be used for many mathematical operations, including
+\begin{itemize}
+\item Set Theory
+\item Trigonometry
+\item Complex Numbers
+\item Binomial Coefficients
+\end{itemize}
+We will not go into any of these in great detail today.
+
+%----------------------------------------------------------------------------------------%
+\subsection{Basic R Editor} %Ready 1
+% - new script
+% - updating script
+% - running script
+
+%\subsection{Basic R editing , Script Editor and edit()}
+\texttt{R} has an inbuilt script editor. We will use it for this class, but there are plenty of top quality \textbf{\textit{Integrated Development Environments}} out there. (Read up about RStudio for example).
+For these workshops, we will use the in-built script editor.
+
+To start a new script, or open an existing script simply go to \textbf{File} and click the appropriate options.
+A new dialogue box will appear. You can write and edit code using this editor.
+
+To pass the code for compiling , press the \textbf{\textit{run line or selection}} option (The third icon on the menu).
+
+Another way to read code is to use the \texttt{edit()} function , which operates directly from the command line. To see how the code defining an object X was written (or more importantly, could have been written) simply type \texttt{edit(X)}. This command has some useful applications that we will see later on.
+
+Scripts are saved as .R files. These scripts can be called directly using the \texttt{source()} command.
+
+
+%\newpage
+
+
+
+%---------------------------------------%
+%-----------------------%
+\subsection{Built-In Data Sets} %Ready 1
+
+Several data sets , intended as learning tools, are automatically installed when \texttt{R} is installed. Many more are installed within packages to complement learning to use those packages. One of these is the famous Iris data set, which is used in many data mining exercises.
+\begin{itemize}
+\item \texttt{iris}
+\item \texttt{mtcars}
+\item \texttt{Nile}
+\end{itemize}
+To see what data sets are available, simply type \texttt{data()}.
+To load a data set, simply type in the name of the data set. Some data sets are very large. To just see the first few (or last)  rows, we use the \texttt{head()} function or alternatively the \texttt{tail()} function. The default number of rows of these commands is 6. Other numbers can be specified.
+\begin{verbatim} 
+> head(iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+>
+> tail(iris,4)
+    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+147          6.3         2.5          5.0         1.9 virginica
+148          6.5         3.0          5.2         2.0 virginica
+149          6.2         3.4          5.4         2.3 virginica
+150          5.9         3.0          5.1         1.8 virginic
+\end{verbatim}
+In many situations, it is useful to call a particular data set using the \texttt{attach()} command. This will save having to specify the data sets over repeated operations. The file can then be detached using 
+ the \texttt{detach()} command.
+%---------------------------------------------------------------------------%
+\subsection{The \texttt{summary()} command}
+The \texttt{R} command \texttt{summary()} is a generic function used to produce result ``summaries" of the results of various objects, from simple vectors to the output of complex model fitting functions.
+The function invokes particular methods which depend on the class of the first argument.
+\begin{framed}
+\begin{verbatim}
+> summary(Nile)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+  456.0   798.5   893.5   919.4  1032.0  1370.0
+>
+> summary(Indometh)
+ Subject      time            conc
+ 1:11    Min.   :0.250   Min.   :0.0500
+ 4:11    1st Qu.:0.750   1st Qu.:0.1100
+ 2:11    Median :2.000   Median :0.3400
+ 5:11    Mean   :2.886   Mean   :0.5918
+ 6:11    3rd Qu.:5.000   3rd Qu.:0.8325
+ 3:11    Max.   :8.000   Max.   :2.7200 
+\end{verbatim}
+\end{framed}
+\subsection{Working directories} % Ready 1 %
+You can change your working directly by using the appropriate options on the \textbf{File} menu.
+To determine the current working directory, you can use the \texttt{getwd()} command. 
+To change the working directory , we would use the \texttt{setwd()} command. 
+This is quite important as objects will be imported and exported to and from the specified directory.
+\begin{framed}
+\begin{verbatim}
+> getwd() 
+[1] "C:/Users/Kevin" 
+> 
+> setwd("C:/Users/Kevin/Documents") 
+> 
+> getwd() 
+[1] "C:/Users/Kevin/Documents"
+\end{verbatim}
+\end{framed}
+
+
+
+
+%-------------------------------------------%
+\subsection{Coming Unstuck} % Ready 1
+If you are having trouble with a piece of code that is currently compiling ,  all you have to do is press \textbf{ESC}, just like many other computing environments.
+%-------------------------------------------%
+\subsection{Quitting the R environment} % Ready 1
+
+As the front page text indicates, all you have to do to quite the workspace is to type in \texttt{q()}. You will then be prompted to save your work.
+%-------------------------------------------%
+\subsection{Data Objects}
+As mentioned previously, \texttt{R} saves data as \textit{objects}. Examples of data objects are
+\begin{itemize}
+\item Vectors
+\item Lists
+\item Dataframes
+\item Matrices
+\end{itemize}
+The simple objects we have created previously are simply single element vectors.
+%-------------------------------------------%
+\subsection{Listing all items in a workspace} %Ready 1
+To list all items in an R environment, we use the \texttt{ls()} function. This provides a list of all data objects accessible.
+Another useful command is \texttt{objects()}.
+\begin{verbatim}
+> ls()
+[1] "a" "A" "authors" "b" "books"
+[6] "C" "D" "ex1" "Gerb" "Lst"
+[11] "m" "m1" "op" "presidents" "r"
+[16] "showSmooth" "sm" "sm.3RS" "sm2" "sm3"
+[21] "Trig" "Vec1" "x" "X" "x.at"
+[26] "x1" "x2" "x3R" "y" "Y"
+[31] "y.at"
+\end{verbatim}
+\subsection{Removing items} % Ready 1
+Sometimes it is desirable to save a subset of your workspace instead of the entire workspace. One option is to use the \texttt{rm()} function to remove unwanted objects right before exiting your R session; another possibility is to use the \texttt{save()} function.
+
+%---------------------------------------------------------------------------%
+\subsection{Saving and Loading R Data Objects}
+In situations where a good deal of processing must be used on a raw dataset in order to prepare it for analysis, it may be prudent to save the \texttt{R} objects you create in their internal binary form. One attractive feature of this scheme is that the objects created can be read by \texttt{R} programs running on different computer architectures than the one on which they were created, making it very easy to move your data between different computers.
+Each time an \texttt{R} session is completed, you are prompted to save the workspace image, which is a binary file called .RData in the working directory.
+
+Whenever \texttt{R} encounters such a file in the working directory at the beginning of a session, it automatically loads it making all your saved objects available again.
+So one method for saving your work is to always save your workspace image at the end of an \texttt{R} session. If you would like to save your workspace image at some other time during your \texttt{R} session, you can use the \texttt{save.image()} function, which, when called with no arguments, will also save the current workspace to a file called \texttt{.RData} in the working directory.
+
+
+%The save function accepts multiple arguments to specify the objects you wish to save, or, alternatively, a character vector with the names of the objects can be passed to save through the list= argument.
+%Once the objects to be saved are specified, the only other required option is the file=option, specifying the destination of the saved R object. Although there is no requirement to do so, it is common to use a suffix of .rda or .RData for saved R workspace files.
+%For example, to save the R objects x, y, and z to a file called mydata.rda ,the following statements could be used: > save(x,y,z,fil= �mydata.rda�)
+
+%--------------------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------------------------%
+\section{Introduction to \texttt{R} (Continued) }
+% Section 2
+% The Trinity
+% Changing GUI preferences
+% Colours
+% Use of the Semi-Colon Operator
+% Built In Data Set
+% Working Directory
+% Logical Operators
+
+%---------------------------------%
+\subsection{Three particularly useful commands}
+\begin{enumerate}
+\item \texttt{help()}
+\item \texttt {summary()}
+\item \texttt{help.start()}
+\end{enumerate}
+%---------------------------------%
+\subsection{Changing GUI options}
+We can change the GUI options using the \texttt{GUI preferences} option on the Edit menu. (Important when teaching R)
+A demonstration will be done in class.
+%---------------------------------%
+\subsection{Colours}
+\texttt{R} supported a massive number of colours. Type in \texttt{colours()} (or \texttt{colors()}) to see what colours are supported.
+%---------------------------------%
+\subsection{Use of the Semi-Colon Operator}
+
+The semi-colon operator at the end of each line of code is \textbf{not} necessary
+in general, but using it overcomes errors due to copying and pasting from document soft
+copies. In other programming languages, such as Octave, using the semicolon in this way
+has a distinct purpose.
+
+%-----------------------%
+\subsection{The \texttt{apropos()} Function}
+This function is very useful for determining what functions are available for a particular topic, although the process requires a great deal of trial and error.
+Suppose we are looking for a command to compute the correlation coefficient. We would use a very short string (e.g. cor) that would plausibly be part of useful function names.
+\begin{verbatim}
+apropos("cor")
+\end{verbatim}
+
+%-----------------------%
+\subsection{History}
+The command \texttt{history()} is used to obtain the last 25 commands used by \texttt{R}
+\begin{verbatim}
+history()
+\end{verbatim}
+%-----------------------%
+%------------------------------------------%
+\subsection{The \texttt{sessionInfo()} Function }
+To get a description of the version of  \texttt{R} and its attached packages used in the current session, we can use the \texttt{sessionInfo()} function
+
+\begin{verbatim}
+sessionInfo()
+\end{verbatim}
+%----------------------------------------------------------%
+\subsection{Time and date functions}
+The commands \texttt{Sys.time()} and \texttt{Sys.Date()} returns the system's idea of the current date with and without time.
+We can perform some simple algebraic calculations to compute time differences (i.e. to find out how long some code took to compile.
+%-------------------------------------------%
+\begin{verbatim}
+> X1=Sys.time()
+> #Wait a few seconds
+>
+> X2=Sys.time()
+> X2-X1 Time difference of 8.439614 secs
+>
+> Sys.Date() [1] "2012-09-01"
+\end{verbatim}
+%-----------------------%
+\subsection{Logical States}
+
+Logical states TRUE and FALSE are simply specified as such, all in capital letters. The shortcuts T and F are also recognized.
+
+
+%-----------------------%
+\subsection{Missing Data}
+In some cases the entire contents of a vector may not be known.
+For example, missing data from a particular data set.
+A place can be reserved for this by assigning it the special value NA.
+
+NA is a logical constant of length 1 which contains a missing value indicator.
+NA stands for Not Available.
+
+
+
+%-----------------------%
+\subsection{Files in the Working Directory}
+It is possibel to call an R script from the working directory, using the \texttt{source()} function.
+%\begin{itemize}
+%\item \texttt{setwd()}
+%\item \texttt{getwd()}
+%\item \texttt{source()}
+%\item \texttt{sink()}
+%\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+source("myfunctions.r")
+source("mydata.r")
+\end{verbatim}
+\end{framed}
+
+We can also send code put directly to a file in the working directory, using the \texttt{sink()} command.
+The first time the command is used, the name of the created file is specified. Subsequent commands print output directly to this file, until the command is used again to cease the operation.
+\begin{framed}
+\begin{verbatim}
+> sink("IrisSum.txt")
+> summary(iris)
+> sink()
+> 
+\end{verbatim}
+\end{framed}
+
+
+%--------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------------------------%
+\section{Inspecting a Data Set}
+
+\begin{itemize}
+\item \texttt{dim()}
+\item \texttt{nrow()} and \texttt{ncol()} 
+\item \texttt{names()}
+\item \texttt{summary()}
+\item \texttt{tail()}
+\item \texttt{head()}
+\item \texttt{describe()} (from the \texttt{psych} package)
+\end{itemize}
+\subsection{Dimensions of a data set}
+We have remarked that some data sets are very large. This is perhaps a good place to consider summary information about data objects.
+For a simple vector,  a useful command to determine the length (remark: sample size) is the function length().
+
+\begin{framed}
+\begin{verbatim}
+> Y=4:18
+> length(Y)
+[1] 15
+\end{verbatim}
+\end{framed}
+
+For more complex data sets ( and data frames which we will see later) , we have several tools for assessing the size of data. 
+
+\begin{framed}
+\begin{verbatim}
+> dim(iris) # dimensions of data set 
+[1] 150 5 
+> nrow(iris) # number of rows 
+[1] 150 
+> ncol(iris) # number of columns 
+[1] 5
+\end{verbatim}
+\end{framed}
+
+We can also determine the row names and column names using the functions \texttt{rownames()} and \texttt{colnames()}.
+If there are no specific row or column names, the command will just return the indices. 
+\begin{framed}
+\begin{verbatim}
+> colnames(iris)
+[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species" 
+\end{verbatim}
+\end{framed}
+
+\subsection{The \texttt{summary()} command}
+The command summary() is one of the most useful commands in R. It is a generic function used to produce result summaries of the results of various functions. The function invokes particular methods which depend on the class of the first argument.
+In other words,  R picks out the most suitable type of summary for that data.
+\begin{verbatim}
+>  summary(iris)
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100   setosa    :50  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300   versicolor:50  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300   virginica :50  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500                  
+> 
+\end{verbatim}
+Summary is particularly useful for manipulating data from more complex data objects.
+%-----------------------%
+\subsection{Structure of a Data Object}
+The structure, class and storage mode of an object can be determined using the following commands.  Try out a few.
+\begin{itemize}
+\item \texttt{str()}
+\item \texttt{class()}
+\item \texttt{mode()}
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+> class(Nile)
+[1] "ts"
+> mode(Nile)
+[1] "numeric"
+>
+> a
+[1] 6
+> mode(a)
+[1] "numeric"
+> class(a)
+[1] "numeric"
+> str(a)
+ num 6
+>
+> class(iris)
+[1] "data.frame"
+> mode(iris)
+[1] "list"
+\end{verbatim}
+\end{framed}
+
+
+
+
+
+
+
+% End of Inspecting Data Sets
+%----------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------%
+
+\section{Packages}
+%Packages
+%
+%
+% - What are pacakges
+%- extending the program
+% - where are packages to be found
+% - some notable packages
+% - installing packages
+% - loading packages
+% - updating packages
+
+\subsection{Packages}
+
+A Package in \texttt{R} is a file containing a collection of objects which have some common purpose. Packages enhance the capabilties and scope for research in a certain field.
+For example the package MASS contains objects associated with the Venables and Ripleys "Modern Applied
+Statistics with S". 
+Some examples of packages are Actuar, written for actuarial science, and QRMlib, which complements the Quantitative Risk Management
+The command \texttt{library()} lists all the available packages. To load a particular package, for example MASS, we would write
+\begin{verbatim}
+library(MASS)
+\end{verbatim}
+
+\subsection{Using and Installing packages}
+
+Many packages come with \texttt{R}. To use them in an \texttt{R} session, you need to load the package, as previously demonstrated.
+
+Some packages are not automatically installed when you install \texttt{R} but they need to be downloaded and installed individually.
+We must first install them using the \texttt{install.packages()} function, which typically downloads the package from CRAN and installs it for use. (follow the instructions as indicated).
+\begin{verbatim}
+install.packages("ggplot2")
+install.packages("qcc")
+install.packages("sqldf")
+install.packages("RMongo")
+install.packages("randomforest")
+\end{verbatim}
+
+\subsubsection{Version of \texttt{R}}
+Many packages will require you to have the most recent version of \texttt{R} and also other packages. It is a good idea to update regularly.
+
+
+
+% END OF PACKAGES
+
+%--------------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------------------%
+\newpage
+\section{Data Creation, Data Entry, Data Import and Export}
+
+\subsection{The \texttt{c()} command}
+To create a simple data set, known as a vector, we use the \texttt{c()} command to create the vector.
+\begin{verbatim}
+> Y=c(1,2,4,8,16 )                             #create a data vector with specified elements
+> Y
+[1]  1  2  4  8 16
+\end{verbatim}
+%-------------------------%
+\subsubsection{Vector of Numeric Values}
+\begin{verbatim}
+Numvec = c(10,13,15,19,25);
+\end{verbatim}
+%-------------------------%
+\subsubsection{Vector of Character Values}
+\begin{verbatim}
+Charvec = c("LouLou","Oscar","Rasher");
+\end{verbatim}
+
+%-------------------------%
+\subsubsection{Vector of Logical Values}
+\begin{verbatim}
+Charvec = c(TRUE,TRUE,FALSE,TRUE);
+\end{verbatim}
+
+Vectors can be bound together either by row or by column.
+\begin{verbatim}
+> X=1:3; Y=4:6
+> cbind(X,Y)
+     X Y
+[1,] 1 4
+[2,] 2 5
+[3,] 3 6
+>
+> rbind(X,Y)
+  [,1] [,2] [,3]
+X    1    2    3
+Y    4    5    6
+\end{verbatim}
+
+\subsection{The \texttt{scan()} command}
+The scan() function is a useful method of inputting data quickly. You can use to quickly copy and paste values into the \texttt{R} environment.
+It is best used in the manner as described in the following example.  Create a variable "X" and use the \texttt{scan()} function to populate it with values.
+Type in a value, and then press return.
+Once you have entered all the values, press return again to return to normal operation.
+\begin{framed}
+\begin{verbatim}
+> X=scan()
+1: 4
+2: 5
+3: 5
+4: 6
+5:
+Read 4 items
+\end{verbatim}
+\end{framed}
+Remark: Try the \texttt{edit()} command on object X.
+
+\subsubsection{Characters with the \texttt{scan()} command}
+The \texttt{scan()} command can also be used forinputting character data.
+\begin{framed}
+\begin{verbatim}
+> Y=scan(what=" ")
+1: LouLou
+2: Oscar
+3: Rasher
+4: 
+Read 3 items
+> Y
+[1] "LouLou" "Oscar"  "Rasher"
+\end{verbatim}
+\end{framed}
+\subsection{Using the data editor}
+
+
+\subsection{Spreadsheet Interface}
+\texttt{R} provides a spreadsheet interface for editing the values of existing data sets.
+We use the command \texttt{data.entry()}, and name of the data object as the argument. (Also try out 
+the \texttt{fix()} command)
+\begin{framed}
+\begin{verbatim}
+> data.entry(X) # Edit the data set and exit interface
+> X
+\end{verbatim}
+\end{framed}
+
+\end{document}}
+
+\subsection{Data Import}
+It is necessary to import outside data into \texttt{R} before you start analysing it
+Quite often, the sample data is in Excel format, and needs to be imported into R prior to use. For this, we could use the read.xls() function from the "gdata" package. It reads from an Excel spreadsheet and returns a data frame. The following shows how to load an Excel spreadsheet named "mydata.xls". As the package is not in the core \texttt{R} library, it has to be installed and loaded into the R workspace.
+\begin{verbatim}
+> library(gdata)                   # load the gdata package
+> help(read.xls)                   # documentation
+> mydata = read.xls("mydata.xls")  # read from first sheet
+\end{verbatim}
+
+
+
+\subsubsection{CSV File}
+The sample data can also be in comma separated values (CSV) format. Each cell inside such data file is separated by a special character, which usually is a comma, although other characters can be used as well.
+The first row of the data file should contain the column names instead of the actual data. Here is a sample of the expected format.
+\begin{verbatim}
+Col1,Col2,Col3
+100,a1,b1
+200,a2,b2
+300,a3,b3
+\end{verbatim}
+
+After we copy and paste the data above in a file named "mydata.csv" with a text editor, we can read the data with the read.csv function. (The file should be in the working directory).
+\begin{verbatim}
+> mydata = read.csv("mydata.csv")  # read csv file
+> mydata                           # print data frame
+  Col1 Col2 Col3
+1  100   a1   b1
+2  200   a2   b2
+3  300   a3   b3
+\end{verbatim}
+In various European locales, as the comma character serves as decimal point, the read.csv2 function should be used instead.
+Students saving their work If a student wishes to save their working session they can easily do so.
+If a student is always assigned to the same machine or is working with the same account, then when R quits it
+stores a copy of its session in a file called .Rdata in the current directory. If \texttt{R} is started from that directory it
+will automatically load this in.
+If the students move about and want to take a copy of their work with them, the underlying mechanism is
+available to them via the function save.image(). For example, if the student is on the windows platform, then
+the following should save the image to a file on the "K:" drive in a file called ``rdata.R"
+\begin{verbatim}
+> save.image("K:\rdata.Rd")
+>   # To load the session back in, the load command is used.
+>   # This command will restore from the
+>
+> load("aK:\rdata.Rd")
+\end{verbatim}
+
+
+\subsubsection{Data export}
+The basic tool to produce output files is \texttt{write.csv()}.
+
+The only required arguments to \texttt{write.csv()} is ,firstly, the name of a dataset or matrix; with just a single argument, then the name (in quotations) of the file to be created.
+
+\begin{framed}
+\begin{verbatim}
+> getwd()
+[1] "C:/Users/Kevin/Documents"
+> write.csv(iris,"iris2")
+> 
+\end{verbatim}
+\end{framed}
+%Usually, the second argument, file= will be used to specify the destination as either a character string to represent a file, or a connection (i.e. database connectivity).
+
+%By default, character strings are surrounded by quotes by write.table(); use the quote=FALSE argument to suppress this feature. To suppress row names or column names from being written to the file, use the row.names=FALSE or col.names=FALSE arguments, respectively.
+
+%Note that col.names=TRUE (the default) produces the same sort of headers that are read using the header=TRUE argument of read.table().
+
+%Finally, the sep= argument can be used to specify a separator other than a blank space. Using sep=',' (comma separated) or sep='\t' (tab-separated) are two common choices.
+
+%\begin{verbatim}
+%write.table(CO2 ,file='co2.txt', row.names=FALSE, sep=',')
+%\end{verbatim}
+
+
+%Similarly to read.csv and read.csv2, the functions write.csv and write.csv2 are provided as wrappers to read.table, with appropriate options set to produce comma- or semicolon-separated files.
+
+%\newpage
+
+
+
+
+%We can use this approach to create a data frame :
+%> data.frame(rbind(X,Y))
+ % X1 X2 X3
+%X  1  2  3
+%Y  4  5  6
+
+%We can then use rownames and colnames to assign meaningful names to this data frame.
+
+%---- END OF CREATING DATA
+%-------------------------------------------------------------------------------------------------------%
+%----------------------------------------------------------------------------------CREATING DATA--------%
+
+%\section{Data Entry Methods}
+%\subsection{Using the \texttt{scan()} command}
+
+
+
+%\subsection{Importing and Exporting Data}
+%\subsection{The \texttt{read.csv()} command}
+%\subsection{The \texttt{write.csv()} command}
+%\subsection{The \texttt{sink()} command}
+
+%-------------------------------------------------------------------------%
+%\subsection{Classes of Data Objects}
+%\begin{verbatim}
+%class(Numvec)
+%class(Charvec)
+%class(A)
+%class(iris)
+%class(Nile)
+%\end{verbatim}
+
+%-------------------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------VECTORS----------%
+\newpage
+\section{Vectors and Sequences}
+\subsection{Vectors}
+
+%The primary data type in R is the vector. Before describing how vectors work in R, it is helpful to distinguish two ideas of vectors in order to set the correct expectations.
+
+%The first idea of a vector is what I will call a container vector. This is an ordered collection of numbers with no other structure, such as the vector$<>$ c%ontainer in C++. The length of a vector is the number of elements in the container. Operations are applied componentwise. For example, given two vectors x and y of equal length, x*y would be the vector whose nth component is the product of the nth components of x and y. Also, log(x) would be the vector whose nth component is the logarithm of the nth component of x.
+
+
+%The other idea of a vector is a mathematical vector, an element of a vector space. In this context "length" means geometrical length determined by an inner product; the number of components is called "dimension." In general, operations are not applied componentwise. The expression x*y is a single number, the inner product of the vectors. The expression log(x) is meaningless.
+
+A vector in R is a container vector, a statistician's collection of data, not a mathematical vector. The R language is designed around the assumption that a vector is an ordered set of measurements rather than a geometrical position or a physical state. (R supports mathematical vector operations, but they are secondary in the design of the language.) This helps explain, for example, R's otherwise inexplicable vector recycling feature.
+
+Adding a vector of length 22 and a vector of length 45 in most languages would raise an exception; the language designers would assume the programmer has made an error and the program is now in an undefined state. However, R allows adding two vectors regardless of their relative lengths.
+
+\subsubsection{Recycling}
+ The elements of the shorter summand are recycled as often as necessary to create a vector the length of the longer summand. This is not attempting to add physical vectors that are incompatible for addition, but rather a syntactic convenience for manipulating sets of data. (R does issue a warning when adding vectors of different lengths and the length of the longer vector is not an integer multiple of the length of the shorter vector. So, for example, adding vectors of lengths 3 and 7 would cause a warning, but adding vectors of length 3 and 6 would not.)
+
+The R language has no provision for scalars, nothing like a double in C-family languages. The only way to represent a single number in a variable is to use a vector of length one. And while it is possible to iterate through vectors as one might do in a for loop in C, it is usually clearer and more efficient in R to operate on vectors as a whole.
+Vectors are created using the c function. For example, p <- c(2,3,5,7) sets p to the vector containing the first four prime numbers.
+Vectors in R are indexed starting with 1 and matrices in are stored in column-major order. In both of these ways R resembles FORTRAN.
+Elements of a vector can be accessed using []. So in the above example, p[3] is 5.
+
+Vectors automatically expand when assigning to an index past the end of the vector, as in Perl.
+Negative indices are legal, but they have a very different meaning than in some other languages. If x is an array in Python or Perl, x[-n] returns the nth element from the end of the vector. In R, x[-n] returns a copy of x with the nth element removed.
+Boolean values can also be used as indices, and they behave differently than integers.
+\subsection{vectors}
+
+vector produces a vector of the given length and mode.
+as.vector, a generic, attempts to coerce its argument into a vector of mode mode (the default is to coerce to whichever mode is most convenient).
+is.vector returns TRUE if x is a vector of the specified mode having no attributes other than names. It returns FALSE otherwise.
+
+integer
+
+Creates or tests for objects of type "integer".
+integer(length = 0)
+as.integer(x, ...)
+is.integer(x)
+
+ Character
+
+Create or test for objects of type "character".
+character(length = 0)
+as.character(x, ...)
+is.character(x)
+
+logical
+
+Create or test for objects of type "logical", and the basic logical constants.
+logical(length = 0)
+as.logical(x, ...)
+is.logical(x)
+
+%numeric
+%
+%Creates or coerces objects of type "numeric".
+%numeric(length = 0)
+%as.numeric(x, ...)
+%is.numeric(x)
+%------------------------------------------%
+\subsection{Useful Commands For Vectors}
+
+\begin{verbatim}
+Newvec = c(13,16,36,55,23,11)
+sort(Newvec)
+rev(Newvec)
+rep(Newvec,2)
+rep(Newvec,3)
+rep(Newvec,each=3)
+diff(Newvec)
+order(Newvec)
+rank(Newvec)
+\end{verbatim}
+
+\begin{framed}
+\begin{verbatim}
+> Newvec = c(13,16,36,55,23,11)
+>
+> sort(Newvec)
+[1] 11 13 16 23 36 55
+> rev(Newvec)
+[1] 11 23 55 36 16 13
+>
+> rep(Newvec,2)
+ [1] 13 16 36 55 23 11 13 16 36 55 23 11
+> rep(Newvec,3)
+ [1] 13 16 36 55 23 11 13 16 36 55 23 11 13 16 36 55 23 11
+>
+> rep(Newvec,each=3)
+ [1] 13 13 13 16 16 16 36 36 36 55 55 55 23 23 23 11 11 11
+> diff(Newvec)
+[1]   3  20  19 -32 -12
+> order(Newvec)
+[1] 6 1 2 5 3 4
+> rank(Newvec)
+[1] 2 3 5 6 4 1
+\end{verbatim}
+\end{framed}
+%------------------------------------------------------%
+\subsection{Sequences}
+\subsubsection{Using the colon operator}
+A `count-up' or a `count-down' will be determined automatically.
+\begin{verbatim}
+1:20
+20:1
+10:20
+\end{verbatim}
+\subsubsection{Using the \texttt{seq()} operator}
+Firstly we will mimic the sequences that we have created using the colon operator.
+\begin{verbatim}
+seq(1,20)
+seq(20,1)
+\end{verbatim}
+
+
+%----------------------------------------------------------------------------------------------------%
+\section{Indexing and Subsetting }
+\subsection{Relational and Logical Operators}
+
+Relational operators allow for the comparison of values in vectors.
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+greater than &	$>$\\
+less than&	$<$\\
+equal to	&$==$\\
+less than or equal to&	$<=$\\
+greater than or equal to&	$>=$\\
+not equal to	&$!=$\\
+  \hline
+\end{tabular}
+\end{center}
+
+
+Note the difference of the equality operator "==" with assignment operator "=".
+
+\& and \&\& indicate logical AND %and $\|$ and $\|\|$ indicate logical OR.
+The shorter form performs element-wise comparisons in much the same way as arithmetic operators. The longer form is appropriate for programming control-flow and typically preferred in "if" clauses.
+We can use relational operators to subset vectors (as well as more complex data objects such as data frames, which we will meet later).
+We specify the  relational condition in square brackets.
+We can construct compound relational conditions too, using logical operators
+
+\begin{framed}
+\begin{verbatim}
+> vec=1:19
+> vec[vec<5]
+[1] 1 2 3 4
+> vec[(vec<6)|(vec>16)]
+[1]  1  2  3  4  5 17 18 19
+\end{verbatim}
+\end{framed}
+
+\subsection{Conditional Subsetting}
+ \texttt{The Subset command}
+%------------------------------------%
+\subsection{Selection using the Subset Function}
+The subset( ) function is the easiest way to select variables and observeration. In the following example, we select all rows that have a value of age greater than or equal to 20 or age less then 10. We keep the ID and Weight columns.
+
+% End of relational and Logical Operators
+
+%-----------------------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------DATA FRAMES----------%
+\section{Data Frames}
+
+
+Another way that information is stored is in data frames. This is a way to take many vectors of different types and store them in the same variable. The vectors can be of all different types. For example, a data frame may contain many lists, and each list might be a list of factors, strings, or numbers.
+
+There are different ways to create and manipulate data frames. Most are beyond the scope of this introduction. They are only mentioned here to offer a more complete description.
+\subsection{Data Frames}
+Technically, a data frame in R is a very important type of data object;  a type of table where the typical use employs the rows as observations (or cases) and the columns as variables.
+Inter alia, a data frame differs from a matrix in that it can contain character values.
+Many data sets are stored as data frames.
+Let us consider the following two variables; age and height.
+\begin{verbatim}
+> age=18:29
+> age
+[1] 18 19 20 21 22 23 24 25 26 27 28 29
+\end{verbatim}
+
+In similar fashion, we entered the average heights in a vector called height.
+\begin{verbatim}
+>height=c(76.1,77,78.1,78.2,78.8,79.7,79.9,81.1,81.2,81.8,82.8,83.5)
+> height
+[1] 76.1 77.0 78.1 78.2 78.8 79.7 79.9 81.1 81.2 81.8 82.8 83.5
+\end{verbatim}
+
+We will now use R's data.frame() command to create our first data frame and store the results in the data frame "village".
+\begin{verbatim}
+> village=data.frame(age=age,height=height)
+\end{verbatim}
+
+How do we access the data in each column? One way is to state the variable containing the data frame, followed by a dollar sign, then the name of the column we wish to access (as with Lists earlier).
+For example, if we wanted to access the data in the "age" column, we would do the following:
+\begin{verbatim}
+ > village$age
+ [1] 18 19 20 21 22 23 24 25 26 27 28 29
+\end{verbatim}
+The additional typing required by the "dollar sign" notation can quickly become tiresome, so R provides the ability to "attach" the variables in the dataframe to our workspace.
+> attach(village)
+
+Let's re-examine our workspace. ( The \texttt{ls()} command lists all data objects in the workspace )
+> ls()
+[1] "village"
+
+
+No evidence of the variables in the workspace. However, R has made copies of the variables in the columns of the data frame, and most importantly, we can access them without the "dollar notation."
+\begin{verbatim}
+> age
+ [1] 18 19 20 21 22 23 24 25 26 27 28 29
+> height
+ [1] 76.1 77.0 78.1 78.2 78.8 79.7 79.9 81.1 81.2 81.8 82.8
+[12] 83.5
+\end{verbatim}
+
+Previously we have seen rownames() and colnames() to determine the names from an existing data frame. We can use these commands to create names for a new data frame.
+
+%-----------------------------------------------------------------------------------------------------------%
+%--------------------------------------------------------------------------------------MATRICES    ---------%
+
+\section{Matrices}
+%-------------------------%
+\subsection{Matrices}
+\subsubsection{Creating Matrices}
+\begin{verbatim}
+A=matrix(c(1,-2,0,3,0,-1),nrow=2,byrow=TRUE)
+B=matrix(c(4,1,0,2,-1,3),nrow=3,byrow=TRUE)
+C=matrix(c(2,1,0,-3),nrow=2,byrow=TRUE)
+\end{verbatim}
+
+\subsection{Creating a matrix}
+Matrices can be created using the matrix() command.
+
+The arguments to be supplied are
+1. vector of values to be entered.
+2. dimensions of the matrix, specifying either the numbers of rows or columns.
+Additionally you can specify if the values are to be allocated by row or column. By default they are allocated by column.
+
+\begin{verbatim}
+Vec1 = c(1,4,5,6,4,5,5,7,9)  # 9 elements
+
+A = matrix(Vec1,nrow=3)      #3 by 3 matrix, assigned by column.
+
+A
+
+#      [,1] [,2] [,3]
+# [1,]    1    6    5
+# [2,]    4    4    7
+# [3,]    5    5    9
+\end{verbatim}
+%---------------------------------%
+
+
+Notice how the rows and column are preceded with row and column indexes. To assign by row, we must specify it by setting the appropriate argument accordingly.
+
+\begin{framed}
+\begin{verbatim}
+
+#3 by 3 matrix. Values assigned by row.
+C= matrix(  c(1,6,7,0.6,0.5,0.3,1,2,1), ncol=3 , byrow =TRUE)
+
+C
+     [,1] [,2] [,3]
+[1,]  1.0  6.0  7.0
+[2,]  0.6  0.5  0.3
+[3,]  1.0  2.0  1.0
+\end{verbatim}
+\end{framed}
+
+%--------------------------------------------------%
+\subsection{Accessing Rows and Columns}
+Particular rows and columns of a data object (matrix as well as other objects such as data frames) can be accessed by specifying the row number or column number, leaving the other value blank.
+\begin{framed}
+\begin{verbatim}
+
+A[1,]   # access first row of A
+#[1] 1 6 5
+
+C[,2]   # access second column of C
+#[1] 6.0 0.5 2.0
+\end{verbatim}
+\end{framed}
+
+
+Naturally - particular elements may be accessed by specifying the row number and column number
+
+
+\begin{verbatim}
+
+A[1,1]
+# [1] 1
+
+# This is not just for matrices.
+# It is for all suitable data objects.
+
+iris[,1]
+iris[,1:3]
+iris[2,]
+iris[2,3]
+
+mtcars[2:5,4:6]
+\end{verbatim}
+
+%----------------------------------------------------%
+\subsubsection{Addition and subtractions}
+For matrices, addition and subtraction works on an element-wise basis.
+The first elements of the respective matrices are added, and so on.
+
+
+\begin{framed}
+\begin{verbatim}
+A+C
+
+#     [,1] [,2] [,3]
+#[1,]  2.0 12.0 12.0
+#[2,]  4.6  4.5  7.3
+#[3,]  6.0  7.0 10.0
+
+A-C
+
+#     [,1] [,2] [,3]
+#[1,]  0.0  0.0 -2.0
+#[2,]  3.4  3.5  6.7
+#[3,]  4.0  3.0  8.0
+\end{verbatim}
+\end{framed}
+
+\subsection{Matrix Multiplication}
+
+To multiply matrices, we require a special operator for matrices; �%*%�.
+
+If we just used the normal multiplication, we would get an element-wise multiplication.
+This type of operation is very useful as a substitute for �for� loops on many occasions.
+
+
+
+\begin{framed}
+\begin{verbatim}
+ A %*% C
+#     [,1] [,2] [,3]
+#[1,]  9.6 19.0 13.8
+#[2,] 13.4 40.0 36.2
+#[3,] 17.0 50.5 45.5
+
+ A*C
+#     [,1] [,2] [,3]
+#[1,]  1.0   36 35.0
+#[2,]  2.4    2  2.1
+#[3,]  5.0   10  9.0
+\end{verbatim}
+\end{framed}
+
+
+\subsubsection{Basic Matrix Calculations}
+
+\begin{itemize}
+\item[1)] Inverting a matrix
+
+To invert a matrix we use the command solve() with no additional argument.
+
+Remember - Not all matrices are invertible.  It the determinant of a matrix is zero, then no inverse exists.
+
+\begin{framed}
+\begin{verbatim}
+> solve(C)
+            [,1]      [,2]       [,3]
+[1,] -0.03333333  2.666667 -0.5666667
+[2,] -0.10000000 -2.000000  1.3000000
+[3,]  0.23333333  1.333333 -1.0333333
+\end{verbatim}
+\end{framed}
+
+
+We can use this same command to solve a system of linear equations Ax=b. We would specify the vector b as the additional argument.
+(We will look at this matter more in the MATLAB component of the course).
+
+\item[2)] Computing the determinant
+
+To compute the determinant, the command is simply det()
+
+
+\item[3)] Determining the dimensions
+
+To find the dimensions of matrix A, we use the dim() command
+\begin{framed}
+\begin{verbatim}
+\end{verbatim}
+\end{framed}
+
+\item[4)] Compute the transpose
+
+\begin{framed}
+\begin{verbatim}
+det(C)
+#[1] 3
+
+dim(C) # number of rows and columns.
+
+t(C)
+     [,1] [,2] [,3]
+[1,]    1  0.6    1
+[2,]    6  0.5    2
+[3,]    7  0.3    1
+
+\end{verbatim}
+\end{framed}
+ To compute the transpose of matrix A, we use the command t().
+
+
+
+\item[5)] Cross Products and Kronecker Product
+
+\end{itemize}
+%---------------------------------------------------%
+We can compute cross products using the crossprod() command. 
+The Kronecker product ( a very useful command in numerical computation) 
+is also easily implementable using the kronecker() command.
+
+
+\begin{framed}
+\begin{verbatim}
+crossprod(A,C)
+kronecker(A,C)
+kronecker(C,A)
+\end{verbatim}
+\end{framed}
+
+%------------------------------------------------------%
+\subsubsection{Diagonals and the Identity Matrix}
+
+The diag() command is a very versatile function for using matrices.
+
+It can be used to create a diagonal matrix with elements of a vector in the 
+principal diagonal. For an existing matrix, it can be used to return a vector 
+containing the elements of the principal diagonal.
+
+Most importantly, if k is a scalar (i.e. single number such as 3) , 
+diag() will create a k x k identity matrix.
+
+\begin{framed}
+\begin{verbatim}
+
+Vec2=c(1,2,3)
+
+diag(Vec2)     #      Constructs a diag. matrix based on Vec2
+
+diag(A)        #     Returns diagonal elements of A as a vector
+
+diag(3)        #     Creates a 3 x 3 identity matrix
+
+diag(diag(A))  #     Creates the diagonal matrix D of matrix A
+\end{verbatim}
+\end{framed}
+%----------------------------------------------%1
+\subsubsection{Linear Algebra Functions}
+
+\texttt{R} supports many import linear algebra functions such as cholesky 
+decomposition, trace, rank, eigenvalues etc.
+
+The required results may be determinable from the output of a command that 
+pertains to an overall approach.
+
+The eigenvalues and eigenvectors can be computed using the eigen() function.  
+A data object known as a list is then created.
+
+\begin{verbatim}
+eigen(A)       #eigenvalues and eigenvectors
+
+qr(A)          #returns Rank of a matrix
+
+svd(A)
+\end{verbatim}
+This is a very important type of matrix analysis, and many will encounter 
+it again in future modules.
+
+
+%------------------------------------------------------------%
+\begin{framed}
+\begin{verbatim}
+Y = eigen(A)
+names(Y)
+
+#   y$val are the eigenvalues of A
+#   y$vec are the eigenvectors of A
+\end{verbatim}
+\end{framed}
+
+
+
+%------------------------------------------------------------%
+\subsubsection{More on Matrices}
+
+Note that the following commands are often useful.
+
+\begin{itemize}
+\item \texttt{rowMeans()}
+\item \texttt{rowSums()}
+\item \texttt{colMeans()}
+\item \texttt{colSums()}
+\end{itemize}
+
+%------------------------------------------------------------%
+
+\subsection{Using rbind() and cbind()}
+Another methods of creating a matrix is to ``bind� a number of vectors 
+together, either by row or by column. 
+The commands are rbind() and cbind() respectively.
+
+\begin{framed}
+\begin{verbatim}
+> x1 =c(1,2) ; x2 = c(3,8)
+
+> D= rbind(x1,x2)
+
+> E = cbind(x1,x2)
+
+> det(D)
+
+[1] 2
+
+> det(E)
+
+[1] 2
+\end{verbatim}
+\end{framed}
+
+
+%------------------------------------------------------------%
+\subsubsection{Solving a System of Linear Equations}
+
+To solve a system of linear equations in the form Ax=b , where A is a square matrix, 
+and b is a column vector of known values, we use the solve() command to determine 
+the values of the unknown vector x.
+
+%------------------------------------------------------------%
+
+\begin{framed}
+\begin{verbatim}
+b=vec2  # from before
+
+solve(A, b)
+
+\end{verbatim}
+\end{framed}
+% END OF MATRICES
+%--------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------------------------LISTS---------%
+
+
+%---------------------------------------------------------%
+\section{Lists}
+Many data objects returned as output are structured as lists.
+(Recall the output from the eigen() function.)
+An  R list is an object consisting of an ordered collection of objects known as its components.
+There is no particular need for the components to be of the same mode or type, and, for example, a list could consist of a numeric vector, a logical value, a matrix, a complex vector, a character array, a function, and so on.
+Here is a simple example of how to make a list:
+> Lst <- list(name="Fred", wife="Mary", no.children=3,                   child.ages=c(4,7,9))
+
+
+Components are always numbered and may always be referred to as such.
+Thus if Lst is the name of a list with 4 components, these may be individually referred to as Lst[[1]], Lst[[2]], Lst[[3]] and Lst[[4]].
+If Lst[[4]] is a vector, then Lst[[4]][1] is its first entry.
+\begin{framed}
+\begin{verbatim}
+> Lst
+$name
+[1] "Fred"
+
+$wife
+[1] "Mary"
+
+$no.children
+[1] 3
+
+$child.ages
+[1] 4 7 9
+
+> Lst[[1]]
+[1] "Fred"
+> Lst[[4]][1]
+[1] 4
+\end{verbatim}
+\end{framed}
+
+
+
+The function length(Lst) gives the number of (top level) components that the list has.
+
+Components of lists may also be named, and in this case the component may be referred to either by giving the component name as a character string in place of the number in double square brackets, or, more conveniently, by giving an expression of the form
+
+\begin{verbatim}
+> name$component_name
+\end{verbatim}
+
+for the same thing.
+
+This is a very useful convention as it makes it easier to get the right component if you forget the number. So in the simple example given above:
+%"	Lst$name is the same as Lst[[1]] and is the string "Fred",
+%"	Lst$wife is the same as Lst[[2]] and is the string "Mary",
+%"	Lst$child.ages[1] is the same as Lst[[4]][1] and is the number 4.
+%This dollar sign operator is very useful , particularly when looking at the output of a complex statistical function.
+%To find out the names assigned to a list use the command names().
+
+\begin{verbatim}
+> names(Lst)
+[1] "name"        "wife"        "no.children" "child.ages"
+> Lst$name
+[1] "Fred"
+\end{verbatim}
+%-------------------------------------------------%
+%--------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------------------------APPLY FAMILY--%
+\section{The \texttt{apply()} family of functions}
+
+The "apply" family of functions keep you from having to write loops to perform 
+some operation on every row or every column of a matrix or data frame, or on 
+every element in a list.
+
+The \texttt{apply()} function
+The \texttt{apply()} function is a powerful device that operates on arrays and,
+ in particular, matrices.
+The \texttt{apply()} function returns a vector (or array or list of values) 
+obtained by applying a specified function to either the row or columns of 
+an array or matrix.
+To specify use for rows or columns, use the additional argument of 1 for rows, 
+and 2 for columns.
+
+\begin{verbatim}
+# create a matrix of 10 rows x 2 columns
+m <- matrix(c(1:10, 11:20), nrow = 10, ncol = 2)
+
+# mean of the rows
+
+apply(m, 1, mean)
+# [1]  6  7  8  9 10 11 12 13 14 15
+
+# mean of the columns
+apply(m, 2, mean)
+#[1]  5.5 15.5
+\end{verbatim}
+The local version of apply()is lapply(), which computes a function for each 
+argument of a list., provided each argument is compatible with the function argument (e.g. that is numeric).
+
+The lapply() command returns a list of the same length as a list �X�, each 
+element of which is the result of applying a specified function to 
+the corresponding element of X.
+
+A user friendly version of lapply() is sapply().
+
+The sapply() command  is a variant of lapply() � returning a matrix 
+instead of a list - again of the same length as a list X, 
+each element of which is the result of applying a specified function to the
+ corresponding element of X.
+\begin{verbatim}
+> x <- list(a=1:10, b=exp(-3:3), logic=c(T,F,F,T))
+>
+> # compute the list mean for each list element
+>
+> lapply(x,mean)
+$a
+[1] 5.5
+
+$b
+[1] 4.535125
+
+$logic
+[1] 0.5
+>
+> sapply(x,mean)
+       a        b    logic
+5.500000 4.535125 0.500000
+>
+\end{verbatim}
+
+
+
+
+
+%-------------------------------------------------------------------------------------------------------------%
+
+%------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Functions}
+
+The function definition syntax of R is similar to that of JavaScript. For example:
+f <- function(a, b) { return (a+b)}
+The function function returns a function, which is usually assigned to a variable, f in this case, but need not be. You may use the function statement to create an anonymous function (lambda expression).
+
+Note that return is a function; its argument must be contained in parentheses, unlike C where parentheses are optional. The use of return is optional; otherwise the value of the last line executed in a function is its return value.
+Default values are defined similarly to C++. In the following example, b is set to 10 by default.
+f <- function(a, b=10) { return (a+b)}
+
+So f(5, 1) would return 6, and f(5) would return 15. R allows more sophisticated default values than does C++. A default value in R need not be a static type but could, for example, be a function of other arguments.
+C++ requires that if an argument has a default value then so do all values to the right. This is not the case in R, though it is still a good idea. The function definition
+
+\begin{framed}
+\begin{verbatim}
+f <- function(a=10, b) { return (a+b)}
+\end{verbatim}
+\end{framed}
+
+is legal, but calling f(5) would cause an error. The argument a would be assigned 5, but no value would be assigned to b. The reason such a function definition is not illegal is that one could still call the function with one named argument. For example, f(b=2) would return 12.
+
+Function arguments are passed by value. The most common mechanism for passing variables by reference is to use non-local variables. (Not necessary global variables, but variables in the calling routine's scope.) A safer alternative is to explicitly pass in all needed values and return a list as output.
+
+Scope
+
+R uses lexical scoping while S-PLUS uses static scope. The difference can be subtle, particularly when using closures.
+Since variables cannot be declared � they pop into existence on first assignment � it is not always easy to determine the scope of a variable. You cannot tell just by looking at the source code of a function whether a variable is local to that function.
+R Statistical Programming - Functions
+
+An important skill in R programming is the ability to write functions
+
+Please see the written example WriteFunction.R
+
+
+functionname
+
+
+
+
+
+%------------------------------------------%
+
+\subsection*{\texttt{summary()}}
+\texttt{summary()} is a generic function to summarize many types of R objects, including datasets.
+
+When used on a dataset, summary returns distributional summaries of variables in the dataset.
+
+
+
+\subsection*{\texttt{sapply()}}
+\begin{framed}
+\begin{verbatim}
+> sapply(2:5,log)
+[1] 0.6931472 1.0986123 1.3862944 1.6094379
+>
+> sapply(2:5,log,2)
+[1] 1.000000 1.584963 2.000000 2.321928
+\end{verbatim}
+\end{framed}
+
+
+
+
+
+
+%---------------------------%
+\section{Mathematical and Statistical Commands}
+
+\subsection{Useful Statistical Commands}
+\begin{itemize}
+\item \texttt{mean()} mean of a data set
+\item \texttt{median()} median of a data set
+\item \texttt{length()} Sample Size
+\item \texttt{IQR()} Inter-Quartile Range
+\item \texttt{var()} variance
+\item \texttt{sd()} Standard Deviation
+\item \texttt{range()} Range of a data set
+\end{itemize}
+
+\subsection{useful operators}
+
+Factorials
+$n! = n \times n-1 \times \ldots \times 2 \times 1 $
+Binomial Coefficients
+\[ { n \choose k }  = \frac{n!}{(n-k)! \times k!}\]
+%--------------------%
+\subsection{Managing Precision}
+
+\begin{itemize}
+\item \texttt{floor()} Floor function of x, $\lfloor x \rfloor$.
+\item \texttt{ceiling()} Ceiling function of x, $\lceil x \rceil$.
+\item \texttt{round()} Rounding a number to a specified number of decimal places.
+\end{itemize}
+%--------------------------------------------%
+\subsection{The Birthday function}
+The R command pbirthday() computes the probability of a coincidence of a number of randomly chosen people sharing a birthday, given that there are n people to choose from.
+Suppose there are four people in a room. The probability of two of them sharing a birthday is computed as about 1.6 \%
+\begin{verbatim}
+> pbirthday(4)
+[1] 0.01635591
+\end{verbatim}
+
+How many people do you need for a greater than 50\% chance of a shared birthday? (choose from 23,43,63,83)?
+
+%--------------------%
+\subsection{Set Theory Operations}
+\begin{itemize}
+\item \texttt{union()} union of sets A and B
+\item \texttt{intersect()} intersection of sets A and B
+\item \texttt{setdiff()} set difference A-B (order is important)
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+x = 5:10
+y = 8:12
+union(x,y)
+intersect(x,y)
+setdiff(x,y)
+setdiff(y,x)
+\end{verbatim}
+\end{framed}
+
+%-----------------------------------------------------------------------------------------------%
+\newpage
+% LAST SECTION OF MODULE
+\section{More Statistical Procedures}
+\begin{itemize}
+\item Graphical Procedures
+\item Inference Procedures (t-tests)
+\item Model Fitting (Linear Regression etc)
+\end{itemize}
+
+\subsection{Probability distributions}
+ - Continuous: Normal / Student's 't' / Chi-square distribution
+ - discrete: Binomial / Poisson / geometric distribution
+
+\subsection{Inference procedures}
+
+% - t.test
+%Performs one and two sample t-tests on vectors of data.
+% - prop.test
+%	    prop.test can be used for testing the null that the proportions (probabilities of success) in several groups are the same, or that they equal certain given values.
+% - Kolmogorov-Smirnov test      [ks.test()]
+%Performs one or two sample Kolmogorov-Smirnov tests.
+% - Anderson Darling test        [ad.test()]
+% - Grubbs test for outliers     [Grubbs.test()]
+% - Dixon test for outliers
+% - correlation test [cor.test()]
+% - Analysis of variance. [anova()]
+\subsection{Model Fitting}
+Regression models and bivariate data
+
+ - simple linear regression
+ - multiple linear regression
+ - lm()
+ - lm is used to fit linear models. It can be used to carry out regression, single stratum analysis of variance and analysis of covariance
+Goodness of Fit statistics
+ - AIC()
+
+%----------------------------------------------------------------------------%
+\end{document}

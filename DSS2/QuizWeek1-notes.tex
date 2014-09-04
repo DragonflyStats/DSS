@@ -1,0 +1,439 @@
+\documentclass[12pt]{article}
+\usepackage{framed}
+\begin{document}
+	
+%---------------------------------------------------------------------------------------------------------%
+
+\subsection*{Question 1}
+\Large
+\texttt{R} was developed by statisticians working at
+\begin{itemize}
+	\item[(i)] Insightful
+	\item[(ii)] Bell Labs
+	\item[(iii)] The University of New South Wales
+	\item[(iv)] The University of Auckland
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 2}
+\Large
+The definition of free software consists of four freedoms (freedoms 0 through 3). \\ \\Which of the following is NOT one of the freedoms that are part of the definition?
+\begin{itemize}
+	\item[(i)] The freedom to study how the program works, and adapt it to your needs.
+	\item[(ii)] The freedom to improve the program, and release your improvements to the public, so that the whole community benefits.
+	\item[(iii)] The freedom to run the program, for any purpose.
+	\item[(iv)] The freedom to sell the software for any price.
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 3}
+\Large
+In \texttt{R} the following are all \textbf{atomic data types} EXCEPT
+\begin{itemize}
+	\item[(i)] \texttt{logical}
+	\item[(ii)] \texttt{complex}
+	\item[(iii)] \texttt{list}
+	\item[(iv)] \texttt{integer}
+\end{itemize}
+\bigskip
+\noindent \textbf{Remark}: Atomic would mean \textit{non divisible}, having no subsets.
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 4}
+\Large
+If I execute the expression \texttt{x <- 4} in \texttt{R}
+, what is the class of the object `\texttt{x}' as determined by the `\texttt{class()}' function?
+\begin{itemize}
+	\item[(i)] \texttt{vector}
+	\item[(ii)] \texttt{numeric}
+	\item[(iii)] \texttt{complex}
+	\item[(iv)] \texttt{real}
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+x <- 4
+class(x)
+
+\end{verbatim}	
+\end{framed}
+\newpage
+\subsection*{Other Useful Commands}
+\begin{framed}
+\begin{verbatim}
+mode(x)
+str(x)
+dim(x)
+length(x)
+\end{verbatim}	
+\end{framed}
+
+\noindent Try out these commands for some other objects, including inbuilt data sets \textbf{iris} and \textbf{Nile}.
+
+\begin{framed}
+\begin{verbatim}
+iris   
+Nile
+Y <- "R"
+Z <- c(TRUE,FALSE,TRUE)
+\end{verbatim}
+\end{framed}
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 5}
+\Large
+What is the class of the object defined by the expression \texttt{x <- c(4, "a", TRUE)}?
+\begin{itemize}
+	\item[(i)] \texttt{mixed}
+	\item[(i)] \texttt{logical}
+	\item[(i)] \texttt{character}
+	\item[(i)] \texttt{integer}
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+x <- c(4, "a", TRUE)
+class(x)
+\end{verbatim}	
+\end{framed}
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 6}
+\Large
+If I have two vectors \texttt{x <- c(1,3, 5)} and \texttt{y <- c(3, 2, 10)}, what is produced by the expression 
+\texttt{rbind(x, y)}?
+
+\begin{itemize}
+	\item[(i)] a vector of length 2
+	\item[(ii)] a 2 by 3 matrix
+	\item[(iii)] a vector of length 3
+	\item[(iv)] a 2 by 2 matrix
+\end{itemize}
+
+\begin{framed}
+	\begin{verbatim}
+	x <- c(1,3, 5)
+	y <- c(3, 2, 10)
+	rbind(x, y)
+	\end{verbatim}	
+\end{framed}
+\begin{itemize}
+\item Use the help file to find out what the commands \texttt{rbind()}, \texttt{cbind()} and \texttt{t()} do.
+\item The convention is to specify the number of rows, then number of columns.
+\item The tranpose operator ``\texttt{t()}" is actually really useful for creating reports from data contained in data frames.
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 7}
+\Large
+A key property of vectors in \texttt{R} is that
+\begin{itemize}
+	\item[(i)] the length of a vector must be less than 32,768
+	\item[(ii)] elements of a vector all must be of the same class
+	\item[(iii)] elements of a vector can only be character or numeric
+	\item[(iv)] elements of a vector can be of different classes
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 8}
+\Large
+Suppose I have a list defined as \texttt{x <- list(2, "a", "b", TRUE)}. \\ \\ What does \texttt{x[[2]]} give me?\\ \\
+\begin{itemize}
+\item[(i)] a list containing the number 2 and the letter "a".
+\item[(ii)] a character vector with the elements "a" and "b".
+\item[(iii)] a character vector containing the letter "a".
+\item[(iv)] a list containing a character vector with the elements "a" and "b".
+\end{itemize}
+
+\begin{framed}
+	\begin{verbatim}
+	x <- list(2, "a", "b", TRUE)
+	x[[2]]
+	\end{verbatim}	
+\end{framed}
+
+\begin{itemize}
+	\item Try out \texttt{dim()} and \texttt{class()} on x also.
+	\end{itemize}
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 9}
+\Large
+Suppose I have a vector \texttt{x <- 1:4} and a vector \texttt{y <- 2}. \\ What is produced by the expression \texttt{x + y}?
+\begin{itemize}
+	\item[(i)] a numeric vector with elements 3, 4, 5, 6.
+	\item[(ii)] an integer vector with elements 3, 2, 3, 4.
+	\item[(iii)] a numeric vector with elements 3, 2, 3, 4.
+	\item[(iv)] an integer vector with elements 3, 2, 3, 6.
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 10}
+\Large
+Suppose I have a vector 
+\begin{verbatim}
+x <- c(3, 5, 1, 10, 12, 6) 
+\end{verbatim}
+and I want to set all elements of this vector that are less than 6 to be equal to zero. What \texttt{R} code achieves this?
+\begin{itemize}
+\item[(i)] \texttt{x[x > 0] <- 6}
+\item[(ii)]\texttt{x[x < 6] <- 0}
+\item[(iii)] \texttt{x[x > 6] <- 0}
+\item[(iv)] \texttt{x[x == 6] <- 0}
+\end{itemize}
+\bigskip
+\noindent This is called \textbf{Logical Indexing}. To get an idea of logical indexing, try out the following code snippets.
+\begin{framed}
+\begin{verbatim}
+x <- c(3, 5, 1, 10, 12, 6) 
+x>0
+x<6
+X==6
+\end{verbatim}
+\end{framed}
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{The airquality data set}
+
+\textbf{Some Useful Commands}
+As well as some of the commands we have seen earlier, it is worth getting to know the following commands also.
+\begin{itemize}
+\item[1] \texttt{head()} and \texttt{tail()}
+\item[2] \texttt{names()}, \texttt{rownames()} and \texttt{colnames()}
+\item[3] \texttt{summary()}
+\item[4] \texttt{complete.cases()}
+\item[5] \texttt{dim()}, \texttt{nrow()} and \texttt{ncol()}
+\end{itemize}
+Use the \texttt{help} command to find out what each of these commands do.
+\begin{framed}
+\begin{verbatim}
+help(complete.cases)
+\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+	> head(airquality)
+	Ozone Solar.R  	Wind Temp Month Day
+	1      41     190    7.4   67     5   1
+	2      36     118    8.0   72     5   2
+	3      12     149   12.6   74     5   3
+	....
+	\end{verbatim}
+\end{framed}
+
+
+\newpage
+\subsection*{Question 11}
+\Large
+In the dataset provided for this Quiz, what are the column names of the dataset?
+\begin{itemize} 
+\item[(i)] Ozone, Solar.R, Wind, Temp, Month, Day
+\item[(ii)] Ozone, Solar.R, Wind
+\item[(iii)] Month, Day, Temp, Wind
+\item[(iv)] 1, 2, 3, 4, 5, 6
+\end{itemize}
+%---------------------------------------------------------------------------------------------------------%
+
+\newpage
+\subsection*{Sequences and Numerical Indexing}
+\Large
+
+A sequence of integers can be created usingn the colon symbol. The sequence may either be \textit{count-up} or \textit{count-down}.
+\\
+Importantly, the sequence will return all integers betwen the upper and lower bound, and including both the upper and lower bound (\textit{Other languages can be different in this respect})
+\begin{framed}
+	\begin{verbatim}
+	0:5
+	1:6
+	-4:5
+	10:1
+	\end{verbatim}
+\end{framed}
+
+\noindent A contiguous group of rows from a a data frame may be extracted using the appropriate sequence of values as indices. Likewise for a contiguous group of columns
+
+\begin{framed}
+	\begin{verbatim}
+	iris[1:6,]     # First Six Rows
+	iris[,3:4]     # Third and Fourth Columns
+	iris[1:40,2:3] # 40 Rows, Columns 2 and 3
+	\end{verbatim}
+\end{framed}
+
+
+\newpage
+\subsection*{Question 12}
+\Large
+Extract the first 2 rows of the data frame and print them to the console. What does the output look like?
+
+\begin{framed}
+	\begin{verbatim}
+		Ozone Solar.R Wind Temp Month Day
+	1    41     190  7.4   67     5   1
+	2    36     118  8.0   72     5   2
+	\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim} 
+		Ozone Solar.R Wind Temp Month Day
+	1     7      NA  6.9   74     5  11
+	2    35     274 10.3   82     7  17
+	\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim} 
+		Ozone Solar.R Wind Temp Month Day
+	1    18     224 13.8   67     9  17
+	2    NA     258  9.7   81     7  22
+\end{verbatim}
+\end{framed}	\begin{framed}
+	\begin{verbatim} 
+	Ozone Solar.R Wind Temp Month Day
+	1     9      24 10.9   71     9  14
+	2    18     131  8.0   76     9  29
+	\end{verbatim}
+\end{framed}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+
+\subsection*{Question 13}
+\Large
+How many observations (i.e. rows) are in this data frame?
+\begin{itemize}
+	\item 129
+	\item 153
+	\item 160
+	\item 45
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 14}
+\Large
+Extract the last 2 rows of the data frame and print them to the console. What does the output look like?
+
+\begin{framed}
+	\begin{verbatim}
+Ozone Solar.R Wind Temp Month Day
+152    11      44  9.7   62     5  20
+153   108     223  8.0   85     7  25
+	\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+Ozone Solar.R Wind Temp Month Day
+152    34     307 12.0   66     5  17
+153    13      27 10.3   76     9  18
+	\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+Ozone Solar.R Wind Temp Month Day
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30
+	\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+Ozone Solar.R Wind Temp Month Day
+152    31     244 10.9   78     8  19
+153    29     127  9.7   82     6   7
+	\end{verbatim}
+\end{framed}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 15}
+\Large
+What is the value of Ozone in the 47th row?
+\begin{itemize}
+\item[(i)] 63
+\item[(ii)] 34
+\item[(iii)] 18
+\item[(iv)] 21
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 16}
+\Large
+How many missing values (\texttt{NA}s) are in the \textit{Ozone} column of this data frame?
+
+\begin{itemize}
+	\item[(i)] 37
+	\item[(ii)] 78
+	\item[(iii)] 43
+	\item[(iv)] 9
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+names(airquality)
+attach(airquality)
+is.na(Ozone)
+
+!is.na(Ozone)
+
+which(is.na(Ozone))
+
+length(which(is.na(Ozone)))
+detach(airquality)
+\end{verbatim}
+\end{framed}
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 17}
+\Large
+What is the mean of the Ozone column in this dataset? Exclude missing values (coded as NA) from this calculation.
+42.1
+18.0
+53.2
+31.5
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 18}
+\Large
+Extract the subset of rows of the data frame where Ozone values are above 31 and Temp values are above 90. 
+
+What is the mean of Solar.R in this subset?
+185.9
+212.8
+334.0
+205.0
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 19}
+\Large
+What is the mean of "Temp" when "Month" is equal to 6?
+90.2
+85.6
+79.1
+75.3
+
+%---------------------------------------------------------------------------------------------------------%
+
+\subsection*{Question 20}
+\Large
+What was the maximum ozone value in the month of May (i.e. Month = 5)?
+100
+115
+18
+97
+
+%---------------------------------------------------------------------------------------------------------%
+
+\end{document}

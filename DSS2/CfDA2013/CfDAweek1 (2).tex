@@ -1,0 +1,354 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{Dublin \texttt{R}} \rhead{Week 1}
+\chead{Computing For Data Analysis }
+%\input{tcilatex}
+
+
+% http://www.norusis.com/pdf/SPC_v13.pdf
+\begin{document}
+
+%------------------------------------------%
+
+\section*{Introduction to \texttt{R} - [2.01 / 2.04]}
+\emph{Source: \texttt{R} project website (http://www.r-project.org)}\\
+
+\noindent \texttt{R} is a language and environment for statistical computing and graphics. It is a GNU project which is similar to the S language and environment which was developed at Bell Laboratories (formerly AT\&T, now Lucent Technologies) by John Chambers and colleagues. \texttt{R} can be considered as a different implementation of \texttt{S}. There are some important differences, but much code written for \texttt{S} runs unaltered under \texttt{R}.\\
+
+\noindent \texttt{R} provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, ...) and graphical techniques, and is highly extensible. The \texttt{S} language is often the vehicle of choice for research in statistical methodology, and \texttt{R} provides an Open Source route to participation in that activity.\\
+
+\noindent One of \texttt{R}'s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. Great care has been taken over the defaults for the minor design choices in graphics, but the user retains full control.\\
+
+\noindent \texttt{R} is available as Free Software under the terms of the Free Software Foundation's GNU General Public License in source code form. It compiles and runs on a wide variety of UNIX platforms and similar systems (including FreeBSD and Linux), Windows and MacOS.\\
+%----------------------------------------------------------------------%
+
+
+\texttt{R} is a programming environment
+\begin{itemize}
+\item uses a well-developed but simple programming language
+\item allows for rapid development of new tools according to user demand
+\item these tools are distributed as packages, which any user can download to customize the \texttt{R} environment.
+\end{itemize}
+Base R and most R packages are available for download from the Comprehensive \texttt{R} Archive Network (CRAN)
+\textbf{\textit{cran.r-project.org}}. Base R comes with a number of basic data management, analysis, and graphical tools
+\texttt{R}'s power and flexibility, however, lie in its array of \textbf{packages} (currently more than 4,000!)
+
+\newpage
+\subsection*{The Four Freedom of Free Software}
+Free software means that the software's users have freedom. (The issue is not about price.) The GNU operating system was developed so that users can have freedom in their computing.
+
+Specifically, free software means users have the four essential freedoms: 
+\begin{itemize}
+\item(0) to run the program, 
+\item(1) to study and change the program in source code form, 
+\item(2) to redistribute exact copies, and 
+\item(3) to distribute modified versions.
+\end{itemize}
+
+Software differs from material objects—in that it can be copied and changed much more easily. These facilities are why software is useful; A program's users should be free to take advantage of them, not solely its developer.
+
+
+%---------------------------------------%
+\newpage
+\section*{Getting Help - [2.03]}
+
+\begin{itemize}
+\item Using the \texttt{help()} command,
+\item Using the help facility with the command \texttt{help.start()},
+\item using the \texttt{apropos()} command.
+\end{itemize}
+
+\subsection*{Web Resources}
+\begin{itemize}
+\item Twitter : Hashtag \#rstats
+\item Twitter : @RLangTip
+\item R-bloggers website : http://www.r-bloggers.com/
+\item 
+\end{itemize}
+%---------------------------------------%
+\newpage
+\section*{Data Types [2.05]}
+
+\begin{itemize}
+\item Vectors
+\item Lists
+\end{itemize}
+
+\subsection*{Vector}
+When programming with \texttt{R}, the most commonly used object is a \textbf{vector}.
+
+\subsubsection*{Classes of Vector}
+The atomic classes of vectors are as follows:
+\begin{itemize}
+\item character
+\item numeric - double precision real numbers.
+\item integer - integers.
+\item complex
+\item logical
+\end{itemize}
+\begin{framed}
+\begin{verbatim}
+
+# <- is the assignment operator.
+
+a <- 1    # numeric value of 1
+b <- 1L   # Integer value of 1
+\end{verbatim}
+\end{framed}
+
+
+There are other types of atomic data types. Check this with the \texttt{is.atomic()} command.
+
+
+When creating an "empty" vector, simply specify the type of vector. There will be no elements contained initially, although usually, elements of that type are added afterwards
+
+\begin{framed}
+\begin{verbatim}
+X <- numeric()
+length(X)
+
+X <- c(X,1)  #Append the value 1 to vector X.
+X
+length(X)
+
+\end{verbatim}
+\end{framed}
+
+
+\subsubsection*{Inspecting a vector}
+\begin{framed}
+\begin{verbatim}
+X <- c(4,6,3,4,7)
+
+dim(X)
+lenght(X)
+\end{verbatim}
+\end{framed}
+
+\subsection*{Lists}
+Lists are data object where items of different types are combined.
+
+\begin{framed}
+\begin{verbatim}
+X <- c(4,6,3,4,7)
+Y <- c(T,T,F,F)
+Z <- c("Oscar","LouLou")
+
+W <- list(X,Y,Z)
+\end{verbatim}
+\end{framed}
+
+\subsection*{Integers}
+
+\begin{framed}
+\begin{verbatim}
+a <- 1   # numeric
+b <- 1L  # integer
+\end{verbatim}
+\end{framed}
+
+The contents of a and b are almost identical.
+
+\begin{verbatim}
+> a
+[1] 1
+> b
+[1] 1
+\end{verbatim}
+%---------------------------%
+\subsubsection*{Integers}
+
+\begin{framed}
+\begin{verbatim}
+is.numeric(a)
+is.numeric(b)
+
+is.integer(a)
+is.integer(b)
+
+is.double(a)
+is.double(b)
+\end{verbatim}
+\end{framed}
+
+\texttt{is.atomic()} is true for the atomic vector 
+types ("logical", "integer", "numeric", "complex", "character" and "raw") and NULL.
+
+\noindent\textbf{Exercise} First we will create 4 objects, a numeric vector $A$, 
+logical vector $B$ and a character vector $C$, and then a matrix $D$, based on 
+the contents of $A$. We will construct a list ``NewList" that contains all of these objects.
+
+\begin{framed}
+\begin{verbatim}
+A <- c(4,5,2,1)
+B <- c(T,F,T)
+C <- c("Alan","Benny","Charlie")
+D <- matrix(A,nrow=2)
+
+NewList=list(A=A,B=B,C=C,D=D)
+\end{verbatim}
+\end{framed}
+To each member of the NewList list, we will apply a series of test functions
+\begin{framed}
+\begin{verbatim}
+lapply(NewList,is.atomic)
+lapply(NewList,is.numeric)
+lapply(NewList,sort)
+\end{verbatim}
+\end{framed}
+%-------------------------------------------%
+%------------------------------------------- %
+\newpage
+\section*{Subsetting - [2.6]}
+\subsection*{Extracting Components}
+
+\begin{itemize}
+\item []  Square brackets
+\item [[ ]]  Double Square brackets
+\item \$  dollar sign operator
+\end{itemize}
+
+
+\subsection*{Selection using the \texttt{subset()} Function}
+The \texttt{subset( )} function is the easiest way to select variables and observation. 
+
+In the following example we will use the \textit{\textbf{iris}} data set, we select all rows that have a value of sepal length of 6 or more, and determine how many observations there are, and then compute the mean of the petal lengths. (The answer is 5.263, from the summary output).
+
+\begin{framed}
+\begin{verbatim}
+
+#call the subset iris.2
+
+iris.2 = subset(iris,iris$Sepal.Length >= 6)
+
+dim(iris.2)
+
+summary(iris.2)
+
+\end{verbatim}
+\end{framed}
+
+\subsubsection*{Logical subscripts (6.4)}
+\begin{framed}
+\begin{verbatim}
+nums = c(12,9,8,14,7,16,3,2,9)
+
+                 # Are the numbers greater than 10
+nums > 10
+
+nums[nums>10]
+\end{verbatim}
+\end{framed}
+
+Logical operators are vectorised, applying a logical subscript to an data object.
+
+\begin{framed}
+\begin{verbatim}
+which(nums>10)
+\end{verbatim}
+\end{framed}
+
+First , fourth and sixth values are greater than 10.
+%----------------------------------------------------------------------------%
+%------------------------------------------- %
+\newpage
+\section*{Vectorized Operations - [2.07]}
+
+\begin{framed}
+\begin{verbatim}
+x <- 1:4
+y <- 1:6
+
+x>3
+\end{verbatim}
+\end{framed}
+\subsection*{Case-wise Operations}
+Many operations are carried out on a case-wise basis. 
+The arithmetic operation is carred out on the correpson elements of both objects.
+
+\begin{framed}
+\begin{verbatim}
+x*y #casewise multiplication
+
+x/y # casewise division
+\end{verbatim}
+\end{framed}
+
+\subsection*{Recycling of Vectors}
+
+\newpage
+%---------------------------------------%
+\section*{Reading and Writing Data Part 1- [2.8]}
+
+%---------------------------------------%
+\section*{Reading and Writing Data Part 2 - [2.9]}
+
+\subsubsection{Textual Formats}
+
+\begin{itemize}
+\item dumping \texttt{dump} 
+\item dputing \texttt{dput}
+\end{itemize}
+
+These commands preserve the metadata.
+
+\begin{framed}
+\begin{verbatim}
+Y = data.frame(a=10,b="Oscar")
+
+\end{verbatim}
+\end{framed}
+%---------------------------------------%
+
+%---------------------------------------%
+\section*{The \texttt{str()} function - [2.12]}
+
+
+This command displays the internal structure of an \texttt{R} object.It is a diagnostic function that can be used as an alternative to \texttt{summary()}.
+
+\begin{itemize}
+\item The \texttt{mean()} command
+\item The number 3
+\item The time series data set \textit{\textbf{Nile}}
+\item The \texttt{lm()} command - giving details of additional arguments.
+\end{itemize}
+\begin{verbatim}
+
+> str(mean)
+function (x, ...)  
+
+> str(3)
+ num 3
+
+> str(Nile)
+ Time-Series [1:100] from 1871 to 1970: 1120 1160 963 1210 1160 1160 813 1230 1370 1140 ...
+
+> str(lm)
+function (formula, data, subset, weights, na.action, method = "qr", model = TRUE, 
+    x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, contrasts = NULL, 
+    offset, ...) 
+
+\end{verbatim}
+
+\end{document}
