@@ -159,17 +159,20 @@ sum(dat$Zip*dat$Ext,na.rm=T)
 \begin{framed}
 \begin{verbatim}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
-download.file(fileUrl, destfile="./data/nga.xlsx", method="curl")
+getwd()
+download.file(url=fileUrl, destfile="gov_NGAP.xlsx", mode="w", method="curl")
 
 colIndex <- 7:15
 rowIndex <- 18:23
 
 library(xlsx)
 
-dat <- read.xlsx("./data/nga.xlsx", sheetIndex=1, 
-  header=TRUE, colIndex=colIndex, rowIndex=rowIndex)
+dat <- read.xlsx(file="gov_NGAP.xlsx",sheetIndex=1,colIndex=colIndx,startRow=18, endRow=23, header=TRUE)
+head(dat)
+summary(dat)
 
 sum(dat$Zip*dat$Ext,na.rm=T) 
+
 \end{verbatim}
 \end{framed}
 
@@ -203,6 +206,8 @@ seem to be XML: }
 http://www.omegahat.org/RSXML/shortIntro.pdf
 \end{verbatim}
 
+\newpage
+
 \begin{framed}
 \begin{verbatim}
 
@@ -212,16 +217,29 @@ doc
 rootNode <- xmlRoot(doc)
 rootNode
 
+rootNode[[1]]
+
+rootNode[[1]][[1]]
+
+names(rootNode[[1]][[1]])
+
 class(rootNode)
 mode(rootNode)
 
 xmlName(rootNode)
 names(rootNode)
 
-sum(xpathSApply(rootNode, "//zipcode", xmlValue)==21231) 
 
 zipcode <- xpathSApply(rootNode, "//zipcode", xmlValue)
 table(zipcode == 21231)
+
+## Also
+length(zipcode[zipcode==21231])
+
+## Also
+sum(xpathSApply(rootNode, "//zipcode", xmlValue)==21231) 
+
+
 
 \end{vernatim}
 \end{framed}
