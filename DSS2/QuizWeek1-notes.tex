@@ -60,6 +60,39 @@ class(x)
 \end{verbatim}	
 \end{framed}
 \newpage
+\subsection*{Built-In Data Sets} %Ready 1
+
+Several data sets , intended as learning tools, are automatically installed when \texttt{R} is installed. Many more are installed within packages to complement learning to use those packages. One of these is the famous Iris data set, which is used in many data mining exercises.
+\begin{itemize}
+\item \texttt{iris}
+\item \texttt{mtcars}
+\item \texttt{Nile}
+\end{itemize}
+To see what data sets are available, simply type \texttt{data()}.
+To load a data set, simply type in the name of the data set. Some data sets are very large. To just see the first few (or last)  rows, we use the \texttt{head()} function or alternatively the \texttt{tail()} function. The default number of rows of these commands is 6. Other numbers can be specified.
+\begin{verbatim} 
+> head(iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+>
+> tail(iris,4)
+    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+147          6.3         2.5          5.0         1.9 virginica
+148          6.5         3.0          5.2         2.0 virginica
+149          6.2         3.4          5.4         2.3 virginica
+150          5.9         3.0          5.1         1.8 virginic
+\end{verbatim}
+In many situations, it is useful to call a particular data set using the \texttt{attach()} command. This will save having to specify the data sets over repeated operations. The file can then be detached using 
+ the \texttt{detach()} command.
+
+
+
+%----------------------------------------------------------------%
 \subsection*{Other Useful Commands}
 \begin{framed}
 \begin{verbatim}
@@ -484,7 +517,48 @@ Importantly, the sequence will return all integers betwen the upper and lower bo
 	\end{verbatim}
 \end{framed}
 
+\section{Indexing and Subsetting }
+\subsection{Relational and Logical Operators}
 
+Relational operators allow for the comparison of values in vectors.
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+greater than &	$>$\\
+less than&	$<$\\
+equal to	&$==$\\
+less than or equal to&	$<=$\\
+greater than or equal to&	$>=$\\
+not equal to	&$!=$\\
+  \hline
+\end{tabular}
+\end{center}
+
+
+\begin{itemize}
+\item Note the difference of the equality operator "==" with assignment operator "=".
+
+\item \& and \&\& indicate logical AND and $\|$ and $\|\|$ indicate logical OR.
+\item The shorter form performs element-wise comparisons in much the same way as arithmetic operators. The longer form is appropriate for programming control-flow and typically preferred in "if" clauses.
+\item We can use relational operators to subset vectors (as well as more complex data objects such as data frames, which we will meet later).
+\item We specify the  relational condition in square brackets.
+\item We can construct compound relational conditions too, using logical operators
+\end{itemize}
+\begin{framed}
+\begin{verbatim}
+> vec=1:19
+> vec[vec<5]
+[1] 1 2 3 4
+> vec[(vec<6)|(vec>16)]
+[1]  1  2  3  4  5 17 18 19
+\end{verbatim}
+\end{framed}
+
+
+
+
+
+% End of relational and Logical Operators
 \newpage
 \subsection*{Question 12}
 \Large
