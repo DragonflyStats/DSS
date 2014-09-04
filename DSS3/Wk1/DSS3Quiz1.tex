@@ -7,7 +7,9 @@
 
 \section{Getting and Cleaning Data: Week 1 Quiz}
 %-----------------------------------------------------------------%
-
+\begin{verbatim}
+install.packages("data.table", "xlsx", "XML")
+\end{verbatim}
 \newpage
 \subsection*{Question 1}
 
@@ -158,15 +160,15 @@ sum(dat$Zip*dat$Ext,na.rm=T)
 \begin{verbatim}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
 download.file(fileUrl, destfile="./data/nga.xlsx", method="curl")
-dateDownloaded <- date()
 
-library(xlsx)
-list.files("./data")
 colIndex <- 7:15
 rowIndex <- 18:23
+
+library(xlsx)
+
 dat <- read.xlsx("./data/nga.xlsx", sheetIndex=1, 
   header=TRUE, colIndex=colIndex, rowIndex=rowIndex)
-head(dat)
+
 sum(dat$Zip*dat$Ext,na.rm=T) 
 \end{verbatim}
 \end{framed}
@@ -178,7 +180,6 @@ sum(dat$Zip*dat$Ext,na.rm=T)
 \newpage
 \subsection*{Question 4}
 
- 
 Read the XML data on Baltimore restaurants from here: 
 
 \begin{verbatim}
@@ -186,6 +187,8 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml
 \end{verbatim}
 How many restaurants have zipcode 21231? 
 
+Remark : Use \texttt{http}  instead of \texttt{https} , which caused the message Error: \texttt{XML content does not 
+seem to be XML: }
 \begin{itemize}
 \item[(i)] 100 
 
@@ -197,11 +200,10 @@ How many restaurants have zipcode 21231?
 \end{itemize}
 
 \begin{verbatim}
-xmlTreeParse
+http://www.omegahat.org/RSXML/shortIntro.pdf
 \end{verbatim}
 
 \begin{framed}
-
 \begin{verbatim}
 
 fileUrl <- "http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
@@ -209,9 +211,17 @@ doc <- xmlTreeParse(fileUrl, useInternal=TRUE)
 doc
 rootNode <- xmlRoot(doc)
 rootNode
+
+class(rootNode)
+mode(rootNode)
+
 xmlName(rootNode)
 names(rootNode)
+
 sum(xpathSApply(rootNode, "//zipcode", xmlValue)==21231) 
+
+zipcode <- xpathSApply(rootNode, "//zipcode", xmlValue)
+table(zipcode == 21231)
 
 \end{vernatim}
 \end{framed}
