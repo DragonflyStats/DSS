@@ -1,10 +1,10 @@
 Module 2: Basics of Inference
 =================================
-- 02.1 Common Distributions
-- 02.2 Asymptopia
-- 02.3 *t* confidence intervals
-- 02.4 Likelihood
-- 02.5 Beginning Bayes Inference
+- 2.1 Common Distributions
+- 2.2 Asymptopia
+- 2.3 *t* confidence intervals
+- 2.4 Likelihood
+- 2.5 Beginning Bayes Inference
 
 <hr>
 #### Properties of the t Distribution
@@ -18,7 +18,9 @@ The t distribution has the following properties:
 <hr>
 
 #### Likelihood
-In statistics, a likelihood function is a function of the parameters of a statistical model, defined as follows: the likelihood of a set of parameter values given some observed outcomes is equal to the probability of those observed outcomes given those parameter values. Likelihood functions play a key role in statistical inference, especially methods of estimating a parameter using statistics (a function of the data).
+In statistics, a likelihood function is a function of the parameters of a statistical model, defined as follows: the likelihood of a set of parameter values given some observed outcomes is equal to the probability of those observed outcomes given those parameter values. 
+
+Likelihood functions play a key role in statistical inference, especially methods of estimating a parameter using statistics (a function of the data).
 <hr>
 #### Confidence Intervals
 - In statistical inference, one wishes to estimate population parameters using observed sample data.
