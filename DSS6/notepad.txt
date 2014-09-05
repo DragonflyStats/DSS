@@ -1,0 +1,94 @@
+http://rstudio-pubs-static.s3.amazonaws.com/25356_e7f203518b0f48329679cf149cf0b64e.html#12
+
+Topics covered online
+Confidence intervals using the t-distribution:
+
+Paired observations
+Two sample with same variance
+Two samples with different variances
+Hypothesis testing
+
+p-Values
+
+Topics for today
+Variance / Central Limit Theorem
+
+Variance
+Asymptopia
+
+Continuing our dice simulation…
+We talked about:
+
+Which sample (n =5, 20, or 500) is likely to have a distribution closest to the theoretical distribution?
+Which sample is likely to have a mean closest to the theoretical mean?
+Will the largest sample always be the one that comes closest to the theoretical values?
+(Casey's point) How are the variances of the different samples likely to differ?
+Question for you:
+
+If you had to bet which sample would have the largest variance, which sample would you bet on?
+If you had to bet which sample would have the smallest variance, which sample would you bet on?
+
+Variance
+So, let's talk for a second about variance before moving on.
+
+Theoretically, for a random variable, if \(X\) is a random variable with mean \(\mu\), the variance of \(X\) is defined as
+
+\[ Var(X) = E[(X - \mu)^2] = E[X^2] - E[X]^2 \]
+
+The sample variance from a sample of data is \[ S^2 = \frac{\sum_{i=1} (X_i - \bar X)^2}{n-1} \]
+
+Variance
+From the variance lecture:
+
+What's the variance from the result of a toss of a die?
+
+\(E[X] = 3.5\)
+\(E[X^2] = 1 ^ 2 \times \frac{1}{6} + 2 ^ 2 \times \frac{1}{6} + 3 ^ 2 \times \frac{1}{6} + 4 ^ 2 \times \frac{1}{6} + 5 ^ 2 \times \frac{1}{6} + 6 ^ 2 \times \frac{1}{6} = 15.17\)
+
+\(Var(X) = E[X^2] - E[X]^2 \approx 2.92\)
+
+Variance
+From our three samples:
+
+var(sim.1)  ## 5 rolls
+## [1] 4
+var(sim.2)  ## 20 rolls
+## [1] 1.937
+var(sim.3)  ## 500 rolls
+## [1] 3.007
+
+Simulating lots of rolls of each size
+So far, we've only simulated a single roll of each sample size, and we've talked about what we expect from the different samples.
+
+Now let's check our expectations by simulating many different dice rolls for each sample size and seeing how the means and variances of these samples actually behave.
+
+Simulating lots of rolls of each size
+First, let's set up a dataframe with the values from our simulation. For example, we can create a matrix with 1,000 simulations of five rolls with:
+
+nosim <- 1000 ## Number of samples we'll simulate
+sim.1 <- matrix(sample(c(1:6), 5*nosim, replace = TRUE),
+                nrow = nosim)
+head(sim.1)
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    6    3    4    2    5
+## [2,]    3    1    6    4    1
+## [3,]    5    2    2    2    2
+## [4,]    2    3    6    3    1
+## [5,]    3    4    5    4    2
+## [6,]    6    3    4    2    6
+
+
+Simulating lots of rolls of each size
+In R, you can use the apply function to perform the same function on all columns or rows of a matrix.
+
+So, to get the mean of all of the samples with 5 rolls, we can run:
+
+sim.1.mn <- apply(sim.1, MARGIN = 1, FUN = mean)
+sim.1.mn[1:5]
+## [1] 4.0 3.0 2.6 3.0 3.6
+And to get the variance:
+
+sim.1.var <- apply(sim.1, MARGIN = 1, FUN = var)
+sim.1.var[1:5]
+## [1] 2.5 4.5 1.8 3.5 1.3
+Powerball
