@@ -1,30 +1,43 @@
 %---------------------------------------------------------------------------------------------%
-Question 1
-Register an application with the Github API here https://github.com/settings/applications. Access the API to get information on your instructors repositories (hint: this is the url you want "https://api.github.com/users/jtleek/repos"). Use this data to find the time that the datasharing repo was created. What time was it created? This tutorial may be useful (https://github.com/hadley/httr/blob/master/demo/oauth2-github.r). You may also need to run the code in the base R package and not R studio.
-2012-06-20T18:39:06Z
-2014-03-05T16:11:46Z
-2014-01-04T21:06:44Z
-2013-11-07T13:25:07Z
+\newpage
+\subsection*{Question 1}
+\textbf{Question}\\
+Register an application with the Github API here https://github.com/settings/applications. \\Access the API to get information on your instructors repositories (hint: this is the url you want "https://api.github.com/users/jtleek/repos"). \\Use this data to find the time that the datasharing repo was created. \\ What time was it created? This tutorial may be useful (https://github.com/hadley/httr/blob/master/demo/oauth2-github.r). \\You may also need to run the code in the base R package and not R studio.
+\begin{itemize}
+\item[(i)] 2012-06-20T18:39:06Z
+\item[(ii)] 2014-03-05T16:11:46Z
+\item[(iii)] 2014-01-04T21:06:44Z
+\item[(iv)] 2013-11-07T13:25:07Z
+\end{itemize}
+
 %---------------------------------------------------------------------------------------------%
-Question 2
+\newpage
+\subsection*{Question 2}
 The sqldf package allows for execution of SQL commands on R data frames. We will use the sqldf package to practice the queries we might send with the dbSendQuery command in RMySQL. Download the American Community Survey data and load it into an R object called
  acs
 
-
+\begin{verbatim}
 https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv 
+\end{verbatim}
 
 Which of the following commands will select only the data for the probability weights pwgtp1 with ages less than 50?
-sqldf("select * from acs where AGEP < 50 and pwgtp1")
-sqldf("select * from acs")
-sqldf("select * from acs where AGEP < 50")
-sqldf("select pwgtp1 from acs where AGEP < 50")
+\begin{itemize}
+\item[(i)] sqldf("select * from acs where AGEP < 50 and pwgtp1")
+\item[(ii)] sqldf("select * from acs")
+\item[(iii)] sqldf("select * from acs where AGEP < 50")
+\item[(iv)] sqldf("select pwgtp1 from acs where AGEP < 50")
+\end{itemize}
 %---------------------------------------------------------------------------------------------%
-Question 3
+\newpage
+\subsection*{Question 3}
 Using the same data frame you created in the previous problem, what is the equivalent function to unique(acs$AGEP)
-sqldf("select unique AGEP from acs")
-sqldf("select distinct pwgtp1 from acs")
-sqldf("select AGEP where unique from acs")
-sqldf("select distinct AGEP from acs")
+\begin{itemize}
+\item[(i)] sqldf("select unique AGEP from acs")
+\item[(ii)] sqldf("select distinct pwgtp1 from acs")
+\item[(iii)] sqldf("select AGEP where unique from acs")
+\item[(iv)] sqldf("select distinct AGEP from acs")
+\end{itemize}
+
 %---------------------------------------------------------------------------------------------%
 Question 4
 How many characters are in the 10th, 20th, 30th and 100th lines of HTML from this page: 
@@ -32,7 +45,8 @@ How many characters are in the 10th, 20th, 30th and 100th lines of HTML from thi
 http://biostat.jhsph.edu/~jleek/contact.html 
 
 (Hint: the nchar() function in R may be helpful)
-43 99 8 6
+\begin{itemize}
+\item[(i)] 43 99 8 6
 45 31 7 31
 43 99 7 25
 45 31 7 25
