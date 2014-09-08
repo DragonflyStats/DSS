@@ -117,10 +117,12 @@ If a continuous density that never touches the horizontal axis is symmetric abou
 
 
 %-------------------------------------------------------------%
+\newpage
+\large
+\subsection*{Question 8}
+Consider the following PMF generated in \texttt{R}
 
-\subsection{Question 8}
-Consider the following PMF generated in R
-
+\begin{framed}
 \begin{verbatim}
 x <- 1:4
 p <- x/sum(x)
@@ -131,9 +133,34 @@ temp
 ## X     1.0  2.0  3.0  4.0
 ## Prob  0.1  0.2  0.3  0.4
 \end{verbatim}
-What is the mean? Express your answer to one decimal place.
+\end{framed}
+\noindent What is the mean? 
+\\ 
+\\
+\textit{Express your answer to one decimal place.}
 
-\textbf{Answer for Question 8}
+\newpage
+\noindent \textbf{Answer for Question 8}
+
+
+\subsubsection*{Expected Value for Discrete Random Variables}
+
+\begin{itemize}
+	\item The expected value (i.e. the mean) of a discrete random variable $X$ is symbolized by E(X).
+	
+	\item If X is a discrete random variable with possible values $\{ x_1, x_2, x_3,\ldots , x_n\}$, and $p(x_i)$ denotes $P(X = x_i)$, then the expected value of $X$ is defined by:
+	{
+		\Large
+	\[
+	E(X) = \sum x_i \times p(x_i)
+	\]
+}
+	where the elements are summed over all values of the random variable $X$.
+	
+\end{itemize}
+\bigskip
+{
+	\Large
 \begin{verbatim}
 > temp[1,]
 [1] 1 2 3 4
@@ -145,7 +172,7 @@ What is the mean? Express your answer to one decimal place.
 [1] 3
 > 
 \end{verbatim}
-
+}
 
 
 

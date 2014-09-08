@@ -11,7 +11,20 @@
 
 \tableofcontents
 \newpage
+\large
 \section*{Quiz for Week 2}
+\newpage
+
+{
+	\Huge
+\[\mbox{R Programming} \]
+\[ \mbox{Week 2 Videos} \]
+\huge
+\bigskip
+\[ \mbox{www.Stats-Lab.com} \]
+}
+
+\newpage
 
 \subsection*{Quiz Question 1}%READY
 Suppose we define the following function in \texttt{R}
@@ -22,19 +35,32 @@ cube <- function(x, n) {
 }
 \end{verbatim}
 \end{framed}
-What is the result of running
+\noindent What is the result of running
 \texttt{cube(3)}
-in \texttt{R} after defining this function?
-\textbf{options}
+in \texttt{R} after defining this function?\\ \\
+\textbf{Options}
 \begin{enumerate}
 \item The number 27 is returned
-\item An error is returned because 'n' is not specified in the call to 'cube'
+\item An error is returned because \texttt{'n'} is not specified in the call to \texttt{'cube'}
 \item A warning is given with no value returned.
-\item The users is prompted to specify the value of 'n'.
+\item The users is prompted to specify the value of \texttt{'n'}.
 \end{enumerate}
+\bigskip
+\textbf{Remarks}
+\begin{itemize}
+\item As we can see by running the code - we get the answer we expect.
+\item While \texttt{n} is specified as a possible argument for the function, it is clear that it is not used in the body of the function, and that an answer can be computed without it.
+\end{itemize}
+\newpage
 
-As we can see by running the code - we get the answer we expect.
-While \texttt{n} is specified as a possible argument for the function, it is clear that it is not used in the body of the function, and that an answer can be computed without it.
+\textbf{Counter-Example}
+\begin{framed}
+\begin{verbatim}
+pow <- function(x, n=3) {
+        x^n
+}
+\end{verbatim}
+\end{framed}
 
 \newpage
 \subsection*{Quiz Question 2}
@@ -56,7 +82,8 @@ in \texttt{R} after defining this function?
 \item The number 81 is returned.
 \end{enumerate}
 
-As we can see by running the code - we get the answer we expect, without any error warnings. If no arguments are specified by the user, the function will use the \textbf{default} settings. This function can be used for other values of \texttt{x} and \texttt{n}.
+As we can see by running the code - we get the answer we expect, without any error warnings. \\ \\ If no arguments are specified by the user, the function will use the \textbf{default} settings. \\ \\ This function can be used for other values of \texttt{x} and \texttt{n}.
+
 
 %-----------------------------------------------------%
 \newpage
@@ -73,16 +100,16 @@ if(x > 5) {
 
 \textbf{Options}
 \begin{enumerate}
-\item 'x' is a vector of length 10 and 'if' can only test a single logical statement.
-\item There are no elements in 'x' that are greater than 5 (\textbf{Obviously False})
+\item '\texttt{x}' is a vector of length 10 and '\texttt{if}' can only test a single logical statement.
+\item There are no elements in 'x' that are greater than 5 \\ (\textbf{obviously false})
 \item The expression uses curly braces.
-\item You cannot set 'x' to be 0 because 'x' is a vector and 0 is a scalar. (\textbf{True})
-\item The syntax of this \texttt{R} expression is incorrect. (\textbf{No Obvious Syntax Errors})
+\item You cannot set '\texttt{x}' to be 0 because '\texttt{x}' is a vector and 0 is a scalar. \\ (\textbf{true})
+\item The syntax of this \texttt{R} expression is incorrect.\\ (\textbf{No obvious Syntax errors})
 \end{enumerate}
 
 %-----------------------------------------------------%
 \newpage
-\subsection{The \texttt{aggregate()} function}
+\subsection*{The \texttt{aggregate()} function}
 Firstly let us construct a data frame called \textit{\textbf{df1}}, using the code below.
 \begin{framed}
 \begin{verbatim}
@@ -99,26 +126,41 @@ df1<-data.frame(col1=col1, col2=col2, score=score)
 df1
 \end{verbatim}
 \end{framed}
-\noindent There are two categorical variables. The first (i.e. col1) has two levels, the second (i.e. col2) has three. We can use the \texttt{aggregate()} function to apply a specified command for groups.
+\newpage
+\subsection*{The \texttt{aggregate()} function}
+\noindent There are two categorical variables. The first (i.e. \texttt{col1}) has two levels, the second (i.e. \texttt{col2}) has three. 
 
+
+\noindent We can use the \texttt{aggregate()} function to apply a specified command for groups.
+{
+	\large
 \begin{verbatim}
-aggregate(variable, by=list(grouping1,grouping2,..),function)
+aggregate(variable, by=list(group1,group2,..),function)
 \end{verbatim}
+
 \begin{framed}
+	
 \begin{verbatim}
-aves1 = aggregate(df1$score, by=list(col2=df1$col2), mean)
+aves1 = aggregate(df1$score, 
+    by=list(col2=df1$col2), mean)
+    
 aves1
 
 
-aves2 = aggregate(df1$score, by=list(col1=df1$col1), mean)
+aves2 = aggregate(df1$score, 
+    by=list(col1=df1$col1), mean)
+    
 aves2
 
 aves3 = aggregate(df1$score,
    by=list(col1=df1$col1, col2=df1$col2), mean)
+   
 aves3
 \end{verbatim}
 \end{framed}
-We can use the merge command to combine the group-wise results with the original data frame.
+}
+\newpage
+\noindent We can use the \texttt{merge} command to combine the group-wise results with the original data frame.
 \begin{framed}
 \begin{verbatim}
 results = merge(df1, aves2) 
@@ -140,7 +182,9 @@ results
 %-----------------------------------------------------%
 \newpage
 \subsection*{Quiz Question 4}
-Take a look at the 'iris' dataset that comes with \texttt{R}. The data can be loaded with the code:
+Take a look at the 'iris' dataset that comes with \texttt{R}. 
+
+The data can be loaded with the code:
 \begin{framed}
 \begin{verbatim}
 library(datasets)
@@ -151,12 +195,13 @@ data(iris)
 \begin{itemize}
 \item A description of the dataset can be found by running \texttt{?iris}.
 \item 
-There will be an object called '\textit{\textbf{iris}}' in your workspace. 
-\item In this dataset, what is the mean of 'Sepal.Length' for the species virginica? (Please only enter the numeric result and nothing else.)
+There will be an object called `\textit{\textbf{iris}}' in your workspace. 
+\item In this dataset, what is the mean of 'Sepal.Length' for the species virginica?
+\item \texttt{(Please only enter the numeric result and nothing else.)}
 \end{itemize}
 \textbf{Remarks}
 \begin{itemize}
-\item One approach is to use the aggregate command mentioned in the previous section.
+\item One approach is to use the \texttt{aggregate()} command mentioned in the previous section.
 \item A second approach is to create a subset (let's call it \textit{\textbf{iris.vir}}) and then use the \texttt{summary()} command.
 \begin{framed}
 \begin{verbatim}
@@ -280,7 +325,7 @@ Sepal.Length  Sepal.Width Petal.Length  Petal.Width
 %---------------------------------------------------------------------------%
 
 \newpage
-\subsection{Quiz Question 6}
+\subsection*{Quiz Question 6}
 Load the '\textit{\textbf{mtcars}}' dataset in \texttt{R} with the following code
 
 \begin{framed}
@@ -291,7 +336,7 @@ data(mtcars)
 \end{framed}
 
 \begin{itemize}
-\item There will be an object names '\textit{\textbf{mtcars}}' in your workspace. You can find some information about the dataset by running
+\item There will be an object names `\textit{\textbf{mtcars}}' in your workspace. You can find some information about the dataset by running
 \texttt{?mtcars}.
 
 \item How can one calculate the average miles per gallon (mpg) by number of cylinders in the car (cyl)?
@@ -321,26 +366,26 @@ tapply(mtcars$mpg, mtcars$cyl, mean)
 \end{itemize}
 \newpage
 %--------------------------------------------------------------%
-\subsection{Quiz Question 7}
+\subsection*{Quiz Question 7}
 Continuing with the \textit{\textbf{mtcars}} dataset from Question 6, what is the absolute difference between the average horsepower of 4-cylinder cars and the average horsepower of 8-cylinder cars?
 
 \bigskip
-\textbf{Remarks}\\
+\noindent \textbf{Remarks}\\
 This is another question where the \texttt{aggregate()} command comes in handy. (We will use \texttt{attach()} and \texttt{detach()} to avoid unnecessary typing)
 \begin{verbatim}
 > attach(mtcars)
-> Smry <- aggregate(hp,by=list(Cyls=cyl),mean)
-> Smry 
+> CylMeans <- aggregate(hp,by=list(Cyls=cyl),mean)
+> CylMeans 
   Cyls         x
 1    4  82.63636
 2    6 122.28571
 3    8 209.21429
 > detach(mtcars)
 >
-> Smry$x
+> CylMeans$x
 [1]  82.63636 122.28571 209.21429
 >
-> Smry$x[3]-Smry$x[1]
+> CylMeans$x[3]-CylMeans$x[1]
 [1] 126.5779
 \end{verbatim}
 
@@ -376,7 +421,7 @@ f <- function(x) {
 }
 \end{verbatim}
 
-If I then run in R
+If I then run in \texttt{R}
 \begin{verbatim}
 z <- 10
 f(3)
@@ -388,7 +433,7 @@ What value is returned by 'f'?
 %4
 
 \newpage
-\subsection{Quiz Question 10}
+\subsection*{Quiz Question 10}
 If you run
 \texttt{debug(ls)}
 what happens when you next call the '\texttt{ls}' function?

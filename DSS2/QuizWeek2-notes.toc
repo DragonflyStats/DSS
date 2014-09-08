@@ -1,0 +1,3 @@
+\contentsline {subsection}{\numberline {0.1}The \texttt {apply()} function}{14}
+\contentsline {subsection}{\numberline {0.2}Quiz Question 8}{20}
+\contentsline {subsection}{\numberline {0.3}Quiz Question 9}{21}

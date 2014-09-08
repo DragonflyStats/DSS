@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  5 SEP 2014 13:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  7 SEP 2014 09:59
 entering extended mode
-**C:/Users/Kevin/Documents/GitHub/DSS/DSS2/QuizWeek1-notes.tex
-(C:/Users/Kevin/Documents/GitHub/DSS/DSS2/QuizWeek1-notes.tex
+**QuizWeek1-notes.tex
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\QuizWeek1-notes.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -58,326 +58,330 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
 
-[2] [3] [4]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 67.
+[2]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 35.
+ [3] [4] [5]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 121.
+
  ("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <17.28> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 121.
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []  \OT1/cmtt/m/n/17.28 Sepal.Length Sepal.Width Petal.Length Petal.Width Speci
 es[] 
  []
 
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 1          5.1         3.5          1.4         0.2  seto
 sa[] 
  []
 
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 2          4.9         3.0          1.4         0.2  seto
 sa[] 
  []
 
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 3          4.7         3.2          1.3         0.2  seto
 sa[] 
  []
 
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 4          4.6         3.1          1.5         0.2  seto
 sa[] 
  []
 
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 5          5.0         3.6          1.4         0.2  seto
 sa[] 
  []
 
 
-Overfull \hbox (134.6279pt too wide) in paragraph at lines 89--89
+Overfull \hbox (134.6279pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 6          5.4         3.9          1.7         0.4  seto
 sa[] 
  []
 
-[5]
-Overfull \hbox (170.19589pt too wide) in paragraph at lines 89--89
+[6]
+Overfull \hbox (170.19589pt too wide) in paragraph at lines 143--143
 []    \OT1/cmtt/m/n/17.28 Sepal.Length Sepal.Width Petal.Length Petal.Width   S
 pecies[] 
  []
 
 
-Overfull \hbox (170.19589pt too wide) in paragraph at lines 89--89
+Overfull \hbox (170.19589pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 147          6.3         2.5          5.0         1.9 vir
 ginica[] 
  []
 
 
-Overfull \hbox (170.19589pt too wide) in paragraph at lines 89--89
+Overfull \hbox (170.19589pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 148          6.5         3.0          5.2         2.0 vir
 ginica[] 
  []
 
 
-Overfull \hbox (170.19589pt too wide) in paragraph at lines 89--89
+Overfull \hbox (170.19589pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 149          6.2         3.4          5.4         2.3 vir
 ginica[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 89--89
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 143--143
 []\OT1/cmtt/m/n/17.28 150          5.9         3.0          5.1         1.8 vir
 ginic[] 
  []
 
-[6] [7] [8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+[7] [8] [9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
 
  []
 
-[11] [12] [13] [14]
-Overfull \hbox (11.73976pt too wide) in paragraph at lines 289--291
+[12] [13] [14] [15]
+Overfull \hbox (11.73976pt too wide) in paragraph at lines 343--345
 \OT1/cmr/m/n/17.28 columns. Lets find out the names of the vari-ables (columns)
 
  []
 
-[15] [16]
+[16] [17]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 306.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 360.
 
-Overfull \hbox (303.57587pt too wide) in paragraph at lines 319--319
+Overfull \hbox (303.57587pt too wide) in paragraph at lines 373--373
 []  \OT1/cmtt/m/n/17.28 Sepal.Length    Sepal.Width     Petal.Length    Petal.W
 idth          Species[] 
  []
 
 
-Overfull \hbox (303.57587pt too wide) in paragraph at lines 319--319
+Overfull \hbox (303.57587pt too wide) in paragraph at lines 373--373
 [] \OT1/cmtt/m/n/17.28 Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :
 0.100   setosa    :50[] 
  []
 
 
-Overfull \hbox (303.57587pt too wide) in paragraph at lines 319--319
+Overfull \hbox (303.57587pt too wide) in paragraph at lines 373--373
 [] \OT1/cmtt/m/n/17.28 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:
 0.300   versicolor:50[] 
  []
 
 
-Overfull \hbox (303.57587pt too wide) in paragraph at lines 319--319
+Overfull \hbox (303.57587pt too wide) in paragraph at lines 373--373
 [] \OT1/cmtt/m/n/17.28 Median :5.800   Median :3.000   Median :4.350   Median :
 1.300   virginica :50[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 319--319
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 373--373
 [] \OT1/cmtt/m/n/17.28 Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :
 1.199[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 319--319
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 373--373
 [] \OT1/cmtt/m/n/17.28 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:
 1.800[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 319--319
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 373--373
 [] \OT1/cmtt/m/n/17.28 Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :
 2.500[] 
  []
 
-[17]
-Overfull \hbox (152.4119pt too wide) in paragraph at lines 341--341
+[18]
+Overfull \hbox (152.4119pt too wide) in paragraph at lines 395--395
 [] \OT1/cmtt/m/n/17.28 $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9
  ...[] 
  []
 
 
-Overfull \hbox (170.19589pt too wide) in paragraph at lines 341--341
+Overfull \hbox (170.19589pt too wide) in paragraph at lines 395--395
 [] \OT1/cmtt/m/n/17.28 $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3
 .1 ...[] 
  []
 
 
-Overfull \hbox (187.97989pt too wide) in paragraph at lines 341--341
+Overfull \hbox (187.97989pt too wide) in paragraph at lines 395--395
 [] \OT1/cmtt/m/n/17.28 $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4
  1.5 ...[] 
  []
 
 
-Overfull \hbox (187.97989pt too wide) in paragraph at lines 341--341
+Overfull \hbox (187.97989pt too wide) in paragraph at lines 395--395
 [] \OT1/cmtt/m/n/17.28 $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2
  0.1 ...[] 
  []
 
 
-Overfull \hbox (365.81985pt too wide) in paragraph at lines 341--341
+Overfull \hbox (365.81985pt too wide) in paragraph at lines 395--395
 [] \OT1/cmtt/m/n/17.28 $ Species     : Factor w/ 3 levels "setosa","versicolor"
 ,..: 1 1 1 1 1 1 1 1 1 1 ...[] 
  []
 
-[18] [19]
-Overfull \hbox (143.5199pt too wide) in paragraph at lines 388--388
+[19] [20]
+Overfull \hbox (143.5199pt too wide) in paragraph at lines 442--442
 []   \OT1/cmtt/m/n/17.28 Sepal.Length Sepal.Width Petal.Length Petal.Width Spec
 ies[] 
  []
 
 
-Overfull \hbox (143.5199pt too wide) in paragraph at lines 388--388
+Overfull \hbox (143.5199pt too wide) in paragraph at lines 442--442
 []\OT1/cmtt/m/n/17.28 10          4.9         3.1          1.5         0.1  set
 osa[] 
  []
 
-[20]
-Overfull \hbox (99.0599pt too wide) in paragraph at lines 410--410
+[21]
+Overfull \hbox (99.0599pt too wide) in paragraph at lines 464--464
 []   \OT1/cmtt/m/n/17.28 Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's[]
  
  []
 
 
-Overfull \hbox (99.0599pt too wide) in paragraph at lines 410--410
+Overfull \hbox (99.0599pt too wide) in paragraph at lines 464--464
 []    \OT1/cmtt/m/n/17.28 3.0     4.0     6.0     6.6     8.0    12.0       1[]
  
  []
 
-[21]
+[22]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 417.
+(Font)              <17.28> on input line 471.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 417.
+(Font)              <12> on input line 471.
 
-Overfull \hbox (20.04791pt too wide) in paragraph at lines 439--439
+Overfull \hbox (20.04791pt too wide) in paragraph at lines 493--493
 []\OT1/cmtt/m/n/17.28 iris.2 = subset(iris,iris$Sepal.Length >= 6)[] 
  []
 
-[22] [23]
-Overfull \hbox (54.59991pt too wide) in paragraph at lines 461--461
+[23] [24]
+Overfull \hbox (54.59991pt too wide) in paragraph at lines 515--515
 []\OT1/cmtt/m/n/17.28 > iris.setosa =subset(iris,iris$Species=="setosa")[] 
  []
 
 
-Overfull \hbox (152.4119pt too wide) in paragraph at lines 461--461
+Overfull \hbox (152.4119pt too wide) in paragraph at lines 515--515
 []  \OT1/cmtt/m/n/17.28 Sepal.Length    Sepal.Width     Petal.Length    Petal.W
 idth[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 461--461
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 515--515
 [] \OT1/cmtt/m/n/17.28 Min.   :4.300   Min.   :2.300   Min.   :1.000   Min.   :
 0.100[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 461--461
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 515--515
 [] \OT1/cmtt/m/n/17.28 1st Qu.:4.800   1st Qu.:3.200   1st Qu.:1.400   1st Qu.:
 0.200[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 461--461
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 515--515
 [] \OT1/cmtt/m/n/17.28 Median :5.000   Median :3.400   Median :1.500   Median :
 0.200[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 461--461
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 515--515
 [] \OT1/cmtt/m/n/17.28 Mean   :5.006   Mean   :3.428   Mean   :1.462   Mean   :
 0.246[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 461--461
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 515--515
 [] \OT1/cmtt/m/n/17.28 3rd Qu.:5.200   3rd Qu.:3.675   3rd Qu.:1.575   3rd Qu.:
 0.300[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 461--461
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 515--515
 [] \OT1/cmtt/m/n/17.28 Max.   :5.800   Max.   :4.400   Max.   :1.900   Max.   :
 0.600[] 
  []
 
 
-Overfull \hbox (259.11588pt too wide) in paragraph at lines 480--480
+Overfull \hbox (259.11588pt too wide) in paragraph at lines 534--534
 []\OT1/cmtt/m/n/17.28 > iris.3 = subset(iris,(iris$Sepal.Length >= 6)&(iris$Sep
 al.Width >=2.5))[] 
  []
 
 
-Overfull \hbox (152.4119pt too wide) in paragraph at lines 480--480
+Overfull \hbox (152.4119pt too wide) in paragraph at lines 534--534
 []  \OT1/cmtt/m/n/17.28 Sepal.Length    Sepal.Width     Petal.Length    Petal.W
 idth[] 
  []
 
-[24]
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 480--480
+[25]
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 534--534
 [] \OT1/cmtt/m/n/17.28 Min.   :6.000   Min.   :2.500   Min.   :4.000   Min.   :
 1.200[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 480--480
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 534--534
 [] \OT1/cmtt/m/n/17.28 1st Qu.:6.300   1st Qu.:2.800   1st Qu.:4.750   1st Qu.:
 1.500[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 480--480
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 534--534
 [] \OT1/cmtt/m/n/17.28 Median :6.500   Median :3.000   Median :5.300   Median :
 1.800[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 480--480
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 534--534
 [] \OT1/cmtt/m/n/17.28 Mean   :6.641   Mean   :3.013   Mean   :5.313   Mean   :
 1.848[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 480--480
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 534--534
 [] \OT1/cmtt/m/n/17.28 3rd Qu.:6.900   3rd Qu.:3.200   3rd Qu.:5.750   3rd Qu.:
 2.150[] 
  []
 
 
-Overfull \hbox (161.3039pt too wide) in paragraph at lines 480--480
+Overfull \hbox (161.3039pt too wide) in paragraph at lines 534--534
 [] \OT1/cmtt/m/n/17.28 Max.   :7.900   Max.   :3.800   Max.   :6.900   Max.   :
 2.500[] 
  []
 
-[25] [26] [27] [28]
-Overfull \hbox (3.79724pt too wide) in paragraph at lines 545--546
+[26] [27] [28]
+Overfull \hbox (3.79724pt too wide) in paragraph at lines 599--600
 []\OT1/cmr/m/n/17.28 We can con-struct com-pound re-la-tional con-di-tions too,
 
  []
 
-[29] [30] [31] [32] [33] [34] [35] [36]
+[29] [30] [31] [32] [33] [34] [35] [36] [37] [38]
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS2\QuizWeek1-notes.aux) ) 
 Here is how much of TeX's memory you used:
- 300 strings out of 493921
- 3761 string characters out of 3148886
+ 301 strings out of 493921
+ 3780 string characters out of 3148886
  53031 words of memory out of 3000000
- 3664 multiletter control sequences out of 15000+200000
+ 3665 multiletter control sequences out of 15000+200000
  7423 words of font info for 27 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 22i,7n,19p,382b,247s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 22i,7n,19p,341b,247s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Fil
 es/Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Miktek/fo
 nts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/Miktek/fonts/type1/
@@ -386,9 +390,9 @@ nts/cm/cmr12.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmr17.
 pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
 ram Files/Miktek/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/Mi
 ktek/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on QuizWeek1-notes.pdf (36 pages, 135495 bytes).
+Output written on QuizWeek1-notes.pdf (38 pages, 137131 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
+ 158 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

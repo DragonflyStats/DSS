@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  6 SEP 2014 08:53
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  7 SEP 2014 09:46
 entering extended mode
-**C:/Users/Kevin/Documents/GitHub/DSS/DSS6/Video-Quiz1Question2and4.tex
-(C:/Users/Kevin/Documents/GitHub/DSS/DSS6/Video-Quiz1Question2and4.tex
+**Video-Quiz1Question2and4.tex
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS6\Video-Quiz1Question2and4.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -1195,7 +1195,7 @@ Here is how much of TeX's memory you used:
  19864 multiletter control sequences out of 15000+200000
  18650 words of font info for 48 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,16n,65p,463b,551s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,16n,65p,422b,551s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/Miktek/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/Mi
 ktek/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/Miktek/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/Miktek/fonts/type1/urw/cou
@@ -1203,7 +1203,7 @@ rier/ucrb8a.pfb><C:/Program Files/Miktek/fonts/type1/urw/courier/ucrr8a.pfb><C:
 /Program Files/Miktek/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/Mik
 tek/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/Miktek/fonts/type1/ur
 w/helvetic/uhvro8a.pfb>
-Output written on Video-Quiz1Question2and4.pdf (8 pages, 100383 bytes).
+Output written on Video-Quiz1Question2and4.pdf (8 pages, 100382 bytes).
 PDF statistics:
  265 PDF objects out of 1000 (max. 8388607)
  17 named destinations out of 1000 (max. 500000)

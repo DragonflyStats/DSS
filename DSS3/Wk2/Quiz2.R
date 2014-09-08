@@ -14,7 +14,7 @@ BROWSE("https://api.github.com/users/jtleek/repos",authenticate("Access Token","
 ########################################################
 # Problem 2.
 library(sqldf)
-setwd("~/Desktop/Online Coursera/Coursera-Getting-and-Cleaning-Data/week2/data/")
+setwd("~/Desktop/DSS3/week2/data/")
 acs <- read.csv("./getdata-data-ss06pid.csv", header=T, sep=",")
 head(acs)
 sqldf("select pwgtp1 from acs where AGEP < 50")
@@ -24,10 +24,10 @@ sqldf("select distinct AGEP from acs")
 length(unique(acs$AGEP)) # 91
 ########################################################
 # Problem 4.
-hurl <- "http://biostat.jhsph.edu/~jleek/contact.html" 
-con <- url(hurl)
-htmlCode <- readLines(con)
-close(con)
+myurl <- "http://biostat.jhsph.edu/~jleek/contact.html" 
+contact <- url(myurl)
+htmlCode <- readLines(contact)
+close(contact)
 sapply(htmlCode[c(10, 20, 30, 100)], nchar)
 #<meta name="Distribution" content="Global" /> 
 #    45 

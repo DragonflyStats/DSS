@@ -30,6 +30,27 @@ The definition of free software consists of four freedoms (freedoms 0 through 3)
 \newpage
 \subsection*{Question 3}
 \Large
+Useful \texttt{R} Commands
+\begin{description}
+\item[\texttt{class()}] the class of an object
+\item[\texttt{mode()}]  the type or storage mode of an object.
+\item[\texttt{str()}] display the internal structure of an R object
+\end{description}
+
+\begin{framed}
+\begin{verbatim}
+x <- c(2,3,5)
+class(x)
+mode(x)
+str(x)
+\end{verbatim}
+\end{framed}
+
+
+%---------------------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 3}
+\Large
 In \texttt{R} the following are all \textbf{atomic data types} EXCEPT
 \begin{itemize}
 	\item[(i)] \texttt{logical}
@@ -38,13 +59,35 @@ In \texttt{R} the following are all \textbf{atomic data types} EXCEPT
 	\item[(iv)] \texttt{integer}
 \end{itemize}
 \bigskip
-\noindent \textbf{Remark}: Atomic would mean \textit{non divisible}, having no subsets.
+
+\begin{framed}
+\begin{verbatim}
+u <- 4
+v <- complex(3,4)
+w <- 5L
+x <- list(u,v,w)
+
+class(u)
+class(v)
+class(w)
+class(x)
+str(u)
+str(v)
+str(w)
+str(x)
+
+\end{verbatim}	
+\end{framed}
+
+
+%\noindent \textbf{Remark}: Atomic would mean \textit{non divisible}, having no subsets.
 %---------------------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 4}
 \Large
 If I execute the expression \texttt{x <- 4} in \texttt{R}
 , what is the class of the object `\texttt{x}' as determined by the `\texttt{class()}' function?
+\bigskip
 \begin{itemize}
 	\item[(i)] \texttt{vector}
 	\item[(ii)] \texttt{numeric}
@@ -56,7 +99,18 @@ If I execute the expression \texttt{x <- 4} in \texttt{R}
 \begin{verbatim}
 x <- 4
 class(x)
+\end{verbatim}	
+\end{framed}
 
+\begin{framed}
+\begin{verbatim}
+##  Integers and Logical
+y<- 4L
+y
+z <- TRUE
+z
+class(y)
+class(z)
 \end{verbatim}	
 \end{framed}
 \newpage
@@ -517,7 +571,7 @@ Importantly, the sequence will return all integers betwen the upper and lower bo
 	\end{verbatim}
 \end{framed}
 
-\section{Indexing and Subsetting }
+%\section{Indexing and Subsetting }
 \subsection{Relational and Logical Operators}
 
 Relational operators allow for the comparison of values in vectors.
@@ -699,7 +753,7 @@ What is the mean of the Ozone column in this dataset? Exclude missing values (co
 \Large
 Extract the subset of rows of the data frame where Ozone values are above 31 and Temp values are above 90. 
 
-What is the mean of Solar.R in this subset?
+What is the mean of \texttt{Solar.R} in this subset?
 
 \begin{itemize}
 	\item[(i)] 185.9
@@ -707,6 +761,28 @@ What is the mean of Solar.R in this subset?
 	\item[(iii)] 334.0
 	\item[(iv)] 205.0
 \end{itemize}
+
+\begin{framed}
+	\begin{verbatim}
+	attach(airquality)
+	
+	Ozone>31
+	## TRUE for cases where Ozone > 31
+	
+	Temp>90
+	## TRUE for cases where Temp >90
+	
+	(Ozone>31)&(Temp>90)
+	## TRUE for both conditions
+	
+	## Create a temporary subset (temp)
+	
+	temp <-airquality[(Ozone>31)&(Temp>90),]
+
+
+    	
+	\end{verbatim}
+\end{framed}
 %---------------------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 19}

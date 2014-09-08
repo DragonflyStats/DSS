@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  6 SEP 2014 08:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  7 SEP 2014 10:47
 entering extended mode
 **DSS*Stat*Inference*Quiz*1.tex
 ("C:\Users\Kevin\Documents\GitHub\DSS\DSS6\DSS Stat Inference Quiz 1.tex"
@@ -234,27 +234,48 @@ Missing character: There is no ’ in font cmr10!
 Missing character: There is no â in font cmr7!
 Missing character: There is no ˆ in font cmr7!
 Missing character: There is no ’ in font cmr7!
-[2] [3] ("C:\Users\Kevin\Documents\GitHub\DSS\DSS6\DSS Stat Inference Quiz 1.au
-x") ) 
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 137--141
+
+ []
+
+[4]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 149.
+
+Overfull \hbox (47.98488pt too wide) in paragraph at lines 151--154
+[]\OT1/cmr/m/n/12 If X is a dis-crete ran-dom vari-able with pos-si-ble val-ues
+ $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 x[]; x[]; x[]; [] ; x[]\OMS/cmsy/m/n/12 g$
+\OT1/cmr/m/n/12 ,
+ []
+
+[5] ("C:\Users\Kevin\Documents\GitHub\DSS\DSS6\DSS Stat Inference Quiz 1.aux") 
+) 
 Here is how much of TeX's memory you used:
- 2067 strings out of 493921
- 25473 string characters out of 3148886
+ 2103 strings out of 493921
+ 25887 string characters out of 3148886
  82221 words of memory out of 3000000
- 5367 multiletter control sequences out of 15000+200000
- 7025 words of font info for 28 fonts, out of 3000000 for 9000
+ 5393 multiletter control sequences out of 15000+200000
+ 13304 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,4n,26p,338b,173s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pro
-gram Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/M
-iktek/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/Miktek/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/c
-mr5.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Pr
-ogram Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
-Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "DSS Stat Inference Quiz 1.pdf" (3 pages, 113498 bytes).
+ 27i,6n,26p,338b,173s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program
+ Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Mikte
+k/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/Miktek/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/type1/public/ams
+fonts/cm/cmmi12.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Pr
+ogram Files/Miktek/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/M
+iktek/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/Miktek/fonts/t
+ype1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/Miktek/fonts/type1/public/am
+sfonts/cm/cmr7.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmr8
+.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
+gram Files/Miktek/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/M
+iktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/Miktek/fonts/
+type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on "DSS Stat Inference Quiz 1.pdf" (5 pages, 186119 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
+ 82 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
