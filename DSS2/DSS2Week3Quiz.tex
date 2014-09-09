@@ -1,0 +1,194 @@
+\documentclass[12pt]{article}
+
+
+\usepackage{framed}
+
+% http://rstudio-pubs-static.s3.amazonaws.com/1940_f7997f0ead914ae897a445f5c94bc96f.html
+
+%https://github.com/pcward/coursera_programming-r/blob/master/rankhospital.r
+
+\begin{document}
+
+
+\section{Quiz for Week 3}
+
+\subsection*{Using the help files}
+
+\begin{itemize}
+\item For many questions on this weeks quiz, reading the help files can help the user
+determine the correct answers quickly.
+
+\item Some of the options are not the actual names of the R commands.
+
+\item It is also useful to learn about other commands, even if they are obviously not the correct answer
+\end{itemize}
+\begin{framed}
+\begin{verbatim}
+help(plot)
+help(hist)
+\end{verbatim}
+\end{framed}
+%------------------------------------------------------%
+\subsection*{The lattice package}
+
+%------------------------------------------------------%
+\newpage
+\subsection*{Question 1}
+Which of these functions opens a graphics device in R?
+\begin{itemize}
+\item[(a)] save()
+\item[(b)] pdf()
+\item[(c)] axis()
+\item[(d)] serialize()
+\end{itemize}
+%------------------------------------------------------%
+\subsection*{Question 2}
+Which function opens the default graphics device on Windows?
+\begin{itemize}
+\item[(a)] xfig()
+\item[(b)] jpeg()
+\item[(c)] windows()
+\item[(d)] postscript()
+\end{itemize}
+%------------------------------------------------------%
+\subsection*{Question 3}
+Which of the following functions is part of the base graphics system?
+
+\begin{itemize}
+\item[(a)] barchart()
+\item[(b)] histogram()
+\item[(c)] xyplot()
+\item[(d)] plot()
+\end{itemize}
+%------------------------------------------------------%
+\subsection*{Question 4}
+Which of the following functions is generally used to annotate a plot in the base graphics system?
+\begin{itemize}
+\item[(a)] barplot()
+\item[(b)] points()
+\item[(c)] plot()
+\item[(d)] hist()
+\end{itemize}
+
+
+
+
+%------------------------------------------------------%
+\subsection*{Question 5}
+What does the 'pch' option to \texttt{par()} control?
+
+
+\begin{itemize}
+\item[(a)] the plotting symbol/character in the lattice graphics system
+\item[(b)] the line width in the base graphics system
+\item[(c)] the plotting symbol/character in the base graphics system
+\item[(d)] the orientation of the axis labels on the plot
+\end{itemize}
+
+
+
+
+
+%------------------------------------------------------%
+\subsection*{Question 6}
+Under the lattice graphics system, what do the primary plotting functions return?
+
+\begin{itemize}
+\item[(a)] an object of class 'lattice'
+\item[(b)] an object of class 'plot'
+\item[(c)] nothing; only a plot is made
+\item[(d)] an object of class 'trellis'
+\end{itemize}
+
+
+
+
+%------------------------------------------------------%
+\newpage
+\subsection*{Question 7}
+What is produced by the following \texttt{R} code?
+\begin{framed}
+\begin{verbatim}
+library(nlme)
+library(lattice)
+xyplot(weight ~ Time | Diet, BodyWeight)
+\end{verbatim}
+\end{framed}
+
+\begin{itemize}
+\item[(a)] A set of 3 panels showing the relationship between weight and time for each rat.
+\item[(b)] A set of 3 panels showing the relationship between weight and time for each diet.
+\item[(c)] A set of 16 panels showing the relationship between weight and time for each rat.
+\item[(d)] A set of 11 panels showing the relationship between weight and diet for each time.
+\end{itemize}
+
+
+
+\begin{verbatim}
+> summary(BodyWeight)
+     weight           Time            Rat      Diet  
+ Min.   :225.0   Min.   : 1.00   2      : 11   1:88  
+ 1st Qu.:267.0   1st Qu.:15.00   3      : 11   2:44  
+ Median :344.5   Median :36.00   4      : 11   3:44  
+ Mean   :384.5   Mean   :33.55   1      : 11         
+ 3rd Qu.:511.2   3rd Qu.:50.00   8      : 11         
+ Max.   :628.0   Max.   :64.00   5      : 11         
+                                 (Other):110      
+
+> levels(BodyWeight$Diet)
+[1] "1" "2" "3"
+>
+> levels(BodyWeight$Rat)
+ [1] "2"  "3"  "4"  "1"  "8"  "5"  "6"  "7" 
+ [9] "11" "9"  "10" "12" "13" "15" "14" "16"
+
+\end{verbatim}
+
+
+%------------------------------------------------------%
+\subsection*{Question 8}
+Which of the following functions can be used to annotate a panel in a multi-panel lattice plot?
+
+\begin{itemize}
+\item[(a)] lines()
+\item[(b)] axis()
+\item[(c)] lpoints()
+\item[(d)] text()
+\end{itemize}
+%------------------------------------------------------%
+\subsection*{Question 9}
+Which R code makes a plot with the Greek letter 'theta' in the title?
+
+\begin{itemize}
+\item[(a)] plot(0, 0, main = expression(theta))
+\item[(b)] plot(0, 0, main = "theta")
+\item[(c)] plot(0, 0, main = expression("theta")
+\item[(d)] plot(0, 0, main = substitute(theta))
+\end{itemize}
+%------------------------------------------------------%
+\newpage
+
+\subsection*{The set.seed() command}
+
+\subsection*{Question 10}
+What is produced at the end of this snippet of \texttt{R} code?
+
+\begin{framed}
+\begin{verbatim}
+set.seed(1)
+rpois(5, 2)
+\end{verbatim}
+\end{framed}
+
+
+\begin{itemize}
+\item[(a)] A vector with the numbers 3.3, 2.5, 0.5, 1.1, 1.7
+\item[(b)] A vector with the numbers 1, 4, 1, 1, 5
+\item[(c)] It is impossible to tell because the result is random
+\item[(d)] A vector with the numbers 1, 1, 2, 4, 1
+\end{itemize}
+
+The\texttt{ rpois()} function is related to generating random numbers. Therefore option (c) would seem like a plausible answer.
+However the command is preceded by the \texttt{set.seed(1)} command.
+%------------------------------------------------------%
+\end{document}

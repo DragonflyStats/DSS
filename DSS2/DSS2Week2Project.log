@@ -1,0 +1,149 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  8 SEP 2014 23:50
+entering extended mode
+**DSS2Week2Project.tex
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\Miktek\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\Miktek\tex\latex\base\size12.clo"
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\Miktek\tex\latex\framed\framed.sty"
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen103
+\fb@frh=\dimen104
+\FrameRule=\dimen105
+\FrameSep=\dimen106
+)
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 2.
+)
+\tf@toc=\write3
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
+
+("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+ [2] [3] [4]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 105.
+ [5]
+Overfull \hbox (6.90337pt too wide) in paragraph at lines 147--148
+\OT1/cmr/m/n/12 of text and vari-able val-ues. The struc-ture of the com-mand i
+s \OT1/cmtt/m/n/12 sprintf(format,
+ []
+
+[6] [7]
+Overfull \hbox (5.47517pt too wide) in paragraph at lines 204--204
+[] \OT1/cmtt/m/n/12 ## number. The user can specify 'id' as either an integer, 
+a[] 
+ []
+
+
+Overfull \hbox (5.47517pt too wide) in paragraph at lines 204--204
+[] \OT1/cmtt/m/n/12 ## the data should be printed to the console; the default i
+s[] 
+ []
+
+[8] [9] [10] [11] [12] [13]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 332.
+ [14]
+Overfull \hbox (11.3752pt too wide) in paragraph at lines 368--368
+[]  \OT1/cmtt/m/n/12 [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE 
+FALSE[] 
+ []
+
+
+Overfull \hbox (11.3752pt too wide) in paragraph at lines 368--368
+[] \OT1/cmtt/m/n/12 [11] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE 
+ TRUE[] 
+ []
+
+
+Overfull \hbox (23.7252pt too wide) in paragraph at lines 386--386
+[]  \OT1/cmtt/m/n/12 [1] 1 1 1 1 0 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 
+1 1 1 1[] 
+ []
+
+
+Overfull \hbox (23.7252pt too wide) in paragraph at lines 386--386
+[] \OT1/cmtt/m/n/12 [32] 0 0 0 0 0 0 1 0 1 1 0 0 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 
+0 0 0 1[] 
+ []
+
+[15] [16] [17]
+Overfull \hbox (5.47517pt too wide) in paragraph at lines 475--475
+[]    \OT1/cmtt/m/n/12 ## 'threshold' is a numeric vector of length 1 indicatin
+g[] 
+ []
+
+[18] [19] [20] (C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.aux) 
+) 
+Here is how much of TeX's memory you used:
+ 316 strings out of 493921
+ 4000 string characters out of 3148886
+ 53031 words of memory out of 3000000
+ 3671 multiletter control sequences out of 15000+200000
+ 8938 words of font info for 32 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 22i,6n,20p,665b,241s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program
+ Files/Miktek/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/Mik
+tek/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/Miktek/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/Miktek/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cm
+tt12.pfb>
+Output written on DSS2Week2Project.pdf (20 pages, 102491 bytes).
+PDF statistics:
+ 91 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
