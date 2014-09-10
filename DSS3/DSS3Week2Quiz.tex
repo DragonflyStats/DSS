@@ -9,7 +9,10 @@
 \oddsidemargin=0.0cm
 \textwidth = 470pt
 
-
+% Key Commands for httr
+% SQL basics
+% sqldf
+% fwf files
 \begin{document}
 %---------------------------------------------------------------------------------------------%
 \newpage
@@ -32,6 +35,45 @@ Week 2 of Getting and Cleaning Data: Extracting Data From Databases and the Web
 \end{itemize} 
 \newpage
 \subsection*{The httr package}
+The aim of \textbf{\textit{httr}} is to provide a wrapper for RCurl customised to the demands of modern web APIs.
+
+\subsubsection*{Key features:}
+\begin{itemize}
+\item Functions for the most important http verbs: \texttt{GET()}, \texttt{HEAD()}, \texttt{PATCH()}, \texttt{PUT()}, \texttt{DELETE()} and \texttt{POST()}.
+
+\item Automatic connection sharing across requests to the same website (by default, curl handles are managed automatically), cookies are maintained across requests, and a up-to-date root-level SSL certificate store is used.
+
+\item Requests return a standard reponse object that captures the http status line, headers and body, along with other useful information.
+
+\item Response content is available with \texttt{content()} as a raw vector (as \texttt{= "raw"}), a character vector (as \texttt{= "text"}), or parsed into an R object (as = "parsed"), currently for html, xml, json, png and jpeg.
+
+\item You can convert http errors into \texttt{R} errors with \texttt{stop\_for\_status()}.
+
+\item Config functions make it easier to modify the request in common ways: \texttt{set\_cookies()}, \texttt{add\_headers()}, \texttt{authenticate()}, use\_proxy(), \texttt{verbose()}, \texttt{timeout()}, \texttt{content\_type()}, accept(), \texttt{progress()}.
+
+\item Support for OAuth 1.0 and 2.0 with \texttt{oauth1.0\_token()} and \texttt{oauth2.0\_token()}. 
+
+\item The demos directory has seven \texttt{OAuth} demos: three for 1.0 (twitter, vimeo and yahoo) and four for 2.0 (facebook, github, google, linkedin).\texttt{ OAuth} credentials are automatically cached within a project.
+\end{itemize}
+
+\noindent \textbf{\textit{httr}} wouldn't be possible without the hard work of the authors of RCurl and curl. Thanks! \\\\ \textbf{\textit{httr}} is inspired by http libraries in other languages, such as Resty, Requests and httparty.
+
+\newpage
+\subsubsection*{Installation}
+
+To get the current released version from CRAN:
+\begin{framed}
+\begin{verbatim}
+install.packages("httr")
+\end{verbatim}
+\end{framed}
+To get the current development version from github:
+\begin{framed}
+\begin{verbatim}
+# install.packages("devtools")
+devtools::install_github("hadley/httr")
+\end{verbatim}
+\end{framed}
 %---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 1}
@@ -257,6 +299,37 @@ http://biostat.jhsph.edu/~jleek/contact.html
 \item[(vii)] 45 92 7 2
 \end{itemize}
 
+\newpage
+\subsection*{Fixed width format}
+% - http://publib.boulder.ibm.com/infocenter/dmndhelp/v6r1mx/index.jsp?topic=/com.ibm.wbit.612.help.config.doc/topics/rfixwidth.html
+
+This format has data where every field has a fixed width and for those fields where their width is less than the value, it is padded with pad characters. Every record ends with a new line character. The field width and pad character are both user configurable. This format may optionally contain a header at the top which corresponds to the properties of the business object. 
+
+If the header is absent, then the order of the fields in the input data is the same as the order of properties in the business object. Typically, fixed width format contains data where every field has a different width. To enable this, the field width will be represented as a list property.
+
+Fixed width format may be transmitted in several forms. Fixed width format may come in a stream through data bindings such as HTTP, JMS and MQ as well as files.
+
+Fixed width format with no header and one record
+This is a fixed width format with one record and does not contain a header. In this case, the business object properties have to be in the order of the fields in the data.
+
+\begin{verbatim}
+8A7111John~~~~~~Doe~~~~~~~80000~
+\end{verbatim}
+The corresponding business object for the record is as follows. Note the business object property names are in order of the data in the fixed width format. Note the lastName and firstName fields.
+
+\begin{verbatim}
+Table 1. Business object
+CustomerBO
+id
+firstName
+lastName
+salary
+8A7111
+John
+Doe
+80000
+\end{verbatim}
+% - http://publib.boulder.ibm.com/infocenter/dmndhelp/v6r1mx/index.jsp?topic=/com.ibm.wbit.612.help.config.doc/topics/rfixwidth.html
 %---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 5}
@@ -301,6 +374,14 @@ df <- read.fwf(file=file_name,
 \end{verbatim}	
 \end{framed}
 
+\begin{framed}
+\begin{verbatim}
+ff <- tempfile()
+cat(file=ff, "123456", "987654", sep="\n")
+read.fwf(ff, width=c(1,2,3))    #> 1 23 456 \ 9 87 654
+unlink(ff)
+\end{verbatim}
+\end{framed}
 
 \end{document}
 
