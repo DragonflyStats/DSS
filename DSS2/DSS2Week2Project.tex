@@ -1,7 +1,13 @@
-\documentclass[12pt]{article}
+\documentclass[]{article}
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 470pt
 
-
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
 \usepackage{framed}
+
 
 % http://rstudio-pubs-static.s3.amazonaws.com/1940_f7997f0ead914ae897a445f5c94bc96f.html
 
@@ -14,16 +20,15 @@
 
 \section{Programming Exercise}
 
-\subsection{Data set reporting function}
-For an in-built data set (e.g. iris, mtcars etc), construct a function called Report that returns
-the following outputs.
+\subsection{Exercise: Dataset reporting function}
+For an in-built data set (e.g. iris, mtcars etc), construct a function called \texttt{Report} that returns some or all of following outputs:
 
 \begin{itemize}
-\item dimensions
-\item names
-\item summary
+\item dimensions of the data set (\texttt{dims})
+\item names of components of the data set (\texttt{names})
+\item summary statistics (\texttt{summary})
 \end{itemize}
-
+\noindent Use iris as the default data set.
 \begin{framed}
 \begin{verbatim}
 Report <- function(dataset=iris,dims=FALSE,
@@ -178,8 +183,32 @@ For character data (i.e. strings)
 \end{verbatim}
 N.B $s$ for string and $d$ for integers.
 \newpage
+\subsection*{Part 1 - pollutantmean}
+Write a function named 'pollutantmean' that calculates the mean of a pollutant (sulfate or nitrate) across a specified list of monitors. The function 'pollutantmean' takes three arguments: 'directory', 'pollutant', and 'id'. Given a vector monitor ID numbers, 'pollutantmean' reads that monitors' particulate matter data from the directory specified in the 'directory' argument and returns the mean of the pollutant across all of the monitors, ignoring any missing values coded as NA. A prototype of the function is as follows
+
+\begin{framed}
+\begin{verbatim}
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+## 'directory' is a character vector of length 1 indicating
+## the location of the CSV files
+
+## 'pollutant' is a character vector of length 1 indicating
+## the name of the pollutant for which we will calculate the
+## mean; either "sulfate" or "nitrate".
+
+## 'id' is an integer vector indicating the monitor ID numbers
+## to be used
+
+## Return the mean of the pollutant across all monitors list
+## in the 'id' vector (ignoring NA values)
+}
+\end{verbatim}
+\end{framed}
+You can see some example output from this function. The function that you write should be able to match this output. Please save your code to a file named \texttt{pollutantmean.R}.
+
+\newpage
 %----------------------------------------------%
-\subsection{Part 1 - getmonitor}
+\subsection{Old Part 1 - getmonitor}
  \begin{itemize}
 \item Write a function named 'getmonitor' that takes three arguments: 'id', 'directory', and 'summarize'. \item Given a monitor ID number, 'getmonitor' reads that monitor's particulate matter data from the directory specified in the 'directory' argument and returns a data frame containing that monitor's data. 
  \item If 'summarize = TRUE', then 'getmonitor' produces a summary of the data frame with the 'summary' function and prints it to the console. \item A prototype of the function is as follows

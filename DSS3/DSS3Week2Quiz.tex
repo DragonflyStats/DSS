@@ -1,18 +1,38 @@
 \documentclass[12pt]{article}
-\usepackage{framed}
+
+\usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{framed}
+
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 470pt
+
+
 \begin{document}
 %---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Week 2} 
-
+% the httr package
+% Prep work for Q2 and Q3 (SQL and sqldf)
+% Q5 - try it out - also what is fwf?
 Week 2 of Getting and Cleaning Data: Extracting Data From Databases and the Web
-Welcome to Week 2 of Getting and Cleaning Data! The primary goal is to introduce you to the most common data storage systems and the appropriate tools to extract data from web or from databases like MySQL. 
 
-Remember that the Course Project is open and ongoing. It is due BEFORE 11:30 PM UTC on the Sunday at the end of Week 3, but please don't put it off until the last minute. To access Course Project instructions and submission interface, click the Course Project link in the left navigation bar.  
+\begin{itemize}
+\item Welcome to Week 2 of Getting and Cleaning Data! 
 
-With the skills you learn this week you should be able to start on the basic data extraction that will form the beginnings of your project. 
+\item The primary goal is to introduce you to the most common data storage systems and the appropriate tools to extract data from web or from databases like MySQL. 
 
+\item Remember that the Course Project is open and ongoing. It is due BEFORE 11:30 PM UTC on the Sunday at the end of Week 3, but please don't put it off until the last minute. 
+\item To access Course Project instructions and submission interface, click the Course Project link in the left navigation bar.  
+
+
+\item With the skills you learn this week you should be able to start on the basic data extraction that will form the beginnings of your project.
+\end{itemize} 
+\newpage
+\subsection*{The httr package}
+%---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 1}
 \textbf{Question}
@@ -36,13 +56,14 @@ With the skills you learn this week you should be able to start on the basic dat
 \item[(iii)] 2014-01-04T21:06:44Z
 \item[(iv)] 2013-11-07T13:25:07Z
 \end{itemize}
-
+\newpage
+\subsection*{The Basics of Structured Query Language (SQL)}
 \newpage
 \subsection*{The sqldf package}
 %---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 2}
-The \textbf{sqldf} package allows for execution of SQL commands on \texttt{R} data frames. We will use the \textbf{sqldf} package to practice the queries we might send with the \texttt{dbSendQuery} command in RMySQL. 
+The \textbf{sqldf} package allows for execution of SQL commands on \texttt{R} data frames. \\\\ \noindent We will use the \textbf{sqldf} package to practice the queries we might send with the \texttt{dbSendQuery} command in RMySQL. 
 
 \bigskip
 \noindent Download the American Community Survey data and load it into an R object called
@@ -62,6 +83,12 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv
 
 \begin{framed}
 \begin{verbatim}
+library(sqldf)
+
+## Data saved in local directory as "ss06pid.csv"
+
+acs <- read.csv("./ss06pid.csv", header=T, sep=",")
+
 names(acs)
 \end{verbatim}
 \end{framed}
@@ -78,6 +105,115 @@ Using the same data frame you created in the previous problem, what is the equiv
 
 %---------------------------------------------------------------------------------------------%
 \newpage
+\subsection*{\texttt{R} commands for working with Text}
+
+Here are a small selection of useful commands for working with text
+
+\subsubsection*{The \texttt{nchar()} function}
+The \texttt{nchar()} command returns the number of characters in the argument.
+\begin{verbatim}
+> string=c("kevin")
+> nchar(string)
+[1] 5
+> nchar(1001)
+[1] 4
+\end{verbatim}
+
+\subsubsection*{The \texttt{grep()} function}
+The \texttt{grep()} command returns the location of a string that contains a specified substring, from a character vector.
+If you specify the additional argument "\texttt{value=T}", it will return that string.
+\begin{verbatim}
+> names(iris)
+[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     
+> 
+> class(names(iris))
+[1] "character"
+> grep("Petal",names(iris))
+[1] 3 4
+> 
+> grep("Petal",names(iris),value=T)
+[1] "Petal.Length" "Petal.Width" 
+> 
+\end{verbatim}
+\newpage
+\subsubsection*{The \texttt{paste()} function}
+This command creates a string of specified components. 
+
+\noindent The default is to have whitespace between each component. This can be removed with the additional argument \texttt{sep=""}.
+\begin{framed}
+	\begin{verbatim}
+	> x=5
+	> paste("file",x,".csv")
+	[1] "file 5 .csv"
+	>
+	> paste("file",x,".csv",sep="")
+	[1] "file5.csv"
+	\end{verbatim}
+\end{framed}
+\begin{verbatim}
+> filenm(2)
+[1] "file 2 .csv"
+\end{verbatim}
+\subsubsection*{The \texttt{gsub()} function}
+The \texttt{R} command \texttt{gsub()} is used to replace a character or piece of text with another in a specified string
+\begin{verbatim}
+> string=c("kevin")
+> gsub("k","s",string)
+[1] "sevin"
+\end{verbatim}
+\newpage
+
+\subsubsection*{The \texttt{sprintf()} function}
+This command returns a character vector containing a formatted combination of text and variable values. The structure of the command is \texttt{sprintf(format, input)}.
+\begin{verbatim}
+> sprintf("%f", pi)     
+[1] "3.141593"
+> sprintf("%.3f", pi)   # 3decimal places
+[1] "3.142"
+> sprintf("%1.0f", pi)   # no decimal places
+[1] "3"
+> sprintf("%5.1f", pi)  # 5 characters with whitespace
+[1] "  3.1"  
+> sprintf("%05.1f", pi)  #5 characters no whitespace
+[1] "003.1"
+> sprintf("%+f", pi)
+[1] "+3.141593"
+\end{verbatim}
+
+\noindent To express asingle or double digit character integer as three character number
+\begin{verbatim}
+> x = 4
+> sprintf("%03d", x)
+[1] "004"
+> 
+> x=40
+> sprintf("%03d", x)
+[1] "040"
+\end{verbatim}
+
+\noindent For character data (i.e. strings) 
+\begin{verbatim}
+> sprintf("%s %d", "test", 1:3)
+[1] "test 1" "test 2" "test 3"
+\end{verbatim}
+N.B $s$ for string and $d$ for integers.
+\newpage
+%---------------------------------------------------------------- %
+\subsubsection*{The \texttt{readLines()} function}
+
+This command is used to read some or all text lines from a connection (i.e.
+an internet connection or Database connection
+%---------------------------------------------------------------- %
+\subsubsection*{The \texttt{list.files()} function}
+This command is used to produce a list of files in a specified directory.
+\begin{framed}
+	\begin{verbatim}
+	getwd() # working directory
+	list.files(getwd()) # List all files in working directory
+	\end{verbatim}
+\end{framed}
+\newpage
+%---------------------------------------------------------------- %
 \subsection*{Question 4}
 How many characters are in the 10th, 20th, 30th and 100th lines of HTML from this page: 
 \begin{verbatim}
@@ -97,7 +233,7 @@ http://biostat.jhsph.edu/~jleek/contact.html
 %---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 5}
-Read this data set into R and report the sum of the numbers in the fourth column. 
+Read this data set into \texttt{R} and report the sum of the numbers in the fourth column. 
 \begin{verbatim}
 https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for 
 \end{verbatim} 
@@ -107,21 +243,38 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for
 http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for 
 \end{verbatim} 
 
-\textit{(Hint this is a fixed width file (fwf) format)}
+\noindent \textit{(Hint this is a fixed width file (fwf) format)}
 \begin{itemize}
-\item 32426.7
-\item 35824.9
-\item 222243.1
-\item 36.5
-\item 28893.3
-\item 101.83
+\item[(i)] 32426.7
+\item[(ii)] 35824.9
+\item[(iii)] 222243.1
+\item[(iv)] 36.5
+\item[(v)] 28893.3
+\item[(vi)] 101.83
 \end{itemize}
 
 \begin{framed}
+\noindent Find out about fixed width files
 \begin{verbatim}
 help(read.fwf)
 \end{verbatim}	
 \end{framed}
+
+\begin{framed}
+\begin{verbatim}
+## Data Saved in Local Directory
+## as "DSS3wk5q5.for"
+
+data <- read.csv("./DSS3wk5q5.for", header = TRUE)
+file_name <- "./DSS3wk5q5.for"
+df <- read.fwf(file=file_name,
+    widths=c(-1,9,-5,4,4,-5,4,4,-5,4,4,-5,4,4), skip=4)
+
+## Carry Out usual Data Frame Inspection Procedures
+\end{verbatim}	
+\end{framed}
+
+
 \end{document}
 
 %-----------------------------------------------------------------------------------------------------%
@@ -146,6 +299,8 @@ Explanation
 > stop_for_status(req)
 > content(req)
 > BROWSE("https://api.github.com/users/jtleek/repos",authenticate("Access Token","x-oauth-basic","basic"))
+
+%------------------------------------------- %
 Question 2
 
 The sqldf package allows for execution of SQL commands on R data frames. We will use the sqldf package to practice the queries we might send with the dbSendQuery command in RMySQL. Download the American Community Survey data and load it into an R object called

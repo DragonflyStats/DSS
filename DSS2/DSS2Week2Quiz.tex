@@ -1,7 +1,13 @@
-\documentclass[12pt]{article}
+\documentclass[]{article}
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 470pt
 
-
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
 \usepackage{framed}
+
 
 % http://rstudio-pubs-static.s3.amazonaws.com/1940_f7997f0ead914ae897a445f5c94bc96f.html
 
@@ -13,16 +19,6 @@
 \newpage
 \large
 \section*{Quiz for Week 2}
-\newpage
-
-{
-	\Huge
-\[\mbox{R Programming} \]
-\[ \mbox{Week 2 Videos} \]
-\huge
-\bigskip
-\[ \mbox{www.Stats-Lab.com} \]
-}
 
 \newpage
 
@@ -84,27 +80,164 @@ in \texttt{R} after defining this function?
 
 As we can see by running the code - we get the answer we expect, without any error warnings. \\ \\ If no arguments are specified by the user, the function will use the \textbf{default} settings. \\ \\ This function can be used for other values of \texttt{x} and \texttt{n}.
 
+\newpage
+
+\subsection*{Question 3}
+Consider the following function
+\begin{framed}
+\begin{verbatim}
+f <- function(x) {
+ g <- function(y) {
+   y + z
+   }
+   z <- 4
+  x + g(x)
+}
+
+\end{verbatim}
+\end{framed}
+If I then run in R
+\begin{verbatim}
+z <- 10
+f(3)
+\end{verbatim}
+What value is returned?
+\begin{itemize}
+\item[(i)] 7
+\item[(ii)] 4
+\item[(iii)]10
+\item[(iv)]16
+\end{itemize}
+\newpage
+\subsection*{Question 4}
+Consider the following expression:
+\begin{framed}
+\begin{verbatim}
+x <- 5
+y <- if(x < 3) {
+	NA
+} else {
+10
+}
+\end{verbatim}
+\end{framed}
+What is the value of 'y' after evaluating this expression?
+\begin{itemize}
+\item[(i)] 10 
+\item[(ii)] 5
+\item[(iii)] 3
+\item[(iv)] NA
+\end{itemize}
 
 %-----------------------------------------------------%
 \newpage
-\subsection*{Quiz Question 3}
-The following code will produce a warning in \texttt{R}.Why is this?
+\subsection*{Question 5}
+Consider the following \texttt{R} function
 \begin{framed}
 \begin{verbatim}
-x <- 1:10
-if(x > 5) {
-        x <- 0
+h <- function(x, y = NULL, d = 3L) {
+	z <- cbind(x, d)
+	if(!is.null(y))
+	z <- z + y
+	else
+	z <- z + f
+	g <- x + y / z
+	if(d == 3L)
+	return(g)
+	g <- g + 10
+	g
 }
 \end{verbatim}
 \end{framed}
 
+Which symbol in the above function is a free variable?
+
+\begin{itemize}
+\item[(i)] f
+\item[(ii)] z
+\item[(iii)] d
+\item[(iv)] L
+\item[(v)] g
+\end{itemize}
+
+%-----------------------------------------------------%
+\newpage
+\subsection*{Question 6}
+What is an environment in \texttt{R}?
+\begin{itemize}
+	\item[(i)] a list whose elements are all functions
+	\item[(ii)] a collection of symbol/value pairs
+	\item[(iii)] a special type of function
+	\item[(iv)] an \texttt{R} package that only contains data
+\end{itemize}
+%-----------------------------------------------------%
+\newpage
+\subsection*{Question 7}
+The \texttt{R} language uses what type of scoping rule for resolving free variables?
+
+\begin{itemize}
+	\item[(i)] compilation scoping
+	\item[(ii)] lexical scoping
+	\item[(iii)] dynamic scoping
+	\item[(iv)]global scoping
+\end{itemize}
+%-----------------------------------------------------%
+\newpage
+\subsection*{Question 8}
+How are free variables in \texttt{R} functions resolved?
+
+\begin{itemize}
+\item[(i)] The values of free variables are searched for in the working directory
+\item[(ii)] The values of free variables are searched for in the environment in which the function was defined
+\item[(iii)] The values of free variables are searched for in the environment in which the function was called
+\item[(iv)] The values of free variables are searched for in the global environment
+\end{itemize}
+%-----------------------------------------------------%
+\newpage
+\subsection*{Question 9}
+What is one of the consequences of the scoping rules used in \texttt{R}?
+\begin{itemize}
+\item[(i)]
+All objects can be stored on the disk
+\item[(ii)] R objects cannot be larger than 100 MB
+\item[(iii)] All objects must be stored in memory
+\item[(iv)] Functions cannot be nested
+\end{itemize}
+%-----------------------------------------------------%
+\newpage
+\subsection*{Question 10}
+In \texttt{R}, what is the parent frame?
+
+\begin{itemize}
+\item[(i)]
+It is the environment in which a function was defined
+\item[(ii)] It is always the global environment
+\item[(iii)] It is the environment in which a function was called
+\item[(iv)] It is the package search list
+\end{itemize}
+%-----------------------------------------------------%
+\newpage
+
+%-----------------------------------------------------%
+\newpage
+\subsection*{Old Quiz Question 3}
+The following code will produce a warning in \texttt{R}.Why is this?
+\begin{framed}
+	\begin{verbatim}
+	x <- 1:10
+	if(x > 5) {
+	x <- 0
+	}
+	\end{verbatim}
+\end{framed}
+
 \textbf{Options}
 \begin{enumerate}
-\item '\texttt{x}' is a vector of length 10 and '\texttt{if}' can only test a single logical statement.
-\item There are no elements in 'x' that are greater than 5 \\ (\textbf{obviously false})
-\item The expression uses curly braces.
-\item You cannot set '\texttt{x}' to be 0 because '\texttt{x}' is a vector and 0 is a scalar. \\ (\textbf{true})
-\item The syntax of this \texttt{R} expression is incorrect.\\ (\textbf{No obvious Syntax errors})
+	\item '\texttt{x}' is a vector of length 10 and '\texttt{if}' can only test a single logical statement.
+	\item There are no elements in 'x' that are greater than 5 \\ (\textbf{obviously false})
+	\item The expression uses curly braces.
+	\item You cannot set '\texttt{x}' to be 0 because '\texttt{x}' is a vector and 0 is a scalar. \\ (\textbf{true})
+	\item The syntax of this \texttt{R} expression is incorrect.\\ (\textbf{No obvious Syntax errors})
 \end{enumerate}
 
 %-----------------------------------------------------%
@@ -112,19 +245,19 @@ if(x > 5) {
 \subsection*{The \texttt{aggregate()} function}
 Firstly let us construct a data frame called \textit{\textbf{df1}}, using the code below.
 \begin{framed}
-\begin{verbatim}
-set.seed(1)  #generating random numbers
-
-#Three Variables
-col1 <- c(rep('happy',9), rep('sad', 9)) 
-col2 <- rep(c(rep('alpha', 3), 
-   rep('beta', 3), rep('gamma', 3)),2) 
-score=rnorm(18, 10, 3) 
- 
-#Combine the 3 variables as a data frame
-df1<-data.frame(col1=col1, col2=col2, score=score) 
-df1
-\end{verbatim}
+	\begin{verbatim}
+	set.seed(1)  #generating random numbers
+	
+	#Three Variables
+	col1 <- c(rep('happy',9), rep('sad', 9)) 
+	col2 <- rep(c(rep('alpha', 3), 
+	rep('beta', 3), rep('gamma', 3)),2) 
+	score=rnorm(18, 10, 3) 
+	
+	#Combine the 3 variables as a data frame
+	df1<-data.frame(col1=col1, col2=col2, score=score) 
+	df1
+	\end{verbatim}
 \end{framed}
 \newpage
 \subsection*{The \texttt{aggregate()} function}
@@ -134,44 +267,44 @@ df1
 \noindent We can use the \texttt{aggregate()} function to apply a specified command for groups.
 {
 	\large
-\begin{verbatim}
-aggregate(variable, by=list(group1,group2,..),function)
-\end{verbatim}
-
-\begin{framed}
+	\begin{verbatim}
+	aggregate(variable, by=list(group1,group2,..),function)
+	\end{verbatim}
 	
-\begin{verbatim}
-aves1 = aggregate(df1$score, 
-    by=list(col2=df1$col2), mean)
-    
-aves1
-
-
-aves2 = aggregate(df1$score, 
-    by=list(col1=df1$col1), mean)
-    
-aves2
-
-aves3 = aggregate(df1$score,
-   by=list(col1=df1$col1, col2=df1$col2), mean)
-   
-aves3
-\end{verbatim}
-\end{framed}
+	\begin{framed}
+		
+		\begin{verbatim}
+		aves1 = aggregate(df1$score, 
+		by=list(col2=df1$col2), mean)
+		
+		aves1
+		
+		
+		aves2 = aggregate(df1$score, 
+		by=list(col1=df1$col1), mean)
+		
+		aves2
+		
+		aves3 = aggregate(df1$score,
+		by=list(col1=df1$col1, col2=df1$col2), mean)
+		
+		aves3
+		\end{verbatim}
+	\end{framed}
 }
 \newpage
 \noindent We can use the \texttt{merge} command to combine the group-wise results with the original data frame.
 \begin{framed}
-\begin{verbatim}
-results = merge(df1, aves2) 
-results
-\end{verbatim}
+	\begin{verbatim}
+	results = merge(df1, aves2) 
+	results
+	\end{verbatim}
 \end{framed}
 
 \begin{verbatim}
 > results = merge(df1, aves2) 
 > results
-    col1  col2     score        x
+col1  col2     score        x
 1  happy alpha  8.120639 10.54247
 2  happy alpha 10.550930 10.54247
 3  happy alpha  7.493114 10.54247
@@ -181,56 +314,56 @@ results
 \end{verbatim}
 %-----------------------------------------------------%
 \newpage
-\subsection*{Quiz Question 4}
+\subsection*{OldQuiz Question 4}
 Take a look at the 'iris' dataset that comes with \texttt{R}. 
 
 The data can be loaded with the code:
 \begin{framed}
-\begin{verbatim}
-library(datasets)
-data(iris)
-\end{verbatim}
+	\begin{verbatim}
+	library(datasets)
+	data(iris)
+	\end{verbatim}
 \end{framed}
 \noindent \textbf{Questions}
 \begin{itemize}
-\item A description of the dataset can be found by running \texttt{?iris}.
-\item 
-There will be an object called `\textit{\textbf{iris}}' in your workspace. 
-\item In this dataset, what is the mean of 'Sepal.Length' for the species virginica?
-\item \texttt{(Please only enter the numeric result and nothing else.)}
+	\item A description of the dataset can be found by running \texttt{?iris}.
+	\item 
+	There will be an object called `\textit{\textbf{iris}}' in your workspace. 
+	\item In this dataset, what is the mean of 'Sepal.Length' for the species virginica?
+	\item \texttt{(Please only enter the numeric result and nothing else.)}
 \end{itemize}
 \newpage
 \textbf{Remarks}
 \begin{itemize}
-\item One approach is to use the \texttt{aggregate()} command mentioned in the previous section.
-\item A second approach is to create a subset (let's call it \textit{\textbf{iris.vir}}) and then use the \texttt{summary()} command.
-\begin{framed}
-\begin{verbatim}
-iris.vir=iris[iris$Species=="virginica",]
-# or
-iris.vir=subset(iris,iris$Species=="virginica")
-summary(iris.vir)
-\end{verbatim}
-\end{framed}
-
-The summary of \textit{\textbf{iris.vir}} should look like this:
-\begin{verbatim}
-> summary(iris.vir)
-Sepal.Length    Sepal.Width     Petal.Length  
-Min.   :4.900   Min.   :2.200   Min.   :4.500  
-1st Qu.:6.225   1st Qu.:2.800   1st Qu.:5.100  
-Median :6.500   Median :3.000   Median :5.550  
-Mean   :6.588   Mean   :2.974   Mean   :5.552  
-3rd Qu.:6.900   3rd Qu.:3.175   3rd Qu.:5.875  
-Max.   :7.900   Max.   :3.800   Max.   :6.900  
-Petal.Width          Species  
-Min.   :1.400   setosa    : 0  
-1st Qu.:1.800   versicolor: 0  
-Median :2.000   virginica :50  
-Mean   :2.026                  
-3rd Qu.:2.300                  
-Max.   :2.500                  
-\end{verbatim}
+	\item One approach is to use the \texttt{aggregate()} command mentioned in the previous section.
+	\item A second approach is to create a subset (let's call it \textit{\textbf{iris.vir}}) and then use the \texttt{summary()} command.
+	\begin{framed}
+		\begin{verbatim}
+		iris.vir=iris[iris$Species=="virginica",]
+		# or
+		iris.vir=subset(iris,iris$Species=="virginica")
+		summary(iris.vir)
+		\end{verbatim}
+	\end{framed}
+	
+	The summary of \textit{\textbf{iris.vir}} should look like this:
+	\begin{verbatim}
+	> summary(iris.vir)
+	Sepal.Length    Sepal.Width     Petal.Length  
+	Min.   :4.900   Min.   :2.200   Min.   :4.500  
+	1st Qu.:6.225   1st Qu.:2.800   1st Qu.:5.100  
+	Median :6.500   Median :3.000   Median :5.550  
+	Mean   :6.588   Mean   :2.974   Mean   :5.552  
+	3rd Qu.:6.900   3rd Qu.:3.175   3rd Qu.:5.875  
+	Max.   :7.900   Max.   :3.800   Max.   :6.900  
+	Petal.Width          Species  
+	Min.   :1.400   setosa    : 0  
+	1st Qu.:1.800   versicolor: 0  
+	Median :2.000   virginica :50  
+	Mean   :2.026                  
+	3rd Qu.:2.300                  
+	Max.   :2.500                  
+	\end{verbatim}
 \end{itemize}
 
 %-----------------------------------------------------%
@@ -240,20 +373,20 @@ The \textbf{\textit{Apply}} family of functions keep you from having to write lo
 \subsubsection*{The \texttt{apply()} function}
 \begin{itemize}
 	\item  The \texttt{apply()} function is a powerful device that operates on arrays and, in particular, matrices.
-
-\item The  \texttt{apply()} function returns a vector (or array or list of values) obtained by applying a specified function to either the row or columns of an array or matrix.
-\item 
-To specify use for rows or columns, use the additional argument of \begin{itemize}
-\item[1] for rows, \item[2] for columns.
-\end{itemize}
+	
+	\item The  \texttt{apply()} function returns a vector (or array or list of values) obtained by applying a specified function to either the row or columns of an array or matrix.
+	\item 
+	To specify use for rows or columns, use the additional argument of \begin{itemize}
+		\item[1] for rows, \item[2] for columns.
+	\end{itemize}
 \end{itemize}
 \begin{framed}
-\begin{verbatim}
-m <- matrix(c(1:10, 11:20), nrow = 10, ncol = 2)
-m
-apply(m,1,mean)
-apply(m,2,mean)
-\end{verbatim}
+	\begin{verbatim}
+	m <- matrix(c(1:10, 11:20), nrow = 10, ncol = 2)
+	m
+	apply(m,1,mean)
+	apply(m,2,mean)
+	\end{verbatim}
 \end{framed}
 \newpage
 \begin{verbatim}
@@ -272,10 +405,10 @@ apply(m,2,mean)
 \newpage
 \subsubsection*{The \texttt{lapply()} and \texttt{sapply()} function}
 \begin{itemize}
-\item The \texttt{lapply()} command returns a list of the same length as a list “X”, each element of which is the result of applying a specified function to the corresponding element of X.
-
-\item A simpler user-friendly version of \texttt{lapply()} is \texttt{sapply()}
-The \texttt{sapply()} command is a variant of \texttt{lapply()} – returning a simple vector instead of a list - again of the same length as a list “X”, each element of which is the result of applying a specified function to the corresponding element of X.
+	\item The \texttt{lapply()} command returns a list of the same length as a list “X”, each element of which is the result of applying a specified function to the corresponding element of X.
+	
+	\item A simpler user-friendly version of \texttt{lapply()} is \texttt{sapply()}
+	The \texttt{sapply()} command is a variant of \texttt{lapply()} – returning a simple vector instead of a list - again of the same length as a list “X”, each element of which is the result of applying a specified function to the corresponding element of X.
 \end{itemize}
 \begin{verbatim}
 > x <- list(a=1:10, b=exp(-3:3), logic=c(T,F,F,T))
@@ -295,50 +428,6 @@ a b logic
 5.500000 4.535125 0.500000
 >
 \end{verbatim}
-%-----------------------------------------------------%
-\newpage
-\subsection*{Question 6}
-What is an environment in \texttt{R}?
-a list whose elements are all functions
-a collection of symbol/value pairs
-a special type of function
-an \texttt{R} package that only contains data
-%-----------------------------------------------------%
-\newpage
-\subsection*{Question 7}
-The \texttt{R} language uses what type of scoping rule for resolving free variables?
-compilation scoping
-lexical scoping
-dynamic scoping
-global scoping
-%-----------------------------------------------------%
-\newpage
-\subsection*{Question 8}
-How are free variables in \texttt{R} functions resolved?
-The values of free variables are searched for in the working directory
-The values of free variables are searched for in the environment in which the function was defined
-The values of free variables are searched for in the environment in which the function was called
-The values of free variables are searched for in the global environment
-%-----------------------------------------------------%
-\newpage
-\subsection*{Question 9}
-What is one of the consequences of the scoping rules used in \texttt{R}?
-All objects can be stored on the disk
-R objects cannot be larger than 100 MB
-All objects must be stored in memory
-Functions cannot be nested
-%-----------------------------------------------------%
-\newpage
-\subsection*{Question 10}
-In \texttt{R}, what is the parent frame?
-It is the environment in which a function was defined
-It is always the global environment
-It is the environment in which a function was called
-It is the package search list
-
-
-%-----------------------------------------------------%
-\newpage
 \subsection*{Old Quiz Question 5} %Ready
 Continuing with the '\textit{\textbf{iris}}' dataset from Question 4, what \texttt{R} code returns a vector of the means of the variables 'Sepal.Length', 'Sepal.Width', 'Petal.Length', and 'Petal.Width'?
 \begin{framed}
@@ -456,7 +545,7 @@ help(sapply)
 \end{verbatim}
 \newpage
 %-------------------------------------------------------%
-\subsection*{Quiz Question 9}
+\subsection*{Old Quiz Question 9}
 Consider the following function
 \begin{verbatim}
 f <- function(x) {
@@ -480,7 +569,7 @@ What value is returned by 'f'?
 %4
 
 \newpage
-\subsection*{Quiz Question 10}
+\subsection*{Old Quiz Question 10}
 If you run
 \texttt{debug(ls)}
 what happens when you next call the '\texttt{ls}' function?
