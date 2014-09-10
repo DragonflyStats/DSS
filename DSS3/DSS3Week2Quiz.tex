@@ -60,6 +60,33 @@ Week 2 of Getting and Cleaning Data: Extracting Data From Databases and the Web
 \subsection*{The Basics of Structured Query Language (SQL)}
 \newpage
 \subsection*{The sqldf package}
+sqldf is an R package for running SQL statements on R data frames, optimized for convenience. 
+
+sqldf works with the SQLite, H2, PostgreSQL or MySQL databases. 
+
+SQLite has the least prerequisites to install. H2 is just as easy if you have Java installed and also supports Date class and a few additional functions. 
+
+PostgreSQL notably supports Windowing functions providing the SQL analogue of the R ave function. 
+
+MySQL is a particularly popular database that drives many web sites. 
+
+\begin{framed}
+\begin{verbatim}
+# installs everything you need to use sqldf with SQLite
+# including SQLite itself
+install.packages("sqldf")
+# shows built in data framesdata() 
+# load sqldf into workspace
+library(sqldf)
+sqldf("select * from iris limit 5")
+sqldf("select count(*) from iris")
+sqldf("select Species, count(*) from iris group by Species")
+# create a data frame
+DF <- data.frame(a = 1:5, b = letters[1:5])
+sqldf("select * from DF")
+sqldf("select avg(a) mean, variance(a) var from DF")
+\end{verbatim}
+\end{framed}
 %---------------------------------------------------------------------------------------------%
 \newpage
 \subsection*{Question 2}
