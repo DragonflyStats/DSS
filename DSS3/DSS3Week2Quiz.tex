@@ -34,12 +34,18 @@ Week 2 of Getting and Cleaning Data: Extracting Data From Databases and the Web
 \item With the skills you learn this week you should be able to start on the basic data extraction that will form the beginnings of your project.
 \end{itemize} 
 \newpage
-\subsection*{The httr package}
+\subsection*{The httr package (Hadley Wickham)}
 The aim of \textbf{\textit{httr}} is to provide a wrapper for RCurl customised to the demands of modern web APIs.
 
 \subsubsection*{Key features:}
 \begin{itemize}
 \item Functions for the most important http verbs: \texttt{GET()}, \texttt{HEAD()}, \texttt{PATCH()}, \texttt{PUT()}, \texttt{DELETE()} and \texttt{POST()}.
+\\
+\\
+\textit{For more on these verbs - visit this site}
+\begin{verbatim}
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+\end{verbatim}
 
 \item Automatic connection sharing across requests to the same website (by default, curl handles are managed automatically), cookies are maintained across requests, and a up-to-date root-level SSL certificate store is used.
 
@@ -76,6 +82,64 @@ devtools::install_github("hadley/httr")
 \end{framed}
 %---------------------------------------------------------------------------------------------%
 \newpage
+
+\subsection*{OAuth - Open Standard for Authorisation}
+
+
+
+\begin{itemize}
+\item \textit{OAuth} is an open standard for authorization. OAuth provides client applications a 'secure delegated access' to server resources on behalf of a resource owner. 
+\item It specifies a process for resource owners to authorize third-party access to their server resources without sharing their credentials. 
+\item Designed specifically to work with \textit{Hypertext Transfer Protocol (HTTP)}, OAuth essentially allows access tokens to be issued to third-party clients by an authorization server, with the approval of the resource owner, or end-user.
+\item The client then uses the access token to access the protected resources hosted by the resource server.
+\item OAuth is commonly used as a way for web surfers to log into third party web sites using their Google, Facebook or Twitter accounts, without worrying about their access credentials being compromised.
+
+\item OAuth is a service that is complementary to, and therefore distinct from, OpenID. 
+\item OAuth is also distinct from OATH, which is a reference architecture for authentication, not a standard.
+\end{itemize}
+
+
+\subsubsection*{References}
+	\begin{verbatim}
+	http://en.wikipedia.org/wiki/OAuth
+	\end{verbatim}
+
+%---------------------------------------------------------------------------------------------%
+
+\newpage
+\subsection*{Useful Commands for Question 1}
+
+\begin{framed}
+\begin{verbatim}
+http://cran.r-project.org/web/packages/httr/httr.pdf
+\end{verbatim}
+\end{framed}
+\begin{itemize}
+	
+	
+	\item \texttt{oauth\_app} : Create an \textit{OAuth} application.
+	
+	\item \texttt{oauth1.0\_token} : Generate an \textit{oauth1.0} token.
+	
+	\item \texttt{oauth2.0\_token} : Generate an \textit{oauth2.0} token.
+
+	\item \texttt{oauth\_endpoints} : Describe an OAuth endpoint.
+	
+	
+	
+	\item \texttt{stop\_for\_status} : Take action on http error.
+ 
+    \item \texttt{warn\_for\_status} : Take action on http error.
+	
+	\item \texttt{content} : Extract content from a request
+	
+	\item \texttt{GET} : GET a url.
+	
+	\item \texttt{BROWSE} : Open specified url in browser.
+
+\end{itemize}
+\newpage
+
 \subsection*{Question 1}
 \textbf{Question}
 \begin{itemize}
@@ -100,18 +164,59 @@ devtools::install_github("hadley/httr")
 \end{itemize}
 \newpage
 \subsection*{The Basics of Structured Query Language (SQL)}
+
+A \texttt{SQL SELECT} statement can be broken down into numerous elements, each beginning with a keyword. Although it is not necessary, common convention is to write these keywords in all capital letters. 
+
+The most fundamental and common elements of a SELECT statement, namely
+
+\begin{itemize}
+\item \texttt{SELECT}
+\item \texttt{FROM}
+\item \texttt{WHERE}
+\item \texttt{ORDER BY}
+\end{itemize}
+\subsubsection*{The \texttt{SELECT ... FROM} Clause}
+The most basic \texttt{SELECT} statement has only 2 parts: 
+\begin{itemize}
+\item[(1)] what columns you want to return and 
+\item[(2)] what table(s) those columns come from.
+\end{itemize}
+
+\subsubsection*{The WHERE Clause}
+The next thing we want to do is to start limiting, or filtering, the data we fetch from the database. By adding a \texttt{WHERE} clause to the \texttt{SELECT} statement, we add one (or more) conditions that must be met by the selected data.
+
+ This will limit the number of rows that answer the query and are fetched. In many cases, this is where most of the "action" of a query takes place.
+
+What if we want to check if a column value is equal to more than one value? If it is only 2 values, then it is easy enough to test for each of those values, combining them with the \texttt{OR} operator.
+
+\subsubsection*{The \texttt{ORDER BY} Clause}
+Until now, we have been discussing filtering the data: that is, defining the conditions that determine which rows will be included in the final set of rows to be fetched and returned from the database. 
+
+Once we have determined which columns and rows will be included in the results of our \texttt{SELECT} query, we may want to control the order in which the rows appear—sorting the data.
+
+To sort the data rows, we include the \texttt{ORDER BY} clause. The \texttt{ORDER BY }clause includes one or more column names that specify the sort order.
+
+\noindent \textbf{References}
+\begin{verbatim}
+http://www.1keydata.com/sql/sql-commands.html
+http://www.cs.utexas.edu/~mitra/csFall2013/cs329/lectures/sql.html
+http://www.w3schools.com/sql/
+\end{verbatim}
 \newpage
 \subsection*{The sqldf package}
-sqldf is an R package for running SQL statements on R data frames, optimized for convenience. 
+\begin{itemize}
+\item \textbf{\textit{ sqldf}} is an \texttt{R} package for running SQL statements on R data frames, optimized for convenience. 
 
-sqldf works with the SQLite, H2, PostgreSQL or MySQL databases. 
+\item \textbf{\textit{sqldf}} works with the SQLite, H2, PostgreSQL or MySQL databases. 
 
-SQLite has the least prerequisites to install. H2 is just as easy if you have Java installed and also supports Date class and a few additional functions. 
+\item SQLite has the least prerequisites to install. 
+\item H2 is just as easy if you have Java installed and also supports Date class and a few additional functions. 
 
-PostgreSQL notably supports Windowing functions providing the SQL analogue of the R ave function. 
+\item PostgreSQL notably supports Windowing functions providing the SQL analogue of the \texttt{R} \texttt{ave} function. 
 
-MySQL is a particularly popular database that drives many web sites. 
+\item MySQL is a particularly popular database that drives many web sites. 
 
+\end{itemize}
 \begin{framed}
 \begin{verbatim}
 # installs everything you need to use sqldf with SQLite
@@ -123,6 +228,8 @@ library(sqldf)
 sqldf("select * from iris limit 5")
 sqldf("select count(*) from iris")
 sqldf("select Species, count(*) from iris group by Species")
+
+
 # create a data frame
 DF <- data.frame(a = 1:5, b = letters[1:5])
 sqldf("select * from DF")
@@ -303,32 +410,36 @@ http://biostat.jhsph.edu/~jleek/contact.html
 \subsection*{Fixed width format}
 % - http://publib.boulder.ibm.com/infocenter/dmndhelp/v6r1mx/index.jsp?topic=/com.ibm.wbit.612.help.config.doc/topics/rfixwidth.html
 
-This format has data where every field has a fixed width and for those fields where their width is less than the value, it is padded with pad characters. Every record ends with a new line character. The field width and pad character are both user configurable. This format may optionally contain a header at the top which corresponds to the properties of the business object. 
+\begin{itemize}
+\item This format has data where every field has a fixed width and for those fields where their width is less than the value, it is padded with pad characters. 
+\item Every record ends with a new line character. The field width and pad character are both user configurable. This format may optionally contain a header at the top which corresponds to the properties of the business object. 
 
+\item 
 If the header is absent, then the order of the fields in the input data is the same as the order of properties in the business object. Typically, fixed width format contains data where every field has a different width. To enable this, the field width will be represented as a list property.
-
+\item 
 Fixed width format may be transmitted in several forms. Fixed width format may come in a stream through data bindings such as HTTP, JMS and MQ as well as files.
-
+\item
 Fixed width format with no header and one record
 This is a fixed width format with one record and does not contain a header. In this case, the business object properties have to be in the order of the fields in the data.
-
+\end{itemize}
+\begin{framed}
 \begin{verbatim}
 8A7111John~~~~~~Doe~~~~~~~80000~
 \end{verbatim}
+\end{framed}
 The corresponding business object for the record is as follows. Note the business object property names are in order of the data in the fixed width format. Note the lastName and firstName fields.
 
-\begin{verbatim}
-Table 1. Business object
-CustomerBO
-id
-firstName
-lastName
-salary
-8A7111
-John
-Doe
-80000
-\end{verbatim}
+\begin{center}
+\bigskip
+\begin{tabular}{|c|c|}
+	\hline  & CustomerBO \\ \hline
+	 id & 8A7111 \\ 
+	 firstName  & John  \\ 
+	 lastName & Doe \\ 
+	 salary & 80000 \\ 
+	\hline 
+\end{tabular} 
+\end{center}
 % - http://publib.boulder.ibm.com/infocenter/dmndhelp/v6r1mx/index.jsp?topic=/com.ibm.wbit.612.help.config.doc/topics/rfixwidth.html
 %---------------------------------------------------------------------------------------------%
 \newpage
@@ -359,6 +470,7 @@ http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for
 help(read.fwf)
 \end{verbatim}	
 \end{framed}
+\newpage
 
 \begin{framed}
 \begin{verbatim}

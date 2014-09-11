@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  9 SEP 2014 23:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  11 SEP 2014 00:05
 entering extended mode
 **DSS2Week2Project.tex
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.tex
@@ -191,30 +191,36 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 110.
  [5] [6]
-[7] [8] [9] [10] [11] [12] [13]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 361.
- [14] [15] [16] [17] [18] [19] [20]
-(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.aux) ) 
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 187.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 245--247
+
+ []
+
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
+[23] [24] (C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week2Project.aux) ) 
 Here is how much of TeX's memory you used:
  2077 strings out of 493921
  25591 string characters out of 3148886
- 79258 words of memory out of 3000000
+ 81258 words of memory out of 3000000
  5371 multiletter control sequences out of 15000+200000
  7899 words of font info for 31 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,26p,665b,233s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Fi
-les/Miktek/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/Miktek/f
-onts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Miktek/fonts/type1/p
-ublic/amsfonts/cm/cmbxti10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsf
-onts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmr1
-0.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
-ogram Files/Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/
-Miktek/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on DSS2Week2Project.pdf (20 pages, 131041 bytes).
+ 27i,6n,26p,665b,247s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/
+Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
+s/Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Miktek/fon
+ts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/Miktek/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Prog
+ram Files/Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/Mi
+ktek/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on DSS2Week2Project.pdf (24 pages, 150390 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
+ 115 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

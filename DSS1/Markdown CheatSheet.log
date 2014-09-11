@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  30 AUG 2014 21:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  10 SEP 2014 18:56
 entering extended mode
 **Markdown*CheatSheet.tex
-("C:\Users\Kevin\OneDrive\Documents\New folder\Markdown CheatSheet.tex"
+("C:\Users\Kevin\Documents\GitHub\DSS\DSS1\Markdown CheatSheet.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -30,7 +30,15 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Users\Kevin\OneDrive\Documents\New folder\Markdown CheatSheet.aux")
+("C:\Program Files\Miktek\tex\latex\framed\framed.sty"
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen103
+\fb@frh=\dimen104
+\FrameRule=\dimen105
+\FrameSep=\dimen106
+)
+("C:\Users\Kevin\Documents\GitHub\DSS\DSS1\Markdown CheatSheet.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
@@ -44,58 +52,48 @@ LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 
-Overfull \hbox (101.24611pt too wide) in paragraph at lines 98--98
-[]\OT1/cmtt/m/n/10 This is a paragraph, which is text surrounded by whitespace.
- Paragraphs can be on one[] 
+Overfull \hbox (4.5471pt too wide) in paragraph at lines 26--26
+[]\OT1/cmtt/m/n/10 ## Markdown plus h2 with a custom ID ##         {#id-goes-he
+re}[] 
  []
 
 
-Overfull \hbox (64.49643pt too wide) in paragraph at lines 98--98
-[]\OT1/cmtt/m/n/10 Here is a Markdown link to [Warped](http://warpedvisions.org
-), and a literal .[] 
- []
-
-
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 98--98
+Overfull \hbox (67.54655pt too wide) in paragraph at lines 42--42
 []\OT1/cmtt/m/n/10 Now some SimpleLinks, like one to [google] (automagically li
 nks to are-you-[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 98--98
+Overfull \hbox (41.29678pt too wide) in paragraph at lines 42--42
 []\OT1/cmtt/m/n/10 feeling-lucky), a [wiki: test] link to a Wikipedia page, and
  a link to[] 
  []
 
 
-Overfull \hbox (116.99597pt too wide) in paragraph at lines 98--98
+Overfull \hbox (4.5471pt too wide) in paragraph at lines 42--42
 []\OT1/cmtt/m/n/10 Now some inline markup like _italics_,  **bold**, and `code(
-)`. Note that underscores in[] 
+)`.[] 
  []
 
 [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (101.24611pt too wide) in paragraph at lines 98--98
-[]\OT1/cmtt/m/n/10 This is a div wrapping some Markdown plus.  Without the DIV 
-attribute, it ignores the[] 
- []
-
-[2] ("C:\Users\Kevin\OneDrive\Documents\New folder\Markdown CheatSheet.aux") ) 
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5]
+("C:\Users\Kevin\Documents\GitHub\DSS\DSS1\Markdown CheatSheet.aux") ) 
 Here is how much of TeX's memory you used:
- 205 strings out of 493921
- 2536 string characters out of 3148886
- 53031 words of memory out of 3000000
- 3583 multiletter control sequences out of 15000+200000
- 3808 words of font info for 15 fonts, out of 3000000 for 9000
+ 265 strings out of 493921
+ 3260 string characters out of 3148886
+ 54031 words of memory out of 3000000
+ 3636 multiletter control sequences out of 15000+200000
+ 4413 words of font info for 17 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 23i,4n,17p,159b,240s stack positions out of 5000i,500n,10000p,200000b,50000s
-<
-C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fi
-les/Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "Markdown CheatSheet.pdf" (2 pages, 32308 bytes).
+ 23i,6n,17p,159b,167s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Progr
+am Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Mik
+tek/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/Miktek/fonts/typ
+e1/public/amsfonts/cm/cmtt10.pfb>
+Output written on "Markdown CheatSheet.pdf" (5 pages, 48935 bytes).
 PDF statistics:
- 17 PDF objects out of 1000 (max. 8388607)
+ 30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

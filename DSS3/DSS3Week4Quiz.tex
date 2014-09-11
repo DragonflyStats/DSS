@@ -15,17 +15,25 @@ The American Community Survey distributes downloadable data about United States 
 \begin{verbatim}
 https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv 
 \end{verbatim}
-and load the data into R. The code book, describing the variable names is here: 
+and load the data into \texttt{R}. The code book, describing the variable names is here: 
 \begin{verbatim}
 https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf 
 \end{verbatim}
-Apply \texttt{strsplit()} to split all the names of the data frame on the characters "\texttt{wgtp}". What is the value of the 123 element of the resulting list?
+Apply \texttt{strsplit()} to split all the names of the data frame on the characters "\texttt{wgtp}". \\ \\ What is the value of the 123 element of the resulting list?
 \begin{verbatim}
-"" "15"
-"wgtp"
-"w" "15"
-"wgtp" "15"
+1. "" "15"
+2. "wgtp"
+3. "w" "15"
+4. "wgtp" "15"
 \end{verbatim}
+\begin{framed}
+\begin{verbatim}
+url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
+file <- file.path(getwd(), "ss06hid.csv")
+download.file(url, file, method = "curl")
+dt <- data.table(read.csv(file))
+\end{verbatim}
+\end{framed}
 %==========================================%
 \newpage
 \subsection*{Question 2}
