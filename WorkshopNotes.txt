@@ -1,7 +1,10 @@
 Workshop 3
 
 1. DSS1 - DST
- - Quiz
+ - Quiz - good shape
+ - Add Graphics
+ - Discussion of Technologies
+ - Review Project Work
 
 2. DSS2 - RSP
  - Quiz in good shape - tidy it up
