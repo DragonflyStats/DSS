@@ -1,3 +1,19 @@
+Workshop 3
+
+1. DSS1 - DST
+ - Quiz
+
+2. DSS2 - RSP
+ - Quiz in good shape - tidy it up
+ - Project Work
+ 
+3. DSS3 - GCD
+ - Quiz - good shape
+ - Tidy up
+ - Quantiles and Connections
+ - Project Work
+
+
 Workshop 1
 
 1. DSS1 - DST - Slides Nearly Ready
