@@ -4,10 +4,7 @@
 %opening
 \title{Coursera - Computing For Data Analysis Week 3}
 
-%https://github.com/pcward/coursera_programming-r/blob/master/rankhospital.r
-%https://github.com/ConAntonakos/Computing_for_Data_Analysis/blob/master/rankhospital.R
 
-% http://rpubs.com/flintt/3694
 \begin{document}
 
 
@@ -18,7 +15,7 @@
 \item Write a function called \texttt{rankall()} that takes TWO (2) arguments: (a) an outcome name (\textbf{outcome}); and (b) a hospital ranking (\textbf{num}). 
 
 \item The function reads the outcome-of-care-measures.csv file and returns a TWO(2)-column data frame containing the hospital in EACH 
-state that has the ranking specified in num.  For example the function call
+state that has the ranking specified in \texttt{num}.  For example the function call
 \begin{verbatim}
 > rankall("heart attack", "best")
 \end{verbatim}
@@ -28,7 +25,8 @@ heart attack death rates.
 
 \item The function should return a value for EVERY state (some may be NA). The FIRST (1st) column in the data 
 frame is named hospital, which contains the hospital name, and the SECOND (2nd) column is named state, which contains the 
-TWO(2)-character abbreviation for the state name. The function should use the following template.
+TWO(2)-character abbreviation for the state name. 
+The function should use the following template.
 \end{itemize}
 
 
@@ -37,8 +35,8 @@ TWO(2)-character abbreviation for the state name. The function should use the fo
 > rankall <-  function(outcome, num = "best") {                                       
 ## Read outcome data                                                    
 ## For each state, find the hospital of the given rank                  
-## Return a data frame with the hospital names and the (abbreviated)    
-## state name                                                           
+## Return a data frame with the hospital names and 
+## the (abbreviated) state name                                 
   }                          
 \end{verbatim}
 \end{framed}
@@ -148,14 +146,16 @@ Putting it all together
 \begin{verbatim}
 
 rankall <- function(outcome, num = "best") {
-Hosp<-read.csv("outcome-of-care-measures.csv",colClasses = "character")
+Hosp<-read.csv("outcome-of-care-measures.csv",
+    colClasses = "character")
 
 
-#####################################
+#-----------------------------------------------------#
 #Part 1 : Inputs
 
 # Data set is imported as a data frame called "Hosp"
-# We will immediately discard every column except columns 2,7,11,17 and 23
+# We will immediately discard every column 
+# except columns 2,7,11,17 and 23
 
 Hosp <- Hosp[ , c(2,7,11,17,23)]
 
@@ -166,9 +166,10 @@ Hosp <- Hosp[ , c(2,7,11,17,23)]
 # We will also give the data frame more manageable column names
 # Use capital letters for the sake of clarity
 
-names(Hosp) <- c("Hosp.Name", "State", "Heart.At","Heart.Fa","Pneum")
+names(Hosp) <- c("Hosp.Name", "State", "Heart.At",
+   "Heart.Fa","Pneum")
 
-#####################################
+#-----------------------------------------------------#
 #Part 2 : Check that inputed value is OK
 
 
@@ -182,22 +183,21 @@ names(Hosp) <- c("Hosp.Name", "State", "Heart.At","Heart.Fa","Pneum")
   }
 
 
-#####################################
+#-----------------------------------------------------#
 #Part 3 : Convert data to numeric
 # Suppress Warnings
 suppressWarnings(Hosp[,3] <- as.numeric(Hosp[,3]))
 suppressWarnings(Hosp[,4] <- as.numeric(Hosp[,4]))
 suppressWarnings(Hosp[,5] <- as.numeric(Hosp[,5]))
 
-#####################################
-#####################################
+#-----------------------------------------------------#
 #Part 4 : Generate a list of states
 StatesList <- as.character(unique(Hosp[,2]))
 
 StateList = sort(StateList)
 
 
-#####################################
+#-----------------------------------------------------#
 #Part 5 : Built a temporary data frame called outcome.df
 
 # Function is a simple "look-up table"
@@ -210,7 +210,7 @@ outcome.df <- data.frame(
 
 VarCol <- outcome.df[outcome.df$InputtedOutcome==outcome,]$UseCol
 
-#####################################
+#-----------------------------------------------------#
 #Part 6 : Subset data set by outcome
 
 # We will use the column selected by VarCol, and also column 2
@@ -221,12 +221,12 @@ UseCols <- c(1,2,VarCol)
 
 Hosp <- Hosp[,UseCols]
 
-####################################
+#-----------------------------------------------------#
 # Part 7
 # Set up two empty character vectors
 RankHosp=character()
 
-####################################
+#-----------------------------------------------------#
 # Part 8
 #Populate the character vectors from Part 7
 for (state in StateList)
@@ -245,8 +245,7 @@ for (state in StateList)
     
    }
 
-
-####################################
+#-----------------------------------------------------#
 # Part 9
 # Construct a data frame from character vectors
 RankFrame=data.frame(hospital=RankHosp,state=StateList)
@@ -256,3 +255,9 @@ return(RankFrame)
 \end{framed}
 
 \end{document}
+
+
+%https://github.com/pcward/coursera_programming-r/blob/master/rankhospital.r
+%https://github.com/ConAntonakos/Computing_for_Data_Analysis/blob/master/rankhospital.R
+
+% http://rpubs.com/flintt/3694

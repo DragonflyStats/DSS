@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  8 SEP 2014 23:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  13 SEP 2014 18:27
 entering extended mode
 **DSS1Week4Quiz.tex
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS1\DSS1Week4Quiz.tex
@@ -414,7 +414,7 @@ LaTeX Info: Redefining \up on input line 7.
 Here is how much of TeX's memory you used:
  1877 strings out of 493921
  23933 string characters out of 3148886
- 83092 words of memory out of 3000000
+ 84092 words of memory out of 3000000
  5185 multiletter control sequences out of 15000+200000
  19387 words of font info for 20 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -422,7 +422,7 @@ Here is how much of TeX's memory you used:
 {C:/Program Files
 /Miktek/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/Miktek/fonts/type1/publi
 c/lm/lmbx12.pfb><C:/Program Files/Miktek/fonts/type1/public/lm/lmr10.pfb>
-Output written on DSS1Week4Quiz.pdf (5 pages, 49474 bytes).
+Output written on DSS1Week4Quiz.pdf (5 pages, 51364 bytes).
 PDF statistics:
  27 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

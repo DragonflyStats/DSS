@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  12 SEP 2014 19:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  13 SEP 2014 18:35
 entering extended mode
-**DSS7Week4Quiz.tex
-(C:\Users\Kevin\Documents\GitHub\DSS\DSS7\DSS7Week4Quiz.tex
+**DSS2Week3Project.tex
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week3Project.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -247,6 +247,14 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
+("C:\Program Files\Miktek\tex\latex\framed\framed.sty"
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen103
+\fb@frh=\dimen104
+\FrameRule=\dimen105
+\FrameSep=\dimen106
+)
 ("C:\Program Files\Miktek\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -310,14 +318,14 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@cnth=\count87
 \Gm@cntv=\count88
 \c@Gm@tempcnt=\count89
-\Gm@bindingoffset=\dimen103
-\Gm@wd@mp=\dimen104
-\Gm@odd@mp=\dimen105
-\Gm@even@mp=\dimen106
-\Gm@layoutwidth=\dimen107
-\Gm@layoutheight=\dimen108
-\Gm@layouthoffset=\dimen109
-\Gm@layoutvoffset=\dimen110
+\Gm@bindingoffset=\dimen107
+\Gm@wd@mp=\dimen108
+\Gm@odd@mp=\dimen109
+\Gm@even@mp=\dimen110
+\Gm@layoutwidth=\dimen111
+\Gm@layoutheight=\dimen112
+\Gm@layouthoffset=\dimen113
+\Gm@layoutvoffset=\dimen114
 \Gm@dimlist=\toks17
 
 ("C:\Program Files\Miktek\tex\latex\geometry\geometry.cfg"))
@@ -336,31 +344,23 @@ Language: frenchb 2009/03/16 v2.3d French support from the babel system
 ("C:\Program Files\Miktek\tex\generic\babel\babel.def"
 File: babel.def 2008/07/08 v3.8m Babel common definitions
 \babel@savecnt=\count90
-\U@D=\dimen111
+\U@D=\dimen115
 )
 Package babel Info: Making : an active character on input line 120.
 Package babel Info: Making ; an active character on input line 121.
 Package babel Info: Making ! an active character on input line 122.
 Package babel Info: Making ? an active character on input line 123.
-\FB@Mht=\dimen112
+\FB@Mht=\dimen116
 \std@mcc=\count91
 \dec@mcc=\count92
-\parindentFFN=\dimen113
+\parindentFFN=\dimen117
 
 *************************************
 * Local config file frenchb.cfg used
 *
 ("C:\Program Files\Miktek\tex\generic\babel\frenchb.cfg")))
 ("C:\Program Files\Miktek\tex\latex\carlisle\scalefnt.sty")
-("C:\Program Files\Miktek\tex\latex\framed\framed.sty"
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip43
-\fb@frw=\dimen114
-\fb@frh=\dimen115
-\FrameRule=\dimen116
-\FrameSep=\dimen117
-)
-(C:\Users\Kevin\Documents\GitHub\DSS\DSS7\DSS7Week4Quiz.aux)
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week3Project.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
@@ -415,28 +415,27 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Info: Redefining \degres on input line 8.
 LaTeX Info: Redefining \dots on input line 8.
 LaTeX Info: Redefining \up on input line 8.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 13.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 16.
 ("C:\Program Files\Miktek\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5]
-(C:\Users\Kevin\Documents\GitHub\DSS\DSS7\DSS7Week4Quiz.aux) ) 
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+(C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week3Project.aux) ) 
 Here is how much of TeX's memory you used:
- 1971 strings out of 493921
- 25258 string characters out of 3148886
- 83092 words of memory out of 3000000
- 5271 multiletter control sequences out of 15000+200000
- 19706 words of font info for 21 fonts, out of 3000000 for 9000
+ 1965 strings out of 493921
+ 25213 string characters out of 3148886
+ 87506 words of memory out of 3000000
+ 5267 multiletter control sequences out of 15000+200000
+ 7712 words of font info for 17 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 25i,6n,24p,175b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files
-/Miktek/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/Miktek/fonts/type1/publi
-c/lm/lmbx12.pfb><C:/Program Files/Miktek/fonts/type1/public/lm/lmr10.pfb><C:/Pr
-ogram Files/Miktek/fonts/type1/public/lm/lmtt10.pfb>
-Output written on DSS7Week4Quiz.pdf (5 pages, 70345 bytes).
+ 25i,6n,24p,175b,240s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Fi
+les/Miktek/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/Miktek/fonts/type1/pu
+blic/lm/lmr10.pfb><C:/Program Files/Miktek/fonts/type1/public/lm/lmtt10.pfb>
+Output written on DSS2Week3Project.pdf (2 pages, 59941 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 18 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

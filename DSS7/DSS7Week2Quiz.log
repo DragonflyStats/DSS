@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  11 SEP 2014 13:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  12 SEP 2014 19:46
 entering extended mode
 **DSS7Week2Quiz.tex
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS7\DSS7Week2Quiz.tex
@@ -415,14 +415,12 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Info: Redefining \degres on input line 8.
 LaTeX Info: Redefining \dots on input line 8.
 LaTeX Info: Redefining \up on input line 8.
-[1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 18.
-
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 14.
 ("C:\Program Files\Miktek\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [2] [3]
+) [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5]
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS7\DSS7Week2Quiz.aux) ) 
 Here is how much of TeX's memory you used:
  1971 strings out of 493921
@@ -436,9 +434,9 @@ Here is how much of TeX's memory you used:
 /Miktek/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/Miktek/fonts/type1/publi
 c/lm/lmbx12.pfb><C:/Program Files/Miktek/fonts/type1/public/lm/lmr10.pfb><C:/Pr
 ogram Files/Miktek/fonts/type1/public/lm/lmtt10.pfb>
-Output written on DSS7Week2Quiz.pdf (3 pages, 68240 bytes).
+Output written on DSS7Week2Quiz.pdf (5 pages, 70344 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
+ 31 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
