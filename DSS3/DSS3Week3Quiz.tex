@@ -12,6 +12,53 @@
 
 
 \section{Week 3 Quiz}
+
+\subsection*{\texttt{file.path()}}
+
+This command will construct the path to a file from components in a platform-independent way. 
+
+Suppose there is a file called "RLogo.jpg" in the working directory.
+\begin{framed}
+\begin{verbatim}
+
+file <- file.path(getwd(), "RLogo.jpg")
+
+\end{verbatim}
+\end{framed}
+%-----------------------------------------------------------------------------------%
+\subsection*{\texttt{download.file()}}
+
+This function can be used to download a file from the Internet. 
+
+\begin{description}
+\item[\texttt{mode}] The mode with which to write the file. Useful values are ``w" (text), ``wb" (binary), ``a" (append) and ``ab".
+\end{description}
+%-----------------------------------------------------------------------------------%
+
+\subsection*{\texttt{readJPEG()}}
+
+This command , from the \texttt{R} package \textbf{\textit{jpeg}}, will read a bitmap image stored in the JPEG format 
+\begin{framed}
+\begin{verbatim}
+# read a sample file (R logo)
+img <- readJPEG(system.file("img", "Rlogo.jpg", package="jpeg"))
+ 
+# read it also in native format
+img.n <- readJPEG(system.file("img", "Rlogo.jpg", package="jpeg"), TRUE)
+ 
+# if your R supports it, we'll plot it
+if (exists("rasterImage")) { # can plot only in R 2.11.0 and higher
+  plot(1:2, type='n')
+ 
+  rasterImage(img, 1.2, 1.27, 1.8, 1.73)
+  rasterImage(img.n, 1.5, 1.5, 1.9, 1.8)
+}
+\end{verbatim}
+\end{framed}
+
+\begin{verbatim}
+http://www.inside-r.org/packages/cran/jpeg/docs/readJPEG
+\end{verbatim}
 %------------------------------------------------------------------------------------------------------------%
 \subsection*{Question 1}
 The American Community Survey distributes downloadable data about United States communities. Download the 2006 microdata survey about housing for the state of Idaho using \texttt{download.file()} from here: 
