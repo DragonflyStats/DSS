@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  8 SEP 2014 23:33
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  17 SEP 2014 12:19
 entering extended mode
 **DSS1Week3Quiz.tex
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS1\DSS1Week3Quiz.tex
@@ -101,37 +101,44 @@ LaTeX Font Info:    ... okay on input line 4.
 Missing character: There is no â in font cmbx12!
 Missing character: There is no € in font cmbx12!
 Missing character: There is no ™ in font cmbx12!
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 16.
-("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
+ ("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 16.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+[3] [4] <datascitoolbox-heatmap.png, id=17, 501.875pt x 544.0325pt>
+File: datascitoolbox-heatmap.png Graphic file (type png)
+
+<use datascitoolbox-heatmap.png>
+Package pdftex.def Info: datascitoolbox-heatmap.png used on input line 56.
+(pdftex.def)             Requested size: 272.99881pt x 295.9481pt.
+ [5 <C:/Users/Kevin/Documents/GitHub/DSS/DSS1/datascitoolbox-heatmap.png>] [6] 
+[7] [8] [9] [10]
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS1\DSS1Week3Quiz.aux) ) 
 Here is how much of TeX's memory you used:
- 1179 strings out of 493921
- 15538 string characters out of 3148886
- 66399 words of memory out of 3000000
- 4515 multiletter control sequences out of 15000+200000
- 5753 words of font info for 21 fonts, out of 3000000 for 9000
+ 1186 strings out of 493921
+ 15706 string characters out of 3148886
+ 68399 words of memory out of 3000000
+ 4520 multiletter control sequences out of 15000+200000
+ 6060 words of font info for 22 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,4n,19p,297b,146s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,5n,19p,426b,220s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files
 /Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Miktek/font
 s/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/Miktek/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/c
 m/cmti12.pfb>
-Output written on DSS1Week3Quiz.pdf (4 pages, 55660 bytes).
+Output written on DSS1Week3Quiz.pdf (10 pages, 149248 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 52 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
