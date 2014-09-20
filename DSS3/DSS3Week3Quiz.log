@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  16 SEP 2014 00:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  18 SEP 2014 18:22
 entering extended mode
 **DSS3Week3Quiz.tex
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS3\DSS3Week3Quiz.tex
@@ -166,60 +166,72 @@ LaTeX Font Info:    ... okay on input line 11.
 \makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks21
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
- ("C:\Program Files\Miktek\tex\latex\amsfonts\umsa.fd"
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 25.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 43.
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+msa on input line 82.
+
+("C:\Program Files\Miktek\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
+LaTeX Font Info:    Try loading font information for U+msb on input line 82.
 
 ("C:\Program Files\Miktek\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Underfull \hbox (badness 10000) in paragraph at lines 82--89
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 53.
+ []
 
-("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
+[2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 111.
+
+ ("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 53.
- [2]
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
+ [3]
+Underfull \hbox (badness 10000) in paragraph at lines 179--182
 
  []
 
-[3]
-Overfull \hbox (63.2955pt too wide) in paragraph at lines 152--152
-[]\OT1/cmtt/m/n/10 > setnames(dtGDP, c("X", "X.1", "X.3", "X.4"), c("CountryCod
-e", "rankingGDP", "Long.Name", "gdp"))[] 
+[4]
+Overfull \hbox (52.7956pt too wide) in paragraph at lines 206--206
+[]\OT1/cmtt/m/n/10 setnames(dtGDP, c("X", "X.1", "X.3", "X.4"), c("CountryCode"
+, "rankingGDP", "Long.Name", "gdp"))[] 
  []
 
 
-Overfull \hbox (115.79504pt too wide) in paragraph at lines 152--152
+Overfull \hbox (96.99506pt too wide) in paragraph at lines 215--215
 []\OT1/cmtt/m/n/10 > dt[order(rankingGDP, decreasing = TRUE), list(CountryCode,
  Long.Name.x, Long.Name.y, rankingGDP, gdp)][13][] 
  []
 
-[4] [5] [6] (C:\Users\Kevin\Documents\GitHub\DSS\DSS3\DSS3Week3Quiz.aux) ) 
+[5] [6] [7] (C:\Users\Kevin\Documents\GitHub\DSS\DSS3\DSS3Week3Quiz.aux) ) 
 Here is how much of TeX's memory you used:
- 2068 strings out of 493921
- 25358 string characters out of 3148886
- 78221 words of memory out of 3000000
- 5367 multiletter control sequences out of 15000+200000
- 7371 words of font info for 29 fonts, out of 3000000 for 9000
+ 2072 strings out of 493921
+ 25414 string characters out of 3148886
+ 79221 words of memory out of 3000000
+ 5370 multiletter control sequences out of 15000+200000
+ 7553 words of font info for 30 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,26p,252b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,6n,26p,245b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/P
 rogram Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files
 /Miktek/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Miktek/font
-s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmti10.pfb
-><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on DSS3Week3Quiz.pdf (6 pages, 104554 bytes).
+s/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/Miktek/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfont
+s/cm/cmr10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Progr
+am Files/Miktek/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on DSS3Week3Quiz.pdf (7 pages, 108260 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 58 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
