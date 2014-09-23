@@ -9,6 +9,12 @@
 
 \section*{Quiz 1}
 
+
+\subsection*{Regular Expressions}
+\texttt{strsplit()} This function split the elements of a character vector x into substrings according to the matches to substring split within them.
+
+\texttt{strReverse}
+
 \subsection*{Question 1}
 The American Community Survey distributes downloadable data about United States communities. \\ \\ Download the 2006 microdata survey about housing for the state of Idaho using \texttt{download.file()} from here: 
 
@@ -34,6 +40,12 @@ download.file(url, file, method = "curl")
 dt <- data.table(read.csv(file))
 \end{verbatim}
 \end{framed}
+\begin{verbatim}
+varNames <- names(dt)
+varNamesSplit <- strsplit(varNames, "wgtp")
+varNamesSplit[[123]]
+[1] ""   "15"
+\end{verbatim}
 %==========================================%
 \newpage
 \subsection*{Question 2}
@@ -45,22 +57,62 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv
 Remove the commas from the GDP numbers in millions of dollars and average them. What is the average? 
 
 \begin{itemize}
-\item 377652.4
-\item 387854.4
-\item 381615.4
-\item 293700.3
+\item[(i)] 377652.4
+\item[(ii)] 387854.4
+\item[(iii)] 381615.4
+\item[(iv)] 293700.3
 \end{itemize}
 
-Original data sources: http://data.worldbank.org/data-catalog/GDP-ranking-table
+Original data sources:
+\begin{verbatim} http://data.worldbank.org/data-catalog/GDP-ranking-table
+\end{verbatim}
+\begin{framed}
+\begin{verbatim}
+ url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+ file <- file.path(getwd(), "GDP.csv")
+ download.file(url, file, method = "curl")
+ \end{verbatim}
+ \end{framed}
+ \begin{framed}
+ \begin{verbatim}
+ dtGDP <- data.table(read.csv(file, skip = 4, nrows = 215,
+    stringsAsFactors = FALSE))
+ dtGDP <- dtGDP[X != ""]
+ dtGDP <- dtGDP[, list(X, X.1, X.3, X.4)]
+ setnames(dtGDP, c("X", "X.1", "X.3", "X.4"), c("CountryCode", "rankingGDP", "Long.Name", "gdp"))
+ gdp <- as.numeric(gsub(",", "", dtGDP$gdp))
+
+\end{verbatim}
+\end{framed}
+
+\begin{verbatim}
+> mean(gdp, na.rm = TRUE)
+[1] 377652.4
+\end{verbatim}
 %==========================================%
 \newpage
 \subsection*{Question 3}
-In the data set from Question 2 what is a regular expression that would allow you to count the number of countries whose name begins with "United"? \\ \\ Assume that the variable with the country names in it is named \texttt{countryNames}. How many countries begin with United?
+In the data set from Question 2 what is a regular expression that would allow you to count the number of countries whose name \textbf{begins} with "United"? \\ \\ Assume that the variable with the country names in it is named \texttt{countryNames}.\\ How many countries begin with United?
 \begin{verbatim}
-grep("*United",countryNames), 2
-grep("^United",countryNames), 3
-grep("*United",countryNames), 5
-grep("^United",countryNames), 4
+1. grep("*United",countryNames), 2
+2. grep("^United",countryNames), 3
+3. grep("*United",countryNames), 5
+4. grep("^United",countryNames), 4
+\end{verbatim}
+%Answer
+
+%grep("^United", countryNames), 3
+
+\begin{framed}
+\begin{verbatim}
+
+> isUnited <- grepl("^United", dtGDP$Long.Name)
+> summary(isUnited)
+\end{verbatim}
+\end{framed}
+\begin{verbatim}
+Mode   FALSE    TRUE    NA's 
+logical     211       3       0 
 \end{verbatim}
 %==========================================%
 \newpage
@@ -84,9 +136,31 @@ Match the data based on the country shortcode. Of the countries for which the en
 \item[(iv)] 13
 \end{itemize}
 
-\textbf{Original data sources: }
+\noindent \textbf{Original data sources: }
 http://data.worldbank.org/data-catalog/GDP-ranking-table \\
 http://data.worldbank.org/data-catalog/ed-stats \\
+
+\noindent \textbf{
+Downloading the Data}
+\begin{framed}
+\begin{verbatim}
+ url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+ file <- file.path(getwd(), "EDSTATS_Country.csv")
+ download.file(url, file, method = "curl")
+\end{verbatim}
+\end{framed}
+\begin{framed}
+\begin{verbatim}
+dtEd <- data.table(read.csv(file))
+ dt <- merge(dtGDP, dtEd, all = TRUE, by = c("CountryCode"))
+ isFiscalYearEnd <- grepl("fiscal year end", tolower(dt$Special.Notes))
+ isJune <- grepl("june", tolower(dt$Special.Notes))
+ table(isFiscalYearEnd, isJune)
+\end{verbatim}
+\end{framed}
+%==========================================%
+\newpage
+\subsection*{Quantmod R package}
 %==========================================%
 \newpage
 \subsection*{Question 5}
@@ -107,6 +181,15 @@ How many values were collected in 2012? How many values were collected on Monday
 3. 251, 47
 4. 251, 51
 \end{verbatim}
+
+
+\begin{framed}
+\begin{verbatim}
+amzn <- getSymbols("AMZN", auto.assign = FALSE)
+sampleTimes <- index(amzn) 
+addmargins(table(year(sampleTimes),       weekdays(sampleTimes)))
+\end{verbatim}
+\end{framed}
 \end{document}
 
 Quiz 4
@@ -130,14 +213,7 @@ Answer
 
 Explanation
 
-> url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
-> file <- file.path(getwd(), "ss06hid.csv")
-> download.file(url, file, method = "curl")
-> dt <- data.table(read.csv(file))
-> varNames <- names(dt)
-> varNamesSplit <- strsplit(varNames, "wgtp")
-> varNamesSplit[[123]]
-[1] ""   "15"
+
 Question 2
 
 Load the Gross Domestic Product data for the 190 ranked countries in this data set:
@@ -154,30 +230,12 @@ Answer
 
 Explanation
 
-> url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
-> file <- file.path(getwd(), "GDP.csv")
-> download.file(url, file, method = "curl")
-> dtGDP <- data.table(read.csv(file, skip = 4, nrows = 215, stringsAsFactors = FALSE))
-> dtGDP <- dtGDP[X != ""]
-> dtGDP <- dtGDP[, list(X, X.1, X.3, X.4)]
-> setnames(dtGDP, c("X", "X.1", "X.3", "X.4"), c("CountryCode", "rankingGDP", "Long.Name", "gdp"))
-> gdp <- as.numeric(gsub(",", "", dtGDP$gdp))
-> mean(gdp, na.rm = TRUE)
-[1] 377652.4
+
 Question 3
 
 In the data set from Question 2 what is a regular expression that would allow you to count the number of countries whose name begins with "United"? Assume that the variable with the country names in it is named countryNames. How many countries begin with United?
 
-Answer
 
-grep("^United", countryNames), 3
-
-Explanation
-
-> isUnited <- grepl("^United", dtGDP$Long.Name)
-> summary(isUnited)
-   Mode   FALSE    TRUE    NA's 
-logical     211       3       0 
 Question 4
 
 Load the Gross Domestic Product data for the 190 ranked countries in this data set:
@@ -206,21 +264,3 @@ Explanation
 > isFiscalYearEnd <- grepl("fiscal year end", tolower(dt$Special.Notes))
 > isJune <- grepl("june", tolower(dt$Special.Notes))
 > table(isFiscalYearEnd, isJune)
-Question 5
-
-You can use the quantmod (http://www.quantmod.com/) package to get historical stock prices for publicly traded companies on the NASDAQ and NYSE. Use the following code to download data on Amazon's stock price and get the times the data was sampled.
-
-library(quantmod)
-amzn = getSymbols("AMZN",auto.assign=FALSE)
-sampleTimes = index(amzn) 
-How many values were collected in 2012? How many values were collected on Mondays in 2012?
-
-Answer
-
-250, 47
-
-Explanation
-
-> amzn <- getSymbols("AMZN", auto.assign = FALSE)
-> sampleTimes <- index(amzn) 
-> addmargins(table(year(sampleTimes), weekdays(sampleTimes)))
