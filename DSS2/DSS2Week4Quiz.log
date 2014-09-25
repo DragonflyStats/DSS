@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  22 SEP 2014 23:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.26)  24 SEP 2014 22:19
 entering extended mode
 **DSS2Week4Quiz.tex
 (C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week4Quiz.tex
@@ -529,25 +529,41 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5] [6] [7] [
-8] [9]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 130.
+
+
+("C:\Program Files\Miktek\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 130.
+ [5] [6] [7] [8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+
+ []
+
 [10] [11] (C:\Users\Kevin\Documents\GitHub\DSS\DSS2\DSS2Week4Quiz.aux) ) 
 Here is how much of TeX's memory you used:
- 3874 strings out of 493921
- 56924 string characters out of 3148886
+ 3891 strings out of 493921
+ 57207 string characters out of 3148886
  121423 words of memory out of 3000000
- 7132 multiletter control sequences out of 15000+200000
+ 7146 multiletter control sequences out of 15000+200000
  9436 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 44i,10n,43p,278b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,10n,43p,303b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Pro
-gram Files/Miktek/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/Mi
-ktek/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/Miktek/fonts/t
-ype1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/Miktek/fonts/type1/public/
-amsfonts/cm/cmtt12.pfb>
-Output written on DSS2Week4Quiz.pdf (11 pages, 64736 bytes).
+gram Files/Miktek/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/M
+iktek/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/Miktek/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/Miktek/fonts/type1/public/
+amsfonts/cm/cmr10.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/c
+mr8.pfb><C:/Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/
+Program Files/Miktek/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program File
+s/Miktek/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/Miktek/fon
+ts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on DSS2Week4Quiz.pdf (11 pages, 112828 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

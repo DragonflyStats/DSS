@@ -11,10 +11,38 @@
 
 
 \subsection*{Regular Expressions}
-\texttt{strsplit()} This function split the elements of a character vector x into substrings according to the matches to substring split within them.
+\begin{itemize}
+\item \texttt{strsplit()} This function split the elements of a character vector x into 
+substrings according to the matches to substring split within them.
+\end{itemize}
+\begin{verbatim}
+> x <- c(as = "asfef", qu = "qwerty", "yuiop[", "b", "stuff.blah.yech")
+> x
+as                qu                                     
+"asfef"          "qwerty"          "yuiop["               "b" 
 
-\texttt{strReverse}
+"stuff.blah.yech" 
 
+>
+> # split x on the letter e
+> strsplit(x, "e")
+$as
+[1] "asf" "f"  
+
+$qu
+[1] "qw"  "rty"
+
+[[3]]
+[1] "yuiop["
+
+[[4]]
+[1] "b"
+
+[[5]]
+[1] "stuff.blah.y" "ch"          
+
+\end{verbatim}
+\newpage
 \subsection*{Question 1}
 The American Community Survey distributes downloadable data about United States communities. \\ \\ Download the 2006 microdata survey about housing for the state of Idaho using \texttt{download.file()} from here: 
 
@@ -54,7 +82,9 @@ Load the Gross Domestic Product data for the 190 ranked countries in this data s
 \begin{verbatim}
 https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv 
 \end{verbatim}
-Remove the commas from the GDP numbers in millions of dollars and average them. What is the average? 
+Remove the commas from the GDP numbers in millions of dollars and average them. 
+
+What is the average? 
 
 \begin{itemize}
 \item[(i)] 377652.4
@@ -75,11 +105,12 @@ Original data sources:
  \end{framed}
  \begin{framed}
  \begin{verbatim}
- dtGDP <- data.table(read.csv(file, skip = 4, nrows = 215,
+ GDP <- data.table(read.csv(file, skip = 4, nrows = 215,
     stringsAsFactors = FALSE))
- dtGDP <- dtGDP[X != ""]
- dtGDP <- dtGDP[, list(X, X.1, X.3, X.4)]
- setnames(dtGDP, c("X", "X.1", "X.3", "X.4"), c("CountryCode", "rankingGDP", "Long.Name", "gdp"))
+ GDP <- GDP[X != ""]
+ GDP <- GDP[, list(X, X.1, X.3, X.4)]
+ setnames(GDP, c("X", "X.1", "X.3", "X.4"), 
+    \label{key}c("CountryCode", "rankingGDP", "Long.Name", "gdp"))
  gdp <- as.numeric(gsub(",", "", dtGDP$gdp))
 
 \end{verbatim}
@@ -106,8 +137,8 @@ In the data set from Question 2 what is a regular expression that would allow yo
 \begin{framed}
 \begin{verbatim}
 
-> isUnited <- grepl("^United", dtGDP$Long.Name)
-> summary(isUnited)
+> beginsUnited <- grepl("^United", GDP$Long.Name)
+> summary(beginsUnited)
 \end{verbatim}
 \end{framed}
 \begin{verbatim}
@@ -136,26 +167,32 @@ Match the data based on the country shortcode. Of the countries for which the en
 \item[(iv)] 13
 \end{itemize}
 
-\noindent \textbf{Original data sources: }
+\noindent \textbf{Original data sources: }\\
 http://data.worldbank.org/data-catalog/GDP-ranking-table \\
 http://data.worldbank.org/data-catalog/ed-stats \\
 
 \noindent \textbf{
 Downloading the Data}
-\begin{framed}
+
 \begin{verbatim}
  url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
  file <- file.path(getwd(), "EDSTATS_Country.csv")
  download.file(url, file, method = "curl")
 \end{verbatim}
-\end{framed}
+
 \begin{framed}
 \begin{verbatim}
-dtEd <- data.table(read.csv(file))
- dt <- merge(dtGDP, dtEd, all = TRUE, by = c("CountryCode"))
- isFiscalYearEnd <- grepl("fiscal year end", tolower(dt$Special.Notes))
- isJune <- grepl("june", tolower(dt$Special.Notes))
- table(isFiscalYearEnd, isJune)
+Educ <- data.table(read.csv(file))
+
+# outer join -  see ?merge
+ ALL <- merge(GDP, Educ, all = TRUE, by = c("CountryCode"))
+
+FiscalEnd <- grepl("fiscal year end", 
+  tolower(ALL$Special.Notes))
+  
+June <- grepl("june", tolower(ALL$Special.Notes))
+
+table(FiscalEnd, June)
 \end{verbatim}
 \end{framed}
 %==========================================%
@@ -174,7 +211,8 @@ amzn = getSymbols("AMZN",auto.assign=FALSE)
 sampleTimes = index(amzn) 
 \end{verbatim}
 \end{framed}
-How many values were collected in 2012? How many values were collected on Mondays in 2012?
+\noindent \textbf{Questions}\\
+\noindent How many values were collected in 2012?\\ How many values were collected on Mondays in 2012?
 \begin{verbatim}
 1. 250, 47
 2. 365, 52
@@ -185,9 +223,10 @@ How many values were collected in 2012? How many values were collected on Monday
 
 \begin{framed}
 \begin{verbatim}
-amzn <- getSymbols("AMZN", auto.assign = FALSE)
-sampleTimes <- index(amzn) 
-addmargins(table(year(sampleTimes),       weekdays(sampleTimes)))
+amazon <- getSymbols("AMZN", auto.assign = FALSE)
+sampleTimes <- index(amazon) 
+addmargins(table(year(sampleTimes),      
+   weekdays(sampleTimes)))
 \end{verbatim}
 \end{framed}
 \end{document}

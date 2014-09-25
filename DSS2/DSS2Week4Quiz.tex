@@ -77,11 +77,13 @@ What does the setOldClass function do?
 \newpage
 %----------------------- %
 \subsection*{Question 1}
-What is produced at the end of this snippet of R code?
+What is produced at the end of this snippet of \texttt{R} code?
+\begin{framed}
 \begin{verbatim}
 set.seed(1)
 rpois(5, 2)
 \end{verbatim}
+\end{framed}
 \begin{itemize}
 \item[(i)] It is impossible to tell because the result is random
 \item[(ii)] A vector with the numbers 1, 4, 1, 1, 5
@@ -99,6 +101,20 @@ What \texttt{R} function can be used to generate standard Normal random variable
 \item[(iii)] \texttt{rnorm}
 \item[(iv)] \texttt{pnorm}
 \end{itemize}
+
+\noindent \textbf{Standard Normal Distribution}
+
+Standardization Formula (used to compute Z-score)
+\[ z_o = \frac{x_o - \mu_x}{\sigma_x} \]
+
+\[  Z \sim \mathcal{N}(\mu=1,\sigma^2=1^2)\]
+
+\begin{framed}
+\begin{verbatim}
+?dnorm
+\end{verbatim}
+\end{framed}
+Same help file for each command
 %================================================ %
 \newpage
 \subsection*{Question 3}
@@ -109,16 +125,26 @@ When simulating data, why is using the \texttt{set.seed()} function important?
 \item[(iii)] It ensures that the sequence of random numbers is truly random.
 \item[(iv)] It ensures that the random numbers generated are within specified boundaries.
 \end{itemize}
+
+\begin{itemize}
+\item Pseudo-random Numbers
+\item Mersenne Twister
+\item (Talk on this at Python Ireland 2014)
+\end{itemize}
 %================================================ %
 \newpage
 \subsection*{Question 4}
-Which function can be used to evaluate the inverse cumulative distribution function for the Poisson distribution?
+Which function can be used to evaluate the \textbf{inverse cumulative distribution function} for the Poisson distribution?
 
 \begin{itemize}
 \item[(i)] \texttt{rpois}
 \item[(ii)] \texttt{ppois}
 \item[(iii)] \texttt{qpois}
 \item[(iv)] \texttt{dpois}
+\end{itemize}
+\bigskip
+\begin{itemize}
+\item Remark - another name for this function is the \textbf{quantile function}.
 \end{itemize}
 %================================================ %
 \newpage
@@ -127,8 +153,9 @@ What does the following code do?
 \begin{framed}
 \begin{verbatim}
 set.seed(10)
-x <- rbinom(10, 10, 0.5)
-e <- rnorm(10, 0, 20)
+n=10
+x <- rbinom(n, 10, 0.5)
+e <- rnorm(n, 0, 20)
 y <- 0.5 + 2 * x + e
 \end{verbatim}
 \end{framed}
@@ -137,6 +164,20 @@ y <- 0.5 + 2 * x + e
 \item[(ii)] Generate data from a Normal linear model
 \item[(iii)] Generate random exponentially distributed data
 \item[(iv)] Generate data from a Poisson generalized linear model
+\end{itemize}
+\bigskip
+\begin{framed}
+	\begin{verbatim}
+	set.seed(10)
+	n=10000
+	x <- rbinom(n, 10, 0.5)
+	e <- rnorm(n, 0, 20)
+	y <- 0.5 + 2 * x + e
+	hist(y)
+	\end{verbatim}
+\end{framed}
+\begin{itemize}
+\item Normal Approximation of the Binomial Distribution
 \end{itemize}
 %========================================================= %
 \newpage
@@ -152,7 +193,7 @@ What \texttt{R} function can be used to generate Binomial random variables?
 %======================================== %
 \newpage
 \subsection*{Question 7}
-What aspect of the \texttt{R} runtime does the profiler keep track of when an R expression is evaluated?
+What aspect of the \texttt{R} runtime does the profiler keep track of when an \texttt{R} expression is evaluated?
 
 \begin{itemize}
 \item[(i)] the function call stack
@@ -172,7 +213,7 @@ fit <- lm(y ~ x1 + x2)
 Rprof(NULL)
 \end{verbatim}
 \end{framed}
-(Assume that y, x1, and x2 are present in the workspace.) Without running the code, what percentage of the run time is spent in the '\texttt{lm}' function, based on the 'by.total' method of normalization shown in '\texttt{summaryRprof()}'?
+\noindent (Assume that y, x1, and x2 are present in the workspace.) \\ \\ Without running the code, what percentage of the run time is spent in the '\texttt{lm}' function, based on the '\texttt{by.total}' method of normalization shown in '\texttt{summaryRprof()}'?
 
 \begin{itemize}
 \item[(i)] 100\%
@@ -193,7 +234,7 @@ When using '\texttt{system.time()}', what is the user time?
 \end{itemize}
 %========================================= %
 \subsection*{Question 10}
-If a computer has more than one available processor and R is able to take advantage of that, then which of the following is true when using '\texttt{system.time()}'?
+If a computer has more than one available processor and \texttt{R} is able to take advantage of that, then which of the following is true when using '\texttt{system.time()}'?
 \begin{itemize}
 \item[(i)] elapsed time is 0
 \item[(ii)] user time is always smaller than elapsed time
