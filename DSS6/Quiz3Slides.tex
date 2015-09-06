@@ -1,0 +1,168 @@
+Coursera Statistical Inference Quiz 3
+Question 1
+In a population of interest, a sample of 9 men yielded a sample average brain volume of 1,100cc and a standard deviation of 30cc. What is a 95% Student’s T confidence interval for the mean brain volume in this new population?
+
+n <- 9
+1100 + c(-1, 1) * qt(.975, n - 1) * 30 / sqrt(n)
+## [1] 1076.94 1123.06
+Answer
+Assuming underlying data is iid gaussian
+
+\(\frac{\bar X - μ}{S / \sqrt{n}}\)
+
+follows Gosset’s \(t\) distibution with \(n-1\) degrees of freedom
+
+Interval \(\bar X \pm t_{n-1} S / \sqrt{n}\), where \(t_{n-1}\) is the relevant quantile
+
+n <- 9
+μ <- 1100
+σ <- 30
+quantile = 0.975 # is 95% with 2.5% on both sides of the range
+confidenceInterval = μ + c(-1, 1) * qt(quantile, df=n-1) * σ / sqrt(n)
+confidenceInterval
+## [1] 1077 1123
+
+
+%========================================================%
+Question 2
+A diet pill is given to 9 subjects over six weeks. The average difference in weight (follow up - baseline) is -2 pounds. What would the standard deviation of the difference in weight have to be for the upper endpoint of the 95% T confidence interval to touch 0?
+
+Answer
+Interval \(CI_{up} = \bar X + t_{n-1} S / \sqrt{n}\), where \(t_{n-1}\) is the relevant quantile
+
+Rewritten, to get standard deviation: \(S = \frac{CI_{up} - \bar X * \sqrt{n}}{t_{n-1}}\)
+
+n <- 9
+averageDifference <- -2
+quantile = 0.975 # is 95% with 2.5% on both sides of the range
+ci_up = 0
+σ = (ci_up - averageDifference * sqrt(n))/qt(quantile, df=n-1)
+round(σ, 2)
+## [1] 2.6
+%========================================================%
+Question 2
+A diet pill is given to 9 subjects over six weeks. The average difference in weight (follow up - baseline) is -2 pounds. What would the standard deviation of the difference in weight have to be for the upper endpoint of the 95% T confidence interval to touch 0?
+
+n <- 9
+(sd <- 2 * sqrt(n) / qt(.975, n - 1))
+## [1] 2.601903
+-2 + c(-1, 1) * qt(.975, n - 1) * sd / sqrt(n)
+## [1] -4  0
+
+%========================================================================%
+Question 3
+In an effort to improve running performance, 5 runners were either given a protein supplement or placebo. Then, after a suitable washout period, they were given the opposite treatment. Their mile times were recorded under both the treatment and placebo, yielding 10 measurements with 2 per subject. The researchers intend to use a T test and interval to investigate the treatment. Should they use a paired or independent group T test and interval?
+
+Answer
+A paired interval
+You could use either
+It’s necessary to use both
+Independent groups, since all subjects were seen under both systems
+
+%========================================================================
+Question 4
+In a study of emergency room waiting times, investigators consider a new and the standard triage systems. To test the systems, administrators selected 20 nights and randomly assigned the new triage system to be used on 10 nights and the standard system on the remaining 10 nights. They calculated the nightly median waiting time (MWT) to see a physician. The average MWT for the new system was 3 hours with a variance of 0.60 while the average MWT for the old system was 5 hours with a variance of 0.68. Consider the 95% confidence interval estimate for the differences of the mean MWT associated with the new system. Assume a constant variance. What is the interval? Subtract in this order (New System - Old System).
+
+Answer
+Independent group T intervals
+
+A \((1 - a) \times 100%\) confidence interval for \(μ_y - μ_x\) is
+
+\(\bar Y - \bar X \pm t_{n_x + n_y - 2, 1 - α/2} S_p\left(\frac{1}{n_x} + \frac{1}{n_y}\right)^{1/2}\)
+
+The pooled variance estimator is:
+
+\(S_p^2 = \{(n_x - 1) S_x^2 + (n_y - 1) S_y^2\}/(n_x + n_y - 2)\)
+
+Rewritten for available variables:
+
+\(S_p = \sqrt{\{(n_x - 1) var_x + (n_y - 1) var_y\}/(n_x + n_y - 2)}\)
+old.mean <- 5
+old.var <- 0.68
+old.n <- 10
+
+new.mean <- 3
+new.var <- 0.60
+new.n <- 10
+
+alpha <- (1 - .95)
+
+(t <- qt(1 - alpha / 2, old.n + new.n - 2))
+## [1] 2.100922
+(sp <- sqrt(((old.n - 1) * old.var + (new.n - 1) * new.var) / (old.n + new.n - 2)))
+## [1] 0.8
+(new.mean - old.mean) + c(-1, 1) * t * sp * sqrt(1 / old.n + 1 / new.n)
+## [1] -2.751649 -1.248351
+%================================================================================%
+Question 4’
+Same as question 4, but assuming unequal variances:
+
+old.var_n <- old.var / old.n
+new.var_n <- new.var / new.n
+(df <- (old.var_n + new.var_n) ^ 2 / 
+   (old.var_n^2 / (old.n - 1) + new.var_n^2 / (new.n - 1)))
+## [1] 17.92996
+(t <- qt(1 - alpha / 2, df))
+## [1] 2.10151
+(new.mean - old.mean) + c(-1, 1) * t * sqrt(old.var_n + new.var_n)
+## [1] -2.751859 -1.248141
+
+%==================================================================================%
+Question 5
+Suppose that you create a 95% T confidence interval. You then create a 90% interval using the same data. What can be said about the 90% interval with respect to the 95% interval?
+
+Answer
+The interval will be the same width, but shifted.
+The interval will be narrower.
+The interval will be wider
+It is impossible to tell.
+%====================================================================================%
+Question 6
+To further test the hospital triage system, administrators selected 200 nights and randomly assigned a new triage system to be used on 100 nights and a standard system on the remaining 100 nights. They calculated the nightly median waiting time (MWT) to see a physician. The average MWT for the new system was 4 hours with a standard deviation of 0.5 hours while the average MWT for the old system was 6 hours with a standard deviation of 2 hours. Consider the hypothesis of a decrease in the mean MWT associated with the new treatment. What does the 95% independent group confidence interval with unequal variances suggest vis a vis this hypothesis? (Because there’s so many observations per group, just use the Z quantile instead of the T.)
+
+old.mean <- 6
+old.sd <- 2
+old.n <- 100
+old.var <- old.sd^2
+old.var_n <- old.var / old.n
+
+new.mean <- 4
+new.sd <- 0.5
+new.n <- 100
+new.var <- new.sd^2
+new.var_n <- new.var / new.n
+
+(df <- (old.var_n + new.var_n) ^ 2 / 
+   (old.var_n^2 / (old.n - 1) + new.var_n^2 / (new.n - 1)))
+## [1] 111.3268
+(t <- qt(1 - alpha / 2, df))
+## [1] 1.981503
+(old.mean - new.mean) + c(-1, 1) * t * sqrt(old.var_n + new.var_n)
+## [1] 1.591503 2.408497
+%=======================================================================================%
+
+%---------------------------------------%
+
+%.......................................%
+%################################################################################### %
+Question 7
+Suppose that 18 obese subjects were randomized, 9 each, to a new diet pill and a placebo. Subjects’ body mass indices (BMIs) were measured at a baseline and again after having received the treatment or placebo for four weeks. The average difference from follow-up to the baseline (followup - baseline) was ???3 kg/m2 for the treated group and 1 kg/m2 for the placebo group. The corresponding standard deviations of the differences was 1.5 kg/m2 for the treatment group and 1.8 kg/m2 for the placebo group. Does the change in BMI over the four week period appear to differ between the treated and placebo groups? Assuming normality of the underlying data and a common population variance, calculate the relevant 90% t confidence interval. Subtract in the order of (Treated - Placebo) with the smaller (more negative) number first.
+
+trt.n <- 9
+trt.mean <- -3
+trt.sd <- 1.5
+trt.var <- trt.sd^2
+
+plc.n <- 9
+plc.mean <- 1
+plc.sd <- 1.8
+plc.var <- plc.sd^2
+
+alpha <- (1 - .9)
+
+(t <- qt(1 - alpha / 2, plc.n + trt.n - 2))
+## [1] 1.745884
+(sp <- sqrt(((plc.n - 1) * plc.var + (trt.n - 1) * trt.var) / (plc.n + trt.n - 2)))
+## [1] 1.656804
+(trt.mean - plc.mean) + c(-1, 1) * t * sp * sqrt(1 / plc.n + 1 / trt.n)
+## [1] -5.363579 -2.636421
