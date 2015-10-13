@@ -1,7 +1,12 @@
+%===========================================================================%
+\begin{frame}[fragile]
+
 Statistical inference is the process of drawing conclusions about populations or scientific truths from data. There are many modes of performing inference including statistical modeling, data oriented strategies and explicit use of designs and randomization in analyses. Furthermore, there are broad theories (frequentists, Bayesian, likelihood, design based, …) and numerous complexities (missing data, observed and unobserved confounding, biases) for performing inference. A practitioner can often be left in a debilitating maze of techniques, philosophies and nuance. This course presents the fundamentals of inference in a practical approach for getting things done. After taking this course, students will understand the broad directions of statistical inference and use this information 
 for making informed choices in analyzing data.
 
+\end{frame}
 %===========================================================================%
+\begin{frame}[fragile]
 Question 1
 What is the variance of the distribution of the average an IID draw of n observations from a population with mean \(μ\) and variance \(σ^2\).
 
@@ -9,7 +14,10 @@ Answer
 For large enough \(n\), the distribution of \(S_n\) is close to the normal distribution with mean \(µ\) and variance \(\frac{σ^2}{n}\)
 
 
+\end{frame}
 %===========================================================================%
+\begin{frame}[fragile]
+
 Question 2
 Let \(X\) be DBP. We want \(P(X \leq 70)\) given that \(X\) is \(N(80, 10^2)\).
 
@@ -31,10 +39,16 @@ volume <- round(qnorm(quantile, mean = μ, sd = σ))
 volume
 ## [1] 1223
 
+\end{frame}
 %===========================================================================%
-Question 4
+\begin{frame}[fragile]
+\frametitle{Question 4}
 Refer to the previous question. Brain volume for adult women is about 1,100 cc for women with a standard deviation of 75 cc. Consider the sample mean of 100 random adult women from this population. What is the 95th percentile of the distribution of that sample mean?
 
+\end{frame}
+%===========================================================================%
+\begin{frame}[fragile]
+\frametitle{Question 4}
 Answer
 Let \(\bar X\) be the average sample mean for 100 randomly sampled women.
 
@@ -42,6 +56,13 @@ The standard error is \(SE_{\bar X} = \frac{σ}{\sqrt{n}}\)
 
 \(X\) is \(N(1100, 75^2 / 100)\).
 
+\end{frame}
+%===========================================================================%
+\begin{frame}[fragile]
+\frametitle{Question 4}
+
+\begin{framed}
+\begin{verbatim}
 quantile <- 0.95
 μ <- 1100
 σ <- 75
@@ -49,16 +70,22 @@ n <- 100
 SE <- σ/sqrt(n)
 round(qnorm(quantile, mean = μ, sd = SE))
 ## [1] 1112
+\end{verbatim}
+\end{framed}
 
+\end{frame}
 %===========================================================================%
-Question 5
+\begin{frame}[fragile]
+\frametitle{Question 5}
 You flip a fair coin 5 times, about what’s the probability of getting 4 or 5 heads?
 
 1 - pbinom(3, 5, .5)
 ## [1] 0.1875
 
+\end{frame}
 %===========================================================================%
-Question 6
+\begin{frame}[fragile]
+\frametitle{Question 6}
 The respiratory disturbance index (RDI), a measure of sleep disturbance, for a specific population has a mean of 15 (sleep events per hour) and a standard deviation of 10. They are not normally distributed. Give your best estimate of the probability that a sample mean RDI of 100 people is between 14 and 16 events per hour?
 
 sd <- 10 / sqrt(100)
@@ -86,8 +113,11 @@ percentageRight <- pnorm(right, mean = μ, sd = SE) * 100
 probPercentage <- round(percentageRight - percentageLeft)
 probPercentage
 ## [1] 68
+
+\end{frame}
 %===========================================================================%
-Question 7
+\begin{frame}[fragile]
+\frametitle{Question 7}
 Consider a standard uniform density. The mean for this density is .5 and the variance is 1 / 12. You sample 1,000 observations from this distribution and take the sample mean, what value would you expect it to be near?
 
 Answer
@@ -101,11 +131,15 @@ SE <- σ/sqrt(n)
 
 qnorm(quantile, mean = μ, sd = SE)
 ## [1] 0.5
+
+\end{frame}
 %==============================================================================%
+\begin{frame}
 Question 8
 The number of people showing up at a bus stop is assumed to be Poisson with a mean of 5 people per hour. You watch the bus stop for 3 hours. About what’s the probability of viewing 10 or fewer people?
 
 ppois(10, 3*5)
 ## [1] 0.1184644
 
+\end{frame}
 %===========================================================================%
