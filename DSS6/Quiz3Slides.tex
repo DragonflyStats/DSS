@@ -1,11 +1,26 @@
 Coursera Statistical Inference Quiz 3
+
+\end{frame}
+%========================================================%
+\begin{frame}[fragile]
+
 Question 1
 In a population of interest, a sample of 9 men yielded a sample average brain volume of 1,100cc and a standard deviation of 30cc. What is a 95% Student’s T confidence interval for the mean brain volume in this new population?
 
 n <- 9
 1100 + c(-1, 1) * qt(.975, n - 1) * 30 / sqrt(n)
 ## [1] 1076.94 1123.06
+
+
+\end{frame}
+%========================================================%
+\begin{frame}[fragile]
+
 Answer
+
+\end{frame}
+%========================================================%
+\begin{frame}[fragile]
 Assuming underlying data is iid gaussian
 
 \(\frac{\bar X - μ}{S / \sqrt{n}}\)
@@ -13,6 +28,11 @@ Assuming underlying data is iid gaussian
 follows Gosset’s \(t\) distibution with \(n-1\) degrees of freedom
 
 Interval \(\bar X \pm t_{n-1} S / \sqrt{n}\), where \(t_{n-1}\) is the relevant quantile
+
+
+\end{frame}
+%========================================================%
+\begin{frame}[fragile]
 
 n <- 9
 μ <- 1100
@@ -22,9 +42,10 @@ confidenceInterval = μ + c(-1, 1) * qt(quantile, df=n-1) * σ / sqrt(n)
 confidenceInterval
 ## [1] 1077 1123
 
-
+\end{frame}
 %========================================================%
-Question 2
+\begin{frame}[fragile]
+\frametitle{Question 2}
 A diet pill is given to 9 subjects over six weeks. The average difference in weight (follow up - baseline) is -2 pounds. What would the standard deviation of the difference in weight have to be for the upper endpoint of the 95% T confidence interval to touch 0?
 
 Answer
@@ -32,6 +53,8 @@ Interval \(CI_{up} = \bar X + t_{n-1} S / \sqrt{n}\), where \(t_{n-1}\) is the r
 
 Rewritten, to get standard deviation: \(S = \frac{CI_{up} - \bar X * \sqrt{n}}{t_{n-1}}\)
 
+\begin{framed}
+\begin{verbatim}
 n <- 9
 averageDifference <- -2
 quantile = 0.975 # is 95% with 2.5% on both sides of the range
@@ -39,29 +62,49 @@ ci_up = 0
 σ = (ci_up - averageDifference * sqrt(n))/qt(quantile, df=n-1)
 round(σ, 2)
 ## [1] 2.6
+\end{verbatim}
+\end{framed}
+\end{frame}
 %========================================================%
-Question 2
+\begin{frame}
+\frametitle{Question 2}
 A diet pill is given to 9 subjects over six weeks. The average difference in weight (follow up - baseline) is -2 pounds. What would the standard deviation of the difference in weight have to be for the upper endpoint of the 95% T confidence interval to touch 0?
 
+\begin{framed}
+\begin{verbatim}
 n <- 9
 (sd <- 2 * sqrt(n) / qt(.975, n - 1))
 ## [1] 2.601903
 -2 + c(-1, 1) * qt(.975, n - 1) * sd / sqrt(n)
 ## [1] -4  0
-
-%========================================================================%
+\end{verbatim}
+\end{framed}
+\end{frame}
+%====================================================================================%
+\begin{frame}
 Question 3
 In an effort to improve running performance, 5 runners were either given a protein supplement or placebo. Then, after a suitable washout period, they were given the opposite treatment. Their mile times were recorded under both the treatment and placebo, yielding 10 measurements with 2 per subject. The researchers intend to use a T test and interval to investigate the treatment. Should they use a paired or independent group T test and interval?
-
+\end{frame}
+%====================================================================================%
+\begin{frame}
+\frametitle{Question 3}
 Answer
-A paired interval
-You could use either
-It’s necessary to use both
-Independent groups, since all subjects were seen under both systems
 
-%========================================================================
+\begin{itemize}
+\item A paired interval
+\item You could use either
+\item It’s necessary to use both
+\item Independent groups, since all subjects were seen under both systems
+\end{itemize}
+\end{frame}
+%====================================================================================%
+\begin{frame}
 Question 4
 In a study of emergency room waiting times, investigators consider a new and the standard triage systems. To test the systems, administrators selected 20 nights and randomly assigned the new triage system to be used on 10 nights and the standard system on the remaining 10 nights. They calculated the nightly median waiting time (MWT) to see a physician. The average MWT for the new system was 3 hours with a variance of 0.60 while the average MWT for the old system was 5 hours with a variance of 0.68. Consider the 95% confidence interval estimate for the differences of the mean MWT associated with the new system. Assume a constant variance. What is the interval? Subtract in this order (New System - Old System).
+
+\end{frame}
+%====================================================================================%
+\begin{frame}
 
 Answer
 Independent group T intervals
@@ -77,6 +120,11 @@ The pooled variance estimator is:
 Rewritten for available variables:
 
 \(S_p = \sqrt{\{(n_x - 1) var_x + (n_y - 1) var_y\}/(n_x + n_y - 2)}\)
+
+\end{frame}
+%====================================================================================%
+\begin{frame}
+
 old.mean <- 5
 old.var <- 0.68
 old.n <- 10
@@ -93,7 +141,9 @@ alpha <- (1 - .95)
 ## [1] 0.8
 (new.mean - old.mean) + c(-1, 1) * t * sp * sqrt(1 / old.n + 1 / new.n)
 ## [1] -2.751649 -1.248351
-%================================================================================%
+\end{frame}
+%====================================================================================%
+\begin{frame}
 Question 4’
 Same as question 4, but assuming unequal variances:
 
@@ -107,7 +157,9 @@ new.var_n <- new.var / new.n
 (new.mean - old.mean) + c(-1, 1) * t * sqrt(old.var_n + new.var_n)
 ## [1] -2.751859 -1.248141
 
-%==================================================================================%
+\end{frame}
+%====================================================================================%
+\begin{frame}
 Question 5
 Suppose that you create a 95% T confidence interval. You then create a 90% interval using the same data. What can be said about the 90% interval with respect to the 95% interval?
 
@@ -116,7 +168,10 @@ The interval will be the same width, but shifted.
 The interval will be narrower.
 The interval will be wider
 It is impossible to tell.
+\end{frame}
 %====================================================================================%
+\begin{frame}
+
 Question 6
 To further test the hospital triage system, administrators selected 200 nights and randomly assigned a new triage system to be used on 100 nights and a standard system on the remaining 100 nights. They calculated the nightly median waiting time (MWT) to see a physician. The average MWT for the new system was 4 hours with a standard deviation of 0.5 hours while the average MWT for the old system was 6 hours with a standard deviation of 2 hours. Consider the hypothesis of a decrease in the mean MWT associated with the new treatment. What does the 95% independent group confidence interval with unequal variances suggest vis a vis this hypothesis? (Because there’s so many observations per group, just use the Z quantile instead of the T.)
 
