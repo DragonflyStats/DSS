@@ -83,3 +83,192 @@ summary(lm(y ~ d1*x))
 \end{verbatim}
 \end{framed}
 \end{frame}
+
+
+Q1
+Q2
+Q3
+Q4
+Q5
+Q6
+Q1
+stability
+stable positioning or not (stab / xstab).
+error
+size of error (MM / SS / LX / XL).
+sign
+sign of error, positive or negative (pp / nn).
+wind
+wind sign (head / tail).
+magn
+wind strength (Light / Medium / Strong / Out of Range).
+vis
+visibility (yes / no).
+use
+use the autolander or not. (auto / noauto.)
+Consider the space shuttle data ?shuttle in the MASS library. Consider modeling the use of the autolander as the outcome (variable name use).
+
+Fit a logistic regression model with autoloader (variable auto) use (labeled as “auto” 1) versus not (0) as predicted by wind sign (variable wind).
+
+Give the estimated odds ratio for autoloader use comparing head winds, labeled as “head” in the variable headwind (numerator) to tail winds (denominator).
+
+library(MASS)
+head(shuttle)
+##   stability error sign wind   magn vis  use
+## 1     xstab    LX   pp head  Light  no auto
+## 2     xstab    LX   pp head Medium  no auto
+## 3     xstab    LX   pp head Strong  no auto
+## 4     xstab    LX   pp tail  Light  no auto
+## 5     xstab    LX   pp tail Medium  no auto
+## 6     xstab    LX   pp tail Strong  no auto
+shuttle2<-shuttle
+shuttle2$use2<-as.numeric(shuttle2$use=='auto')
+#shuttle2$wind2<-as.numeric(shuttle2$wind=='head')
+#head(shuttle2)
+fit<-glm(use2 ~ factor(wind) - 1, family = binomial, data = shuttle2)
+
+#0.03181
+
+#fit<-glm(use ~ wind, family = binomial, data = shuttle)
+#anova(fit)
+summary(fit)$coef
+##                  Estimate Std. Error z value Pr(>|z|)
+## factor(wind)head   0.2513     0.1782   1.410   0.1584
+## factor(wind)tail   0.2831     0.1786   1.586   0.1128
+exp(coef(fit))
+## factor(wind)head factor(wind)tail 
+##            1.286            1.327
+1.286 / 1.327
+## [1] 0.9691
+#exp(0.25131)
+#exp(0.03181)
+exp(cbind(OddsRatio = coef(fit), confint(fit)))
+## Waiting for profiling to be done...
+##                  OddsRatio  2.5 % 97.5 %
+## factor(wind)head     1.286 0.9082  1.829
+## factor(wind)tail     1.327 0.9372  1.891
+Q2
+Consider the previous problem. Give the estimated odds ratio for autoloader use comparing head winds (numerator) to tail winds (denominator) adjusting for wind strength from the variable magn.
+
+fit<-glm(use2 ~ factor(wind) + factor(magn) - 1, family = binomial, data = shuttle2)
+summary(fit)$coef
+##                      Estimate Std. Error    z value Pr(>|z|)
+## factor(wind)head    3.635e-01     0.2841  1.280e+00   0.2007
+## factor(wind)tail    3.955e-01     0.2844  1.391e+00   0.1643
+## factor(magn)Medium -1.010e-15     0.3599 -2.805e-15   1.0000
+## factor(magn)Out    -3.795e-01     0.3568 -1.064e+00   0.2874
+## factor(magn)Strong -6.441e-02     0.3590 -1.794e-01   0.8576
+exp(coef(fit))
+##   factor(wind)head   factor(wind)tail factor(magn)Medium 
+##             1.4384             1.4852             1.0000 
+##    factor(magn)Out factor(magn)Strong 
+##             0.6842             0.9376
+exp(cbind(OddsRatio = coef(fit), confint(fit)))
+## Waiting for profiling to be done...
+##                    OddsRatio  2.5 % 97.5 %
+## factor(wind)head      1.4384 0.8281  2.535
+## factor(wind)tail      1.4852 0.8548  2.620
+## factor(magn)Medium    1.0000 0.4929  2.029
+## factor(magn)Out       0.6842 0.3380  1.374
+## factor(magn)Strong    0.9376 0.4627  1.897
+1.4384/1.4852
+## [1] 0.9685
+Q3
+fit<-glm(use2 ~ factor(wind), family = binomial, data = shuttle2)
+summary(fit)$coef
+##                  Estimate Std. Error z value Pr(>|z|)
+## (Intercept)       0.25131     0.1782  1.4105   0.1584
+## factor(wind)tail  0.03181     0.2522  0.1261   0.8996
+fit<-glm(1 - use2 ~ factor(wind), family = binomial, data = shuttle2)
+summary(fit)$coef
+##                  Estimate Std. Error z value Pr(>|z|)
+## (Intercept)      -0.25131     0.1782 -1.4105   0.1584
+## factor(wind)tail -0.03181     0.2522 -0.1261   0.8996
+Q4
+Consider the insect spray data InsectSprays. Fit a Poisson model using spray as a factor level. Report the estimated relative rate comapring spray A (numerator) to spray B (denominator).
+
+fit<-glm(count~factor(spray)-1,data=InsectSprays,family=poisson)
+summary(fit)$coef
+##                Estimate Std. Error z value   Pr(>|z|)
+## factor(spray)A    2.674    0.07581  35.274 1.448e-272
+## factor(spray)B    2.730    0.07372  37.032 3.511e-300
+## factor(spray)C    0.734    0.20000   3.670  2.427e-04
+## factor(spray)D    1.593    0.13019  12.233  2.066e-34
+## factor(spray)E    1.253    0.15430   8.119  4.707e-16
+## factor(spray)F    2.813    0.07071  39.788  0.000e+00
+exp(coef(fit))
+## factor(spray)A factor(spray)B factor(spray)C factor(spray)D factor(spray)E 
+##         14.500         15.333          2.083          4.917          3.500 
+## factor(spray)F 
+##         16.667
+14.500  / 15.333
+## [1] 0.9457
+Q5
+Consider a Poisson glm with an offset, t. So, for example, a model of the form glm(count ~ x + offset(t), family = poisson) where x is a factor variable comparing a treatment (1) to a control (0) and t is the natural log of a monitoring time.
+
+What is impact of the coefficient for x if we fit the model glm(count ~ x + offset(t2), family = poisson) where t2 <- log(10) + t?
+
+In other words, what happens to the coefficients if we change the units of the offset variable. (Note, adding log(10) on the log scale is multiplying by 10 on the original scale.)
+
+fit<-glm(count ~ factor(spray), family = poisson,data=InsectSprays,offset = log(count + 1))
+summary(fit)$coef
+##                 Estimate Std. Error  z value Pr(>|z|)
+## (Intercept)    -0.066691    0.07581 -0.87972   0.3790
+## factor(spray)B  0.003512    0.10574  0.03322   0.9735
+## factor(spray)C -0.325351    0.21389 -1.52114   0.1282
+## factor(spray)D -0.118451    0.15065 -0.78625   0.4317
+## factor(spray)E -0.184623    0.17192 -1.07389   0.2829
+## factor(spray)F  0.008422    0.10367  0.08124   0.9352
+fit2<-glm(count ~ factor(spray), family = poisson,data=InsectSprays,offset = log(10)+log(count+1))
+summary(fit2)$coef
+##                 Estimate Std. Error   z value   Pr(>|z|)
+## (Intercept)    -2.369276    0.07581 -31.25290 2.039e-214
+## factor(spray)B  0.003512    0.10574   0.03322  9.735e-01
+## factor(spray)C -0.325351    0.21389  -1.52114  1.282e-01
+## factor(spray)D -0.118451    0.15065  -0.78625  4.317e-01
+## factor(spray)E -0.184623    0.17192  -1.07389  2.829e-01
+## factor(spray)F  0.008422    0.10367   0.08124  9.352e-01
+fit<-glm(count ~ factor(spray) + offset(log(count+1)), family = poisson,data=InsectSprays)
+summary(fit)$coef
+##                 Estimate Std. Error  z value Pr(>|z|)
+## (Intercept)    -0.066691    0.07581 -0.87972   0.3790
+## factor(spray)B  0.003512    0.10574  0.03322   0.9735
+## factor(spray)C -0.325351    0.21389 -1.52114   0.1282
+## factor(spray)D -0.118451    0.15065 -0.78625   0.4317
+## factor(spray)E -0.184623    0.17192 -1.07389   0.2829
+## factor(spray)F  0.008422    0.10367  0.08124   0.9352
+fit2<-glm(count ~ factor(spray) + offset(log(10)+log(count+1)), family = poisson,data=InsectSprays)
+summary(fit2)$coef
+##                 Estimate Std. Error   z value   Pr(>|z|)
+## (Intercept)    -2.369276    0.07581 -31.25290 2.039e-214
+## factor(spray)B  0.003512    0.10574   0.03322  9.735e-01
+## factor(spray)C -0.325351    0.21389  -1.52114  1.282e-01
+## factor(spray)D -0.118451    0.15065  -0.78625  4.317e-01
+## factor(spray)E -0.184623    0.17192  -1.07389  2.829e-01
+## factor(spray)F  0.008422    0.10367   0.08124  9.352e-01
+basically, b1 did not change. Same rate, 0.003512 in both equation.
+
+Q6
+Using a knot point at 0, fit a linear model that looks like a hockey stick with two lines meeting at x=0. Include an intercept term, x and the knot point term. What is the estimated slope of the line after 0?
+
+x <- -5:5
+y <- c(5.12, 3.93, 2.67, 1.87, 0.52, 0.08, 0.93, 2.05, 2.54, 3.87, 4.97)
+
+
+knots<-c(0)
+splineTerms<-sapply(knots,function(knot) (x>knot)*(x-knot))
+xmat<-cbind(1,x,splineTerms)
+fit<-lm(y~xmat-1)
+yhat<-predict(fit)
+
+summary(fit)$coef
+##       Estimate Std. Error t value  Pr(>|t|)
+## xmat   -0.1826    0.13558  -1.347 2.150e-01
+## xmatx  -1.0242    0.04805 -21.313 2.470e-08
+## xmat    2.0372    0.08575  23.759 1.049e-08
+(yhat[10]-yhat[6])/4
+##    10 
+## 1.013
+plot(x,y)
+lines(x,yhat,col="red")
+plot of chunk unnamed-chunk-6
