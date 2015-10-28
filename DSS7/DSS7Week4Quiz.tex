@@ -43,12 +43,67 @@
 	%---------------------------------------- %
 	\newpage
 	\subsection*{Question 5}
+Q5
+Consider a Poisson glm with an offset, t. So, for example, a model of the form glm(count ~ x + offset(t), family = poisson) where x is a factor variable comparing a treatment (1) to a control (0) and t is the natural log of a monitoring time.
+
+What is impact of the coefficient for x if we fit the model glm(count ~ x + offset(t2), family = poisson) where t2 <- log(10) + t?
+
+In other words, what happens to the coefficients if we change the units of the offset variable. (Note, adding log(10) on the log scale is multiplying by 10 on the original scale.)
+
+fit<-glm(count ~ factor(spray), family = poisson,data=InsectSprays,offset = log(count + 1))
+summary(fit)$coef
+##                 Estimate Std. Error  z value Pr(>|z|)
+## (Intercept)    -0.066691    0.07581 -0.87972   0.3790
+## factor(spray)B  0.003512    0.10574  0.03322   0.9735
+## factor(spray)C -0.325351    0.21389 -1.52114   0.1282
+## factor(spray)D -0.118451    0.15065 -0.78625   0.4317
+## factor(spray)E -0.184623    0.17192 -1.07389   0.2829
+## factor(spray)F  0.008422    0.10367  0.08124   0.9352
+fit2<-glm(count ~ factor(spray), family = poisson,data=InsectSprays,offset = log(10)+log(count+1))
+summary(fit2)$coef
+##                 Estimate Std. Error   z value   Pr(>|z|)
+## (Intercept)    -2.369276    0.07581 -31.25290 2.039e-214
+## factor(spray)B  0.003512    0.10574   0.03322  9.735e-01
+## factor(spray)C -0.325351    0.21389  -1.52114  1.282e-01
+## factor(spray)D -0.118451    0.15065  -0.78625  4.317e-01
+## factor(spray)E -0.184623    0.17192  -1.07389  2.829e-01
+## factor(spray)F  0.008422    0.10367   0.08124  9.352e-01
+fit<-glm(count ~ factor(spray) + offset(log(count+1)), family = poisson,data=InsectSprays)
+summary(fit)$coef
+##                 Estimate Std. Error  z value Pr(>|z|)
+## (Intercept)    -0.066691    0.07581 -0.87972   0.3790
+## factor(spray)B  0.003512    0.10574  0.03322   0.9735
+## factor(spray)C -0.325351    0.21389 -1.52114   0.1282
+## factor(spray)D -0.118451    0.15065 -0.78625   0.4317
+## factor(spray)E -0.184623    0.17192 -1.07389   0.2829
+## factor(spray)F  0.008422    0.10367  0.08124   0.9352
+fit2<-glm(count ~ factor(spray) + offset(log(10)+log(count+1)), family = poisson,data=InsectSprays)
+summary(fit2)$coef
+##                 Estimate Std. Error   z value   Pr(>|z|)
+## (Intercept)    -2.369276    0.07581 -31.25290 2.039e-214
+## factor(spray)B  0.003512    0.10574   0.03322  9.735e-01
+## factor(spray)C -0.325351    0.21389  -1.52114  1.282e-01
+## factor(spray)D -0.118451    0.15065  -0.78625  4.317e-01
+## factor(spray)E -0.184623    0.17192  -1.07389  2.829e-01
+## factor(spray)F  0.008422    0.10367   0.08124  9.352e-01
+basically, b1 did not change. Same rate, 0.003512 in both equation.
+
+	%---------------------------------------- %
+	\newpage
+	\subsection*{Question 6}
+	
+
+Q6
+Using a knot point at 0, 
+fit a linear model that looks like a hockey stick with two lines meeting at x=0. 
+Include an intercept term, x and the knot point term. 
+What is the estimated slope of the line after 0?
+
+x <- -5:5
+y <- c(5.12, 3.93, 2.67, 1.87, 0.52, 0.08, 0.93, 2.05, 2.54, 3.87, 4.97)
+
 	\begin{framed}
 		\begin{verbatim}
-		R Code Here
-		\end{verbatim}
-	\end{framed}
-	
 knots<-c(0)
 splineTerms<-sapply(knots,function(knot) (x>knot)*(x-knot))
 xmat<-cbind(1,x,splineTerms)
@@ -56,6 +111,8 @@ fit<-lm(y~xmat-1)
 yhat<-predict(fit)
 
 summary(fit)$coef
+	\end{verbatim}
+	\end{framed}
 ##       Estimate Std. Error t value  Pr(>|t|)
 ## xmat   -0.1826    0.13558  -1.347 2.150e-01
 ## xmatx  -1.0242    0.04805 -21.313 2.470e-08
