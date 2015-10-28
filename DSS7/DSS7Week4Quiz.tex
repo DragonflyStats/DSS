@@ -26,6 +26,7 @@
 	%---------------------------------------- %
 	\newpage
 	\subsection*{Question 3}
+	
 	\begin{framed}
 		\begin{verbatim}
 		R Code Here
@@ -47,4 +48,22 @@
 		R Code Here
 		\end{verbatim}
 	\end{framed}
+	
+knots<-c(0)
+splineTerms<-sapply(knots,function(knot) (x>knot)*(x-knot))
+xmat<-cbind(1,x,splineTerms)
+fit<-lm(y~xmat-1)
+yhat<-predict(fit)
+
+summary(fit)$coef
+##       Estimate Std. Error t value  Pr(>|t|)
+## xmat   -0.1826    0.13558  -1.347 2.150e-01
+## xmatx  -1.0242    0.04805 -21.313 2.470e-08
+## xmat    2.0372    0.08575  23.759 1.049e-08
+(yhat[10]-yhat[6])/4
+##    10 
+## 1.013
+plot(x,y)
+lines(x,yhat,col="red")
+plot of chunk unnamed-chunk-6
 \end{document}
