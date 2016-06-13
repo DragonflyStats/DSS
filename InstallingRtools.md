@@ -1,6 +1,9 @@
 Introduction
+========================
 
-Rtools provides a toolchain for Windows platform that work well with R. It mainly includes GNU make, GNU gcc, and other utilities commonly used on UNIX-ish platform. This page gives a simple introduction to how to install Rtools on Windows. This howto includes:
+Rtools provides a toolchain for Windows platform that work well with R. It mainly includes GNU make, GNU gcc, and other utilities commonly used on UNIX-ish platform. This page gives a simple introduction to how to install Rtools on Windows. 
+
+This tutorial includes:
 
 - install Rtools
 - check if Rtools can be used by R
@@ -11,13 +14,12 @@ Download Rtools from http://cran.r-project.org/bin/windows/Rtools/. If you have 
 
 For installing Rtools, attention needs to be paid in a step where we can edit the system PATH so that the C++ compiler that is included in Rtools can be used by R. As indicated by the following step, we need to check this option (not manually edit the system PATH. Once the option is checked, system PATH would be edited to include important folders of Rtools by the installation process).
 
-editpathrtools
 
-Check if Rtools can be used in R
 
-Close the current R session.
+#### Check if Rtools can be used in R
 
-Open a new R session.
+- Close the current R session.
+- Open a new R session.
 
 Execute Sys.getenv("PATH") as the following to see if Rtools is included in system PATH. In the following output, the first few are c:\\Rtools\\bin and c:\\Rtools\\gcc-4.x-y\\bin if Rtools is installed to c:\\Rtools. If these two do no appear, check if installing Rtools had followed the above instruction. One way is to reinstall Rtools and the other way is to edit system PATH manually (or using some other tool). For simplicity, we suggest reinstalling Rtools and make sure PATH is edited (only check the option) during the installation.
 <pre><code>
