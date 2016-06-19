@@ -1,23 +1,30 @@
 ---------------------------------------------------------
 ### Question 1
+<pre><code>
 Suppose I define the following function in R
 cube <- function(x, n) {
         x^3
 }
+</code></pre>
 What is the result of running
 cube(3)
 in R after defining this function?
-The number 27 is returned
-A warning is given with no value returned.
-An error is returned because 'n' is not specified in the call to 'cube'
-The users is prompted to specify the value of 'n'.
+
+* The number 27 is returned
+* A warning is given with no value returned.
+* An error is returned because 'n' is not specified in the call to 'cube'
+* The users is prompted to specify the value of 'n'.
+
 ---------------------------------------------------------
+
 ### Question 2
 The following code will produce a warning in R.
+<pre><code>
 x <- 1:10
 if(x > 5) {
         x <- 0
 }
+</code></pre>
 Why?
 'x' is a vector of length 10 and 'if' can only test a single logical statement.
 The expression uses curly braces.
