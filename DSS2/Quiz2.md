@@ -1,3 +1,110 @@
+---------------------------------------------------------
+### Question 1
+Suppose I define the following function in R
+cube <- function(x, n) {
+        x^3
+}
+What is the result of running
+cube(3)
+in R after defining this function?
+The number 27 is returned
+A warning is given with no value returned.
+An error is returned because 'n' is not specified in the call to 'cube'
+The users is prompted to specify the value of 'n'.
+---------------------------------------------------------
+### Question 2
+The following code will produce a warning in R.
+x <- 1:10
+if(x > 5) {
+        x <- 0
+}
+Why?
+'x' is a vector of length 10 and 'if' can only test a single logical statement.
+The expression uses curly braces.
+There are no elements in 'x' that are greater than 5
+You cannot set 'x' to be 0 because 'x' is a vector and 0 is a scalar.
+The syntax of this R expression is incorrect.
+---------------------------------------------------------
+### Question 3
+Consider the following function
+<pre><code>
+f <- function(x) {
+        g <- function(y) {
+                y + z
+        }
+        z <- 4
+        x + g(x)
+}
+<pre><code>
+If I then run in R
+<pre><code>
+z <- 10
+f(3)
+</code></pre>
+What value is returned?
+
+* 7
+* 4
+* 10
+* 16
+---------------------------------------------------------
+### Question 4
+Consider the following expression:
+<pre><code>
+x <- 5
+y <- if(x < 3) {
+        NA
+} else {
+        10
+}
+</code></pre>
+What is the value of 'y' after evaluating this expression?
+10
+5
+3
+NA
+---------------------------------------------------------
+### Question 5
+Consider the following R function
+<pre><code>
+h <- function(x, y = NULL, d = 3L) {
+        z <- cbind(x, d)
+        if(!is.null(y))
+                z <- z + y
+        else
+                z <- z + f
+        g <- x + y / z
+        if(d == 3L)
+                return(g)
+        g <- g + 10
+        g
+}
+</code></pre>
+Which symbol in the above function is a free variable?
+
+* f
+* z
+* d
+* L
+* g
+---------------------------------------------------------
+### Question 6
+What is an environment in R?
+
+* a list whose elements are all functions
+* a collection of symbol/value pairs
+* a special type of function
+* an R package that only contains data
+---------------------------------------------------------
+### Question 7
+The R language uses what type of scoping rule for resolving free variables?
+
+* compilation scoping
+* lexical scoping
+* dynamic scoping
+* global scoping
+---------------------------------------------------------
+
 ### Question 8. 
 How are free variables in R functions resolved?
 
@@ -22,8 +129,7 @@ What is one of the consequences of the scoping rules used in R?
 
 * Functions cannot be nested
 
-Incorrect
-0 / 1 points
+
 
 ---------------------------------------------------------
 ### question 10. 
