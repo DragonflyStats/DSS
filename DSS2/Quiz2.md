@@ -1,8 +1,8 @@
 ---------------------------------------------------------
 ### Question 1
-
-<pre><code>
 Suppose I define the following function in R
+<pre><code>
+
 cube <- function(x, n) {
         x^3
 }
