@@ -138,7 +138,7 @@ How are free variables in R functions resolved?
 
 * The values of free variables are searched for in the global environment [Incorrect Response ]
 
-* The values of free variables are searched for in the environment in which the function was called
+* The values of free variables are searched for in the environment in which the function was called [Incorrect Response ]
 
 * The values of free variables are searched for in the environment in which the function was defined
 
@@ -158,13 +158,18 @@ What is one of the consequences of the scoping rules used in R?
 
 
 ---------------------------------------------------------
-### question 10. 
+### Question 10. 
 In R, what is the parent frame?
 
 * It is the environment in which a function was defined [Incorrect Response ]
 
 * It is the package search list
 
-* It is the environment in which a function was called
+* ***It is the environment in which a function was called***
 
 * It is always the global environment [Incorrect Response ]
+
+
+#### How are free variables in R functions resolved?
+
+The parent frame of a function evaluation is the environment in which the function was called. It is not necessarily numbered one less than the frame number of the current evaluation, nor is it the environment within which the function was defined.
