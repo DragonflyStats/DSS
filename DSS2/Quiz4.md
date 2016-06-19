@@ -1,3 +1,63 @@
+Week 4 Quiz 
+=====================
+
+#### Question 1
+What is produced at the end of this snippet of R code?
+<pre><code>
+set.seed(1)
+rpois(5, 2)
+</code><pre>
+
+* It is impossible to tell because the result is random
+* A vector with the numbers 1, 4, 1, 1, 5
+* A vector with the numbers 3.3, 2.5, 0.5, 1.1, 1.7
+* A vector with the numbers 1, 1, 2, 4, 1
+
+#### Question 2
+What R function can be used to generate standard Normal random variables?
+
+* dnorm
+* qnorm
+* rnorm
+* pnorm
+
+#### Question 3
+When simulating data, why is using the set.seed() function important?
+It ensures that the sequence of random numbers starts in a specific place and is therefore reproducible.
+It can be used to generate non-uniform random numbers.
+It ensures that the sequence of random numbers is truly random.
+It ensures that the random numbers generated are within specified boundaries.
+
+#### Question 4
+Which function can be used to evaluate the inverse cumulative distribution function for the Poisson distribution?
+
+* rpois
+* ppois
+* qpois
+* dpois
+
+#### Question 5
+What does the following code do?
+<pre><code>
+set.seed(10)
+x <- rbinom(10, 10, 0.5)
+e <- rnorm(10, 0, 20)
+y <- 0.5 + 2 * x + e
+</code></pre>
+
+* Generate uniformly distributed random data
+* Generate data from a Normal linear model
+* Generate random exponentially distributed data
+* Generate data from a Poisson generalized linear model
+
+#### Question 6
+What R function can be used to generate Binomial random variables?
+
+* dbinom
+* qbinom
+* rbinom
+* pbinom
+
 ----------------------------------------------------------------------
 ### question 7. 
 What aspect of the R runtime does the profiler keep track of when an R expression is evaluated?
