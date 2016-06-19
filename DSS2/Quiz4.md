@@ -6,7 +6,7 @@ What is produced at the end of this snippet of R code?
 <pre><code>
 set.seed(1)
 rpois(5, 2)
-</code><pre>
+</code></pre>
 
 * It is impossible to tell because the result is random
 * A vector with the numbers 1, 4, 1, 1, 5
