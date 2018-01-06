@@ -1,9 +1,0 @@
-caret
-=============
-The caret package (short for Classification And REgression Training) is a set of functions that attempt to streamline the process for creating predictive models. The package contains tools for:
-- data splitting
-- pre-processing
-- feature selection
-- model tuning using resampling
-- variable importance estimation
-as well as other functionality.
