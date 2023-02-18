@@ -1,5 +1,8 @@
 plot4 <- function(){
-  data <- read.table('household_power_consumption.txt',sep=';', stringsAsFactors = FALSE)
+
+  data <- read.table('household_power_consumption.txt',sep=';', 
+                     stringsAsFactors = FALSE)
+  
   clean_data <- data[which(data[,1]=='1/2/2007' | data[,1]=='2/2/2007'),]
   png(file='plot4.png')
   dates <- 1:2880

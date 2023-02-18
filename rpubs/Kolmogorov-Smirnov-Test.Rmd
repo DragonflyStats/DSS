@@ -1,0 +1,70 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+%------------------------------------------
+\begin{slide}{K-S test: one sample test}
+
+\begin{itemize}
+\item One sample test - tests whether or not a data set comes from a specified distribution.
+\item The distribution is specified in the argument, by passing as an argument the name of a function associated with that distribution, but not the quantile function.
+\item To specify the normal distribution use either ``prnorm",``dnorm" or ``rnorm", but not ``qnorm".
+\item The null hypothesis is that the data set is normally distributed (or other specified distribution).
+\item The alternative is that it is not normally distributed.
+\item The mean and standard deviation must be specified, to distinguish from the standard normal distribution.
+
+\end{itemize}
+\end{slide}
+%------------------------------------------
+\begin{slide}{K-S test: one sample test}
+Generate two random sets of data values: x and y.
+\begin{verbatim}
+> ks.test(x,"rnorm", mean(x),sd(x))
+        One-sample Kolmogorov-Smirnov test
+
+data:  x
+D = 0.143, p-value = 0.938
+alternative hypothesis: two-sided
+
+\end{verbatim}
+
+The p-value is very high, greater than 1\%. We fail to reject the null. The data is indeed normally distributed.
+
+\end{slide}
+%------------------------------------------
+\begin{slide}{K-S test: two sample test}
+
+\begin{itemize}
+\item Two sample test - tests whether or not two data sets come from the same distribution.
+\item The null is that they do come from the same distribution. The alternative is that they don't.
+\end{itemize}
+
+\begin{verbatim}
+> ks.test(x,y)
+        Two-sample Kolmogorov-Smirnov test
+
+data:  x and y
+D = 0.25, p-value = 0.869
+alternative hypothesis: two-sided
+\end{verbatim}
+Again a high p-value. We can conclude that they do come from the same distribution.
+\end{slide}
+
+%------------------------------------------
+
+\begin{slide}{Other Inference tests}
+
+The nortest package includes common tests for normality of distribution. Similarly the outliers package contains well known inference tests for outliers.
+
+\begin{itemize}
+\item Grubbs test for outliers [outliers].
+\item Dixon Test for outliers [outliers].
+\item Anderson Darling test for normality [nortest].
+\end{itemize}
+ A boxplot is useful in conjunction with such tests.
+\end{slide}

@@ -1,0 +1,596 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{framed}
+
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 470pt
+
+% Key Commands for httr
+% SQL basics
+% sqldf
+% fwf files
+\begin{document}
+%---------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Week 2} 
+% the httr package
+% Prep work for Q2 and Q3 (SQL and sqldf)
+% Q5 - try it out - also what is fwf?
+Week 2 of Getting and Cleaning Data: Extracting Data From Databases and the Web
+
+\begin{itemize}
+\item Welcome to Week 2 of Getting and Cleaning Data! 
+
+\item The primary goal is to introduce you to the most common data storage systems and the appropriate tools to extract data from web or from databases like MySQL. 
+
+\item Remember that the Course Project is open and ongoing. It is due BEFORE 11:30 PM UTC on the Sunday at the end of Week 3, but please don't put it off until the last minute. 
+\item To access Course Project instructions and submission interface, click the Course Project link in the left navigation bar.  
+
+
+\item With the skills you learn this week you should be able to start on the basic data extraction that will form the beginnings of your project.
+\end{itemize} 
+\newpage
+\subsection*{The httr package (Hadley Wickham)}
+The aim of \textbf{\textit{httr}} is to provide a wrapper for RCurl customised to the demands of modern web APIs.
+
+\subsubsection*{Key features:}
+\begin{itemize}
+\item Functions for the most important http verbs: \texttt{GET()}, \texttt{HEAD()}, \texttt{PATCH()}, \texttt{PUT()}, \texttt{DELETE()} and \texttt{POST()}.
+\\
+\\
+\textit{For more on these verbs - visit this site}
+\begin{verbatim}
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+\end{verbatim}
+
+\item Automatic connection sharing across requests to the same website (by default, curl handles are managed automatically), cookies are maintained across requests, and a up-to-date root-level SSL certificate store is used.
+
+\item Requests return a standard reponse object that captures the http status line, headers and body, along with other useful information.
+
+\item Response content is available with \texttt{content()} as a raw vector (as \texttt{= "raw"}), a character vector (as \texttt{= "text"}), or parsed into an R object (as = "parsed"), currently for html, xml, json, png and jpeg.
+
+\item You can convert http errors into \texttt{R} errors with \texttt{stop\_for\_status()}.
+
+\item Config functions make it easier to modify the request in common ways: \texttt{set\_cookies()}, \texttt{add\_headers()}, \texttt{authenticate()}, use\_proxy(), \texttt{verbose()}, \texttt{timeout()}, \texttt{content\_type()}, accept(), \texttt{progress()}.
+
+\item Support for OAuth 1.0 and 2.0 with \texttt{oauth1.0\_token()} and \texttt{oauth2.0\_token()}. 
+
+\item The demos directory has seven \texttt{OAuth} demos: three for 1.0 (twitter, vimeo and yahoo) and four for 2.0 (facebook, github, google, linkedin).\texttt{ OAuth} credentials are automatically cached within a project.
+\end{itemize}
+
+\noindent \textbf{\textit{httr}} wouldn't be possible without the hard work of the authors of RCurl and curl. Thanks! \\\\ \textbf{\textit{httr}} is inspired by http libraries in other languages, such as Resty, Requests and httparty.
+
+\newpage
+\subsubsection*{Installation}
+
+To get the current released version from CRAN:
+\begin{framed}
+\begin{verbatim}
+install.packages("httr")
+\end{verbatim}
+\end{framed}
+To get the current development version from github:
+\begin{framed}
+\begin{verbatim}
+# install.packages("devtools")
+devtools::install_github("hadley/httr")
+\end{verbatim}
+\end{framed}
+%---------------------------------------------------------------------------------------------%
+\newpage
+
+\subsection*{OAuth - Open Standard for Authorisation}
+
+
+
+\begin{itemize}
+\item \textit{OAuth} is an open standard for authorization. OAuth provides client applications a 'secure delegated access' to server resources on behalf of a resource owner. 
+\item It specifies a process for resource owners to authorize third-party access to their server resources without sharing their credentials. 
+\item Designed specifically to work with \textit{Hypertext Transfer Protocol (HTTP)}, OAuth essentially allows access tokens to be issued to third-party clients by an authorization server, with the approval of the resource owner, or end-user.
+\item The client then uses the access token to access the protected resources hosted by the resource server.
+\item OAuth is commonly used as a way for web surfers to log into third party web sites using their Google, Facebook or Twitter accounts, without worrying about their access credentials being compromised.
+
+\item OAuth is a service that is complementary to, and therefore distinct from, OpenID. 
+\item OAuth is also distinct from OATH, which is a reference architecture for authentication, not a standard.
+\end{itemize}
+
+
+\subsubsection*{References}
+	\begin{verbatim}
+	http://en.wikipedia.org/wiki/OAuth
+	\end{verbatim}
+
+%---------------------------------------------------------------------------------------------%
+
+\newpage
+\subsection*{Useful Commands for Question 1}
+
+\begin{framed}
+\begin{verbatim}
+http://cran.r-project.org/web/packages/httr/httr.pdf
+\end{verbatim}
+\end{framed}
+\begin{itemize}
+	
+	
+	\item \texttt{oauth\_app} : Create an \textit{OAuth} application.
+	
+	\item \texttt{oauth1.0\_token} : Generate an \textit{oauth1.0} token.
+	
+	\item \texttt{oauth2.0\_token} : Generate an \textit{oauth2.0} token.
+
+	\item \texttt{oauth\_endpoints} : Describe an OAuth endpoint.
+	
+	
+	
+	\item \texttt{stop\_for\_status} : Take action on http error.
+ 
+    \item \texttt{warn\_for\_status} : Take action on http error.
+	
+	\item \texttt{content} : Extract content from a request
+	
+	\item \texttt{GET} : GET a url.
+	
+	\item \texttt{BROWSE} : Open specified url in browser.
+
+\end{itemize}
+\newpage
+
+\subsection*{Question 1}
+\textbf{Question}
+\begin{itemize}
+	\item Register an application with the Github API here 
+	\begin{verbatim}
+	https://github.com/settings/applications. 
+	\end{verbatim}
+	\item Access the API to get information on your instructors repositories 
+	\item (hint: this is the url you want "https://api.github.com/users/jtleek/repos"). \item Use this data to find the time that the datasharing repo was created. \item What time was it created?
+	\item This tutorial may be useful
+	\begin{verbatim} (https://github.com/hadley/httr/blob/master/demo/oauth2-github.r).
+	\end{verbatim}
+	\item You may also need to run the code in the base R package and not R studio.
+\end{itemize}
+
+\noindent \textbf{Options} \\
+\begin{itemize}
+\item[(i)] 2012-06-20T18:39:06Z
+\item[(ii)] 2014-03-05T16:11:46Z
+\item[(iii)] 2014-01-04T21:06:44Z
+\item[(iv)] 2013-11-07T13:25:07Z
+\end{itemize}
+\newpage
+\subsection*{The Basics of Structured Query Language (SQL)}
+
+A \texttt{SQL SELECT} statement can be broken down into numerous elements, each beginning with a keyword. Although it is not necessary, common convention is to write these keywords in all capital letters. 
+
+The most fundamental and common elements of a SELECT statement, namely
+
+\begin{itemize}
+\item \texttt{SELECT}
+\item \texttt{FROM}
+\item \texttt{WHERE}
+\item \texttt{ORDER BY}
+\end{itemize}
+\subsubsection*{The \texttt{SELECT ... FROM} Clause}
+The most basic \texttt{SELECT} statement has only 2 parts: 
+\begin{itemize}
+\item[(1)] what columns you want to return and 
+\item[(2)] what table(s) those columns come from.
+\end{itemize}
+
+\subsubsection*{The WHERE Clause}
+The next thing we want to do is to start limiting, or filtering, the data we fetch from the database. By adding a \texttt{WHERE} clause to the \texttt{SELECT} statement, we add one (or more) conditions that must be met by the selected data.
+
+ This will limit the number of rows that answer the query and are fetched. In many cases, this is where most of the "action" of a query takes place.
+
+What if we want to check if a column value is equal to more than one value? If it is only 2 values, then it is easy enough to test for each of those values, combining them with the \texttt{OR} operator.
+
+\subsubsection*{The \texttt{ORDER BY} Clause}
+Until now, we have been discussing filtering the data: that is, defining the conditions that determine which rows will be included in the final set of rows to be fetched and returned from the database. 
+
+Once we have determined which columns and rows will be included in the results of our \texttt{SELECT} query, we may want to control the order in which the rows appear—sorting the data.
+
+To sort the data rows, we include the \texttt{ORDER BY} clause. The \texttt{ORDER BY }clause includes one or more column names that specify the sort order.
+
+\noindent \textbf{References}
+\begin{verbatim}
+http://www.1keydata.com/sql/sql-commands.html
+http://www.cs.utexas.edu/~mitra/csFall2013/cs329/lectures/sql.html
+http://www.w3schools.com/sql/
+\end{verbatim}
+\newpage
+\subsection*{The sqldf package}
+\begin{itemize}
+\item \textbf{\textit{ sqldf}} is an \texttt{R} package for running SQL statements on R data frames, optimized for convenience. 
+
+\item \textbf{\textit{sqldf}} works with the SQLite, H2, PostgreSQL or MySQL databases. 
+
+\item SQLite has the least prerequisites to install. 
+\item H2 is just as easy if you have Java installed and also supports Date class and a few additional functions. 
+
+\item PostgreSQL notably supports Windowing functions providing the SQL analogue of the \texttt{R} \texttt{ave} function. 
+
+\item MySQL is a particularly popular database that drives many web sites. 
+
+\end{itemize}
+\begin{framed}
+\begin{verbatim}
+# installs everything you need to use sqldf with SQLite
+# including SQLite itself
+install.packages("sqldf")
+# shows built in data framesdata() 
+# load sqldf into workspace
+library(sqldf)
+sqldf("select * from iris limit 5")
+sqldf("select count(*) from iris")
+sqldf("select Species, count(*) from iris group by Species")
+
+
+# create a data frame
+DF <- data.frame(a = 1:5, b = letters[1:5])
+sqldf("select * from DF")
+sqldf("select avg(a) mean, variance(a) var from DF")
+\end{verbatim}
+\end{framed}
+%---------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 2}
+The \textbf{sqldf} package allows for execution of SQL commands on \texttt{R} data frames. \\\\ \noindent We will use the \textbf{sqldf} package to practice the queries we might send with the \texttt{dbSendQuery} command in RMySQL. 
+
+\bigskip
+\noindent Download the American Community Survey data and load it into an R object called
+\texttt{ acs}.
+
+\begin{verbatim}
+https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv 
+\end{verbatim}
+
+\noindent Which of the following commands will select only the data for the probability weights \texttt{pwgtp1} with ages less than 50?
+\begin{itemize}
+\item[(i)] \texttt{sqldf("select * from acs where AGEP < 50 and pwgtp1")}
+\item[(ii)] \texttt{sqldf("select * from acs")}
+\item[(iii)] \texttt{sqldf("select * from acs where AGEP < 50")}
+\item[(iv)] \texttt{sqldf("select pwgtp1 from acs where AGEP < 50")}
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+library(sqldf)
+
+## Data saved in local directory as "ss06pid.csv"
+
+acs <- read.csv("./ss06pid.csv", header=T, sep=",")
+
+names(acs)
+\end{verbatim}
+\end{framed}
+%---------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 3}
+Using the same data frame you created in the previous problem, what is the equivalent function to \texttt{unique(acs\$AGEP)}
+\begin{itemize}
+\item[(i)] \texttt{sqldf("select unique AGEP from acs")}
+\item[(ii)] \texttt{sqldf("select distinct pwgtp1 from acs")}
+\item[(iii)] \texttt{sqldf("select AGEP where unique from acs")}
+\item[(iv)] \texttt{sqldf("select distinct AGEP from acs")}
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{\texttt{R} commands for working with Text}
+
+Here are a small selection of useful commands for working with text
+
+\subsubsection*{The \texttt{nchar()} function}
+The \texttt{nchar()} command returns the number of characters in the argument.
+\begin{verbatim}
+> string=c("kevin")
+> nchar(string)
+[1] 5
+> nchar(1001)
+[1] 4
+\end{verbatim}
+
+\subsubsection*{The \texttt{grep()} function}
+The \texttt{grep()} command returns the location of a string that contains a specified substring, from a character vector.
+If you specify the additional argument "\texttt{value=T}", it will return that string.
+\begin{verbatim}
+> names(iris)
+[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     
+> 
+> class(names(iris))
+[1] "character"
+> grep("Petal",names(iris))
+[1] 3 4
+> 
+> grep("Petal",names(iris),value=T)
+[1] "Petal.Length" "Petal.Width" 
+> 
+\end{verbatim}
+\newpage
+\subsubsection*{The \texttt{paste()} function}
+This command creates a string of specified components. 
+
+\noindent The default is to have whitespace between each component. This can be removed with the additional argument \texttt{sep=""}.
+\begin{framed}
+	\begin{verbatim}
+	> x=5
+	> paste("file",x,".csv")
+	[1] "file 5 .csv"
+	>
+	> paste("file",x,".csv",sep="")
+	[1] "file5.csv"
+	\end{verbatim}
+\end{framed}
+\begin{verbatim}
+> filenm(2)
+[1] "file 2 .csv"
+\end{verbatim}
+\subsubsection*{The \texttt{gsub()} function}
+The \texttt{R} command \texttt{gsub()} is used to replace a character or piece of text with another in a specified string
+\begin{verbatim}
+> string=c("kevin")
+> gsub("k","s",string)
+[1] "sevin"
+\end{verbatim}
+\newpage
+
+\subsubsection*{The \texttt{sprintf()} function}
+This command returns a character vector containing a formatted combination of text and variable values. The structure of the command is \texttt{sprintf(format, input)}.
+\begin{verbatim}
+> sprintf("%f", pi)     
+[1] "3.141593"
+> sprintf("%.3f", pi)   # 3decimal places
+[1] "3.142"
+> sprintf("%1.0f", pi)   # no decimal places
+[1] "3"
+> sprintf("%5.1f", pi)  # 5 characters with whitespace
+[1] "  3.1"  
+> sprintf("%05.1f", pi)  #5 characters no whitespace
+[1] "003.1"
+> sprintf("%+f", pi)
+[1] "+3.141593"
+\end{verbatim}
+
+\noindent To express asingle or double digit character integer as three character number
+\begin{verbatim}
+> x = 4
+> sprintf("%03d", x)
+[1] "004"
+> 
+> x=40
+> sprintf("%03d", x)
+[1] "040"
+\end{verbatim}
+
+\noindent For character data (i.e. strings) 
+\begin{verbatim}
+> sprintf("%s %d", "test", 1:3)
+[1] "test 1" "test 2" "test 3"
+\end{verbatim}
+N.B $s$ for string and $d$ for integers.
+\newpage
+%---------------------------------------------------------------- %
+\subsubsection*{The \texttt{readLines()} function}
+
+This command is used to read some or all text lines from a connection (i.e.
+an internet connection or Database connection
+%---------------------------------------------------------------- %
+\subsubsection*{The \texttt{list.files()} function}
+This command is used to produce a list of files in a specified directory.
+\begin{framed}
+	\begin{verbatim}
+	getwd() # working directory
+	list.files(getwd()) # List all files in working directory
+	\end{verbatim}
+\end{framed}
+\newpage
+%---------------------------------------------------------------- %
+\subsection*{Question 4}
+How many characters are in the 10th, 20th, 30th and 100th lines of HTML from this page: 
+\begin{verbatim}
+http://biostat.jhsph.edu/~jleek/contact.html 
+\end{verbatim}
+(Hint: the \texttt{nchar()} function in \texttt{R} may be helpful)
+\begin{itemize}
+\item[(i)] 43 99 8 6
+\item[(ii)] 45 31 7 31
+\item[(iii)] 43 99 7 25
+\item[(iv)] 45 31 7 25
+\item[(v)] 45 0 2 2
+\item[(vi)] 45 31 2 25
+\item[(vii)] 45 92 7 2
+\end{itemize}
+
+\newpage
+\subsection*{Fixed width format}
+% - http://publib.boulder.ibm.com/infocenter/dmndhelp/v6r1mx/index.jsp?topic=/com.ibm.wbit.612.help.config.doc/topics/rfixwidth.html
+
+\begin{itemize}
+\item This format has data where every field has a fixed width and for those fields where their width is less than the value, it is padded with pad characters. 
+\item Every record ends with a new line character. The field width and pad character are both user configurable. This format may optionally contain a header at the top which corresponds to the properties of the business object. 
+
+\item 
+If the header is absent, then the order of the fields in the input data is the same as the order of properties in the business object. Typically, fixed width format contains data where every field has a different width. To enable this, the field width will be represented as a list property.
+\item 
+Fixed width format may be transmitted in several forms. Fixed width format may come in a stream through data bindings such as HTTP, JMS and MQ as well as files.
+\item
+Fixed width format with no header and one record
+This is a fixed width format with one record and does not contain a header. In this case, the business object properties have to be in the order of the fields in the data.
+\end{itemize}
+\begin{framed}
+\begin{verbatim}
+8A7111John~~~~~~Doe~~~~~~~80000~
+\end{verbatim}
+\end{framed}
+The corresponding business object for the record is as follows. Note the business object property names are in order of the data in the fixed width format. Note the lastName and firstName fields.
+
+\begin{center}
+\bigskip
+\begin{tabular}{|c|c|}
+	\hline  & CustomerBO \\ \hline
+	 id & 8A7111 \\ 
+	 firstName  & John  \\ 
+	 lastName & Doe \\ 
+	 salary & 80000 \\ 
+	\hline 
+\end{tabular} 
+\end{center}
+% - http://publib.boulder.ibm.com/infocenter/dmndhelp/v6r1mx/index.jsp?topic=/com.ibm.wbit.612.help.config.doc/topics/rfixwidth.html
+%---------------------------------------------------------------------------------------------%
+\newpage
+\subsection*{Question 5}
+Read this data set into \texttt{R} and report the sum of the numbers in the fourth column. 
+\begin{verbatim}
+https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for 
+\end{verbatim} 
+
+\noindent Original source of the data:
+\begin{verbatim}
+http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for 
+\end{verbatim} 
+
+\noindent \textit{(Hint this is a fixed width file (fwf) format)}
+\begin{itemize}
+\item[(i)] 32426.7
+\item[(ii)] 35824.9
+\item[(iii)] 222243.1
+\item[(iv)] 36.5
+\item[(v)] 28893.3
+\item[(vi)] 101.83
+\end{itemize}
+
+\begin{framed}
+\noindent Find out about fixed width files
+\begin{verbatim}
+help(read.fwf)
+\end{verbatim}	
+\end{framed}
+\newpage
+
+\begin{framed}
+\begin{verbatim}
+## Data Saved in Local Directory
+## as "DSS3wk5q5.for"
+
+data <- read.csv("./DSS3wk5q5.for", header = TRUE)
+file_name <- "./DSS3wk5q5.for"
+df <- read.fwf(file=file_name,
+    widths=c(-1,9,-5,4,4,-5,4,4,-5,4,4,-5,4,4), skip=4)
+
+## Carry Out usual Data Frame Inspection Procedures
+\end{verbatim}	
+\end{framed}
+
+\begin{framed}
+\begin{verbatim}
+ff <- tempfile()
+cat(file=ff, "123456", "987654", sep="\n")
+read.fwf(ff, width=c(1,2,3))    #> 1 23 456 \ 9 87 654
+unlink(ff)
+\end{verbatim}
+\end{framed}
+
+\end{document}
+
+%-----------------------------------------------------------------------------------------------------%
+uiz 2
+Attempts	Score
+1/3	15/15
+Question 1
+
+Register an application with the Github API here https://github.com/settings/applications. Access the API to get information on your instructors repositories (hint: this is the url you want "https://api.github.com/users/jtleek/repos"). Use this data to find the time that the datasharing repo was created. What time was it created? This tutorial may be useful (https://github.com/hadley/httr/blob/master/demo/oauth2-github.r). You may also need to run the code in the base R package and not R studio.
+
+Answer
+
+2013-11-07T13:25:07Z
+
+Explanation
+
+> library(httr)
+> oauth_endpoints("github")
+> myapp <- oauth_app("github", "ClientID", "ClientSecret")
+> github_token <- oauth2.0_token(oauth_endpoints("github"), myapp)
+> req <- GET("https://api.github.com/rate_limit", config(token = github_token))
+> stop_for_status(req)
+> content(req)
+> BROWSE("https://api.github.com/users/jtleek/repos",authenticate("Access Token","x-oauth-basic","basic"))
+
+%------------------------------------------- %
+Question 2
+
+The sqldf package allows for execution of SQL commands on R data frames. We will use the sqldf package to practice the queries we might send with the dbSendQuery command in RMySQL. Download the American Community Survey data and load it into an R object called
+
+acs
+https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv
+
+Which of the following commands will select only the data for the probability weights pwgtp1 with ages less than 50?
+
+Answer
+
+sqldf("select pwgtp1 from acs where AGEP < 50")
+
+Explanation
+
+> library(sqldf)
+> acs <- read.csv("./getdata-data-ss06pid.csv", header=T, sep=",")
+> sqldf("select pwgtp1 from acs where AGEP < 50")
+Question 3
+
+Using the same data frame you created in the previous problem, what is the equivalent function to unique(acs$AGEP)
+
+Answer
+
+sqldf("select distinct AGEP from acs")
+
+Explanation
+
+> sqldf("select distinct AGEP from acs")
+Question 4
+
+How many characters are in the 10th, 20th, 30th and 100th lines of HTML from this page:
+
+http://biostat.jhsph.edu/~jleek/contact.html
+
+(Hint: the nchar() function in R may be helpful)
+
+Answer
+
+45 31 7 25
+
+Explanation
+
+> hurl <- "http://biostat.jhsph.edu/~jleek/contact.html" 
+> con <- url(hurl)
+> htmlCode <- readLines(con)
+> close(con)
+> sapply(htmlCode[c(10, 20, 30, 100)], nchar)
+<meta name="Distribution" content="Global" />               <script type="text/javascript"> 
+                                           45                                            31 
+                                        })();                 \t\t\t\t<ul class="sidemenu"> 
+                                            7                                            25 
+Question 5
+
+Read this data set into R and report the sum of the numbers in the fourth column.
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for
+
+Original source of the data: http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for
+
+(Hint this is a fixed width file format)
+
+Answer
+
+32426.7
+
+Explanation
+
+> data <- read.csv("./getdata-wksst8110.for", header = TRUE)
+> file_name <- "./getdata-wksst8110.for"
+> df <- read.fwf(file=file_name,widths=c(-1,9,-5,4,4,-5,4,4,-5,4,4,-5,4,4), skip=4)
+> sum(df[, 4])
+> [1] 32426.7

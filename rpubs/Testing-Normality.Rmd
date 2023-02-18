@@ -1,0 +1,47 @@
+---
+title: "Testing-Normality"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Create Some Data
+
+X is intentionally created as a Normally distributed random sample.
+Conversely, Y is created as a sample from the exponential distribution.
+```{r}
+X <- rnorm(1000,100,10)
+Y <- rexp(1000,10)
+```
+
+#### Histogram of X and Y
+
+```{r}
+par(mfrow=c(1,2))
+hist(X,breaks=100)
+hist(Y,breaks=100)
+par(mfrow=c(1,1))
+```
+
+
+### The Shapiro-Wilk Test for Normality
+
+```{r}
+shapiro.test(X)
+```
+
+```{r}
+shapiro.test(Y)
+```
+
+
+### {nortest}: Tests for Normality
+
+Five omnibus tests for testing the composite hypothesis of norm
+
+
+```{r}
+library(nortest)
+```

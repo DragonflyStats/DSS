@@ -1,0 +1,75 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Chi-squared Test of Independence
+
+Two random variables x and y are called independent if the probability distribution of one variable is not affected by the presence of another.
+
+Assume f(i,j) is the observed frequency count of events belonging to both i-th category of x and j-th category of y. Also assume eij to be the corresponding expected count if x and y are independent. The null hypothesis of the independence assumption is to be rejected if the p-value of the following Chi-squared test statistics is less than a given significance level α.
+
+#### Example
+In the built-in data set survey, the Smoke column records the students smoking habit, while the Exer column records their exercise level. The allowed values in Smoke are "Heavy", "Regul" (regularly), "Occas" (occasionally) and "Never". As for Exer, they are "Freq" (frequently), "Some" and "None".
+
+We can tally the students smoking habit against the exercise level with the table function in R. The result is called the contingency table of the two variables.
+
+<pre><code>
+ library(MASS)       # load the MASS package 
+ tbl = table(survey$Smoke, survey$Exer) 
+ tbl                 # the contingency table 
+ 
+        Freq None Some 
+  Heavy    7    1    3 
+  Never   87   18   84 
+  Occas   12    3    4 
+  Regul    9    1    7
+</code></pre>
+<
+### Problem
+Test the hypothesis whether the students smoking habit is independent of their exercise level at .05 significance level.
+
+### Solution
+We apply the chisq.test function to the contingency table tbl, and found the p-value to be 0.4828.
+
+<pre><code>
+> chisq.test(tbl) 
+ 
+        Pearson’s Chi-squared test 
+ 
+data:  table(survey$Smoke, survey$Exer) 
+X-squared = 5.4885, df = 6, p-value = 0.4828 
+ 
+Warning message: 
+In chisq.test(table(survey$Smoke, survey$Exer)) : 
+  Chi-squared approximation may be incorrect
+</code></pre>  
+  
+Answer
+As the p-value 0.4828 is greater than the .05 significance level, we do not reject the null hypothesis that the smoking habit is independent of the exercise level of the students.
+
+Enhanced Solution
+The warning message found in the solution above is due to the small cell values in the contingency table. To avoid such warning, we combine the second and third columns of tbl, and save it in a new table named ctbl. Then we apply the chisq.test function against ctbl instead.
+
+<pre><code>
+> ctbl = cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"]) 
+> ctbl 
+      [,1] [,2] 
+Heavy    7    4 
+Never   87  102 
+Occas   12    7 
+Regul    9    8 
+ 
+> chisq.test(ctbl) 
+ 
+        Pearson’s Chi-squared test 
+ 
+data:  ctbl 
+X-squared = 3.2328, df = 3, p-value = 0.3571
+</code></pre>
+Exercise
+Conduct the Chi-squared independence test of the smoking and exercise survey by computing the p-value with the textbook formula.

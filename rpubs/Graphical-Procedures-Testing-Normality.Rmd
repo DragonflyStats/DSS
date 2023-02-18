@@ -1,0 +1,60 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<p>
+
+frametitle{Graphical Procedures for Assessing Normality}
+
+
+ * The normal probability (Q-Q) plot is a very useful tool for determining whether or not a data set is normally distributed.
+ * textbf{Important} Interpretation is simple. If the points follow the trendline, we can assume that that data set is a sample drawn from a normally distributed population.
+%(provided by the second line of texttt{R} code texttt{qqline}).
+ * One should expect minor deviations. Numerous major deviations would lead the analyst to conclude that the data set is not normally distributed.
+ * The Q-Q plot is best used in conjunction with a formal procedure such as the Shapiro-Wilk test.
+
+
+<pre>
+<code>
+>qqnorm(mySample)
+>qqline(mySample)
+</code>
+</pre>
+<p>
+
+
+%-------------------------------------------------%
+
+
+frametitle{Graphical Procedures for Assessing Normality}
+
+begin{center}
+includegraphics[scale=0.32]{10AQQplot}
+end{center}
+
+
+
+
+frametitle{Interpretation: Can NOT Assume Normal Distribution}
+
+begin{center}
+includegraphics[scale=0.6]{QQplot2}
+end{center}
+
+
+
+
+frametitle{Graphical Procedures for Assessing Normality}
+
+begin{center}
+includegraphics[scale=0.5]{QQplot1}
+end{center}
+
+ * Can assume textbf{Verbal SAT} is a normally distributed variable.
+ * Can not assume textbf{GPA} is a normally distributed variable.
+

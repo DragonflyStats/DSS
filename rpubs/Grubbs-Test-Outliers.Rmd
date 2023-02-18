@@ -1,0 +1,50 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Grubbs’ Test {data-navmenu="Inference Procedures"}
+==================================================
+
+### Grubbs’ Test
+        
+<h4>Grubbs’ Test</h4>
+
+Grubbs' test is a formal hypothesis test for assessing whether or not a  data set contains an outlier.
+This data set is univariate and approximately normal distributed. This test is designed for assessing one outlier only.  
+If more outliers are suspected, alternative tests, such as the Tietjen-Moore test, are recommended.
+Hypotheses: Grubbs' test is defined for the hypothesis: 
+
+[Ho] :  There are no outliers in the data set  
+[Ha] :  There is exactly one outlier in the data set  
+
+<pre><code>
+install.packages("outliers")
+library(outliers)
+#Package Author : Lukasz Komsta (UMLUB, Poland)
+
+grubbs.test(DAT002)
+</code></pre>
+
+%----------------------------------------------------------------------------------------------------------------- %
+
+\section{Outliers}
+\subsection{Grubb's Test for Outliers}
+<pre>
+	<code>
+	library(outliers)
+	grubbs.test(X)
+	</code>
+</pre>
+\subsection{Dixon Test for Outliers}
+\subsection{Outliers on Boxplots}
+Boxplots can used to determine an outlie (we will refer to them as ``boxplot outliers")
+<pre>
+	<code>
+	boxplot(X, horizontal = TRUE)
+	</code>
+</pre>
