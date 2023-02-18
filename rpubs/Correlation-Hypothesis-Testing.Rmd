@@ -1,0 +1,81 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="RWorkshop.GitHub.io : Website">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>RWorkshop.GitHub.io</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+          <h1 id="project_title">RWorkshop.GitHub.io</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+          
+
+%---------------------------------------------------
+\begin{slide}{cor.test() }
+We can test correlation in bivariate data using the cor.test() function.
+This test can be applied to all correlation coefficients.\\ We will only consider the default type, Pearson's product moment correlation coefficient.\\
+The default null hypothesis for cor.test() is that the correlation coefficient is zero.
+The default alternative is that the correlation coefficient is not zero.
+\begin{verbatim}
+> A<-c(4,5,6,2,5,1,2,7,9)
+> B<-c(4,7,5,3,6,4,2,7,2)
+> cor(A,B)
+[1] 0.2415396
+>cor.test(A,B)
+\end{verbatim}
+
+\end{slide}
+%----------------------------------------------------------
+\begin{slide}{cor.test() }
+
+
+
+\begin{verbatim}
+> cor.test(A,B)
+ Pearson's product-moment correlation
+
+data:  A and B
+t = 0.6586, df = 7, p-value = 0.5312
+alternative hypothesis: 
+    true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5033206  0.7804655
+sample estimates:
+      cor
+0.2415396
+\end{verbatim}
+
+\end{slide}
+%----------------------------------------------------------
+\begin{slide}{cor.test() }
+\begin{itemize}
+\item Conclusions: p-value and CI validate `fail to reject' conclusion.
+\item We can specifythe confidence level and alternative hypothesis as per previous procedures, but null value must be zero.
+\item Can specify other correlation types using `method'.
+\end{itemize}
+
+\end{slide}

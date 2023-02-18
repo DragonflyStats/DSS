@@ -1,0 +1,38 @@
+---
+title: "ggmosaic"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(knitr)
+```
+
+ggmosaic()
+======================
+ggmosaic was designed to create visualizations of categorical data and is capable of producing bar charts, stacked bar charts, mosaic plots, and double decker plots.
+
+
+
+```{r warning=FALSE,message=FALSE}
+
+library(ggmosaic)
+#> Loading required package: ggplot2
+```
+### The "fly" Dataset
+
+```{r}
+data(fly)
+head(fly) %>% kable()
+```
+
+### Example
+
+```{r}
+ggplot(data = fly) +
+  geom_mosaic(aes(x = product(rude_to_recline), fill=do_you_recline)) +
+  theme_mosaic()
+
+```

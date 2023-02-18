@@ -1,0 +1,39 @@
+---
+title: "IMDB Movie Keywords"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Extracting Keywords for Movies in IMDB
+
+```{r message=FALSE,warning=FALSE}
+library(textreadr)
+thisfile <- "https://www.imdb.com/title/tt0112462/keywords?ref_=tt_ql_stry_4"
+thisfile_Data <- read_html(thisfile, skip = 0, remove.empty = TRUE)
+```
+
+#### Extract Keyword List 
+
+
+
+```{r}
+Start_point <- grep("plot keywords",thisfile_Data)+1
+End_point <- grep("See also",thisfile_Data)-1
+
+thisfile_Data <- thisfile_Data[Start_point:End_point]
+```
+
+#### Remove some phrases
+
+```{r}
+thisfile_Data <- setdiff(thisfile_Data,c("Yes","No","Is this relevant?","Relevant?"))
+thisfile_Data <- thisfile_Data[ -(grep("found this relevant",thisfile_Data))]
+```
+
+#### List of Keywords
+```{r}
+thisfile_Data
+```

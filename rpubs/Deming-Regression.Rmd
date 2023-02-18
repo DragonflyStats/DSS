@@ -1,0 +1,84 @@
+---
+title: "Deming Regression"
+subtitle: "Kevin O'Brien"
+output: html_document
+---
+
+### Deming Regression
+
+* Orthogonal regression (also known as “Deming regression”) examines the linear relationship between two continuous variables. 
+
+* Unlike simple linear regression, ***both the response and predictor in orthogonal regression contain measurement error***. In simple regression, only the response variable contains measurement error.
+
+
+* It’s often used to test whether two instruments or methods are measuring the same thing, and is most commonly used in clinical sciences to test the equivalence of measurement instruments. This is an extremely common use case (see Bland-Altman plot)
+
+
+### Create Some Data
+
+```{r warning=FALSE}
+library(MethComp)
+
+# 'True' values
+M <- runif(100,0,5)
+
+# Measurements - with generated error terms
+x <- M + rnorm(100)
+y <- 2 + 3 * M + rnorm(100,sd=2)
+
+```
+
+---
+
+### Specifying Variance
+
+#### Deming regression with equal variances
+
+```{r warnings=FALSE}
+Deming(x,y)
+```
+
+#### Specifying the Variance Ratio as 2
+
+```{r warnings=FALSE}
+Deming(x,y,vr=2)
+```
+
+---
+
+### OLS Model Estimates
+
+```{r warnings=FALSE}
+# Comparing classical regression and "Deming extreme"
+summary(lm(y~x))
+
+
+```
+
+---
+
+
+
+### Plotting the Different Model Fits
+
+* Blue: OLS Regression
+* Red : Deming Regression
+
+```{r warning=FALSE, echo=FALSE}
+# Plot data with the two regression lines
+plot(x,y, pch=16)
+abline(lm(y~x),col="blue")
+abline(Deming(x,y,vr=2)[1:2],col="red")
+```
+
+---
+
+
+
+### Bootstrap Estimates
+
+```{r warnings=FALSE}
+Deming(x,y,boot=TRUE)
+```
+
+---

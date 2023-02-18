@@ -1,0 +1,147 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{R}
+library(ggplot2);
+library(gridExtra);
+library(reshape2);
+library(xts)
+library(zoo)
+library(ggplot2)
+
+
+checkInstalled <- function(package){
+    if (!package %in% installed.packages()) install.packages(package)
+}
+
+```
+
+### Air Passengers Data Set
+
+A well-known example of a time-series is count of airline passengers in the US. 
+
+This is a fairly simple time-series, with measurements taken on a monthly basis over a number of years, with each observation consisting of a single number, i.e. this time-series is *univariate*.
+
+
+
+```{r}
+data("AirPassengers")
+AP.ts <- AirPassengers
+
+# Time-series plot:
+
+# plot(AP.ts, ylab="Passengers (1000s)", type="o", pch =20)
+
+```
+
+
+```{r}
+class(AP.ts);
+
+str(AP.ts);
+```
+
+
+```{r}
+
+start(AP.ts); end(AP.ts); frequency(AP.ts);
+
+```
+
+
+```{r}
+
+plot(AP.ts, ylab = "Air Passengers (\'000s)");
+
+abline(reg=lm(AirPassengers~time(AirPassengers)))
+
+
+```
+
+
+```{r}
+### Using ggplot2 looks better, but has not got the labels properly 
+qplot(1:length(AP.ts), as.vector(AP.ts), 
+      geom = 'line', 
+      ylab = 'Air Passengers (\'000s)');
+```
+
+
+
+#### Decomposition in R
+
+***``decompose()``*** function
+
+* $x_t$ Observed Data
+* $m_t$ Trend
+* $s_t$ Seasonality
+* $z_t$ Random Error
+
+
+
+#### Simple Additive Decomposition Model
+ $$ x_t = m_t + s_t +z_t $$
+
+
+#### Multiplicative Model
+ $$ x_t = m_t \times s_t +z_t  $$
+
+
+If the random variation is modelleed by a multiplicative factor, and the variable is positive, an additive decomposition for $log(x_t)$
+could be used:
+ $$  log(x_t) = m_t \times s_t +z_t  $$
+This form tends to introduce a bias on the predictions, so care must be taken.
+
+### Decomposing the Data
+Decomposing the data into its trend, seasonal, and random error components will give some idea how these components relate to the observed dataset.
+
+
+
+```{r}
+decompose(AP.ts, type = "multiplicative")
+```
+
+```{r}
+
+AP.decompM <- decompose(AP.ts, type = "multiplicative")
+plot(AP.decompM)
+
+```
+
+
+
+
+```{r}
+### We are going to aggregate over the years, and extract the cycles
+AP.year.ts  <- aggregate(AP.ts);
+AP.cycle.ts <- cycle(AP.ts);
+
+
+### We are going to stack the two plots together
+layout(1:2)
+plot(AP.year.ts)
+boxplot(AP.ts ~ AP.cycle.ts)
+
+
+
+```
+
+
+
+```{r}
+### Create a plot in ggplot2
+
+plot1 <- qplot(start(AP.year.ts)[1]:end(AP.year.ts)[1], as.vector(AP.year.ts), geom = 'line', xlab = 'Year', ylab = 'Yearly Aggregates')
+plot2 <- qplot(cycle, AP, data = data.frame(cycle = as.factor(AP.cycle.ts), AP = as.vector(AP.ts)), geom = 'boxplot', xlab = 'Month', ylab = 'Passengers');
+
+```
+
+```{r}
+#grid.arrange(plot1, plot2);
+```

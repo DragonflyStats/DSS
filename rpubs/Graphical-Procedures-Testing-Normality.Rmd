@@ -58,3 +58,115 @@ end{center}
  * Can assume textbf{Verbal SAT} is a normally distributed variable.
  * Can not assume textbf{GPA} is a normally distributed variable.
 
+\documentclass{beamer}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+
+\begin{document}
+
+\section*{Checking for Normality}
+\begin{frame}
+\frametitle{Normal Probability Plots}
+\Large
+\begin{itemize}
+\item A normal distribution is often a reasonable model for the data. Without inspecting the data, however, it is risky to assume a normal distribution. 
+
+\item There are a number of graphs that can be used to check the deviations of the data from the normal distribution. 
+
+\end{itemize}
+
+\end{frame}
+%-------------------------------------------------------------------------- %
+\begin{frame}
+\frametitle{Normal Probability Plots}
+\Large
+\begin{itemize}
+\item A histogram is an example of a graph that can be used to check normality. \item Here, the histogram should reveal a bell shaped curve. 
+\end{itemize}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{./LargeXNormHist}
+\label{fig:LargeXNormHist}
+\end{figure}
+
+\end{frame}
+%-------------------------------------------------------------------------- %
+\begin{frame}
+\frametitle{Normal Probability Plots}
+\Large
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{./LargeXNotNormHist}
+\label{fig:LargeXNotNormHist}
+\end{figure}
+
+\end{frame}
+%------------------------------------------------- %
+\begin{frame}
+\frametitle{Normal Probability Plots}
+\Large
+\begin{itemize}
+
+\item The most useful tool for assessing normality is a \textit{\textbf{quantile -quantile}} or \textbf{Q-Q} plot. \item This is a scatterplot with the quantiles of the scores on the horizontal axis and the equivalent values expected when assuming the normal distribution, on the vertical axis. 
+\end{itemize}
+\end{frame}
+%------------------------------------------------- %
+\begin{frame}
+\frametitle{Normal Probability Plots}
+\Large
+\begin{itemize}
+\item The steps in constructing a QQ plot are as follows: First, we sort the data from smallest to largest. 
+\item A plot of these scores against the expected normal scores should reveal a straight line. \item The expected normal scores are calculated by taking the z-scores  where I is the rank in increasing order.
+\end{itemize}
+\end{frame}
+%------------------------------------------------- %
+\begin{frame}
+\frametitle{Normal Probability Plots}
+\Large
+\begin{itemize}
+
+\item Curvature of the points indicates departures of normality. This plot is also useful for detecting outliers. The outliers appear as points that are far away from the overall pattern op points
+\end{itemize}
+\end{frame}
+%------------------------------------------------- %
+\begin{frame}
+\frametitle{Normal Probability Plots}
+
+\end{frame}
+\end{document}
+
+\documentclass[12pt, a4paper]{report}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsthm, amsmath}
+\usepackage{amsbsy}
+\usepackage[usenames]{color}
+%\usepackage{listings}
+
+\title{Descriptive Statistics}
+\begin{document}
+
+\section*{Checking for Normality}
+
+A normal distribution is often a reasonable model for the data. Without inspecting the data, however, it is risky to assume a normal distribution. There are a number of graphs that can be used to check the deviations of the data from the normal distribution. 
+
+A histogram is an example of a graph that can be used to check normality. Here, the histogram should reveal a bell shaped curve. (IMAGE HERE)
+
+\subsection*{The Q-Q Plot}
+
+
+
+The most useful tool for assessing normality is a quantile quantile or QQ plot. This is a scatterplot with the quantiles of the scores on the horizontal axis and the expected normal scores on the vertical axis. The steps in constructing a QQ plot are as follows: First, we sort the data from smallest to largest. A plot of these scores against the expected normal scores should reveal a straight line. The expected normal scores are calculated by taking the z-scores  where I is the rank in increasing order.
+
+Curvature of the points indicates departures of normality. This plot is also useful for detecting outliers. The outliers appear as points that are far away from the overall pattern op points
+
+
+\end{document}
