@@ -1,0 +1,51 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Coloring Negative and Positive Bars Differently
+========================================================
+
+- You want to use different colors for negative and positive-valued bars.
+
+- We'll use a subset of the climate data (from the ***gcookbook*** package)and create a new column called `pos`, which indicates
+whether the value is positive or negative:
+```{r}
+library(ggplot2)
+library(gcookbook) # For the data set
+csub <- subset(climate, Source=="Berkeley" & Year >= 1900)
+csub$pos <- csub$Anomaly10y >= 0
+head(csub,12)
+table(csub$pos)
+```
+
+
+```{r fig.width=10, fig.height=8}
+ggplot(csub, aes(x=Year, y=Anomaly10y, fill=pos)) +
+geom_bar(stat="identity", position="identity")
+```
+
+- We can change the colors with `scale_fill_manual()` and remove the legend with `guide=FALSE`. 
+- We'll also add a thin black outline around each of the bars by setting colour and specifying size, which is the thickness of the outline,
+in millimeters:
+```{r fig.width=10, fig.height=8}
+ggplot(csub, aes(x=Year, y=Anomaly10y, fill=pos)) +
+geom_bar(stat="identity", position="identity", colour="black") +
+scale_fill_manual(values=c("blue", "red"))
+```
+
+
+```{r fig.width=10, fig.height=8}
+ggplot(csub, aes(x=Year, y=Anomaly10y, fill=pos)) +
+geom_bar(stat="identity", position="identity", colour="black", size=0.25) +
+scale_fill_manual(values=c("blue", "red"))
+```
+
+```{r fig.width=10, fig.height=8}
+ggplot(csub, aes(x=Year, y=Anomaly10y, fill=pos)) +
+geom_bar(stat="identity", position="identity", colour="black", size=0.25) +
+scale_fill_manual(values=c("#CCEEFF", "#FFDDDD"), guide=FALSE)
+```

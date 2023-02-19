@@ -1,0 +1,57 @@
+---
+title: "Test for Equality of Variance "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Using <tt>var.test()</tt> to test equality of variance
+
+* In this procedure, we determine whether or not two populations have the same variance.
+* The assumption of equal variance of two populations underpins several inference procedures. This assumption is tested by comparing the variance of samples taken from both populations.
+* We will not get into too much detail about that, but concentrate on how to assess equality of variance.
+* The null and alternative hypotheses are as follows:
+\[ H_0: \sigma^2_1 = \sigma^2_2 \]
+\[ H_1: \sigma^2_1 \neq \sigma^2_2 \]
+
+* The Null hypothesis expounds equality of variance. The alternative hypothesis expounds difference in variance.
+* When using R it would be convenient to consider the null and alternative in terms of variance ratios.
+* Two data sets have equal variance if the variance ratio is 1.
+
+
+\[ H_0: \sigma^2_1 / \sigma^2_2 = 1 \]
+\[ H_1: \sigma^2_1 / \sigma^2_2 \neq 1 \]
+
+```{r}
+x <- c(14,13,16,20,12,18,11,09,13,11)
+y <- c(15,13,18,20,10,17,23,11,10)
+```
+
+You would be required to compute the test statistic for this procedure.
+The test statistic is the ratio of the variances for both data sets.
+\[ TS = \frac{s^2_x}{s^2_y} \]
+
+The standard deviations would be provided in the following R code. 
+```{r}
+sd(x); sd(y)
+```
+
+* Sample standard deviation for data set $x$ = 3.40
+* Sample standard deviation for data set $y$ = 4.63
+
+To compute the test statistic.
+\[ TS = \frac{3.40^2}{4.63^2} = \frac{11.56}{21.43} = 0.5394 \]
+
+### Implement the F-Test for Variance
+
+```{r}
+var.test(x,y)
+```
+
+* The p-value is 0.3764 (top right), above the threshold level of 0.0250, the default threshold in statistical courses. We fail to reject the null hypothesis.
+
+* We can assume that there is no significant difference in sample variances. Therefore we can assume that both populations have equal variance, as there is insufficient evidence to the contrary
+
+* Additionally the $95\%$ confidence interval (0.1237, 2.2125) contains the condition of equality, i.e. a variance ratio value equal to 1.

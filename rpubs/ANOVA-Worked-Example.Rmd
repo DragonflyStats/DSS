@@ -1,0 +1,92 @@
+---
+title: "ANOVA - Worked Example"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(magrittr)
+```
+
+
+### Analysis of Variance
+Analysis of variance (ANOVA) is a collection of statistical models, and their associated procedures, in which the observed variance in a particular variable is partitioned into components attributable to different sources of variation.
+
+F = \frac{\text{between-group variability}}{\text{within-group variability}}.
+%------------------------------------------------------------------------------%
+\end{frame}
+%------------------------------------------------------------%
+\begin{frame}
+\frametitle{One-way ANOVA example}
+
+Consider an experiment to study the effect of three different levels of a factor on a response (e.g. three levels of a fertilizer on plant growth). If we had 6 observations for each level, we could write the outcome of the experiment in a table like this, where a1, a2, and a3 are the three levels of the factor being studied.
+a1	a2	a3
+6	8	13
+8	12	9
+4	9	11
+5	11	8
+3	6	7
+4	8	12
+The null hypothesis, denoted H0, for the overall F-test for this experiment would be that all three levels of the factor produce the same response, on average. To calculate the F-ratio:
+
+\end{frame}
+%------------------------------------------------------------%
+\begin{frame}
+Step 1: Calculate the mean within each group:
+
+\begin{align}
+\overline{Y}_1 & = \frac{1}{6}\sum Y_{1i} = \frac{6 + 8 + 4 + 5 + 3 + 4}{6} = 5 \\
+\overline{Y}_2 & = \frac{1}{6}\sum Y_{2i} = \frac{8 + 12 + 9 + 11 + 6 + 8}{6} = 9 \\
+\overline{Y}_3 & = \frac{1}{6}\sum Y_{3i} = \frac{13 + 9 + 11 + 8 + 7 + 12}{6} = 10
+\end{align}
+
+\end{frame}
+%------------------------------------------------------------%
+\begin{frame}
+
+Step 2: Calculate the overall mean:
+\overline{Y} = \frac{\sum_i \overline{Y}_i}{a} = \frac{\overline{Y}_1 + \overline{Y}_2 + \overline{Y}_3}{a} = \frac{5 + 9 + 10}{3} = 8
+where a is the number of groups.
+
+\end{frame}
+%------------------------------------------------------------%
+\begin{frame}
+Step 3: Calculate the "between-group" sum of squares:
+
+\begin{align}
+S_B & = n(\overline{Y}_1-\overline{Y})^2 + n(\overline{Y}_2-\overline{Y})^2 + n(\overline{Y}_3-\overline{Y})^2 \\[8pt]
+& = 6(5-8)^2 + 6(9-8)^2 + 6(10-8)^2 = 84
+\end{align}
+where n is the number of data values per group.
+The between-group degrees of freedom is one less than the number of groups
+f_b = 3-1 = 2
+so the between-group mean square value is
+MS_B = 84/2 = 42
+\end{frame}
+%------------------------------------------------------------%
+\begin{frame}
+Step 4: Calculate the "within-group" sum of squares. Begin by centering the data in each group
+a1	a2	a3
+6 − 5 = 1	8 − 9 = -1	13 − 10 = 3
+8 − 5 = 3	12 − 9 = 3	9 − 10 = -1
+4 − 5 = -1	9 − 9 = 0	11 − 10 = 1
+5 − 5 = 0	11 − 9 = 2	8 − 10 = -2
+3 − 5 = -2	6 − 9 = -3	7 − 10 = -3
+4 − 5 = -1	8 − 9 = -1	12 − 10 = 2
+The within-group sum of squares is the sum of squares of all 18 values in this table
+
+S_W = 1 + 9 + 1 + 0 + 4 + 1 + 1 + 9 + 0 + 4 + 9 + 1 + 9 + 1 + 1 + 4 + 9 + 4 = 68
+The within-group degrees of freedom is
+f_W = a(n-1) = 3(6-1) = 15
+
+\end{frame}
+%------------------------------------------------------------%
+\begin{frame}
+
+
+
+Thus the within-group mean square value is
+MS_W = S_W/f_W = 68/15 \approx 4.5
+Step 5: The F-ratio is
+F = \frac{MS_B}{MS_W} \approx 42/4.5 \approx 9.3

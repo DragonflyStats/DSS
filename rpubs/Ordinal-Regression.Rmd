@@ -1,0 +1,29 @@
+---
+title: "Ordinal Regression"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Ordinal Regression
+Ordinal logistic regression (often just called 'ordinal regression') is used to predict an ordinal dependent variable given one or more independent variables. 
+It can be considered as either a generalisation of multiple linear regression or as a generalisation of binomial logistic regression. 
+Here we will concentrate on the latter. 
+As with other types of regression, ordinal regression can also use interactions between independent variables to predict the dependent variable.
+
+-------------------------------------------------
+
+### Example
+
+For example, you could use ordinal regression to predict the belief that "tax is too high" (your ordinal dependent variable, measured on a 4-point Likert item from "Strongly Disagree" to "Strongly Agree"), based on two independent variables: "age" and "income". 
+Alternately, you could use ordinal regression to determine whether a number of independent variables, such as "age", "gender", "level of physical activity" (amongst others), predict the ordinal dependent variable, "obesity", where obesity is measured using using three ordered categories: "normal", "overweight" and "obese".
+
+### Types of Ordinal Regression
+
+Ordinal Regression isa  type of regression used to predict ordinal outcomes (or in other words rankings). There are two types
+
+* Ordered Logit - applied to data that meets the proportional odds assumption
+* Ordered Probit - Ordered Probit is usually estimated using Maximum Likelihood Estimation
+ 
