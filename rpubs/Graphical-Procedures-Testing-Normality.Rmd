@@ -77,9 +77,32 @@ end{center}
 
 \end{itemize}
 
-\end{frame}
-%-------------------------------------------------------------------------- %
-\begin{frame}
+---
+title: "Normal Probability plots (qqplots)"
+author: "Kevin O'Brien"
+date: "Friday, April 17, 2015"
+output: html_document
+---
+
+`qqnorm` is a generic function the default method of which produces a normal QQ plot of the values in y. `qqline` adds a trendline to a normal quantile-quantile plot which passes through the first and third quartiles.
+
+If the points on the plot follow the trendline, then the data can be considered to be normally distributed. The procedure is best used in conjunction with formal hypothesis tests, such as the **Shapiro-Wilk** test.
+
+```{r}
+summary(mtcars$mpg)
+```
+
+### Implementation with R
+```{r, echo=TRUE}
+qqnorm(mtcars$mpg)
+qqline(mtcars$mpg, pch=18, col="red")
+```
+Reasonably safe to assume Normality.
+```{r}
+shapiro.test(mtcars$mpg)
+```
+High p-value, so we fail to reject the null hypothesis that the data is normally distributed. Again, reasonably safe to assume Normality.
+
 \frametitle{Normal Probability Plots}
 \Large
 \begin{itemize}

@@ -1,0 +1,72 @@
+---
+title: "Boxplots and Violin Plots"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+###  Boxplots
+
+The Boxplot is an excellent tool to study the distribution. It can also show the distributions within multiple groups, along with the median, range and outliers if any.
+
+The dark line inside the box represents the median. The top of box is 75th percentile and bottom of box is 25th percentile. The end points of the lines (aka whiskers) is at a distance of 1.5*IQR, where IQR or Inter Quartile Range is the distance between 25th and 75th percentiles. 
+
+The points outside the whiskers are marked as dots and are normally considered as extreme points.
+
+Setting ``varwidth=TRUE`` adjusts the width of the boxes to be proportional to the number of observation it contains.
+
+
+```{r message=FALSE,warning=FALSE}
+library(ggthemes)
+library(ggplot2)
+## 1. Box and Whisker Plots
+theme_set(theme_classic())
+# Plot
+g <- ggplot(mpg, aes(class, cty))
+g + geom_boxplot(varwidth=T, fill="plum") + 
+    labs(title="Box plot", 
+         subtitle="City Mileage grouped by Class of vehicle",
+         caption="Source: mpg",
+         x="Class of Vehicle",
+         y="City Mileage")
+```
+
+
+
+
+### Tufte Boxplot
+
+Tufte box plot, provided by ggthemes package is inspired by the works of Edward Tufte. 
+Tufte’s Box plot is just a box plot made minimal and visually appealing.
+
+
+```{r}
+## Tufte Boxplot
+theme_set(theme_tufte())  # from ggthemes
+# plot
+g <- ggplot(mpg, aes(manufacturer, cty))
+g + geom_tufteboxplot() + 
+      theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+      labs(title="Tufte Styled Boxplot", 
+           subtitle="City Mileage grouped by Class of vehicle",
+           caption="Source: mpg",
+           x="Class of Vehicle",
+           y="City Mileage")
+```
+
+
+### Violin Plot
+
+A violin plot is similar to box plot but shows the density within groups. Not much info provided as in boxplots. It can be drawn using ``geom_violin()``.
+
+```{r}
+
+g <- ggplot(mpg, aes(class, cty))
+g + geom_violin() + 
+  labs(title="Violin plot", 
+       subtitle="City Mileage vs Class of vehicle",
+       caption="Source: mpg",
+       x="Class of Vehicle",
+       y="City Mileage")
+```

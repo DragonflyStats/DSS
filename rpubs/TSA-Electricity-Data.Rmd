@@ -1,0 +1,115 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Multivariate Time Series {data-navmenu="Exercises"}
+===================================================
+
+Column {.tabset}
+---------------------------------
+
+### Multivariate Time Series
+
+
+In many cases, we will also be dealing with time series that have
+multiple values at all, many or some of the points in time.
+
+Often, these values will be related in some ways, and we will want to analyse those relationships also. In fact, one of the most efficient
+methods of prediction is to find ***leading indicators*** for the value or values you wish to predict --- you can often use the current
+values of the leading indicators to make inference on future values of
+the related quantities.
+
+The fact that this is one of the best methods in time series analysis says a lot about the difficulty of prediction (Yogi Berra, a US
+baseball player noted for his pithy statements, once said ``Prediction is difficult, especially about the future'').
+#### Worked Exercise 2.1
+Load in the multivariate data from the file ``cbe.dat``. Investigate the object type and some sample data to
+get an idea of how it is structured. The R functions ``head()``
+and ``tail()`` will be of use for this.
+
+#### Worked Exercise 2.2
+Create time series objects for this data using ``ts()``, and plot them beside each other. ``cbind()`` is useful for creating all
+the plots together.
+
+#### Worked Exercise 2.3
+Merge the electricity usage data with the US airline passenger data using ``ts.intersect`` and investigate any possible similarities
+between the two time series.
+
+#### Worked Exercise 2.4
+Use the ``cor()`` function, investigate the correlation between the two time series. How plausible is a causal effect in this case?
+
+------------------------------------------------------
+#### CBE Data 
+
+```{r}
+head(CBE.df)
+```
+
+```{r}
+tail(CBE.df)
+```
+
+```{r}
+str(CBE.df)
+```
+
+---------------------------------------
+#### Time Series Plots
+
+```{r}
+beer.ts <- ts(CBE.df$beer, start = 1958, freq = 12);
+choc.ts <- ts(CBE.df$choc, start = 1958, freq = 12);
+elec.ts <- ts(CBE.df$elec, start = 1958, freq = 12);
+```
+
+
+```{r}
+plot(cbind(beer.ts, choc.ts, elec.ts));
+```
+----------------------------------------------
+
+#### Airline Passengers
+
+```{r}
+elec.ts    <- ts(CBE.df$elec, start = 1958, freq = 12);
+AP.elec.ts <- ts.intersect(AP.ts, elec.ts);
+```
+
+```{r}
+head(AP.elec.ts); tail(AP.elec.ts);
+```
+
+```{r}
+str(AP.elec.ts);
+```
+
+```{r}
+plot(AP.elec.ts);
+```
+
+---------------------------------------------------
+
+#### Create a plot in ggplot2
+
+```{r}
+qplot(Var1, value, data = melt(AP.elec.ts), geom = 'line', colour = Var2);
+```
+
+```{r}
+elec.ts     <- ts(CBE.df$elec, start = 1958, freq = 12);
+AP.elec.ts  <- ts.intersect(AP.ts, elec.ts);
+```
+
+```{r}
+AP.elec.cor <- cor(AP.elec.ts);
+str(AP.elec.cor);
+```
+
+```{r}
+### Show the scaled plot
+qplot(Var1, value, data = melt(scale(AP.elec.ts)), geom = 'line', colour = Var2);
+```

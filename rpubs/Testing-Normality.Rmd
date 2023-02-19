@@ -37,6 +37,38 @@ shapiro.test(Y)
 ```
 
 
+<h3>Shapiro Wilk Test</h3>
+
+\begin{itemize}
+\item Used to determine if a data set is normally distributed
+\item Null hypothesis is that it is normally distributed.
+\item Alt. hypothesis is that it is not normally distributed.
+\item Advise using with graphical complement.
+\item Output return test statistic (W) and p-value.
+\end{itemize}
+
+<!--#########################################################################-->
+
+\begin{verbatim}
+> shapiro.test(A)
+
+        Shapiro-Wilk normality test
+
+data:  A
+W = 0.961, p-value = 0.8085
+\end{verbatim}
+
+\subsection{Limitations of Tests}
+There are some important limitations to the usefulness of these tests.
+
+\begin{itemize}
+	\item Because it involves null hypothesis significance testing, if you reject H0 you can conclude that the population is not normally distributed, but if you don't reject H0 then you only conclude that you failed to show the population is not normally distributed. In other words, you can prove the population is not normally distributed but you can't prove it is normally distributed.
+	
+	\item Rejecting H0 means that the population is not normally distributed, but it doesn't tell you whether it is because it is a fat-tailed distribution, a thin-tailed distribution, a skewed distribution, or something else. As we have seen, some of these deviations from normality are much more a problem than others.
+	
+	\item The tests are influenced by power. If you have a small sample the test may not have enough power to detect non-normality in the population (and it is when N is small that we usually have to worry the most because of the Central Limit Theorem). If you have a very large sample the test will detect even trivial deviations from normality, those we don't really have to worry about.
+\end{itemize}
+
 ### {nortest}: Tests for Normality
 
 Five omnibus tests for testing the composite hypothesis of norm

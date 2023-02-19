@@ -1,0 +1,25 @@
+---
+title: "TSA-Font-Reservoir"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Section 2.3.3. Example based on the Font Reservoir series
+
+
+```{r}
+#www <- "http://www.massey.ac.nz/~pacowper/ts/Fontdsdt.dat"
+www <- "https://raw.githubusercontent.com/speegled/tswrdata/master/data-raw/itswr/Fontdsdt.dat"
+Fontdsdt.dat <- read.table(www, header = T)
+attach(Fontdsdt.dat)
+```
+
+```{r}
+plot(ts(adflow),ylab = "adflow")
+acf(adflow,xlab="lag(months)", main = " ")
+```
+
+

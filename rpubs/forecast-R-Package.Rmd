@@ -1,0 +1,94 @@
+---
+title: "forecast"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Forecast 
+
+```{r}
+library(forecast)
+```
+
+```{r}
+# save a numeric vector containing 72 monthly observations
+# from Jan 2009 to Dec 2014 as a time series object
+myvector <- sort(rnorm(72,100,4)) + rnorm(72,5,1)
+myts <- ts(myvector, start=c(2009, 1), end=c(2014, 12), frequency=12) 
+```
+
+```{r}
+# subset the time series (June 2014 to December 2014)
+myts2 <- window(myts, start=c(2014, 6), end=c(2014, 12)) 
+```
+
+```{r}
+# plot series
+plot(myts)
+```
+
+```{r}
+# Seasonal decomposition
+fit <- stl(myts, s.window="period")
+plot(fit)
+```
+
+```{r}
+# additional plots
+monthplot(myts)
+library(forecast)
+seasonplot(myts)
+```
+
+```{r}
+# simple exponential - models level
+fit <- HoltWinters(myts, beta=FALSE, gamma=FALSE)
+# double exponential - models level and trend
+fit <- HoltWinters(myts, gamma=FALSE)
+# triple exponential - models level, trend, and seasonal components
+fit <- HoltWinters(myts)
+```
+
+```{r}
+# predictive accuracy
+#library(forecast)
+#accuracy(fit)
+```
+
+```{r}
+# predict next three future values
+library(forecast)
+forecast(fit, 3)
+plot(forecast(fit, 3))
+```
+----------------------
+```{r}
+library(forecast)
+value <- c(1.2, 1.7, 1.6, 1.2, 1.6, 1.3, 1.5, 1.9, 5.4, 4.2, 5.5, 6, 5.6, 
+6.2, 6.8, 7.1, 7.1, 5.8, 0, 5.2, 4.6, 3.6, 3, 3.8, 3.1, 3.4, 
+2, 3.1, 3.2, 1.6, 0.6, 3.3, 4.9, 6.5, 5.3, 3.5, 5.3, 7.2, 7.4, 
+7.3, 7.2, 4, 6.1, 4.3, 4, 2.4, 0.4, 2.4)
+
+sensor<-ts(value,frequency=24)
+fit <- auto.arima(sensor)
+LH.pred<-predict(fit,n.ahead=24)
+plot(sensor,ylim=c(0,10),xlim=c(0,5),type="o", lwd="1")
+lines(LH.pred$pred,col="red",type="o",lwd="1")
+grid()
+
+```
+```{r}
+##########################
+
+
+value <- c(1.2,1.7,1.6, 1.2, 1.6, 1.3, 1.5, 1.9, 5.4, 4.2, 5.5, 6.0, 5.6, 6.2, 6.8, 7.1, 7.1, 5.8, 0.0, 5.2, 4.6, 3.6, 3.0, 3.8, 3.1, 3.4, 2.0, 3.1, 3.2, 1.6, 0.6, 3.3, 4.9, 6.5, 5.3, 3.5, 5.3, 7.2, 7.4, 7.3, 7.2, 4.0, 6.1, 4.3, 4.0, 2.4, 0.4, 2.4, 1.2,1.7,1.6, 1.2, 1.6, 1.3, 1.5, 1.9, 5.4, 4.2, 5.5, 6.0, 5.6, 6.2, 6.8, 7.1, 7.1, 5.8, 0.0, 5.2, 4.6, 3.6, 3.0, 3.8, 3.1, 3.4, 2.0, 3.1, 3.2, 1.6, 0.6, 3.3, 4.9, 6.5, 5.3, 3.5, 5.3, 7.2, 7.4, 7.3, 7.2, 4.0, 6.1, 4.3, 4.0, 2.4, 0.4, 2.4)
+sensor <- ts(value,frequency=24) # consider adding a start so you get nicer labelling on your chart. 
+fit <- auto.arima(sensor)
+fcast <- forecast(fit)
+plot(fcast)
+grid()
+fcast
+```
