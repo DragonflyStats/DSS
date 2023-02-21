@@ -1,0 +1,84 @@
+---
+title: "Reproducible Research Project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+```
+
+
+## Exploratory Data Visualization
+
+### Medical Coverage by State and Illnesses
+
+#### Brief
+You will be looking at a subset of a United States medical expenditures dataset with information on costs for different medical conditions and in different areas of the country.
+
+You should do the following:
+
+* Make a plot that answers the question: what is the relationship between mean covered charges (average_covered_charges) and mean total payments (average_total_payments) in New York?
+* Make a plot (possibly multi-panel) that answers the question: how does the relationship between mean covered charges (average_covered_charges) and mean total payments (average_total_payments) vary by medical condition (drg_definition) and the state in which care was received (provider_state)?
+
+```{r warning}
+library(janitor)
+Inpatient_Charges <- read_csv("Inpatient_Charges.csv",
+                              show_col_types = FALSE)
+Inpatient_Charges <- janitor::clean_names(Inpatient_Charges)
+Inpatient_Charges_Sample <- Inpatient_Charges %>%
+  filter(provider_state %in% c("TX","CA","NY","FL","WA")) %>%
+  group_by(provider_state,drg_definition) %>%
+  sample_frac(0.10)
+```
+
+
+```{r}
+Inpatient_Charges_Sample %>% tabyl(drg_definition) %>% arrange(desc(n)) %>% head(10) %>% kable()
+```
+```{r}
+Inpatient_Charges_Sample %>% head(1) %>% t() %>% kable()
+```
+
+#### Plot 1
+```{r process, cache = TRUE}
+g1 <- ggplot(Inpatient_Charges_Sample, aes(x=average_total_payments,
+                       y=average_covered_charges))+
+  geom_point()+
+  stat_smooth()
+g1
+```
+
+#### Plot 2
+
+```{r plot1}
+g2 <- ggplot(Inpatient_Charges_Sample, aes(x=average_total_payments,
+                       y=average_covered_charges,    
+                       group=provider_state))+
+  geom_point()+
+  stat_smooth(aes(colour=provider_state,fill=provider_state))
+g2
+```
+
+#### Plot 3
+
+```{r plot2}
+g3 <- ggplot(Inpatient_Charges_Sample, aes(x=average_total_payments,
+                       y=average_covered_charges))+
+  geom_point()+
+  stat_smooth(aes(colour=provider_state))
+g3+theme(legend.position="bottom")
+```
+
+#### Plot 4
+```{r plot4, warning=FALSE,message=FALSE}
+g4 <- ggplot(Inpatient_Charges_Sample, aes(x=average_total_payments,
+                       y=average_covered_charges, colour=drg_definition))+
+  geom_point()+
+  facet_grid(. ~ provider_state)
+
+g4+theme(legend.position="none") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+

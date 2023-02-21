@@ -1,0 +1,32 @@
+---
+title: "South African Heart Disease"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+%-----------------------------------------------------------------------------------%
+\subsection*{Question 4}
+Load the South Africa Heart Disease Data and create training and test sets with the following code:
+\begin{framed}
+\begin{verbatim}
+library(ElemStatLearn)
+data(SAheart)
+set.seed(8484)
+train = sample(1:dim(SAheart)[1],size=dim(SAheart)[1]/2,replace=F)
+trainSA = SAheart[train,]
+testSA = SAheart[-train,]
+\end{verbatim}
+\end{framed} 
+Then set the seed to 13234 and fit a logistic regression model (\texttt{method="glm"}, be sure to specify \texttt{family="binomial"}) with Coronary Heart Disease (\texttt{chd}) as the outcome and age at onset, current alcohol consumption, obesity levels, cumulative tabacco, type-A behavior, and low density lipoprotein cholesterol as predictors. 
+
+\noindent Calculate the misclassification rate for your model using this function and a prediction on the "response" scale:
+\begin{framed}
+	\begin{verbatim}
+missClass = function(values,prediction){sum(((prediction > 0.5)*1) != values)/length(values)}
+\end{verbatim}
+\end{framed}
+What is the misclassification rate on the training set? 
+
+What is the misclassification rate on the test set?

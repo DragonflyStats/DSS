@@ -1,0 +1,229 @@
+---
+title: "Robust Regression - stackloss"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(faraway)
+```
+
+
+# Robust Regression 
+
+*  In robust statistics, robust regression is a form of regression analysis designed to circumvent some 
+limitations of traditional parametric and non-parametric methods. Regression analysis seeks to find the 
+relationship between one or more independent variables and a dependent variable. 
+*  Certain widely used methods of regression, such as ordinary least squares, have favourable properties if their
+underlying assumptions are true, but can give misleading results if those assumptions are not true; thus
+ordinary least squares is said to be not robust to violations of its assumptions. Robust regression methods are designed to be not overly affected by violations of assumptions by the underlying data-generating process.
+
+----------------------------
+
+\subsubsection*{Usage of Robust Regression}
+
+*  Robust regression can be used in any situation in which you would use least squares regression. 
+When fitting a least squares regression, we might find some outliers or high leverage data points.
+*  We have decided that these data points are not data entry errors, neither they are from a different population 
+than most of our data. So we have no compelling reason to exclude them from the analysis. 
+*  Robust regression might be a good strategy since it is a compromise between excluding these points entirely from the analysis and including all the data points and treating all them equally in OLS regression. The idea of robust regression is to weigh the observations differently based on how well behaved these observations are. Roughly speaking, it is a form of weighted and reweighted least squares regression.
+*  Robust regression does not address issues of heterogeneity of variance. 
+
+--------------
+\subsubsection*{Popularity of Robust Regression}
+Despite their superior performance over least squares estimation in many situations, robust methods for regression are still not widely used. Several reasons may help explain their unpopularity (Hampel et al. 1986, 2005). One possible reason is that there are several competing methods and the field got off to many false starts. Also, computation of robust estimates is much more computationally intensive than least squares estimation; in recent years however, this objection has become less relevant as computing power has increased greatly. Another reason may be that some popular statistical software packages failed to implement the methods (Stromberg, 2004). The belief of many statisticians that classical methods are robust may be another reason.
+
+%------------------------------------------------------------------------------------%
+\subsection{The stackloss data set}
+%Used in "rlm" help file
+Brownlee's Stack Loss Plant Data contains operational data of a plant for the oxidation of ammonia to nitric acid.
+
+The variables are: 
+\begin{itemize}
+\item	Air.Flow	 Flow of cooling air
+\item	Water.Temp	 Cooling Water Inlet Temperature
+\item	Acid.Conc.	 Concentration of acid [per 1000, minus 500]
+\item	stack.loss	 Stack loss
+\end{itemize}
+
+```{r}
+fit.sl = lm(stack.loss ~ ., data = stackloss)
+
+#attach(stackloss)
+#plot(Acid.Conc. , stack.loss, pch = 18, col="red")
+
+par(mfrow=c(2,2))
+plot(fit.sl)
+par(mfrow=c(1,1))
+```
+-----------------------------------
+
+### Fitting a robust model (\texttt{rlm}}
+The rlm command in the MASS package command implements several versions of robust regression. 
+
+```{r}
+summary(rlm(stack.loss ~ ., data = stackloss))
+```
+-------------------------------------
+
+```{r}
+ rlm(stack.loss ~ ., stackloss, psi = psi.hampel, init = "lts")
+```
+
+-------------------------------------
+### Using Other \textit{Psi} Operators}
+
+
+*  huber
+*  bisquare
+*  hampel
+
+Fitting is done by \textbf{\emph{iterated re-weighted least squares (IWLS).}}
+
+Psi functions are supplied for the Huber, Hampel and Tukey bisquare proposals as \texttt{psi.huber}, \texttt{psi.hampel} and \texttt{psi.bisquare}. Huber's corresponds to a convex optimization problem and gives a unique solution (up to collinearity). The other two will have multiple local minima, and a good starting point is desirable.
+
+
+
+
+
+
+```{r}
+ rlm(stack.loss ~ ., stackloss, psi = psi.bisquare)
+```
+-----------------------
+
+### Implementation of Robust Regression
+
+*  When fitting a least squares regression, we might find some outliers or high leverage data points.  We have decided that these data points are not data entry errors, neither they are from a different population than most of our data. So we have no proper reason to exclude them from the analysis.  
+
+*  Robust regression might be a good strategy since it is a compromise between excluding these points entirely from the analysis and including all the data points and treating all them equally in OLS regression. The idea of robust regression is to weigh the observations differently based on how well behaved these observations are.
+
+*  
+The idea of robust regression is to weigh the observations differently based on how well behaved these observations are. Roughly speaking, it is a form of weighted and reweighted least squares regression (i.e. a two step process , first fitting a linear model, then a robust model to correct for the influence of outliers).
+*  
+Robust regression is done by iterated re-weighted least squares (IRLS). The rlm command in the MASS package command implements several versions of robust regression.
+*  
+There are several weighting functions that can be used for IRLS. We are going to first use the Huber weights in this example. We will then look at the final weights created by the IRLS process. This can be very useful. 
+*  
+Also we will look at an alternative weighting approach to Huber’s weighting – called \textbf{Bisquare weighting}. 
+
+### Huber Weighting
+
+In Huber weighting, observations with small residuals get a weight of 1 and the larger the residual, the smaller the weight. This is defined by the weight function
+
+
+\begin{eqnarray}
+w(e) = 1 \mbox{    } \mbox{for} |e| \leq k  \\
+w(e) = \frac{k}{|e|} \mbox{    } \mbox{for} |e| > k
+\end{eqnarray}
+
+
+The value $k$ for the Huber method is called a \textbf{\textit{tuning constant}}; smaller values of k produce more resistance to outliers, but at the expense of lower efficiency when the errors are normally distributed.
+
+The tuning constant is generally picked to give reasonably high efficiency in the normal case; in particular,$ k = 1.345\sigma$ for the Huber’s method, where $\sigma$ is the standard deviation of the errors) produce 95-percent efficiency when the errors are normal, and still offer protection against outliers.
+
+%(Bisquare Weighting is very similar).
+
+```{r}
+library(faraway)
+data(cheddar)
+names(cheddar)
+```
+
+```{r}
+library(MASS)
+FitAll.rr = rlm(taste ~ Acetic + H2S + Lactic,data =cheddar)
+```
+
+
+Regression Equation: 
+\[ \hat{taste} = -20.75 -1.53 Acetic + 4.05 H2S + 20.14 Lactic\]
+From before, we noticed that observations 15 , 12 and 8 were influential in the determination of the coefficients. The following table indicates the weight given to each observation when using robust regression.  
+
+We can see that roughly, as the absolute residual goes down, the weight goes up. In other words, cases with a large residuals tend to be down-weighted.
+
+%(You do not need to know how to implement the code used to generate this table, but we will be looking at how to construct data frames later in the course.)
+
+
+```{r}
+hweights <- data.frame(taste = cheddar, 
+          resid = FitAll.rr$resid,
+          weight = FitAll.rr$w)
+hweights2 <- hweights[order(FitAll.rr$w), ]
+
+```
+
+
+```{r}
+hweights2[1:15, ]
+```
+
+## Implementation with Bisquare Weighting
+
+Implementing with bisquare weighting simply requires the specification of the additional argument, as per the code below, highlighted in green)
+
+```{r}
+FitAll.rr.2 = rlm(taste ~ Acetic + H2S + Lactic,
+                  data=cheddar,
+                  psi = psi.bisquare)
+```
+Regression Equation :
+
+taste* = -17.77 -2.26 Acetic + 4.05 H2S + 20.68 Lactic
+
+
+Weights using Bisquare estimator.
+
+```{r}
+hweights2[1:15, ]
+```
+
+### Conclusion
+
+*  We can see that the weight given to some observations is dramatically lower using the bisquare weighting function than the Huber weighting function and the coefficient estimates from these two different weighting methods differ. 
+*  When comparing the results of a regular OLS regression and a robust regression, if the results are very different, you will most likely want to use the results from the robust regression. 
+*  Large differences suggest that the model parameters are being highly influenced by outliers. 
+*  Different functions have advantages and drawbacks. Huber weights can have difficulties with severe outliers, and bisquare weights can have difficulties converging or may yield multiple solutions. 
+
+------------------------------------
+
+<pre><code>
+> summary(rlm(stack.loss ~ ., stackloss))
+Call: rlm(formula = stack.loss ~ ., data = stackloss)
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-8.91753 -1.73127  0.06187  1.54306  6.50163 
+Coefficients:
+            Value    Std. Error t value 
+(Intercept) -41.0265   9.8073    -4.1832
+Air.Flow      0.8294   0.1112     7.4597
+Water.Temp    0.9261   0.3034     3.0524
+Acid.Conc.   -0.1278   0.1289    -0.9922
+Residual standard error: 2.441 on 17 degrees of freedom
+
+
+ rlm(stack.loss ~ ., stackloss, psi = psi.hampel, init = "lts")
+
+> rlm(stack.loss ~ ., stackloss, psi = psi.hampel, init = "lts")
+Call:
+rlm(formula = stack.loss ~ ., data = stackloss, psi = psi.hampel, 
+    init = "lts")
+Converged in 10 iterations
+Coefficients:
+(Intercept)    Air.Flow  Water.Temp  Acid.Conc. 
+-40.4748037   0.7410863   1.2250703  -0.1455242 
+Degrees of freedom: 21 total; 17 residual
+Scale estimate: 3.09 
+</code></pre>
+
+%-------------------------------------%
+#### Using Other \textit{Psi} Operators
+
+Fitting is done by \textbf{\emph{iterated re-weighted least squares (IWLS).}}
+Psi functions are supplied for the Huber, Hampel and Tukey bisquare proposals as psi.huber, \texttt{psi.hampel} and \textbf{psi.bisquare}. 
+
+Huber's corresponds to a convex optimization problem and gives a unique solution (up to collinearity). The other two will have multiple local minima, and a good starting point is desirable.
+* huber
+* bisquare
+* hampel

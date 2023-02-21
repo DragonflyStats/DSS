@@ -1,0 +1,66 @@
+---
+title: "Olive Oil Examples"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Multiple Linear Regression and ANOVA - Question 3 (8 Marks)
+Olive oil is composed, in part, of triacylglycerols (triglycerides or fats). The major fatty acids in olive oil triacylglycerols are:
+Oleic Acid - a monounsaturated omega-9 fatty acid (DAT72)
+Linoleic Acid -a polyunsaturated omega-6 fatty acid (DAT10)
+Palmitic Acid - a saturated fatty acid (DAT69)
+Stearic Acid - a saturated fatty acid (DAT60)
+Linolenic Acid - a polyunsaturated omega-3 fatty acid (DAT78)
+A sample of 40 brands of olive were sampled and given a quality rating (DAT47).
+Using the quality rating as a dependent variable, fit a linear model to predict the quality of olive oil using the following sets of independent variables.
+Model
+Variables
+A
+Palmitic (DAT69), Linoleic (DAT10), Stearic (DAT60)
+B
+Oleic(DAT72), Stearic (DAT10)
+
+Write down the regression equations for both fitted models A and B. [2 marks ]
+Write down the adjusted R square values for both linear models. [2 Marks]
+Which of the two models better fits the data? Explain your answer. [2 Marks]
+Complete the Analysis of Variance table for fitted model B. [ 2 Marks ]
+
+
+
+Df
+Sum Sq
+Mean Sq
+F value
+Pr(>F)
+(asterisks)
+DAT72
+
+
+483222
+
+
+
+
+< 2.2e-16
+
+
+DAT10
+1
+
+
+29173
+
+
+
+
+
+
+Residuals
+
+
+57157
+
+
+

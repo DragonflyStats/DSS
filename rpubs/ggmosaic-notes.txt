@@ -1,0 +1,32 @@
+Using the canonical example
+
+library(ggmosaic)
+
+p <- ggplot(data = fly) +
+  geom_mosaic(aes(x = product(rude_to_recline), fill=do_you_recline)) +
+  theme_mosaic()
+
+and then using ggplotly from {plotly}
+
+library(plotly)
+ggplotly(p)
+
+we can create an interactive version of the mosaic plot
+
+For the Top left, the tool tip text will read as
+
+	always
+	no
+	Frequency: 124
+
+Is there a way of customising the tooltip text? similar examples for Barcharts would be along the lines of the code below
+
+
+p <- ggplot(data = fly) +
+  geom_mosaic(aes(x = product(rude_to_recline), fill=do_you_recline,
+    text=paste("\n Rude to Recline?:",rude_to_recline,"\nDo you recline?",do_you_recline")
+   )) +
+  theme_mosaic()
+
+
+ggplotly(p, tooltip="text")

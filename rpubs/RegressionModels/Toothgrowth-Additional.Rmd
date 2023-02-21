@@ -1,0 +1,483 @@
+
+    
+    
+
+    
+    \section{Example 1: Linear
+regression}\label{example-1-linear-regression}
+
+\subsubsection{Description of ToothGrowth
+dataset}\label{description-of-toothgrowth-dataset}
+
+The ToothGrowth dataset loads with the datasets package.
+
+    The data are from an experiment examining how vitamin C dosage delivered
+in 2 different methods predicts tooth growth in guinea pigs.
+
+The data consist of 60 observations, representing 60 guinea pigs, and 3
+variables:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{len}}: numeric, tooth (odontoblast, actually) length
+\item
+  \textbf{\emph{supp}}: factor, supplement type, 2 levels, ``VC'' is
+  ascorbic acid, and ``OJ'' is orange juice
+\item
+  \textbf{\emph{dose}}: numeric, dose (mg/day)
+\end{itemize}
+
+A quick look at ToothGrowth reveals that many guinea pigs were given the
+same dose of vitamin C. Three doses, 0.5, 1.0, and 2.0, were used. ​
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}look at ToothGrowth data}
+str\PY{p}{(}ToothGrowth\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kp}{unique}\PY{p}{(}ToothGrowth\PY{o}{\PYZdl{}}dose\PY{p}{)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} [1] 0.5 1.0 2.0}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \subsubsection{Example 1: Exploratory
+analysis}\label{example-1-exploratory-analysis}
+
+Graphical exploration of the dataset provides the researcher with
+descriptive depictions of summaries of variables or relationship among
+variables.
+
+We being our exploration of Toothgrowth by examining the distributions
+of supp and dose. Since both variables are discretely distributed, we
+want the frequencies (counts) of each value.
+
+Frequencies are often plotted as bars, so we select geom\_bar. We
+specify dose mapped to x and supp mapped to the fill color of the bars,
+which will give us counts of each dose divided by supp.
+
+\subsubsection{Exploring distributions}\label{exploring-distributions}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{library}\PY{p}{(}ggplot2\PY{p}{)}
+\PY{c+c1}{\PYZsh{}bar plot of counts of dose by supp}
+\PY{c+c1}{\PYZsh{}data are balanced, so not so interesting}
+ggplot\PY{p}{(}ToothGrowth\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}dose\PY{p}{,} fill\PY{o}{=}supp\PY{p}{)}\PY{p}{)} \PY{o}{+}  geom\PYZus{}bar\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_5_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Statistical models often make assumptions about the distribution of the
+outcome (or its residuals), so an inspection might be wise. First let's
+check the overall distribution of ``len'' with a density plot:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}density of len}
+ggplot\PY{p}{(}ToothGrowth\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}len\PY{p}{)}\PY{p}{)}  \PY{o}{+} geom\PYZus{}density\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We can get densities of len by supp by mapping supp to color:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{library}\PY{p}{(}ggplot2\PY{p}{)}
+\PY{c+c1}{\PYZsh{}density of len by supp}
+ggplot\PY{p}{(}ToothGrowth\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}len\PY{p}{,} color\PY{o}{=}supp\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+  geom\PYZus{}density\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Summarizing the outcome across a
+predictor}\label{summarizing-the-outcome-across-a-predictor}
+
+Because dose takes on only 3 values, many point are crowded in 3
+columns, obscuring the shape of relationship between dose and len. We
+replace the column of points at each dose value with its mean and
+confidence limit using stat\_summary instead of geom\_point.
+
+    The outcome distributions appear a bit skewed, but the samples are
+small.
+
+\subsubsection{Quick scatterplot of outcome and
+predictor}\label{quick-scatterplot-of-outcome-and-predictor}
+
+We plot the dose-tooth length (len) relationship.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}not the best scatterplot}
+tp \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}ToothGrowth\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}dose\PY{p}{,} y\PY{o}{=}len\PY{p}{)}\PY{p}{)}
+tp \PY{o}{+} geom\PYZus{}point\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}mean and cl of len at each dose}
+tp.1 \PY{o}{\PYZlt{}\PYZhy{}} tp \PY{o}{+} stat\PYZus{}summary\PY{p}{(}fun.data\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{mean\PYZus{}cl\PYZus{}normal\PYZdq{}}\PY{p}{)}
+tp.1
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    An additional call to stat\_summary with fun.y=mean (fun.y because mean
+returns one value) and changing the geom to ``line'' adds a line between
+means. ​
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}add a line plot of means to see dose\PYZhy{}len relationship}
+\PY{c+c1}{\PYZsh{}maybe not linear}
+tp.2 \PY{o}{\PYZlt{}\PYZhy{}} tp.1 \PY{o}{+} stat\PYZus{}summary\PY{p}{(}fun.y\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{mean\PYZdq{}}\PY{p}{,} geom\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{line\PYZdq{}}\PY{p}{)}
+tp.2
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+Does a third variable moderate the x\PY{o}{\PYZhy{}}y relationship\PY{o}{?}
+
+Does the dose\PY{o}{\PYZhy{}}len relationship depend on supp\PY{o}{?} We can specify new global aesthetics \PY{k+kr}{in} aes.
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}all plots in tp.2 will now be colored by supp}
+tp.2 \PY{o}{+} aes\PY{p}{(}color\PY{o}{=}supp\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \subsubsection{Interpreting the previous
+graph}\label{interpreting-the-previous-graph}
+
+This graph suggests:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The slope of the dose-response curve decreases as dose increases for
+  both supp types, suggesting a quadratic function.
+\item
+  The slope of the OJ curve flattens more dramatically, perhaps
+  suggesting the quadratic term is different between supplement groups
+\item
+  The initial slopes look rather similar, perhaps suggesting that the
+  linear term may not be different between groups
+\item
+  The 2 supp group means differ at the two lower doses, but not at the
+  highest dose
+\end{enumerate}
+
+ggplot2 makes graphs summarizing the outcome easy ​ We just plotted
+means and confidence limits of len, with lines connecting the means,
+separated by supp, all without any manipulation to the original data! ​
+The stat\_summary function facilitates looking at patterns of means,
+just as regression models do. ​ Next we fit our linear regression model
+and check model assumptions with diagnostic graphs. ​
+
+    \subsubsection{Model preliminaries}\label{model-preliminaries}
+
+​ We want to model how tooth length (len) is predicted by dose, allowing
+for moderation of this relationship through an interaction with supp. ​
+We assume that dose and tooth length have a smooth, continuous
+relationship in the range of doses tested, so we will treat dose as a
+continuous (numeric) predictor. We also create a dose-squared variable,
+for use in the quadratic model and prediction later. ​
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}create dose\PYZhy{}squared variable}
+ToothGrowth\PY{o}{\PYZdl{}}dosesq \PY{o}{\PYZlt{}\PYZhy{}} ToothGrowth\PY{o}{\PYZdl{}}dose\PY{o}{\PYZca{}}\PY{l+m}{2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \subsubsection{Fitting the model}\label{fitting-the-model}
+
+We noticed in the previous graph that the dose-len relationship appears
+quadratic, that the quadratic effect may differ between supp groups, but
+that the initial linear slope may not be so different. We fit a model to
+reflect our expectations:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+lm2 \PY{o}{\PYZlt{}\PYZhy{}} lm\PY{p}{(}len \PY{o}{\PYZti{}} dose \PY{o}{+} dosesq\PY{o}{*}supp\PY{p}{,} data\PY{o}{=}ToothGrowth\PY{p}{)}
+\PY{k+kp}{summary}\PY{p}{(}lm2\PY{p}{)}\PY{o}{\PYZdl{}}coef
+\PY{c+c1}{\PYZsh{}\PYZsh{}                 Estimate Std. Error    t value     Pr(\PYZgt{}|t|)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} (Intercept)    0.7491667  2.7983895  0.2677135 7.899213e\PYZhy{}01}
+\PY{c+c1}{\PYZsh{}\PYZsh{} dose          30.1550000  5.2474684  5.7465806 4.114588e\PYZhy{}07}
+\PY{c+c1}{\PYZsh{}\PYZsh{} dosesq        \PYZhy{}8.7238095  2.0402571 \PYZhy{}4.2758383 7.640686e\PYZhy{}05}
+\PY{c+c1}{\PYZsh{}\PYZsh{} suppVC        \PYZhy{}6.4783333  1.3762287 \PYZhy{}4.7073088 1.739152e\PYZhy{}05}
+\PY{c+c1}{\PYZsh{}\PYZsh{} dosesq:suppVC  1.5876190  0.5770719  2.7511635 8.024694e\PYZhy{}03}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tabular}{r|llll}
+  & Estimate & Std. Error & t value & Pr(>\textbar{}t\textbar{})\\
+\hline
+	(Intercept) &  0.7491667   & 2.7983895    &  0.2677135   & 7.899213e-01\\
+	dose & 30.1550000   & 5.2474684    &  5.7465806   & 4.114588e-07\\
+	dosesq & -8.7238095   & 2.0402571    & -4.2758383   & 7.640686e-05\\
+	suppVC & -6.4783333   & 1.3762287    & -4.7073088   & 1.739152e-05\\
+	dosesq:suppVC &  1.5876190   & 0.5770719    &  2.7511635   & 8.024694e-03\\
+\end{tabular}
+
+
+    
+    The model appears to conform to our expectations.
+
+    \subsubsection{Example 1: Model
+diagnostics}\label{example-1-model-diagnostics}
+
+Statistical inference depends on the assumptions of the regression
+model, which we check with diagnostic graphs. Common diagnostics for
+linear regression
+
+\begin{itemize}
+\tightlist
+\item
+  inspect the normality of the residuals
+\item
+  verify that the residuals show no trends (assumption of linearity) and
+  are homoscedastic,
+\item
+  check for overly influential outliers.
+\item
+  fortify makes linear regression diagnostics easy
+\end{itemize}
+
+    Conveniently, the fortify function takes a lm model object (one among
+several classes) and returns a dataset with several estimated diagnostic
+variables including:
+
+\begin{itemize}
+\tightlist
+\item
+  .hat: leverages(influence)
+\item
+  .sigma: residual standard deviation when observation dropped from
+  model
+\item
+  .cooksd: Cook's distance
+\item
+  .fitted: fitted (predicted) values
+\item
+  .resid: residuals
+\item
+  .stdresid: standardized residuals
+\end{itemize}
+
+We fortify our lm2 object with these diagnostic variables and take a
+quick look a the new variables.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}create dataset with original data and diagnostic variables}
+lm2diag \PY{o}{\PYZlt{}\PYZhy{}} fortify\PY{p}{(}lm2\PY{p}{)}
+\PY{c+c1}{\PYZsh{}quick look}
+\PY{k+kp}{head}\PY{p}{(}lm2diag\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tabular}{r|llllllllll}
+ len & dose & dosesq & supp & .hat & .sigma & .cooksd & .fitted & .resid & .stdresid\\
+\hline
+	  4.2         & 0.5          & 0.25         & VC           & 0.08095238   & 3.623134     & 0.0165458459 & 7.564286     & -3.3642857   & -0.96913367 \\
+	 11.5         & 0.5          & 0.25         & VC           & 0.08095238   & 3.611516     & 0.0226438547 & 7.564286     &  3.9357143   &  1.13374237 \\
+	  7.3         & 0.5          & 0.25         & VC           & 0.08095238   & 3.654279     & 0.0001021058 & 7.564286     & -0.2642857   & -0.07613152 \\
+	  5.8         & 0.5          & 0.25         & VC           & 0.08095238   & 3.645881     & 0.0045503109 & 7.564286     & -1.7642857   & -0.50822934 \\
+	  6.4         & 0.5          & 0.25         & VC           & 0.08095238   & 3.650733     & 0.0019816291 & 7.564286     & -1.1642857   & -0.33539021 \\
+	 10.0         & 0.5          & 0.25         & VC           & 0.08095238   & 3.638080     & 0.0086727319 & 7.564286     &  2.4357143   &  0.70164455 \\
+\end{tabular}
+
+
+    
+    \subsubsection{Normality of residuals: q-q plot and
+stat\_qq}\label{normality-of-residuals-q-q-plot-and-statux5fqq}
+
+\begin{itemize}
+\item
+  A q-q plot can assess the assumption that the residuals are normally
+  distributed by plotting the standardized residuals (observed z-score)
+  against theoretical quantiles of the normal distribution (expected
+  z-score if normally distributed).
+\item
+  stat\_qq creates a qq-plot. The only required aesthetic is sample,
+  which we map to the standardized residual variable created by fortify,
+  .stdresid.
+\item
+  A diagonal reference line (intercept=0, slope=1) is added to the plot
+  with geom\_abline, representing perfect fit to a normal distribution.
+  The normal distribution will appear to be a reasonable fit below.
+\end{itemize}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}q\PYZhy{}q plot of residuals and diagonal reference line}
+\PY{c+c1}{\PYZsh{}geom\PYZus{}abline default aesthetics are yintercept=0 and slope=1}
+ggplot\PY{p}{(}lm2diag\PY{p}{,} aes\PY{p}{(}sample\PY{o}{=}\PY{l+m}{.}stdresid\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+  stat\PYZus{}qq\PY{p}{(}\PY{p}{)} \PY{o}{+} 
+  geom\PYZus{}abline\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Linearity and Homoscedasticity: residuals vs fitted}
+
+We \PY{k+kr}{next} assess the assumptions of homoscedescasticity and linear relationships between the outcome and predictors. A residuals vs fitted \PY{p}{(}predicted value\PY{p}{)} plot assesses both of these assmuptions.
+
+An even spread of residuals around \PY{l+m}{0} suggests homoscedasticity\PY{p}{,} and a zero\PY{p}{,} flat slope \PY{k+kr}{for} residuals against fitted suggests linearity of predictor effects.
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+We build our residuals vs fitted plot like so\PY{o}{:}
+
+\PY{l+m}{1}\PY{l+m}{.} Start with a scatter plot of x\PY{o}{=}\PY{l+m}{.}fitted and y\PY{o}{=}\PY{l+m}{.}stdresid.
+\PY{l+m}{2}\PY{l+m}{.} Add a plot the means and standard errors of the residuals across fitted values using stat\PYZus{}summary. The standard error bars somewhat address homoskedasticity.
+\PY{l+m}{3}\PY{l+m}{.} Plot a line representing the mean trend of the residuals with another call to stat\PYZus{}summary \PY{p}{(}changing \PY{k+kr}{function} to mean and geom to line\PY{p}{)}\PY{l+m}{.} Normally\PY{p}{,} we would use geom\PYZus{}smooth to plot a loess curve to visualize the trend among residuals\PY{p}{,} but loess smooths do not work well when the variable mapped to x is discrete.
+\PY{l+m}{4}\PY{l+m}{.} The error bars do not appear to vary too much and the line seems sufficiently flat to feel that neither assumption has been violated.
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}residual vs fitted, means and s.e.}
+ggplot\PY{p}{(}lm2diag\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}\PY{l+m}{.}fitted\PY{p}{,} y\PY{o}{=}\PY{l+m}{.}stdresid\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+  geom\PYZus{}point\PY{p}{(}\PY{p}{)} \PY{o}{+} 
+  stat\PYZus{}summary\PY{p}{(}\PY{p}{)} \PY{o}{+} 
+  stat\PYZus{}summary\PY{p}{(}fun.y\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{mean\PYZdq{}}\PY{p}{,} geom\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{line\PYZdq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} No summary function supplied, defaulting to `mean\PYZus{}se()}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \subsubsection{Identifying influential
+observations}\label{identifying-influential-observations}
+
+Strongly influential observations can distort regression coefficients.
+The most influential datapoints will typically have more extreme
+predictor values (leverage), measured by .hat, and large residuals. The
+overall influence of an observation on the model is measured by Cook's
+D, variable .cooksd.
+
+The Toothgrowth dataset is fairly balanced across doses and supps (20 at
+each of 3 doses, 30 at each of 2 supp). Thus, no values are ``extreme'',
+so influential observations for this model will be those with large
+residuals.
+
+In the following plot: * map .hat to x, .stdresid to y * map .cooksd to
+size, making more influential points larger. * label the points in
+geom\_text with their row numbers for identification
+
+The dependence of Cook's D on both leverage and residual is apparent in
+the plot, with Cook's D rising as we move away from center (larger
+residual) and to the right (larger leverage). No point looks too
+influential for concern.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} in geom\PYZus{}text we SET size to 4 so that size of text is constant,}
+\PY{c+c1}{\PYZsh{}   and not tied to .cooksd.  We also  nudge the text .001 (x\PYZhy{}axis units)}
+\PY{c+c1}{\PYZsh{}   to the left, and separate overlapping labels}
+ggplot\PY{p}{(}lm2diag\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}\PY{l+m}{.}hat\PY{p}{,} y\PY{o}{=}\PY{l+m}{.}stdresid\PY{p}{,} size\PY{o}{=}\PY{l+m}{.}cooksd\PY{p}{)}\PY{p}{)} \PY{o}{+}     
+  geom\PYZus{}point\PY{p}{(}\PY{p}{)} \PY{o}{+}
+  geom\PYZus{}text\PY{p}{(}aes\PY{p}{(}label\PY{o}{=}\PY{k+kp}{row.names}\PY{p}{(}lm2diag\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+             size\PY{o}{=}\PY{l+m}{4}\PY{p}{,} nudge\PYZus{}x\PY{o}{=}\PY{l+m}{\PYZhy{}0.003}\PY{p}{,} check\PYZus{}overlap\PY{o}{=}\PY{n+nb+bp}{T}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\hspace{4pt}}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

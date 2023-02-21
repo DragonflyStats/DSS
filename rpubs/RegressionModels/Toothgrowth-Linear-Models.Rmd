@@ -1,0 +1,140 @@
+---
+title: "Toothgrowth"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE,message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(gridExtra)
+```
+```{r}
+ToothGrowth <- ToothGrowth 
+head(ToothGrowth)
+```
+
+```{r}
+ToothGrowth %>% group_by(dose) %>% tally()
+
+```
+
+#### Distribution
+
+```{r}
+#bar plot of counts of dose by supp
+#data are balanced, so not so interesting
+p1 <- ggplot(ToothGrowth, aes(x=as.factor(dose), fill=supp)) +  geom_bar()
+
+#density of len
+p2 <-ggplot(ToothGrowth, aes(x=len))  + geom_density()
+
+#density of len by supp
+p3 <- ggplot(ToothGrowth, aes(x=len, color=supp)) + 
+  geom_density()
+
+grid.arrange(p1, p2, p3, ncol=2)
+```
+
+#### Scatterplot
+
+```{r}
+#not the best scatterplot
+tp <- ggplot(ToothGrowth, aes(x=dose, y=len))
+tp + geom_point()
+
+```
+
+```{r}
+#mean and cl of len at each dose
+tp.1 <- tp + stat_summary(fun.data="mean_cl_normal")
+tp.1
+```
+
+
+```{r}
+
+#add a line plot of means to see dose-len relationship
+#maybe not linear
+tp.2 <- tp.1 + stat_summary(fun.y="mean", geom="line")
+tp.2
+
+```
+
+Does a third variable moderate the x-y relationship?
+
+Does the dose-len relationship depend on supp? We can specify new global aesthetics in aes.
+
+
+
+```{r}
+#all plots in tp.2 will now be colored by supp
+tp.2 + aes(color=supp)
+```
+
+
+#### Linear Model Regression
+
+```{r}
+#create dose-squared variable
+ToothGrowth <- ToothGrowth %>% mutate(dosesq = (dose)^2)
+lm2 <- lm(len ~ dose + dosesq*supp, data=ToothGrowth)
+summary(lm2)$coef
+```
+
+
+```{r}
+#create dataset with original data and diagnostic variables
+lm2diag <- fortify(lm2)
+#quick look
+head(lm2diag)
+
+```
+
+
+```{r}
+
+
+#q-q plot of residuals and diagonal reference line
+#geom_abline default aesthetics are yintercept=0 and slope=1
+ggplot(lm2diag, aes(sample=.stdresid)) + 
+  stat_qq() + 
+  geom_abline()
+
+```
+
+### Linearity and Homoscedasticity: residuals vs fitted
+
+We next assess the assumptions of homoscedescasticity and linear relationships between the outcome and predictors. A residuals vs fitted (predicted value) plot assesses both of these assmuptions.
+
+An even spread of residuals around 0 suggests homoscedasticity, and a zero, flat slope for residuals against fitted suggests linearity of predictor effects.
+
+
+
+We build our residuals vs fitted plot like so:
+
+1. Start with a scatter plot of x=.fitted and y=.stdresid.
+2. Add a plot the means and standard errors of the residuals across fitted values using stat_summary. The standard error bars somewhat address homoskedasticity.
+3. Plot a line representing the mean trend of the residuals with another call to stat_summary (changing function to mean and geom to line). Normally, we would use geom_smooth to plot a loess curve to visualize the trend among residuals, but loess smooths do not work well when the variable mapped to x is discrete.
+4. The error bars do not appear to vary too much and the line seems sufficiently flat to feel that neither assumption has been violated.
+
+```{r}
+
+#residual vs fitted, means and s.e.
+ggplot(lm2diag, aes(x=.fitted, y=.stdresid)) + 
+  geom_point() + 
+  stat_summary() + 
+  stat_summary(fun.y="mean", geom="line")
+## No summary function supplied, defaulting to `mean_se()
+
+
+
+# in geom_text we SET size to 4 so that size of text is constant,
+#   and not tied to .cooksd.  We also  nudge the text .001 (x-axis units)
+#   to the left, and separate overlapping labels
+ggplot(lm2diag, aes(x=.hat, y=.stdresid, size=.cooksd)) +     
+  geom_point() +
+  geom_text(aes(label=row.names(lm2diag)), 
+             size=4, nudge_x=-0.003, check_overlap=T)
+
+```

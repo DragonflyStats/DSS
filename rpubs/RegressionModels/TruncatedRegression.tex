@@ -1,0 +1,53 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{MS4024} \rhead{Mr. Kevin O'Brien}
+\chead{Numerical Computation}
+%\input{tcilatex}
+
+\begin{document}
+
+\textbf{Examples of truncated regression}\\
+\begin{description}
+\item[ Example 1.] A study of students in a special GATE (gifted and talented education) program wishes to model achievement as a function of language skills and the type of program in which the student is currently enrolled. A major concern is that students are required to have a minimum achievement score of 40 to enter the special program. Thus, the sample is truncated at an achievement score of 40.
+
+\item[ Example 2.] A researcher has data for a sample of Americans whose income is above the poverty line. Hence, the lower part of the distribution of income is truncated. If the researcher had a sample of Americans whose income was at or below the poverty line, then the upper part of the income distribution would be truncated. In other words, truncation is a result of sampling only part of the distribution of the outcome variable.
+\section{Description of the data}
+Let's pursue Example 1 from above. We have a hypothetical data file, truncreg.dta, with 178 observations. The outcome variable is called achiv, and the language test score variable is called langscore. The variable prog is a categorical predictor variable with three levels indicating the type of program in which the students were enrolled. Let's look at the data. It is always a good idea to start with descriptive statistics.
+\medskip 
+\begin{framed}
+\begin{verbatim}
+dat <- read.dta("http://www.ats.ucla.edu/stat/data/truncreg.dta")
+
+summary(dat)
+##        id            achiv        langscore          prog    
+##  Min.   :  3.0   Min.   :41.0   Min.   :31.0   general : 40  
+##  1st Qu.: 55.2   1st Qu.:47.0   1st Qu.:47.5   academic:101  
+##  Median :102.5   Median :52.0   Median :56.0   vocation: 37  
+##  Mean   :103.6   Mean   :54.2   Mean   :54.0                 
+##  3rd Qu.:151.8   3rd Qu.:63.0   3rd Qu.:61.8                 
+##  Max.   :200.0   Max.   :76.0   Max.   :67.0
+\end{verbatim}
+\end{framed}
+%======================================================== %
+\end{document}
