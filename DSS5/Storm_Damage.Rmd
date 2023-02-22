@@ -1,0 +1,245 @@
+---
+title: "Reproducible Research Peer Assessment - Week 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Exploratory Data Analysis of the NOAA Storm Database 
+====================================
+
+
+### Synopsis
+
+In this report, we analyze some data obtained from the U.S. National Oceanic and Atmospheric Administration's (NOAA) Storm Database - a database that tracks characteristics of major storms and weather events in the United States. This includes when and where they occur, as well as estimates on any fatalities, injuries and property damage. The purpose behind this analysis is due to the fact that storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries and property damage. Prevent such outcomes to the greatest extent possible is of key interest, and it allows officials who have the ability to do so to prepare contingencies so that if these kinds of events happen again, damage and risk to public health is minimized. As there are many different kinds of major storms and weather events, we attempt to merge all events into a few basic categories. Once we have merged these events, the following two questions are what we will attempt to answer:
+
+Which types of events are the most harmful with respect to population health?
+Which types of events have the greatest economic consequences?
+This data consists of readings from the years 1950 to 2011. Due to the fact that in the early years, event were not recorded as frequently or were unavailable, we will focus on the most recent years. Specifically, the years 2006 and onwards. Based on this data and our analysis, the event that had the most overwhelming amount of effect on population health and the economy was anything deal with extreme cold or ice events. There are other events which had some significance for both public health and economical consequences, but not as significant as cold or ice events. These were anything related to heat or fire, water and tsunamis, and wind or storm related events.
+
+#### Data Processing
+
+We begin this section by discussing how the data were loaded in and processed. This data was obtained through the Reproducible Research Coursera.org website offered by the Johns Hopkins School for Public Health. The following code was used to access this resource, which is on their website, and read in as a data frame. After, we wish to only obtain those years that are from 2006 and onwards. As such, we use regular expressions and scan through the second column of the data frame, corresponding to the dates in DD-MM-YYYY format.
+```{r}
+ f <- tempfile()
+ download.file("http://d396qusza40orc.cloudfront.net/repdata/data/StormData.csv.bz2", 
+    f)
+ data <- read.csv(bzfile(f))
+ v <- grepl("20[0-1][6-9]", data[, 2])
+ dataSplit <- data[v, ]
+```
+Once we obtain this, we go through every single disaster that is logged in this data frame, stored in the EVTYPE variable and lump the disasters into 8 different categories. These are:
+
+* COLD/ICE: Anything related to extreme winter and ice events
+* HEAT: Anything related to fires or extreme heat
+* FOG: Anything related to fog related events
+* WATER: Anything related to floods or other water related events
+* WIND/STORM: Anything related to extreme winds and storms
+* LIGHTENING: Anything related to lightening related events
+* VOLCANO/TSUNAMI: Anything related to volcano and tsunami events. These are lumped together due to their rare occasions on happening
+* DUST: Anything related to dust
+
+----------------------------------------
+As such, we will first build 8 character vectors that contain any strings found in the EVTYPE variable that pertain to any of these events placed in their corresponding classes. We also make sure that they're upper case as the data has these events in upper case as well. There were also several typos in the data and these character vectors accommodate for these misspellings.
+
+```{r}
+# Group the disasters into major catagories Source:
+# https://class.coursera.org/repdata-002/forum/thread?thread_id=46#post-205
+coldIceStrings = toupper(c("avalanche", "avalance", "blizzard", "chill", "cold", 
+    "cool", "glaze", "hypothermia", "hyperthermia", "ice", "icy", "freez", "frost", 
+    "low temp", "sleet", "snow", "wint"))
+
+heatStrings = toupper(c("below normal precip", "dry", "drie", "drought", "fire", 
+    "heat", "high temp", "hot", "warm"))
+
+fogStrings = toupper(c("fog", "vog"))
+
+waterStrings = toupper(c("coast", "cstl", "current", "dam fail", "dam break", 
+    "drizzle", "drown", "erosion", "erosin", "flood", "floood", "fld", "heavy shower", 
+    "high water", "high waves", "lake", "landslump", "marine", "precip", "rain", 
+    "rising water", "river", "rogue wave", "slide", "stream", "sea", "seiche", 
+    "surf", "swell", "tide", "tidal", "torrent", "wet"))
+
+windStormStrings = toupper(c("burst", "cloud", "depression", "floyd", "funnel", 
+    "gust", "hail", "hurricane", "landspout", "storm", "southeast", "thunderstorm", 
+    "thundertsorm", "thundestorm", "tornado", "torndao", "tstm", "turbulence", 
+    "typhoon", "wall", "waterspout", "water spout", "wayterspout", "wind", "wnd"))
+
+lighteningStrings = toupper(c("lightning", "ligntning", "lighting"))
+
+volcanoTsunamiStrings = toupper(c("tsunami", "volcan"))
+
+dustStrings = toupper("dust")
+
+# For labeling our plots
+disasterStrings <- c("COLD/ICE", "HEAT", "FOG", "WATER", "WIND/STORM", "LIGHTENING", 
+    "VOLCANO/TSUNAMI", "DUST")
+```
+
+Once this has been performed, we will append a new column to our data frame to allow for easier plotting using the ggplot2 system. What we will do is go through every single row of this data frame and determine what the disaster is. 
+
+We will then check to see what category this particular disaster belongs to and assign a unique ID for the corresponding location in this column. We also use regular expressions to aid in this work. We will also create another column that stores the corresponding type of event (one of the 8 categories) in the next column after this appended data frame. 
+
+Before we do this, after going through the above code, there will be some rows that are assigned a 0 ID. The reason why is because these events did not fall under any of the above catagories. The strings in these rows consisted of unrelated strings, such as SUMMARY. As such, we will choose to ignore these. We will filter out any rows that have an ID of 0. Once we do this, we will create the aforementioned column.
+
+```{r}
+disasterIDs <- rep(0, nrow(dataSplit))
+# Place a new column in the data frame that contains an ID of which disaster
+# belongs to which catagory
+for (i in 1:nrow(dataSplit)) {
+    # Grab the disaster
+    disaster <- dataSplit[i, "EVTYPE"]
+    # Split string into spaces if applicable
+    spt <- strsplit(as.character(disaster), " ")
+
+    # For each space that we have, append a |
+    spt <- spt[[1]]
+    disasterString = c()
+    for (j in 1:length(spt) - 1) {
+        disasterString = c(spt[j], "|")
+    }
+    disasterString <- c(disasterString, spt[length(spt)])
+    disaster <- paste(disasterString, collapse = "")
+
+    # Check to see which one this belongs to
+    if (any(grepl(disaster, coldIceStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 1
+    } else if (any(grepl(disaster, heatStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 2
+    } else if (any(grepl(disaster, fogStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 3
+    } else if (any(grepl(disaster, waterStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 4
+    } else if (any(grepl(disaster, windStormStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 5
+    } else if (any(grepl(disaster, lighteningStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 6
+    } else if (any(grepl(disaster, volcanoTsunamiStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 7
+    } else if (any(grepl(disaster, dustStrings), na.rm = TRUE)) {
+        disasterIDs[i] <- 8
+    }
+}
+```
+
+```{r}
+# Our appended data frame
+dataSplitNew <- cbind(dataSplit, disasterIDs)
+dataSplitNewFinal <- dataSplitNew[disasterIDs != 0, ]
+disasterStringColumn <- disasterStrings[dataSplitNewFinal$disasterIDs]
+dataSplitNewFinal <- cbind(dataSplitNewFinal, disasterStringColumn)
+
+```
+
+```{r}
+dataSplitNewFinal %>% group_by(disasterStringColumn,FATALITIES) %>% tally()
+
+```
+
+```{r}
+dataSplitNewFinal %>% group_by(FATALITIES,INJURIES) %>% tally()
+
+```
+
+
+The last step we need is to evaluate economic damage performed for each kind of event. By examining the data, there are two columns of interest: PROPDMG and PROPDMGEXP. PROPDMG contains a base number, and PROPDMGEXP contains a single character that contains a multiplier of damage. This falls into one of three categories: K, M and B. K denotes thousands of dollars, M denotes millions of dollars and B denotes billions of dollars. As an example, supposing that a field of PROPDMG was 25.2, and PROPDMGEXP was M. This denotes that the total economic damage incurred for an event was $25.2 million dollars. As such, we will create a new column in our data frame that consists of the amount of damage incurred for a particular event in true form.
+
+```{r}
+# Create a new column that appends the actual damage in numeric format
+amountDollars <- rep(0, nrow(dataSplitNewFinal))
+for (i in 1:nrow(dataSplitNewFinal)) {
+    amount <- dataSplitNewFinal[i, "PROPDMG"]
+    typ <- toupper(dataSplitNewFinal[i, "PROPDMGEXP"])
+
+    if (typ == "K") {
+        amountDollars[i] <- amount * 1000
+    } else if (typ == "M") {
+        amountDollars[i] <- amount * 1e+06
+    } else if (typ == "B") {
+        amountDollars[i] <- amount * 1e+09
+    }
+}
+
+amountDollarsInBillions = amountDollars/1e+09
+dataSplitNewAmounts <- cbind(dataSplitNewFinal, amountDollarsInBillions)
+```
+
+#### Results
+
+We will now illustrate our results after all of the pre-processing performed on the data. We will show 3 bar charts.
+
+1. The total number of fatalities from 2006 and onwards for each type of disaster
+2. The total number of injuries from 2006 and onwards for each type of disaster
+3. The total amount of economic damage from 2006 and onwards for each type of disaster
+
+We use the ggplot2 graphing system - specifically qplot to illustrate our findings.
+
+#### Plot 1 - Total number of fatalities
+
+
+```{r}
+dataSplitNewFinal %>% head()
+```
+
+```{r}
+dataSplitNewFinal %>% group_by(disasterStringColumn) %>% tally()
+```
+```{r}
+dataSplitNewFinal %>% pull(FATALITIES) %>% head()
+```
+```{r}
+dataSplitNewFinal %>% group_by(disasterStringColumn) %>%
+  summarize(TotalFatalities = sum(FATALITIES)) %>%
+  ggplot(aes(x=TotalFatalities,fill=disasterStringColumn)) + 
+ geom_bar()
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(dataSplitNewFinal,aes(x=FATALITIES)) + 
+ geom_histogram() + 
+  facet_wrap(.~disasterStringColumn)
+
+# qplot(disasterStringColumn, FATALITIES, data = dataSplitNewFinal, stat = "summary", 
+#     fun.y = "sum", geom = "bar", fill = factor(disasterStringColumn), main = "Total # amount of fatalities (2006-2011)", 
+#    xlab = "Type of Disaster", ylab = "Amount of fatalities")
+```
+
+#### Plot 2 - Total number of injuries
+
+```{r}
+library(ggplot2)
+qplot(disasterStringColumn, INJURIES, data = dataSplitNewFinal, stat = "summary", 
+    fun.y = "sum", geom = "bar", fill = factor(disasterStringColumn), main = "Total number of injuries (2006-2011)", 
+    xlab = "Type of Disaster", ylab = "Amount of injuries")
+```
+
+### Plot 3 - Total amount of economic damage
+
+```{r}
+library(ggplot2)
+ggplot(data = dataSplitNewAmounts, 
+       aes(x=disasterStringColumn, y=amountDollarsInBillions))+
+    #stat = "summary", fun.y = "sum", 
+    geom_bar(fill = factor(disasterStringColumn))
+  
+  #  main = "Total amount of economic damage (2006-2011)", xlab = "Type of Disaster", 
+  #  ylab = "Total amount of damage (in billions of dollars)")
+```
+
+### Analysis
+
+Plot 1 - Total number of fatalities
+
+As can be seen in the plot, there is an overwhelming amount of fatalities from the last few years (2006 and onwards) that are specifically related to cold or ice related events. Events that dealt with lightening or volcano and tsunami related events did not appear within this year range and so they are not displayed here. The second most amount of fatalities is due to anything water related. This makes sense as some of the most severe hurricanes (Katrina as an example) happened within this range of years. The ones that come after heat related events are wind/storm events, followed by dust and fog related events. What is interesting is that cold and ice related events tend to be more predictable as the seasons experienced in certain areas of the United States are expected to fall between certain months. Even though we can prepare for these kinds of events, the amount of fatalities is still quite large. The difference between cold and ice events compared to water events (the second highest amount of fatalities) is well over 400.
+
+### Plot 2 - Total number of injuries
+
+This more or less follows the same kind of trends as the first plot. Cold and ice related events are still rated at the highest (almost 6000 injuries) throughout this year range. However, the amount of water injuries was significantly less. This makes sense as fewer injuries are experienced by anything water related. It is quite unfortunate, but given the magnitude of water related events, very few survive to succumb to any injuries. The second highest amount of injuries experienced throughout this year range are anything related to heat, which is just under 2000. As such, the difference between cold and ice related events in comparison to heat related events is almost 4000. Wind and storm events are rated as third highest, followed by water, fog and dust related events.
+
+### Plot 3 - Total amount of economic damage
+
+This is actually quite different from the other plots we have experienced. For one thing, ther is virtually no damage from dust and fog related events, which makes sense. Cold and ice related events still have the most highest amount of damange, ranging in almost \$150 billion dollars worth throughout the range we have specified. The next amount is wind and storm related events, and is about $10 billion dollars worth. After comes water, then heat.
