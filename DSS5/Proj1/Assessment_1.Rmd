@@ -10,7 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
 library(ggplot2)
 library(scales)
-library(Hmisc)
+library(tidyverse)
+#library(Hmisc)
 ```
 
 ### Loading and preprocessing the data
@@ -19,8 +20,26 @@ library(Hmisc)
 if(!file.exists('activity.csv')){
     unzip('activity.zip')
 }
-activityData <- read.csv('activity.csv')
+activityData <- read_csv('activity.csv')
+#activityData <- activityData %>% mutate(date = ymd(date))
 ```
+
+```{r}
+activityData %>% group_by(date) %>% summarise(steps=sum(steps,na.rm=TRUE)) %>% pull(steps) %>% mean()
+```
+
+```{r}
+steps <- with(activityData, tapply(steps, date, sum, na.rm = TRUE))
+mean(steps)
+```
+
+```{r}
+activityData %>% group_by(date) %>% 
+    summarise(steps=sum(steps,na.rm=TRUE)) %>% 
+    ggplot(aes(x=date,y=steps)) + geom_bar(stat="identity")
+
+```
+
 ##### 2. Process/transform the data (if necessary) into a format suitable for your analysis
 ```{r}
 #activityData$interval <- strptime(gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", activityData$interval), format='%H:%M')
@@ -29,8 +48,13 @@ activityData <- read.csv('activity.csv')
 -----
 
 ## What is mean total number of steps taken per day?
+
 ```{r}
-stepsByDay <- tapply(activityData$steps, activityData$date, sum, na.rm=TRUE)
+stepsByDay <- activityData %>% group_by(date) %>% summarize(totalsteps = sum(steps,na.rm=TRUE))
+stepsByDay
+```
+```{r}
+#stepsByDay <- tapply(activityData$steps, activityData$date, sum, na.rm=TRUE)
 ```
 
 ##### 1. Make a histogram of the total number of steps taken each day
