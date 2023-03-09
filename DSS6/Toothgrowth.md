@@ -91,11 +91,45 @@ table(toothGrowth$supp, toothGrowth$dose)
 
 #### Plots
 
+Distribution of the dose variable, with an additiona breakdown by supplement type
+
 ![](Toothgrowth_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
+Distribution of the Supplement variable, with an additional breakdown by dose level
+
+
+
+```r
+p3 <- ggplot(data=toothGrowth, aes(x=supp,y=len,fill=supp)) +
+  geom_boxplot()+ ylim(c(0,45)) + 
+  theme_bw()
+p4 <- ggplot(data=toothGrowth, aes(x=supp,y=len,fill=supp)) +
+  geom_boxplot() +  ylim(c(0,45)) + 
+  theme(legend.position="none") + 
+  facet_grid(.~dose) +theme_bw()
+grid.arrange(p3, p4, ncol = 2, nrow=1)
+```
+
+![](Toothgrowth_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+
+
+```r
+p5 <- toothGrowth %>% mutate(dose=as.numeric(as.character(dose))) %>%
+  ggplot(aes(x=dose,y=len,col=supp)) + 
+  geom_point()+ 
+  geom_smooth(method=lm,se=FALSE) + 
+  theme_bw()
+p6 <-  toothGrowth %>% ggplot(aes(len,col=dose)) + geom_density() + 
+  theme_minimal()
+grid.arrange(p5, p6, ncol = 2, nrow=1)
+```
+
+![](Toothgrowth_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 ### ANOVA
 
-Do some analysis based on Analysis of Variance (ANOVA)
+Carry out some analysis based on Analysis of Variance (ANOVA)
 
 ```r
 anova.out <- aov(len ~ supp * dose, data=toothGrowth)
@@ -112,8 +146,8 @@ summary(anova.out)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-* The results show there is a notable interaction between the length (len) and dosage (dose) (F(1,54)=15.572;p<0.01)
-* Also a very clear effect on length(len) by supplement type (supp) (F(2,54)=92;p<0.01). 
+* The results show there is a notable interaction between the length (len) and dosage (dose) (***F(1,54)=15.572;p<0.01***)
+* Also a very clear effect on length(len) by supplement type (supp) (***F(2,54)=92;p<0.01***). 
 * Finally there is a minor interaction between the combination of supplement type (supp) and dosage (dose) compared to the length (len) (***F(2,54)=4.107;p<0.05***).
 
 #### Tukey HSD Test
@@ -161,6 +195,7 @@ TukeyHSD(anova.out)
 * The Tukey HSD  analysis shows that there are significant differences between each of the groups in supp and dose
 * Only the interactions between VC:0.5-OJ:0.5; VC:1-OJ:0.5; OJ:2-OJ:1; VC:2-OJ:1 and VC:2-OJ:2  are not significant
 
+
 ```r
 confint(anova.out)
 ```
@@ -204,9 +239,9 @@ print(model.tables(anova.out,"means"),digits=3)
 
 ### Conclusions
 
-There are clear indications that both the supplement as the dosage have clear indipendent effects on the length of teeth guinea pigs. More those means on avarage longer teeth. Supplement type has a clear influence too, but OJ has a greater avarage teethgrowth in combination with dosages 0.5 and 1 then for the VC supplement, while teeth length for the VC supplement vs the OJ in combiantion with dosage 2 has no significant effect (almost same mean & same confidence interval)
+There are clear indications that both the supplement as the dosage have clear independent effects on the length of teeth guinea pigs. Higher dosage means on average longer teeth. Supplement type has a clear influence too, but OJ has a greater avarage teethgrowth in combination with dosages 0.5 and 1 then for the VC supplement, while teeth length for the VC supplement vs the OJ in combiantion with dosage 2 has no significant effect (almost same mean & same confidence interval)
 
-The fact remains however that these assumpionts are based on the facts:
+These conclusions are predicated on the validity of the following assumptions:
 
 * that the guinea pigs are repesentative for the population of guinea pigs, 
 * that dosage and supplement were randomly assigned and 

@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
+title: "Reproducible Research"
 output: html_document
 ---
 
@@ -13,12 +13,16 @@ library(scales)
 library(tidyverse)
 library(magrittr)
 library(lubridate)
+library(scales)
 
 ```
 
+
 ## Part 1 Loading and preprocessing the data
 
-#### 1.A. Load the data (i.e. readr::read_csv())
+### Exercise 1.A. 
+
+*Load the data (i.e. readr::read_csv())*
 
 ```{r, results='markup', warning=TRUE, message=TRUE}
 if(!file.exists('activity.csv')){
@@ -28,58 +32,43 @@ activityData <- read_csv('activity.csv',show_col_types = FALSE)
 
 ```
 
-#### 1.B Additional Preprocessing Steps
+### Exercise 1.B 
 
 *Process/transform the data (if necessary) into a format suitable for your analysis* 
+
 * Looking ahead, we will need to create a time stamp variable using a transformation of the intervals variable.
 * We will also transform the time variable into a timelapse format that is convenient for making time-series plots.
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 activityData$interval <- activityData$interval
 
 activityData$time <- sprintf("%04.0f", activityData$interval)
 activityData$time <- gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", activityData$time)
 
-
-
-
-```
-
-```{r}
-# time since start of day in units of seconds
-# - 86,400 seconds in a day
-activityData$timelapse_sec <- as.numeric(hm(activityData$time))
-
-# time since start of day in units of 5 minutes
-# - 288 five-minute periods in a day
-activityData$timelapse_5mins <- as.numeric(hm(activityData$time))/300
-
-# Create Day and Hour Variables for Imputation 
-activityData <- activityData %>% mutate( Day = wday(date))
+# Create Day and Hour Variables for Imputation and Day Type Analysis
+activityData <- activityData %>% mutate( Day = wday(date)) # lubdridate R package
 activityData <- activityData %>% mutate( Hour = substr(time, start = 1, stop = 2))
 
-#activityData$time <- strptime(activityData$time, "%H:%M")
-#activityData$time <- data.table::as.ITime(activityData$time)
 ```
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 tail(activityData,2)
 ```
 
 ## Part 2
 
-### Exercise 2.a
+### Exercise 2.A
 
 *Calculate the total number of steps taken per day*
 
 Working in units of daily step count
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 daily_step_total <- activityData %>% 
     group_by(date) %>%  # using tidyverse
     summarise(daily_steps=sum(steps,na.rm=TRUE)) 
 
-head(daily_step_total,12)
+head(daily_step_total,4)
 ```
 
 ### Exercise 2.B
@@ -88,24 +77,21 @@ head(daily_step_total,12)
 
 The approach to take using {ggplot2} is to apply <tt>geom_bar()</tt>, and apply it to the daily step totals
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 activityData %>% group_by(date) %>% 
     summarise(steps=sum(steps,na.rm=TRUE)) %>% 
-    ggplot(aes(x=date,y=steps)) + geom_bar(stat="identity")
+    ggplot(aes(x=date,y=steps)) + geom_bar(stat="identity") + 
+    ylab("Total")
 
 ```
-
-
-
 
 ### Exercise 2.C
 
 *Calculate and report the mean and median total number of steps taken per day*
 
-
 The mean and median of the daily step counts for the period can be found in the following summary.
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 daily_step_summary <- daily_step_total%>% summarize(
     mean_daily_steps= mean(daily_steps),
     median_daily_steps = median(daily_steps),
@@ -114,14 +100,14 @@ daily_step_summary <- daily_step_total%>% summarize(
 daily_step_summary
 ```
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 Mean_Daily_Steps <- daily_step_summary %>% pull(mean_daily_steps)
 Median_Daily_Steps <- daily_step_summary%>% pull(median_daily_steps)
 Total_Daily_Steps <- daily_step_summary%>% pull(total_daily_steps)
 ```
-* Mean: `r Mean_Daily_Steps`
-* Median:  `r Median_Daily_Steps`
-* Total:  `r Total_Daily_Steps`
+* Mean: `r as.character(comma(Mean_Daily_Steps))`
+* Median:  `r as.character(comma(Median_Daily_Steps))`
+* Total:  `r as.character(comma(Total_Daily_Steps))`
 
 -----
 
@@ -129,11 +115,12 @@ Total_Daily_Steps <- daily_step_summary%>% pull(total_daily_steps)
 
 **What is the average daily activity pattern?**
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 mean_steps_per_interval <- activityData %>% 
     group_by(time) %>% 
     summarise(meanSteps = mean(steps,na.rm=TRUE))
 
+# Useful for plot later on
 mean_steps_per_interval$time = factor(mean_steps_per_interval$time,ordered=TRUE)
 
 ```
@@ -142,7 +129,7 @@ mean_steps_per_interval$time = factor(mean_steps_per_interval$time,ordered=TRUE)
 
 *Make a time series plot (i.e. <tt>type = "l")</tt> of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)* 
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 mean_steps_per_interval %>%
     ggplot(aes(x=time, y=meanSteps,group=1)) +
     geom_line(col="red") +
@@ -156,7 +143,7 @@ mean_steps_per_interval %>%
 
 *Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?*
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 max_steps <- which.max(mean_steps_per_interval$meanSteps)
 
 time_max_steps <-activityData$time[max_steps]
@@ -168,74 +155,119 @@ time_max_steps <-activityData$time[max_steps]
 
 ## Part 4
 
-### Imputing missing values
+**Imputing missing values**
 
 ### Exercise 4.A
 
 *Calculate and report the total number of missing values in the dataset*
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 numMissingValues <- sum(is.na(activityData$steps))
 ```
 
-* Number of missing values: `r numMissingValues`
+* Number of missing values: `r as.character(comma(numMissingValues))`
 
-##### 2. Devise a strategy for filling in all of the missing values in the dataset.
+### Exercise 4.B 
+
+*Devise a strategy for filling in all of the missing values in the dataset.*
+
+The imputation strategy is to determine the hourly medians for each day of the week (i.e. a separate median for each of the 168 hours of the week)
+The resultant table will be joined to the main data set, and any missing datas will be imputed with the appropriate hourly medians (using the <tt>coalesce()</tt> function in {dplyr}).
 
 
-```{r}
-dim(activityData)
+
+```{r warning=FALSE,message=FALSE}
+impute_data <- activityData %>% 
+    group_by(Day,Hour) %>% 
+    summarise(impute_steps=mean(steps,na.rm=TRUE)) %>%
+    mutate(impute_steps=round(impute_steps))
+head(impute_data,10)
 ```
+### Exercise 4.C
 
-```{r}
-impute_data <- activityData %>% group_by(Day,Hour) %>% summarise(impute_steps=mean(steps,na.rm=TRUE)) %>% mutate(impute_steps=round(impute_steps))
-impute_data
-```
-##### 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
-```{r}
+*Create a new dataset that is equal to the original dataset but with the missing data filled in.*
+
+In the previous section, a dataframe of imputation values, called "impute_data" was created. This dataframe is joined to the main dataset using a join function, and the missing values are imputated using a coalesce operations.
+
+```{r warning=FALSE,message=FALSE}
 activityDataImputed <- activityData %>% 
     left_join(impute_data,by=c("Day","Hour")) %>%
     mutate(steps = coalesce(steps,impute_steps))
 ```
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 head(activityDataImputed)
 ```
 
 
-##### 4. Make a histogram of the total number of steps taken each day 
-```{r}
-stepsByDayImputed <- tapply(activityDataImputed$steps, activityDataImputed$date, sum)
-qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
+###  Exercise 4.D 
+
+*Make a histogram of the total number of steps taken each day*
+
+The previous histogram is re-created with the updated data
+
+```{r warning=FALSE,message=FALSE}
+activityDataImputed %>% group_by(date) %>% 
+    summarise(steps=sum(steps,na.rm=TRUE)) %>% 
+    ggplot(aes(x=date,y=steps)) + geom_bar(stat="identity")
 ```
 
-##### ... and Calculate and report the mean and median total number of steps taken per day. 
-```{r}
-stepsByDayMeanImputed <- mean(stepsByDayImputed)
-stepsByDayMedianImputed <- median(stepsByDayImputed)
+###  Exercise 4.E
+
+*Calculate and report the mean and median total number of steps taken per day. *
+
+```{r warning=FALSE,message=FALSE}
+
+stepsByDayImputed <- activityDataImputed %>% 
+    group_by(date) %>%  # using tidyverse
+    summarise(daily_steps=sum(steps,na.rm=TRUE)) %>% 
+    summarize(
+    mean_daily_steps= mean(daily_steps),
+    median_daily_steps = median(daily_steps),
+    total_daily_steps = sum(daily_steps))
+
+
+stepsByDayMeanImputed <- stepsByDayImputed$mean_daily_steps
+stepsByDayMedianImputed <- stepsByDayImputed$median_daily_steps
 ```
-* Mean (Imputed): `r stepsByDayMeanImputed`
-* Median (Imputed):  `r stepsByDayMedianImputed`
+* Mean (Imputed): `r as.character(comma(stepsByDayMeanImputed))`
+* Median (Imputed):  `r as.character(comma(stepsByDayMedianImputed))`
 
 
-----
+---------------------------------------------
 
-## Are there differences in activity patterns between weekdays and weekends?
+## Part 5
 
-##### 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
+*Are there differences in activity patterns between weekdays and weekends?*
 
-```{r}
-activityDataImputed$dateType <- ifelse(as.POSIXlt(activityDataImputed$date)$wday %in% c(0,6), 'weekend', 'weekday')
+### Exercise 5.A
+Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
+
+```{r warning=FALSE,message=FALSE}
+
+#lubridate codes days of the week from 1 through 7, with Sunday being 1
+
+activityDataImputed <- activityDataImputed %>% mutate(
+    DayType= case_when(
+        Day %in% c(1,7) ~ "weekend" ,  #Saturday and Sunday
+        Day %in% 2:6 ~ "weekday" #Weekdays
+    )
+)
 ```
 
-##### 2. Make a panel plot containing a time series plot
 
-```{r}
-averagedActivityDataImputed <- aggregate(steps ~ interval + dateType, data=activityDataImputed, mean)
 
-ggplot(averagedActivityDataImputed, aes(interval, steps)) + 
+
+### Exercise 5.B 
+*Make a panel plot containing a time series plot*
+
+```{r warning=FALSE,message=FALSE}
+activityDataImputed %>% group_by(DayType,interval) %>% 
+    summarize(mean_steps = mean(steps),.groups="drop") %>% 
+    ggplot( aes(interval, mean_steps)) + 
     geom_line() + 
-    facet_grid(dateType ~ .) +
+    facet_grid(DayType ~ .) +
     xlab("5-minute interval") + 
-    ylab("avarage number of steps")
+    ylab("Average number of steps") + 
+    theme_bw()
 ```

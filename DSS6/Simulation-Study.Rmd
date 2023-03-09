@@ -1,6 +1,8 @@
 ---
 title: "Simulating Exponential Distributions"
-output: github_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -9,151 +11,219 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Synopsis
 
-R is loaded with powerful methods for simulating, modeling and analyzing data. In this document I give a basic simulation of exponential data and compare that data with a theoretical model.
+The purpose of this data analysis is to investigate the behaviour of random numbers drawn from the Exponential distribution and compare their distribution to values expected when assuming that the Central Limit Theorem applies. The analysis will avail of the many tool available from the R programming language.
+
+This investigation will compare the distribution of averages of 40 exponentials over 1000 simulations. For this study, the lambda will be set to 0.2 for all of the simulations. 
+
+Knowledge of the parameters of the Exponential distributon and the Central Limit theorem are assumed herein.
+
 
 ### Simulation
 
-We start by simulating 1000 trials with 40 observations each. This is accomplished using a for loop and the rexp() function. The means and standard deviations for each trial are saved in respective data frames.
+We start by simulating 1000 trials with 40 observations each. Thapproach used is with a "<tt>for</tt>" loop and the <tt>rexp()</tt> function. The means and standard deviations for each trial are saved in respective vectors.
 
 ```{r Simulation}
-lambda <- .2
-n <- 40
-s <- 1000
-mns = NULL
-sd = NULL
-dat = NULL
-for (i in 1:s) {
-       set.seed(i)
-       dat = c(dat, rexp(n, lambda))
-       mns = c(mns, mean(rexp(n, lambda)))
-       sd = c(sd, sd(rexp(n, lambda)))
+lambda <- 0.2 #rate paramter for exponential distribution 
+n <- 40 #sample size
+M <- 1000 #number of iterations 
+mymeans <-  numeric(M) #container for sample means 
+mysds <- numeric(M) #container for sample standard deviations
+
+for (i in 1:M) {
+       set.seed(i) #use seed corresponding to each iteration index
+       mydata = rexp(n, lambda) #generate a sample
+       mymeans[i] = mean(mydata) #save the sample mean
+       mysds[i] =  sd(mydata) #save the sample standard deviation
 }
 ```
 
 
 #### Sample Mean vs Theoretical Mean
 
-Using the data we can calculate the simulated and theoretical means.
+Using the data we can calculate the mean of all the collected samples, and compare that to the theoretical mean of the exponential distribution.
 
 ```{r mean, fig.height = 4}
-sample_mean = mean(mns)
-sample_mean
-theor_mean = 1/lambda
-theor_mean
-hist(mns, 22, main = "Figure 2 - Distribution of Sample Means")
+sample_mean = mean(mymeans)
+# observed mean for all samples
+
+#theoretical mean : mu 
+mu = 1/lambda 
+
+#sampling fluctuation
+fluctuation = mu-sample_mean
+
+hist(mymeans, breaks=25, 
+     main = "Figure 1 - Distribution of Sample Means",
+     xlab = "Sample Means")
 abline(v=5,lw=4,col="red")
 ```
 
-The results show that the sample mean is off by only .011. In the figure below we can further see that the distirbution of the means is approximately normal.
+The results show that the sample mean is off by only ``r fluctuation``. 
+In the figure below we can further see that the distributions of the sample means is approximately normal.
 
-```{r mns, fig.height = 4, echo = FALSE}
+```{r mymeans, fig.height = 4, echo = FALSE}
 #Setting up graphs side by side
 par(mfrow=c(1,2), oma=c(2,0,2,0))
+
 #Generating histogram as a density function
-hist(mns, 22, freq = FALSE, main = "Means - Density")
+hist(mymeans, breaks = 25, 
+     freq = FALSE, 
+     main = "Means - Density",
+     xlab = "Sample Means")
+
 #Fitting the theoretical line
-xfit <- seq(min(mns), max(mns), length = 100)
-yfit <- dnorm(xfit, mean = 1/lambda, sd = 1/lambda/sqrt(n))
+xfit <- seq(min(mymeans), max(mymeans), length = 100)
+yfit <- dnorm(xfit, mean = 1/lambda, sd = mu/sqrt(n))
 lines(xfit, yfit, pch=22, lty = 1, lw = 3, col = "red")
+
 #Fitting the line to the data
-lines(density(mns), lw = 3, col = "blue")
-mtext("Figure 3 - Distribution of Sample Means", outer = TRUE, cex = 1.5)
+lines(density(mymeans), lw = 3, col = "blue")
+mtext("Figure 2 - Distribution of Sample Means", 
+      outer = TRUE, cex = 1.5)
 #Adding a legend and title
-legend('topright', c("Simulation", "Theoretical"), col=c("blue", "red"), lw=c(3,3), cex = .75)
+legend('topright', c("Simulation", "Theoretical"), 
+       col=c("blue", "red"), lw=c(3,3), cex = 0.75)
 #plotting the data on the mean for the 1000 simulations
-plot(mns, main = "Means - Scatter", ylab = "Mean", xlim = c(0,s), ylim = c(0,10), xlab = "Mean", pch = 16, col = adjustcolor("blue", alpha=0.44))
+
+plot(mymeans, main = "Sample Means - Scatter", ylab = "Sample Mean", 
+     xlim = c(0,M), ylim = c(0,10), 
+     xlab = "Simulation Index", pch = 16, 
+     col = adjustcolor("blue", alpha=0.35))
 abline(h=5, col = "red", lw =3)
 ```
 
 #### Sample Variance vs Theoretical Variance
 
-Next we calculate the standard deviations and variances.
+Next we calculate the standard deviations and variances of the sample data, and their theoretical counterparts.
 
 ```{r var,}
-sample_var <- var(mns)
+sample_var <- var(mymeans)
 sample_var
-theor_var <- (1/lambda^2)/n
-theor_var
 ```
 
-The variances match up closely. Below is a chart comparing theoretical standard deviation distribution versus the standard deviation of the sample data.
+```{r}
+sigma <- (mu^2)/n
+sigma
+```
 
+The variance of sample means is numerically close to the theoretical variance according to the central limit theorem, i.e `r round(sample_var,4)` and `r sigma` respectively. The next figure is a chart comparing the distributions of theoretical standard deviation versus that of the standard deviations of the sample data.
+
+The similarity of sample and theoretical distribution is less satisfactory, when compared to that of the sample means. A valid conclusion is that the central limit theorem doesn't hold in the case of sample variances, and that an alternative model should be sought to characterize the distribution.
 
 ```{r sd, fig.height = 4, echo = FALSE}
 par(mfrow=c(1,2), oma=c(2,0,2,0))
-hist(sd, 22, freq = FALSE, ylim = c(0,.5), main = "Standard Deviation - Density")
+hist(mysds, 22, freq = FALSE, ylim = c(0,0.5), 
+     main = "Standard Deviation - Density")
+
 #Fitting the theoretical line
-xfit <- seq(min(sd), max(sd), length = 100)
-yfit <- dnorm(xfit, mean = 1/lambda, sd = 1/lambda/sqrt(n))
+xfit <- seq(min(mysds), max(mysds), length = 100)
+yfit <- dnorm(xfit, mean = 1/lambda, sd = mu/sqrt(n))
 lines(xfit, yfit, pch=22, lty = 1, lw = 3, col = "red")
+
 #Fitting the line to the data
-lines(density(sd), lw = 3, col = "blue")
+lines(density(mysds), lw = 3, col = "blue")
+
 #Adding a legend and title
-legend('topright', c("Simulation", "Theoretical"), col=c("blue", "red"), lw=c(3,3), cex = .75)
-mtext("Figure 4 - Distribution of Standard Deviations", outer = TRUE, cex = 1.5)
-plot(sd, main = "Standard Deviation - Scatter", ylab = "Stdev", xlim = c(0,s), ylim = c(0,10),pch = 16, col = adjustcolor("blue", alpha=0.7))
+legend('topright', c("Simulation", "Theoretical"), 
+       col=c("blue", "red"), 
+       lw=c(3,3), cex = 0.75)
+mtext("Figure 3 - Distribution of Standard Deviations", 
+      outer = TRUE, cex = 1.5)
+plot(mysds, main = "Standard Deviation - Scatter", 
+     ylab = "Stdev", xlim = c(0,s=M), 
+     ylim = c(0,10),pch = 16, 
+     col = adjustcolor("blue", alpha=0.7))
 abline(h=5, col = "red", lw =3)
 ```
 
-Finally, we can test the normality using a q-q plot.
+Finally, we can test the normality using a normaly probability ("q-q") plot.
 
 
 ```{r qq, echo = FALSE}
-qqnorm(mns, main= "Figure 5 - Normality Test")
-qqline(mns, col="red", lw = "2")
+qqnorm(mymeans, main= "Figure 4 - Test for Normality",
+       pch=18, col="blue")
+qqline(mymeans, col="red", lw = "2")
 mtext("Figure 4", outer = TRUE, cex = 1.5)
 ```
 
 ### Appendix - Plot Codes
 
-```{r Plot1, eval=FALSE}
-plot(dat, pch = 16, col = adjustcolor("purple", alpha=0.05), ylim = c(0,25), ylab = "Variable", main = "Figure 1")
-```
+
+#### Figure 1
 
 ```{r Plot2, eval = FALSE}
-sample_mean = mean(mns)
-sample_mean
-theor_mean = 1/lambda
-theor_mean
-hist(mns, 22, main = "Figure 2 - Distribution of Sample Means")
+hist(mymeans, breaks=25, 
+     main = "Figure 1 - Distribution of Sample Means",
+     xlab = "Sample Means")
 abline(v=5,lw=4,col="red")
 ```
 
+#### Figure 2
+
 ```{r Plot3, eval = FALSE}
-#FIGURE 3
-par(mfrow=c(1,2))
+#Setting up graphs side by side
+par(mfrow=c(1,2), oma=c(2,0,2,0))
+
 #Generating histogram as a density function
-hist(mns, 22, freq = FALSE)
+hist(mymeans, breaks = 25, 
+     freq = FALSE, 
+     main = "Means - Density",
+     xlab = "Sample Means")
+
 #Fitting the theoretical line
-xfit <- seq(min(mns), max(mns), length = 100)
-yfit <- dnorm(xfit, mean = 1/lambda, sd = 1/lambda/sqrt(n))
+xfit <- seq(min(mymeans), max(mymeans), length = 100)
+yfit <- dnorm(xfit, mean = 1/lambda, sd = mu/sqrt(n))
 lines(xfit, yfit, pch=22, lty = 1, lw = 3, col = "red")
+
 #Fitting the line to the data
-lines(density(mns), lw = 3, col = "blue")
-#Adding a legend
-legend('topright', c("Simulation", "Theoretical"), col=c("blue", "red"), lw=c(3,3), cex = .75)
+lines(density(mymeans), lw = 3, col = "blue")
+mtext("Figure 2 - Distribution of Sample Means", 
+      outer = TRUE, cex = 1.5)
+#Adding a legend and title
+legend('topright', c("Simulation", "Theoretical"), 
+       col=c("blue", "red"), lw=c(3,3), cex = 0.75)
 #plotting the data on the mean for the 1000 simulations
-plot(mns, main = "Mean", ylab = "Mean", xlim = c(0,s), ylim = c(0,10), xlab = "Mean", pch = 16, col = adjustcolor("blue", alpha=0.44))
+
+plot(mymeans, main = "Sample Means - Scatter", ylab = "Sample Mean", 
+     xlim = c(0,M), ylim = c(0,10), 
+     xlab = "Simulation Index", pch = 16, 
+     col = adjustcolor("blue", alpha=0.35))
 abline(h=5, col = "red", lw =3)
 ```
+
+#### Figure 3
 
 ```{r Plot4, eval = FALSE}
 par(mfrow=c(1,2), oma=c(2,0,2,0))
-hist(sd, 22, freq = FALSE, ylim = c(0,.5), main = "Standard Deviation - Density")
+hist(mysds, 22, freq = FALSE, ylim = c(0,0.5), 
+     main = "Standard Deviation - Density")
+
 #Fitting the theoretical line
-xfit <- seq(min(sd), max(sd), length = 100)
-yfit <- dnorm(xfit, mean = 1/lambda, sd = 1/lambda/sqrt(n))
+xfit <- seq(min(mysds), max(mysds), length = 100)
+yfit <- dnorm(xfit, mean = 1/lambda, sd = mu/sqrt(n))
 lines(xfit, yfit, pch=22, lty = 1, lw = 3, col = "red")
+
 #Fitting the line to the data
-lines(density(sd), lw = 3, col = "blue")
+lines(density(mysds), lw = 3, col = "blue")
+
 #Adding a legend and title
-legend('topright', c("Simulation", "Theoretical"), col=c("blue", "red"), lw=c(3,3), cex = .75)
-mtext("Figure 4 - Distribution of Standard Deviations", outer = TRUE, cex = 1.5)
-plot(sd, main = "Standard Deviation - Scatter", ylab = "Stdev", xlim = c(0,s), ylim = c(0,10),pch = 16, col = adjustcolor("blue", alpha=0.7))
+legend('topright', c("Simulation", "Theoretical"), 
+       col=c("blue", "red"), 
+       lw=c(3,3), cex = 0.75)
+mtext("Figure 3 - Distribution of Standard Deviations", 
+      outer = TRUE, cex = 1.5)
+plot(mysds, main = "Standard Deviation - Scatter", 
+     ylab = "Stdev", xlim = c(0,s=M), 
+     ylim = c(0,10),pch = 16, 
+     col = adjustcolor("blue", alpha=0.7))
 abline(h=5, col = "red", lw =3)
 ```
 
+#### Figure 4
+
 ```{r Plot5, eval = FALSE}
-qqnorm(mns, main= "Figure 5 - Normality Test")
-qqline(mns, col="red", lw = "2")
+qqnorm(mymeans, main= "Figure 4 - Test for Normality",
+       pch=18, col="blue")
+qqline(mymeans, col="red", lw = "2")
+mtext("Figure 4", outer = TRUE, cex = 1.5)
 ```
