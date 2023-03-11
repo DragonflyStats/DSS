@@ -1,0 +1,173 @@
+
+#### Question 1
+Consider the following data with x as the predictor and y as as the outcome.
+
+```{r}
+x <- c(0.61, 0.93, 0.83, 0.35, 0.54, 0.16, 0.91, 0.62, 0.62)
+y <- c(0.67, 0.84, 0.6, 0.18, 0.85, 0.47, 1.1, 0.65, 0.36)
+```
+
+Give a P-value for the two sided hypothesis test of whether $\beta_1$ from a linear regression model is 0 or not.
+
+
+* 0.391
+* **Correct** 0.05296
+* 0.025
+* 2.325
+
+```{r}
+summary(lm(y ~ x))$coef
+```
+
+-------------------------------------------------------
+
+#### Question 2
+
+Consider the previous problem, give the estimate of the residual standard deviation.
+
+* 0.3552
+* 0.223
+* 0.05296
+* 0.4358
+
+```{r}
+summary(lm(y ~ x))$sigma
+```
+
+ 
+------------------------------------------------------------------
+
+#### Question 3
+
+In the mtcars data set, fit a linear regression model of weight (predictor) on mpg (outcome). 
+Get a 95% confidence interval for the expected mpg at the average weight. What is the lower endpoint?
+
+
+* -4.00
+* 21.190
+* 18.991
+* -6.486
+
+```{r}
+data(mtcars)
+fit <- lm(mpg ~ I(wt - mean(wt)), data = mtcars)
+confint(fit)
+```
+
+---------------------------------------------------------
+
+#### Question 4
+
+Refer to the previous question. Read the help file for mtcars. 
+What is the weight coefficient interpreted as?
+
+
+* The estimated 1,000 lb change in weight per 1 mpg increase.
+* **Correct** The estimated expected change in mpg per 1,000 lb increase in weight.
+* It can't be interpreted without further information
+* The estimated expected change in mpg per 1 lb increase in weight.
+
+#### Notes
+This is the standard interpretation of a regression coefficient. The expected change in the response per unit change in the predictor.
+The question is ***NOT*** asking what "wt" describes in the dataset.
+
+----------------------------------------------
+
+#### Question 5
+Consider again the mtcars data set and a linear regression model with mpg as predicted by weight (1,000 lbs). 
+A new car is coming weighing 3000 pounds. 
+Construct a 95% prediction interval for its mpg. What is the upper endpoint?
+
+
+* -5.77
+* ***Incorrect*** 14.93
+* 27.57
+* 21.25
+
+
+------------------------------------------
+
+#### Question 6
+Consider again the mtcars data set and a linear regression model with mpg as predicted by weight (in 1,000 lbs). 
+A “short” ton is defined as 2,000 lbs.  Construct a  95% confidence interval for the expected change in mpg per 1 short ton increase in weight. Give the lower endpoint.
+
+
+* 4.2026
+* **Correct** -12.973
+* -6.486
+* -9.000
+
+```{r}
+fit <- lm(mpg ~ wt, data = mtcars)
+confint(fit)[2, ] * 2
+```
+
+```{r}
+fit <- lm(mpg ~ I(wt * 0.5), data = mtcars)
+confint(fit)[2, ]
+```
+
+------------------------------------------
+
+#### Question 7
+
+If my $X$ from a linear regression is measured in centimeters and I convert it to meters what would happen to the slope coefficient?
+
+
+* It would get  multiplied by 10
+* It would get divided by 10
+* **Correct** It would get multiplied by 100.
+* It would get divided by 100
+
+------------------------------------------
+#### Question 8
+
+I have an outcome, $Y$, and a predictor, $X$ and fit a linear regression model with 
+$Y  = \beta_0 + \beta_1x + \epsilon$ to obtain $\hat{\beta_0}$ and  $\hat{\beta_1}$. 
+What would be the consequence to the subsequent slope and intercept if I were to refit the model with a 
+new regressor, $X+c$ for some constant, $c$?
+
+
+* The new slope would be $c\hat{\beta_1}$
+* The new intercept would be $\hat{\beta_1} + c$
+* The new intercept would be $\hat{\beta_0} +c\hat{\beta_1}$
+* ** Correct** The new slope would be $\hat{\beta_0} - c\hat{\beta_1}$
+
+
+#### Remarks
+This is exactly covered in the notes. But note that if 
+$Y  = \beta_0 + \beta_1x + \epsilon$ then $Y  = \beta_0 + c\beta_1  + \beta_2(X+c) + \epsilon$ 
+so that the answer is that the intercept gets subtracted by $c\beta_1$
+
+ 
+------------------------------------------------------------------
+
+#### Question 9
+
+Refer back to the mtcars data set with mpg as an outcome and weight (wt) as the predictor. 
+About what is the ratio of the the sum of the squared errors, $$ \sum_{i=1}^{n} (Y_{i} - hat{Y})^2) $$
+when comparing a model with just an intercept (denominator) to the model with the intercept and slope (numerator)?
+
+* 0.50
+* ***Incorrect*** 0.75
+* 4.00
+* 0.25
+
+
+------------------------------------------
+
+#### Question 10
+
+Do the residuals always have to sum to 0 in linear regression?
+
+* **Correct** If an intercept is included, then they will sum to 0.
+* The residuals never sum to zero.
+* ***Incorrect*** The residuals must always sum to zero.
+* If an intercept is included, the residuals most likely won't sum to zero.
+
+#### Remark
+
+They do provided an intercept is included. If not they most likely won't. 
+
+
+------------------------------------------
