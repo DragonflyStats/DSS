@@ -4,17 +4,17 @@
 * 4 - A
 * 5 - A
 * 6 - E
-* 7 - Not A, C, E
+* 7 - Not A, B, C, E
 * 8 - B
 * 9 - A
 * 10 - A
 * 11 - B
 * 12 - C
 * 13 - B
-* 14 - Not C, E
+* 14 - A
 * 15 - E
 * 16 - E
 * 17 - A
-* 18 - Not A, D, E
-* 19 - Not C, D, E
-* 20 - Not A, D, E
+* 18 - B
+* 19 - B
+* 20 - B
