@@ -1,0 +1,45 @@
+
+4. Load the data on the number of visitors to the instructors blog from here:
+
+https://d396qusza40orc.cloudfront.net/predmachlearn/gaData.csv
+
+Using the commands:
+
+library(lubridate) # For year() function below
+## 
+## Attaching package: 'lubridate'
+
+## The following object is masked from 'package:plyr':
+## 
+##     here
+
+## The following object is masked from 'package:base':
+## 
+##     date
+download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/gaData.csv", destfile = "gaData.csv")
+dat = read.csv("~/gaData.csv")
+training = dat[year(dat$date) < 2012,]
+testing = dat[(year(dat$date)) > 2011,]
+tstrain = ts(training$visitsTumblr)
+96%
+Explanation:
+Fitting the bats models and forecasting gives us the upper and lower bounds.
+
+library(forecast)
+## Loading required package: zoo
+
+## 
+## Attaching package: 'zoo'
+
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+
+## Loading required package: timeDate
+
+## This is forecast 7.3
+bats <- bats(training$visitsTumblr)
+fcast <- forecast(bats, level = 95, h = dim(testing)[1])
+
+sum(fcast$lower < testing$visitsTumblr &  testing$visitsTumblr < fcast$upper)/nrow(testing)
+## [1] 0.9617021

@@ -1,0 +1,62 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+------------------------------
+4. Load the South Africa Heart Disease Data and create training and test sets with the following code:
+
+library(ElemStatLearn)
+data(SAheart)
+set.seed(8484)
+train = sample(1:dim(SAheart)[1],size=dim(SAheart)[1]/2,replace=F)
+trainSA = SAheart[train,]
+testSA = SAheart[-train,]
+Then set the seed to 13234 and fit a logistic regression model (method=“glm”, be sure to specify family=“binomial”) with Coronary Heart Disease (chd) as the outcome and age at onset, current alcohol consumption, obesity levels, cumulative tabacco, type-A behavior, and low density lipoprotein cholesterol as predictors. Calculate the misclassification rate for your model using this function and a prediction on the “response” scale:
+
+**Test Set Misclassification: 0.31
+Training Set: 0.27**
+
+Explanation:
+set.seed(13234)
+head(trainSA)
+##     sbp tobacco  ldl adiposity famhist typea obesity alcohol age chd
+## 238 176    5.76 4.89     26.10 Present    46   27.30   19.44  57   0
+## 114 174    0.00 8.46     35.10 Present    35   25.27    0.00  61   1
+## 312 174    3.50 5.26     21.97 Present    36   22.04    8.33  59   1
+## 301 166    4.10 4.00     34.30 Present    32   29.51    8.23  53   0
+## 311 130    0.05 2.44     28.25 Present    67   30.86   40.32  34   0
+## 179 128    0.04 8.22     28.17  Absent    65   26.24   11.73  24   0
+#Fitting the Binomial model
+modFit3 <- train(chd ~age + alcohol + obesity + tobacco + typea + ldl, method ="glm", family = "binomial", data=trainSA)
+## Warning in train.default(x, y, weights = w, ...): You are trying to do
+## regression and your outcome only has two possible values Are you trying to
+## do classification? If so, use a 2 level factor as your outcome column.
+#Missclassification function
+missClass = function(values,prediction){sum(((prediction > 0.5)*1) != values)/length(values)}
+
+#Predicting against test and training sets
+predTest <- predict(modFit3,testSA)
+predTrain <- predict(modFit3,trainSA)
+
+tabletest <- table(predTest>0.5, testSA$chd)
+tabletrain <- table(predTrain>0.5,testSA$chd)
+
+#Misclassification for each model and tables
+missClass(testSA$chd, predTest)
+## [1] 0.3116883
+missClass(trainSA$chd,predTrain)
+## [1] 0.2727273
+tabletest
+##        
+##           0   1
+##   FALSE 117  34
+##   TRUE   38  42
+tabletrain
+##        
+##           0   1
+##   FALSE 107  57
+##   TRUE   48  19

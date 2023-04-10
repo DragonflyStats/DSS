@@ -1,0 +1,106 @@
+### R Packages
+1. For this quiz we will be using several R packages. R package versions change over time, the right answers have been checked using the following versions of the packages.
+
+AppliedPredictiveModeling: v1.1.6
+
+caret: v6.0.47
+
+ElemStatLearn: v2012.04-0
+
+pgmm: v1.1
+
+rpart: v4.1.8
+
+gbm: v2.1
+
+lubridate: v1.3.3
+
+forecast: v5.6
+
+e1071: v1.6.4
+
+If you aren't using these versions of the packages, your answers may not exactly match the right answer, but hopefully should be close.
+
+--------------------------------------------------------
+### Question 1
+
+Load the vowel.train and vowel.test data sets:
+
+library(ElemStatLearn)
+data(vowel.train)
+data(vowel.test)
+Set the variable y to be a factor variable in both the training and test set. 
+Then set the seed to 33833. Fit (1) a random forest predictor relating the factor variable y to the remaining variables and (2) a boosted predictor using the "gbm" method. 
+Fit these both with the train() command in the caret package.
+
+What are the accuracies for the two approaches on the test data set? What is the accuracy among the test set samples where the two methods agree?
+
+
+RF Accuracy = 0.6082
+
+GBM Accuracy = 0.5152
+
+Agreement Accuracy = 0.6361
+
+
+Explanation:
+RF is slightly more accurate than the boosted gbm model, where they agree the accuracy is even higher.
+
+library(caret)
+## Loading required package: lattice
+
+## Loading required package: ggplot2
+
+```{r message=FALSE, warning=FALSE}
+library(gbm)
+## Loading required package: survival
+
+## 
+## Attaching package: 'survival'
+
+## The following object is masked from 'package:caret':
+## 
+##     cluster
+
+## Loading required package: splines
+
+## Loading required package: parallel
+
+## Loaded gbm 2.1.1
+````
+
+
+```{r}
+vowel.train$y <- factor(vowel.train$y)
+vowel.test$y <- factor(vowel.test$y)
+rf <- train(y~., method = "rf",data =vowel.train)
+```
+## Loading required package: randomForest
+
+## randomForest 4.6-12
+
+## Type rfNews() to see new features/changes/bug fixes.
+
+## 
+## Attaching package: 'randomForest'
+
+## The following object is masked from 'package:ggplot2':
+## 
+##     margin
+#Predicting
+pred_rf <- predict(rf, vowel.test)
+pred_boost <- predict(boost, vowel.test)
+
+#Accuracies
+confusionMatrix(pred_rf, vowel.test$y)$overall[1]
+##  Accuracy 
+## 0.5974026
+confusionMatrix(pred_boost, vowel.test$y)$overall[1]
+## Accuracy 
+## 0.530303
+#Matched Accuracy
+match <- (pred_boost == pred_rf)
+confusionMatrix(vowel.test$y[match], pred_boost[match])$overall[1]
+##  Accuracy 
+## 0.6269592
+

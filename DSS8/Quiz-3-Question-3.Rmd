@@ -1,0 +1,44 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+3. Load the olive oil data using the commands:
+
+require(pgmm)
+data(olive)
+olive = olive[,-1]
+(NOTE: If you have trouble installing the pgmm package, you can download the -code-olive-/code- dataset here: olive_data.zip. After unzipping the archive, you can load the file using the -code-load()-/code- function in R.)
+
+These data contain information on 572 different Italian olive oils from multiple regions in Italy. Fit a classification tree where Area is the outcome variable. Then predict the value of area for the following data frame using the tree command with all defaults
+
+newdata = as.data.frame(t(colMeans(olive)))
+2.783. It is strange because Area should be a qualitative variable - but tree is reporting the average value of Area as a numeric variable in the leaf predicted for newdata
+
+Explanation:
+modFit2 <- train(Area ~., method ="rpart", data=olive)
+## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info =
+## trainInfo, : There were missing values in resampled performance measures.
+print(modFit2$finalModel)
+## n= 572 
+## 
+## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+## 1) root 572 3171.32000 4.599650  
+##   2) Eicosenoic>=6.5 323  176.82970 2.783282 *
+##   3) Eicosenoic< 6.5 249  546.51410 6.955823  
+##     6) Linoleic>=1053.5 98   21.88776 5.336735 *
+##     7) Linoleic< 1053.5 151  100.99340 8.006623 *
+fancyRpartPlot(modFit2$finalModel)
+
+
+predict(modFit2,newdata)
+##        1 
+## 2.783282
+

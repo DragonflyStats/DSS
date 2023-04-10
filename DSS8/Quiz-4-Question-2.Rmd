@@ -1,0 +1,78 @@
+--------------------------------------------------------
+### Question 2
+
+2. Load the Alzheimer's data using the following commands
+
+library(caret)
+library(gbm)
+set.seed(3433)
+library(AppliedPredictiveModeling)
+data(AlzheimerDisease)
+adData = data.frame(diagnosis,predictors)
+inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
+training = adData[ inTrain,]
+testing = adData[-inTrain,]
+Set the seed to 62433 and predict diagnosis with all the other variables using a random forest ("rf"), boosted trees ("gbm") and linear discriminant analysis ("lda") model. 
+Stack the predictions together using random forests ("rf"). What is the resulting accuracy on the test set? Is it better or worse than each of the individual predictions?
+
+Stacked Accuracy: 0.80 is better than random forests and lda and the same as boosting.
+
+Explanation:
+Combining all three models (boosting, random forest, linear discriminant analysis) result in a higher accuracy.
+
+
+set.seed(62433)
+#Training Random Forest, Boosting, and Linear Discriminant Analysis
+rf <- train(diagnosis~., method = "rf",data =training)
+## Loading required package: randomForest
+
+## randomForest 4.6-12
+
+## Type rfNews() to see new features/changes/bug fixes.
+
+## 
+## Attaching package: 'randomForest'
+
+## The following object is masked from 'package:ggplot2':
+## 
+##     margin
+lda <- train(diagnosis~., method = "lda",data =training)
+## Loading required package: MASS
+
+## Warning in lda.default(x, grouping, ...): variables are collinear
+
+## Warning in lda.default(x, grouping, ...): variables are collinear
+#Predicting the Model
+pred_rf <- predict(rf, testing)
+pred_boost <- predict(boost, testing)
+## Loading required package: plyr
+
+## 
+## Attaching package: 'plyr'
+
+## The following object is masked from 'package:ElemStatLearn':
+## 
+##     ozone
+pred_lda <- predict(lda, testing)
+
+#Combining Prediction Sets, training against diagnosis and predicting 
+all_pred <- data.frame(pred_rf,pred_lda,pred_boost, diagnosis = testing$diagnosis)
+combinedMod <- train(diagnosis~.,method="rf", data = all_pred)
+## note: only 2 unique complexity parameters in default grid. Truncating the grid to 2 .
+combinedPred <- predict(combinedMod,all_pred)
+
+#Accuracies
+confusionMatrix(testing$diagnosis, pred_rf)$overall[1]
+##  Accuracy 
+## 0.7682927
+confusionMatrix(testing$diagnosis, pred_lda)$overall[1]
+##  Accuracy 
+## 0.7682927
+confusionMatrix(testing$diagnosis, pred_boost)$overall[1]
+##  Accuracy 
+## 0.7926829
+confusionMatrix(testing$diagnosis, combinedPred)$overall[1]
+## Accuracy 
+## 0.804878
+
+
