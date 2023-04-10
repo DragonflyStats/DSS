@@ -1,26 +1,40 @@
 ---
-title: "Untitled"
+title: "Practical Machine Learning"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(tidyverse)
 ```
 
 
 3. Load the olive oil data using the commands:
 
+```{r}
 require(pgmm)
 data(olive)
 olive = olive[,-1]
-(NOTE: If you have trouble installing the pgmm package, you can download the -code-olive-/code- dataset here: olive_data.zip. After unzipping the archive, you can load the file using the -code-load()-/code- function in R.)
+```
 
-These data contain information on 572 different Italian olive oils from multiple regions in Italy. Fit a classification tree where Area is the outcome variable. Then predict the value of area for the following data frame using the tree command with all defaults
+(NOTE: If you have trouble installing the pgmm package, you can download the -code-olive-/code- dataset here: olive_data.zip. 
+After unzipping the archive, you can load the file using the -code-load()-/code- function in R.)
 
+These data contain information on 572 different Italian olive oils from multiple regions in Italy. 
+Fit a classification tree where Area is the outcome variable. 
+Then predict the value of area for the following data frame using the tree command with all defaults
+
+```{r}
 newdata = as.data.frame(t(colMeans(olive)))
-2.783. It is strange because Area should be a qualitative variable - but tree is reporting the average value of Area as a numeric variable in the leaf predicted for newdata
+```
 
-Explanation:
+2.783. 
+It is strange because Area should be a qualitative variable - but tree is reporting the average value of Area as a numeric variable in the leaf predicted for newdata
+
+#### Explanation:
+
+```{r}
 modFit2 <- train(Area ~., method ="rpart", data=olive)
 ## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info =
 ## trainInfo, : There were missing values in resampled performance measures.
@@ -36,6 +50,7 @@ print(modFit2$finalModel)
 ##     6) Linoleic>=1053.5 98   21.88776 5.336735 *
 ##     7) Linoleic< 1053.5 151  100.99340 8.006623 *
 fancyRpartPlot(modFit2$finalModel)
+```
 
 
 predict(modFit2,newdata)

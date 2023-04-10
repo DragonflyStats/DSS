@@ -1,8 +1,18 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 --------------------------------------------------------
 ### Question 2
 
 2. Load the Alzheimer's data using the following commands
 
+```{r}
 library(caret)
 library(gbm)
 set.seed(3433)
@@ -12,12 +22,15 @@ adData = data.frame(diagnosis,predictors)
 inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
 training = adData[ inTrain,]
 testing = adData[-inTrain,]
+```
+
 Set the seed to 62433 and predict diagnosis with all the other variables using a random forest ("rf"), boosted trees ("gbm") and linear discriminant analysis ("lda") model. 
-Stack the predictions together using random forests ("rf"). What is the resulting accuracy on the test set? Is it better or worse than each of the individual predictions?
+Stack the predictions together using random forests ("rf"). What is the resulting accuracy on the test set? 
+Is it better or worse than each of the individual predictions?
 
 Stacked Accuracy: 0.80 is better than random forests and lda and the same as boosting.
 
-Explanation:
+#### Explanation:
 Combining all three models (boosting, random forest, linear discriminant analysis) result in a higher accuracy.
 
 

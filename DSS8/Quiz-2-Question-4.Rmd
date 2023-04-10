@@ -1,0 +1,53 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+4. Load the Alzheimer’s disease data using the commands:
+
+```{r}
+library(caret)
+library(AppliedPredictiveModeling)
+set.seed(3433)
+data(AlzheimerDisease)
+adData = data.frame(diagnosis,predictors)
+inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
+training = adData[ inTrain,]
+testing = adData[-inTrain,]
+```
+
+Find all the predictor variables in the training set that begin with IL. 
+Perform principal components on these variables with the preProcess() function from the caret package. 
+Calculate the number of principal components needed to capture 80% of the variance. How many are there?
+7
+
+#### Explanation:
+Preprocessing with a threshold of .8 shows that 7 principle components are needed to capture 80% of the variance.
+
+```{r}
+train <- training[,c(58:69)]
+names(train)
+```
+
+##  [1] "IL_11"         "IL_13"         "IL_16"         "IL_17E"       
+##  [5] "IL_1alpha"     "IL_3"          "IL_4"          "IL_5"         
+##  [9] "IL_6"          "IL_6_Receptor" "IL_7"          "IL_8"
+
+```{r}
+preP <- preProcess(train,method = "pca", thresh = .8)
+preP
+```
+
+## Created from 251 samples and 12 variables
+## 
+## Pre-processing:
+##   - centered (12)
+##   - ignored (0)
+##   - principal component signal extraction (12)
+##   - scaled (12)
+## 
+## PCA needed 7 components to capture 80 percent of the variance

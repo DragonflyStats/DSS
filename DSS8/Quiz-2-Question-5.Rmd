@@ -1,0 +1,93 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+5. Load the Alzheimer’s disease data using the commands:
+
+library(caret)
+library(AppliedPredictiveModeling)
+set.seed(3433)
+data(AlzheimerDisease)
+adData = data.frame(diagnosis,predictors)
+inTrain = createDataPartition(adData$diagnosis, p = 3/4)[[1]]
+training = adData[ inTrain,]
+testing = adData[-inTrain,]
+Create a training data set consisting of only the predictors with variable names beginning with IL and the diagnosis. Build two predictive models, one using the predictors as they are and one using PCA with principal components explaining 80% of the variance in the predictors. Use method=“glm” in the train function.
+
+Non-PCA Accuracy: 0.65 PCA Accuracy: 0.72
+Explanation:
+traindex <- training[,c(1, 58:69)]
+
+#Data without outcome for prediction
+train <- training[,c(58:69)]
+test <- testing[, c(58:69)]
+
+#Fitting model without PCA
+fit <- train(diagnosis~., data = traindex,method="glm")
+pred <- predict(fit,test)
+confusionMatrix(data = pred, testing$diagnosis)
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Impaired Control
+##   Impaired        2       9
+##   Control        20      51
+##                                          
+##                Accuracy : 0.6463         
+##                  95% CI : (0.533, 0.7488)
+##     No Information Rate : 0.7317         
+##     P-Value [Acc > NIR] : 0.96637        
+##                                          
+##                   Kappa : -0.0702        
+##  Mcnemar's Test P-Value : 0.06332        
+##                                          
+##             Sensitivity : 0.09091        
+##             Specificity : 0.85000        
+##          Pos Pred Value : 0.18182        
+##          Neg Pred Value : 0.71831        
+##              Prevalence : 0.26829        
+##          Detection Rate : 0.02439        
+##    Detection Prevalence : 0.13415        
+##       Balanced Accuracy : 0.47045        
+##                                          
+##        'Positive' Class : Impaired       
+## 
+ctrl <- trainControl(preProcOptions = list(thresh = 0.95))
+
+#Fitting Model with PCA 
+fit2 <- train(diagnosis~., data=traindex,method = "glm",preProcess = c("pca"), trControl = ctrl)
+
+pred <- predict(fit2,test)
+confusionMatrix(data = pred, testing$diagnosis)
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Impaired Control
+##   Impaired        3       5
+##   Control        19      55
+##                                           
+##                Accuracy : 0.7073          
+##                  95% CI : (0.5965, 0.8026)
+##     No Information Rate : 0.7317          
+##     P-Value [Acc > NIR] : 0.737155        
+##                                           
+##                   Kappa : 0.0664          
+##  Mcnemar's Test P-Value : 0.007963        
+##                                           
+##             Sensitivity : 0.13636         
+##             Specificity : 0.91667         
+##          Pos Pred Value : 0.37500         
+##          Neg Pred Value : 0.74324         
+##              Prevalence : 0.26829         
+##          Detection Rate : 0.03659         
+##    Detection Prevalence : 0.09756         
+##       Balanced Accuracy : 0.52652         
+##                                           
+##        'Positive' Class : Impaired        
+## 
+Check out my website at: http://www.ryantillis.com/

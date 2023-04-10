@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Machine Learning Quiz 2
+This is Quiz 2 from the Machine Learning course within the Data Science Specialization. Contents include Principle component analysis, variable transformations, and the caret package. This is intended as a learning resource.
+
+Questions
+1. Load the Alzheimer’s disease data using the commands:
+
+```{r}
+library(AppliedPredictiveModeling)
+data(AlzheimerDisease)
+```
+
+Which of the following commands will create non-overlapping training and test sets with about 50% of the observations assigned to each?
+Answer:
+
+
+```{r}
+adData = data.frame(diagnosis,predictors)
+trainIndex = createDataPartition(diagnosis, p = 0.50,list=FALSE)
+training = adData[trainIndex,]
+testing = adData[-trainIndex,]
+```
+
+#### Explanation:
+The createDataPartition function creates an index that splits on a given proporition p.
+
