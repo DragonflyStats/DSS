@@ -1,8 +1,17 @@
+---
+title: "Coursera Machine Learning Quiz 4"
+output: html_document
+---
+
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(elasticnet)
+```
 ### Question 3. 
 
 Load the concrete data with the commands:
 
-```{r}
+```{r,message=FALSE,warning=FALSE}
 set.seed(3523)
 library(caret)
 library(AppliedPredictiveModeling)
@@ -13,21 +22,26 @@ testing = concrete[-inTrain,]
 ```
 
 Set the seed to 233 and fit a lasso model to predict Compressive Strength. 
-Which variable is the last coefficient to be set to zero as the penalty increases? (Hint: it may be useful to look up ?plot.enet).
+Which variable is the last coefficient to be set to zero as the penalty increases? 
+(*Hint: it may be useful to look up ?plot.enet*).
 
+#### Answer
 
 Cement
 
 #### Explanation:
-Regularizing the coefficients is like a stepwise approach toward least squares. The enet chart shows which coefficients are the last to go.
+Regularizing the coefficients is like a stepwise approach toward least squares. 
+The enet chart shows which coefficients are the last to go.
 
-```{r}
+```{r,message=FALSE,warning=FALSE}
 set.seed(233)
 lasso <- train(CompressiveStrength~., method = "lasso", data = training)
 ## Loading required package: elasticnet
-
 ## Loading required package: lars
-
 ## Loaded lars 1.2
-plot.enet(lasso$finalModel, xvar = "penalty")
+plot.enet(lasso$finalModel, xvar = "penalty",col=c("red","blue","green","black"))
+```
+
+```{r}
+lasso$finalModel
 ```

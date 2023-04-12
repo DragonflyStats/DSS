@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Coursera Machine Learning Quiz 4"
 output: html_document
 ---
 
@@ -7,9 +7,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-----------------------------------------------------------------------------------------
-2. If K is small in a K-fold cross validation is the bias in the estimate of out-of-sample (test set) accuracy smaller or bigger? If K is small is the variance in the estimate of out-of-sample (test set) accuracy smaller or bigger. Is K large or small in leave one out cross validation?
+---------------------------------------------------
 
+### Question 2
+
+If K is small in a K-fold cross validation is the bias in the estimate of out-of-sample (test set) accuracy smaller or bigger? If K is small is the variance in the estimate of out-of-sample (test set) accuracy smaller or bigger. Is K large or small in leave one out cross validation?
+
+```{r message=FALSE,warning=FALSE}
 library(AppliedPredictiveModeling)
 data(segmentationOriginal)
 library(caret)
@@ -17,26 +21,13 @@ library(caret)
 set.seed(125)
 trainset <- segmentationOriginal[which(segmentationOriginal$Case == "Train"),]
 testset <- segmentationOriginal[which(segmentationOriginal$Case == "Test"),]
+```
 
+```{r message=FALSE,warning=FALSE}
 #Fitting the CART model with caret package
 modFit <- train(Class ~., method ="rpart", data=trainset)
 print(modFit$finalModel)
-## n= 1009 
-## 
-## node), split, n, loss, yval, (yprob)
-##       * denotes terminal node
-## 
-## 1) root 1009 373 PS (0.63032706 0.36967294)  
-##   2) TotalIntenCh2< 45323.5 454  34 PS (0.92511013 0.07488987) *
-##   3) TotalIntenCh2>=45323.5 555 216 WS (0.38918919 0.61081081)  
-##     6) FiberWidthCh1< 9.673245 154  47 PS (0.69480519 0.30519481) *
-##     7) FiberWidthCh1>=9.673245 401 109 WS (0.27182045 0.72817955) *
-## Loading required package: rattle
-## Rattle: A free graphical interface for data mining with R.
-## Version 4.1.0 Copyright (c) 2006-2015 Togaware Pty Ltd.
-## Type 'rattle()' to shake, rattle, and roll your data.
-## Loading required package: rpart.plot
+```
 
-
-The bias is larger and the variance is smaller. Under leave one out cross validation K is equal to the sample size.
-Explanation:
+The bias is larger and the variance is smaller. 
+Under leave one out cross validation K is equal to the sample size.
