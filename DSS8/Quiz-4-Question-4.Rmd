@@ -1,10 +1,23 @@
+---
+title: "Coursera Machine Learning Quiz 4"
+output: html_document
+---
 
-4. Load the data on the number of visitors to the instructors blog from here:
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---------------------------------------------------
+
+### Question 4
+
+Load the data on the number of visitors to the instructors blog from here:
 
 https://d396qusza40orc.cloudfront.net/predmachlearn/gaData.csv
 
 Using the commands:
 
+```{r}
 library(lubridate) # For year() function below
 ## 
 ## Attaching package: 'lubridate'
@@ -21,10 +34,15 @@ dat = read.csv("~/gaData.csv")
 training = dat[year(dat$date) < 2012,]
 testing = dat[(year(dat$date)) > 2011,]
 tstrain = ts(training$visitsTumblr)
+```
+
+
 96%
-Explanation:
+
+#### Explanation:
 Fitting the bats models and forecasting gives us the upper and lower bounds.
 
+```{r}
 library(forecast)
 ## Loading required package: zoo
 
@@ -42,4 +60,5 @@ bats <- bats(training$visitsTumblr)
 fcast <- forecast(bats, level = 95, h = dim(testing)[1])
 
 sum(fcast$lower < testing$visitsTumblr &  testing$visitsTumblr < fcast$upper)/nrow(testing)
+```
 ## [1] 0.9617021
