@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Coursera Machine Learning"
 output: html_document
 ---
 
@@ -7,8 +7,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### Question 5
 
-5. Load the vowel.train and vowel.test data sets:
+Load the vowel.train and vowel.test data sets:
 
 ```{r}
 library(ElemStatLearn)
@@ -24,7 +25,8 @@ Calculate the variable importance using the varImp function in the caret package
 **The order of the variables is:
 x.2, x.1, x.5, x.6, x.8, x.4, x.9, x.3, x.7,x.10 PCA Accuracy: 0.72**
 
-Explanation:
+#### Explanation:
+
 Results aren’t exactly the same as the quiz but the algorithm for random forest has changed in the caret package since the quiz was made. 
 At least the first 5 most important variables are the same.
 
@@ -37,28 +39,8 @@ train <- vowel.train
 train$y <- factor(train$y)
 ```
 
-
+```{r}
 modfit4 <- train(y ~., method = "rf", data = train)
-## Loading required package: randomForest
-## randomForest 4.6-12
-## Type rfNews() to see new features/changes/bug fixes.
-## 
-## Attaching package: 'randomForest'
-## The following object is masked from 'package:ggplot2':
-## 
-##     margin
 varImp(modfit4)
-## rf variable importance
-## 
-##       Overall
-## x.1  100.0000
-## x.2   98.5960
-## x.5   44.3214
-## x.6   28.3926
-## x.8   14.9865
-## x.9    6.7483
-## x.3    4.8055
-## x.4    4.5061
-## x.7    0.5042
-## x.10   0.0000
+```
 
