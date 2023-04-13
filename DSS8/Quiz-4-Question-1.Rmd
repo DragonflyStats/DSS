@@ -1,3 +1,14 @@
+---
+title: "Coursera Machine Learning Quiz 4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---------------------------------------------------
+
 ### R Packages
 1. For this quiz we will be using several R packages. R package versions change over time, the right answers have been checked using the following versions of the packages.
 
@@ -26,9 +37,12 @@ If you aren't using these versions of the packages, your answers may not exactly
 
 Load the vowel.train and vowel.test data sets:
 
+```{r}
 library(ElemStatLearn)
 data(vowel.train)
 data(vowel.test)
+```
+
 Set the variable y to be a factor variable in both the training and test set. 
 Then set the seed to 33833. Fit (1) a random forest predictor relating the factor variable y to the remaining variables and (2) a boosted predictor using the "gbm" method. 
 Fit these both with the train() command in the caret package.
@@ -43,15 +57,17 @@ GBM Accuracy = 0.5152
 Agreement Accuracy = 0.6361
 
 
-Explanation:
+#### Explanation:
+
 RF is slightly more accurate than the boosted gbm model, where they agree the accuracy is even higher.
 
+```{r message=FALSE, warning=FALSE}
 library(caret)
 ## Loading required package: lattice
 
 ## Loading required package: ggplot2
 
-```{r message=FALSE, warning=FALSE}
+
 library(gbm)
 ## Loading required package: survival
 
