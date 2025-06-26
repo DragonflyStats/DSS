@@ -1,66 +1,91 @@
-Exploratory Data Analysis of the NOAA Storm Database - Reproducible Research Peer Assessment - Week #3
+## Exploratory Data Analysis of the NOAA Storm Database  
+**Reproducible Research Peer Assessment – Week 3**
 
-Synopsis
+### **Synopsis**
 
-In this report, we analyze some data obtained from the U.S. National Oceanic and Atmospheric Administration's (NOAA) Storm Database - a database that tracks characteristics of major storms and weather events in the United States. This includes when and where they occur, as well as estimates on any fatalities, injuries and property damage. The purpose behind this analysis is due to the fact that storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries and property damage. Prevent such outcomes to the greatest extent possible is of key interest, and it allows officials who have the ability to do so to prepare contingencies so that if these kinds of events happen again, damage and risk to public health is minimized. As there are many different kinds of major storms and weather events, we attempt to merge all events into a few basic categories. Once we have merged these events, the following two questions are what we will attempt to answer:
+This report presents an exploratory data analysis using data from the U.S. National Oceanic and Atmospheric Administration (NOAA) Storm Database. This database tracks the characteristics of major storms and weather events in the United States, including when and where they occur, as well as their associated fatalities, injuries, and economic damages.
 
-Which types of events are the most harmful with respect to population health?
-Which types of events have the greatest economic consequences?
-This data consists of readings from the years 1950 to 2011. Due to the fact that in the early years, event were not recorded as frequently or were unavailable, we will focus on the most recent years. Specifically, the years 2006 and onwards. Based on this data and our analysis, the event that had the most overwhelming amount of effect on population health and the economy was anything deal with extreme cold or ice events. There are other events which had some significance for both public health and economical consequences, but not as significant as cold or ice events. These were anything related to heat or fire, water and tsunamis, and wind or storm related events.
+The motivation behind this analysis is rooted in the fact that severe weather events can pose serious risks to public health and result in substantial financial losses for communities. Understanding which event types have the greatest impact allows officials and emergency planners to implement more effective contingency strategies, with the ultimate goal of reducing the toll these events take when they inevitably happen again.
 
-Data Processing
+Since the dataset spans from 1950 to 2011, but earlier years are less complete, our analysis focuses on data from **2006 onward** to ensure greater reliability and consistency.
 
-We begin this section by discussing how the data were loaded in and processed. This data was obtained through the Reproducible Research Coursera.org website offered by the Johns Hopkins School for Public Health. The following code was used to access this resource, which is on their website, and read in as a data frame. After, we wish to only obtain those years that are from 2006 and onwards. As such, we use regular expressions and scan through the second column of the data frame, corresponding to the dates in DD-MM-YYYY format.
+To streamline the analysis, we group related event types into broader categories. From this, we seek to answer two key questions:
 
+1. **Which types of events are most harmful to population health?**  
+2. **Which types of events have the greatest economic consequences?**
+
+Our findings suggest that **events involving extreme cold or ice** have the most significant impact on both public health and the economy. Other categories, such as **heat or fire**, **water-related events (e.g., floods, tsunamis)**, and **wind/storm-related phenomena**, also contribute notably to injuries, fatalities, and damages, though to a lesser extent.
+
+---
+
+## Data Processing
+
+This section outlines the data acquisition and preprocessing steps used for analyzing the NOAA Storm Database. The dataset was obtained via the [Reproducible Research course on Coursera](https://www.coursera.org/learn/reproducible-research), offered by the Johns Hopkins Bloomberg School of Public Health.
+
+To begin, the data was downloaded and read into R using the following code:
+
+```r
 f <- tempfile()
-download.file("http://d396qusza40orc.cloudfront.net/repdata/data/StormData.csv.bz2", 
-    f)
+download.file("http://d396qusza40orc.cloudfront.net/repdata/data/StormData.csv.bz2", f)
 data <- read.csv(bzfile(f))
+```
+
+Since earlier entries in the database are less complete, our focus is on events from **2006 onward**. A regular expression is used to filter dates in the second column of the dataset, which contains date-time information:
+
+```r
 v <- grepl("20[0-1][6-9]", data[, 2])
 dataSplit <- data[v, ]
-Once we obtain this, we go through every single disaster that is logged in this data frame, stored in the EVTYPE variable and lump the disasters into 8 different categories. These are:
+```
 
-COLD/ICE: Anything related to extreme winter and ice events
-HEAT: Anything related to fires or extreme heat
-FOG: Anything related to fog related events
-WATER: Anything related to floods or other water related events
-WIND/STORM: Anything related to extreme winds and storms
-LIGHTENING: Anything related to lightening related events
-VOLCANO/TSUNAMI: Anything related to volcano and tsunami events. These are lumped together due to their rare occasions on happening
-DUST: Anything related to dust
-As such, we will first build 8 character vectors that contain any strings found in the EVTYPE variable that pertain to any of these events placed in their corresponding classes. We also make sure that they're upper case as the data has these events in upper case as well. There were also several typos in the data and these character vectors accommodate for these misspellings.
+Next, the `EVTYPE` column (event type) is reviewed and categorized into **eight major groups** based on related weather phenomena:
 
-# Group the disasters into major catagories Source:
-# https://class.coursera.org/repdata-002/forum/thread?thread_id=46#post-205
-coldIceStrings = toupper(c("avalanche", "avalance", "blizzard", "chill", "cold", 
-    "cool", "glaze", "hypothermia", "hyperthermia", "ice", "icy", "freez", "frost", 
-    "low temp", "sleet", "snow", "wint"))
+- **COLD/ICE**: Extreme winter or icy conditions  
+- **HEAT**: High temperatures, drought, or fire-related events  
+- **FOG**: All fog-related events  
+- **WATER**: Floods, heavy rain, and water-related damage  
+- **WIND/STORM**: Storms, tornadoes, hurricanes, and wind events  
+- **LIGHTNING**: All lightning-related events (including common misspellings)  
+- **VOLCANO/TSUNAMI**: Rare but high-impact volcanic or tsunami incidents  
+- **DUST**: Dust storms and related phenomena
 
-heatStrings = toupper(c("below normal precip", "dry", "drie", "drought", "fire", 
-    "heat", "high temp", "hot", "warm"))
+To build these groupings, character vectors are created containing keywords associated with each category. These vectors are uppercased to match the formatting in the dataset and include common spelling errors observed in the raw data.
 
-fogStrings = toupper(c("fog", "vog"))
+```r
+coldIceStrings <- toupper(c("avalanche", "avalance", "blizzard", "chill", "cold", 
+  "cool", "glaze", "hypothermia", "hyperthermia", "ice", "icy", "freez", "frost", 
+  "low temp", "sleet", "snow", "wint"))
 
-waterStrings = toupper(c("coast", "cstl", "current", "dam fail", "dam break", 
-    "drizzle", "drown", "erosion", "erosin", "flood", "floood", "fld", "heavy shower", 
-    "high water", "high waves", "lake", "landslump", "marine", "precip", "rain", 
-    "rising water", "river", "rogue wave", "slide", "stream", "sea", "seiche", 
-    "surf", "swell", "tide", "tidal", "torrent", "wet"))
+heatStrings <- toupper(c("below normal precip", "dry", "drie", "drought", "fire", 
+  "heat", "high temp", "hot", "warm"))
 
-windStormStrings = toupper(c("burst", "cloud", "depression", "floyd", "funnel", 
-    "gust", "hail", "hurricane", "landspout", "storm", "southeast", "thunderstorm", 
-    "thundertsorm", "thundestorm", "tornado", "torndao", "tstm", "turbulence", 
-    "typhoon", "wall", "waterspout", "water spout", "wayterspout", "wind", "wnd"))
+fogStrings <- toupper(c("fog", "vog"))
 
-lighteningStrings = toupper(c("lightning", "ligntning", "lighting"))
+waterStrings <- toupper(c("coast", "cstl", "current", "dam fail", "dam break", 
+  "drizzle", "drown", "erosion", "erosin", "flood", "floood", "fld", "heavy shower", 
+  "high water", "high waves", "lake", "landslump", "marine", "precip", "rain", 
+  "rising water", "river", "rogue wave", "slide", "stream", "sea", "seiche", 
+  "surf", "swell", "tide", "tidal", "torrent", "wet"))
 
-volcanoTsunamiStrings = toupper(c("tsunami", "volcan"))
+windStormStrings <- toupper(c("burst", "cloud", "depression", "floyd", "funnel", 
+  "gust", "hail", "hurricane", "landspout", "storm", "southeast", "thunderstorm", 
+  "thundertsorm", "thundestorm", "tornado", "torndao", "tstm", "turbulence", 
+  "typhoon", "wall", "waterspout", "water spout", "wayterspout", "wind", "wnd"))
 
-dustStrings = toupper("dust")
+lighteningStrings <- toupper(c("lightning", "ligntning", "lighting"))
 
-# For labeling our plots
-disasterStrings <- c("COLD/ICE", "HEAT", "FOG", "WATER", "WIND/STORM", "LIGHTENING", 
-    "VOLCANO/TSUNAMI", "DUST")
+volcanoTsunamiStrings <- toupper(c("tsunami", "volcan"))
+
+dustStrings <- toupper("dust")
+
+disasterStrings <- c("COLD/ICE", "HEAT", "FOG", "WATER", 
+                     "WIND/STORM", "LIGHTNING", 
+                     "VOLCANO/TSUNAMI", "DUST")
+```
+
+These keyword lists form the foundation for reclassifying and analyzing the event types, ensuring consistency and meaningful aggregation in subsequent analyses.
+
+---
+
 Once this has been performed, we will append a new column to our data frame to allow for easier plotting using the ggplot2 system. What we will do is go through every single row of this data frame and determine what the disaster is. We will then check to see what category this particular disaster belongs to and assign a unique ID for the corresponding location in this column. We also use regular expressions to aid in this work. We will also create another column that stores the corresponding type of event (one of the 8 categories) in the next column after this appended data frame. Before we do this, after going through the above code, there will be some rows that are assigned a 0 ID. The reason why is because these events did not fall under any of the above catagories. The strings in these rows consisted of unrelated strings, such as SUMMARY. As such, we will choose to ignore these. We will filter out any rows that have an ID of 0. Once we do this, we will create the aforementioned column.
 
 disasterIDs <- rep(0, nrow(dataSplit))
