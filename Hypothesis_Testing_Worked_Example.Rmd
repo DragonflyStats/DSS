@@ -1,0 +1,172 @@
+---
+title: "Hypothesis Testing and Statistical Concepts"
+output: html_document
+---
+
+## Question 1: Hypothesis Testing
+
+In a sample of 100 patients, test whether the mean RDI is _x_ or more using a one-sided 5% type I error rate.  
+Sample mean: 12  
+Standard deviation: 4  
+Find the largest value of _x_ such that H₀: µ = x vs Hₐ: µ > x is rejected.
+
+```r
+n <- 100
+m <- 12
+z <- qnorm(0.05)
+sd <- 4
+alpha <- 0.05
+
+mu0 <- m + z * sd / sqrt(n)
+mu0
+```
+
+**Answer**: 11.34 (Choice A)
+
+---
+
+## Question 2: Paired T-Test
+
+SBP measured at baseline and after two weeks on medication:
+
+```r
+pharm <- data.frame(
+  baseline = c(140,138,150,148,135),
+  week2 = c(132,135,151,146,130)
+)
+
+t.test(pharm$baseline, pharm$week2, alternative = "two.sided", paired = TRUE)
+```
+
+**p-value**: 0.08652
+
+---
+
+## Question 3: Confidence Interval
+
+Test H₀: µ = µ₀ vs Hₐ: µ ≠ µ₀ (alpha = 0.05).
+
+```r
+n <- 9
+x_bar <- 1100
+sdev <- 30
+a <- 0.05
+
+round(x_bar + c(-1,1) * qt(1 - (a/2), n - 1) * sdev / sqrt(n))
+```
+
+**Confidence interval**: 1077 to 1123
+
+---
+
+## Question 4: Exact Binomial Test
+
+3 out of 4 people preferred Coke:
+
+```r
+binom.test(x = 3, n = 4, p = 0.5, alternative = "greater")
+```
+
+**p-value**: 0.3125
+
+---
+
+## Question 5: Hospital Infection Rate
+
+```r
+p <- 1 / 100
+p_ <- 10 / 1787
+n <- 1787
+serror <- sqrt(p * (1 - p) / n)
+test_z <- (p - p_) / serror
+
+pnorm(test_z, lower.tail = FALSE)
+```
+
+**p-value**: 0.03067
+
+---
+
+## Question 6: Two-Sample T-Test
+
+```r
+mean.diff <- -3 - 1
+df <- 16
+s_tr <- 1.5
+s_pb <- 1.8
+
+pooled.var <- (s_tr^2 * 9 + s_pb^2 * 9) / df
+se.diff <- sqrt(pooled.var / 9 + pooled.var / 9)
+
+t.obt <- mean.diff / se.diff
+p.value <- 2 * pt(t.obt, df = df)
+t.obt
+p.value
+```
+
+**p-value**: 0.0001852
+
+---
+
+## Question 7: Hypothesis Testing from CI
+
+Given 90% CI of (1077, 1123), test H₀: µ = 1078 (α = 0.05, two-sided).  
+**Conclusion**: Do not reject H₀ as 1078 is within the CI.
+
+---
+
+## Question 8: Power Calculation
+
+```r
+power.t.test(n = 100, delta = 0.01, sd = 0.04, type = "one.sample", alt = "one.sided")$power
+```
+
+**Power**: ~0.80
+
+---
+
+## Question 9: Sample Size for Power = 90%
+
+```r
+power.t.test(power = 0.9, delta = 0.01, sd = 0.04, type = "one.sample", alt = "one.sided")$n
+```
+
+**Sample size**: 138.4
+
+---
+
+## Question 10: Power and Alpha
+
+As α increases, **power increases**.
+
+---
+
+## Question 11: Two-Sample Z-Test
+
+```r
+mean.1 <- 44
+mean.2 <- 42.04
+sds <- 12
+n <- 288
+
+st.error <- sds * sqrt(1 / n + 1 / n)
+z.11 <- (mean.1 - mean.2) / st.error
+p.v <- 2 * pnorm(-abs(z.11))
+
+z.11
+p.v
+```
+
+**p-value**: 0.05
+
+---
+
+## Question 12: Bonferroni Correction for Multiple Testing
+
+```r
+FER <- 0.05 / 10
+FER
+```
+
+**Adjusted alpha**: 0.005
+
