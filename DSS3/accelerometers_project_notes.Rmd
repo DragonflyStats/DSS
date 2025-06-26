@@ -1,0 +1,68 @@
+## Project Overview
+
+This project demonstrates your ability to collect, clean, and prepare a dataset for analysis. The objective is to produce **tidy data** that is suitable for subsequent statistical work. Peer grading is based on a checklist of yes/no questions that assess the completeness and quality of your submission.
+
+### Your submission must include:
+1. A tidy dataset as specified in the instructions.
+2. A link to a GitHub repository containing:
+   - Your R script: `run_analysis.R`
+   - A code book: `CodeBook.md`, describing variables, data sources, and transformations.
+   - A `README.md`, explaining how your analysis works and how all scripts are connected.
+
+---
+
+## Background
+
+Wearable computing is a rapidly growing field in data science, with major players such as Fitbit, Nike, and Jawbone Up developing innovative algorithms for health and fitness tracking.
+
+The dataset used in this project comes from accelerometers embedded in the Samsung Galaxy S smartphone. It contains sensor signals from 30 subjects performing six different activities. More details about the original dataset are available here:  
+[UCI HAR Dataset Description](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
+### Dataset Download
+You can download the dataset using the following link:  
+[Download Dataset (ZIP)](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+---
+
+## Analysis Script: `run_analysis.R`
+
+This script performs the following steps:
+
+1. **Merges** the training and test datasets into one unified dataset.
+   - `X_train.txt` and `X_test.txt` → Combined measurements (561 features × 10,299 observations)
+   - `subject_train.txt` and `subject_test.txt` → Combined subject IDs
+   - `y_train.txt` and `y_test.txt` → Combined activity labels
+
+2. **Extracts** measurements related to the **mean** and **standard deviation** (66 of 561 features).
+
+3. **Applies descriptive activity names** using `activity_labels.txt`, mapping:
+   - *walking*
+   - *walking upstairs*
+   - *walking downstairs*
+   - *sitting*
+   - *standing*
+   - *laying*
+
+4. **Cleans and labels** the dataset with descriptive variable names:
+   - All feature names are converted to lowercase.
+   - Special characters such as underscores and parentheses are removed.
+
+5. **Creates a second tidy dataset**:
+   - Groups the dataset by subject and activity.
+   - Calculates the average of each variable.
+   - The result is saved as `data_set_with_the_averages.txt` (180 rows × 68 columns):
+     - 30 subjects × 6 activities = 180 observations
+     - 66 features + subject + activity = 68 columns
+
+---
+
+## Attribute Examples
+
+Here are a few examples of cleaned attribute names:
+
+- `tbodyacc-mean-x`  
+- `tbodyacc-mean-y`  
+- `tbodyacc-std-z`  
+- `tgravityacc-mean-x`  
+
+These refer to body acceleration signals and gravitational signals along various axes, with suffixes indicating statistical operations (mean, standard deviation).
