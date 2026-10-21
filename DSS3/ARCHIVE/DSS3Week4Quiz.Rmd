@@ -1,309 +1,214 @@
-\documentclass[]{article
+# Getting and Cleaning Data: Week 4
 
-\usepackage{framed
-\usepackage{graphicx
-\usepackage{amsmath
-\usepackage{amssymb
-\begin{document
+## Notes & Overview
 
+### Regular Expressions & Text Processing Functions
 
-\section*{Quiz 1
+#### `strsplit()`
+The `strsplit()` function splits the elements of a character vector `x` into substrings according to matches to a specified substring or regular expression split pattern.
 
+```r
+x <- c(as = "asfef", qu = "qwerty", "yuiop[", "b", "stuff.blah.yech")
 
-### Regular Expressions
-
-*  strsplit() This function split the elements of a character vector x into 
-substrings according to the matches to substring split within them.
-
-```{r}
-> x <- c(as = "asfef", qu = "qwerty", "yuiop[", "b", "stuff.blah.yech")
-> x
-as                qu                                     
-"asfef"          "qwerty"          "yuiop["               "b" 
-
-"stuff.blah.yech" 
-
->
-> # split x on the letter e
-> strsplit(x, "e")
-$as
-[1] "asf" "f"  
-
-$qu
-[1] "qw"  "rty"
-
-[[3]]
-[1] "yuiop["
-
-[[4]]
-[1] "b"
-
-[[5]]
-[1] "stuff.blah.y" "ch"          
-
-```
------------------------------------------
-### Question 1
-The American Community Survey distributes downloadable data about United States communities. 
-Download the 2006 microdata survey about housing for the state of Idaho using download.file() from here: 
-
-```{r}
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv 
-```
-and load the data into R . The code book, describing the variable names is here: 
-```{r}
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf 
-```
-Apply strsplit() to split all the names of the data frame on the characters "wgtp".   
-What is the value of the 123 element of the resulting list?
-```{r}
-1. "" "15"
-2. "wgtp"
-3. "w" "15"
-4. "wgtp" "15"
+# Split elements of x on the letter "e"
+strsplit(x, "e")
+# $as
+# [1] "asf" "f"   
+# 
+# $qu
+# [1] "qw"  "rty"
+# 
+# [[3]]
+# [1] "yuiop["
+# 
+# [[4]]
+# [1] "b"
+# 
+# [[5]]
+# [1] "stuff.blah.y" "ch"
 ```
 
-```{r}
-url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
-file <- file.path(getwd(), "ss06hid.csv")
-download.file(url, file, method = "curl")
-dt <- data.table(read.csv(file))
-```
+---
 
-```{r}
-varNames <- names(dt)
-varNamesSplit <- strsplit(varNames, "wgtp")
-varNamesSplit[[123]]
-[1] ""   "15"
-```
-%==========================================%
------------------------------------------
-### Question 2
-Load the Gross Domestic Product data for the 190 ranked countries in this data set: 
+### The `quantmod` Package
+The [`quantmod`](http://www.quantmod.com/) R package provides tools to download historical stock prices and financial data directly from stock exchanges like NASDAQ and NYSE.
 
-```{r}
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv 
-```
-Remove the commas from the GDP numbers in millions of dollars and average them. 
+---
 
-What is the average? 
+## Quiz 4 Solutions & Explanations
 
+### Question 1: Splitting Variable Names using `strsplit()`
 
-* [(i)] 377652.4
-* [(ii)] 387854.4
-* [(iii)] 381615.4
-* [(iv)] 293700.3
+The American Community Survey distributes downloadable data about United States communities. Download the 2006 microdata survey about housing for the state of Idaho using `download.file()` from:
+* Data: [ss06hid.csv](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv)
+* Codebook: [PUMSDataDict06.pdf](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf)
 
+Apply `strsplit()` to split all the names of the data frame on the characters `"wgtp"`. What is the value of the 123rd element of the resulting list?
 
-Original data sources:
-```{r} http://data.worldbank.org/data-catalog/GDP-ranking-table
-```
+* **Options:**
+  1. `"" "15"`
+  2. `"wgtp"`
+  3. `"w" "15"`
+  4. `"wgtp" "15"`
 
-```{r}
- url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
- file <- file.path(getwd(), "GDP.csv")
- download.file(url, file, method = "curl")
- ```
- 
- 
- ```{r}
- GDP <- data.table(read.csv(file, skip = 4, nrows = 215,
-    stringsAsFactors = FALSE))
- GDP <- GDP[X != ""]
- GDP <- GDP[, list(X, X.1, X.3, X.4)]
- setnames(GDP, c("X", "X.1", "X.3", "X.4"), 
-    \label{keyc("CountryCode", "rankingGDP", "Long.Name", "gdp"))
- gdp <- as.numeric(gsub(",", "", dtGDP$gdp))
+* **Answer:** `"" "15"`
 
-```
+* **Code Solution:**
+  ```r
+  library(data.table)
 
+  url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
+  file <- file.path(getwd(), "ss06hid.csv")
+  download.file(url, file, method = "curl")
+  dt <- data.table(read.csv(file))
 
-```{r}
-> mean(gdp, na.rm = TRUE)
-[1] 377652.4
-```
+  varNames <- names(dt)
+  varNamesSplit <- strsplit(varNames, "wgtp")
+  varNamesSplit[[123]]
+  # [1] ""   "15"
+  ```
 
------------------------------------------
-### Question 3
-In the data set from Question 2 what is a regular expression that would allow you to count the number of countries whose name **begins** with "United"?   
-Assume that the variable with the country names in it is named countryNames. 
-How many countries begin with United?
-```{r}
-1. grep("*United",countryNames), 2
-2. grep("^United",countryNames), 3
-3. grep("*United",countryNames), 5
-4. grep("^United",countryNames), 4
-```
-%Answer
+---
 
-%grep("^United", countryNames), 3
+### Question 2: Cleaning and Averaging GDP Data
 
+Load the Gross Domestic Product data for the 190 ranked countries from:
+[GDP.csv](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv)
 
-```{r}
+Remove the commas from the GDP numbers (in millions of dollars) and average them. What is the average?
 
-> beginsUnited <- grepl("^United", GDP$Long.Name)
-> summary(beginsUnited)
-```
+* **Options:**
+  * (i) `377652.4`
+  * (ii) `387854.4`
+  * (iii) `381615.4`
+  * (iv) `293700.3`
 
-```{r}
-Mode   FALSE    TRUE    NA's 
-logical     211       3       0 
-```
-%==========================================%
------------------------------------------
-### Question 4
-Load the Gross Domestic Product data for the 190 ranked countries in this data set: 
+* **Answer:** `377652.4`
 
-```{r}
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv 
-```
-Load the educational data from this data set: 
+* **Data Source:** [World Bank GDP Ranking Table](http://data.worldbank.org/data-catalog/GDP-ranking-table)
 
-```{r}
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv 
-```
-Match the data based on the country shortcode. Of the countries for which the end of the fiscal year is available, how many end in June? 
+* **Code Solution:**
+  ```r
+  library(data.table)
 
+  url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+  file <- file.path(getwd(), "GDP.csv")
+  download.file(url, file, method = "curl")
 
-* [(i)] 7
-* [(ii)] 31
-* [(iii)] 15
-* [(iv)] 13
+  # Read data skipping headers and picking relevant rows
+  dtGDP <- data.table(read.csv(file, skip = 4, nrows = 215, stringsAsFactors = FALSE))
+  dtGDP <- dtGDP[X != ""]
+  dtGDP <- dtGDP[, list(X, X.1, X.3, X.4)]
+  setnames(dtGDP, c("X", "X.1", "X.3", "X.4"), c("CountryCode", "rankingGDP", "Long.Name", "gdp"))
 
+  # Remove commas and convert to numeric
+  gdp <- as.numeric(gsub(",", "", dtGDP$gdp))
+  mean(gdp, na.rm = TRUE)
+  # [1] 377652.4
+  ```
 
-####Original data sources: 
-http://data.worldbank.org/data-catalog/GDP-ranking-table 
-http://data.worldbank.org/data-catalog/ed-stats 
+---
 
-####
-Downloading the Data
+### Question 3: Matching Patterns with Regular Expressions
 
-```{r}
- url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
- file <- file.path(getwd(), "EDSTATS_Country.csv")
- download.file(url, file, method = "curl")
-```
+In the dataset from Question 2, what is a regular expression that would allow you to count the number of countries whose name **begins** with `"United"`? Assume that the variable with the country names is named `countryNames`. How many countries begin with `"United"`?
 
+* **Options:**
+  1. `grep("*United", countryNames), 2`
+  2. `grep("^United", countryNames), 3`
+  3. `grep("*United", countryNames), 5`
+  4. `grep("^United", countryNames), 4`
 
-```{r}
-Educ <- data.table(read.csv(file))
+* **Answer:** `grep("^United", countryNames), 3`
 
-# outer join -  see ?merge
- ALL <- merge(GDP, Educ, all = TRUE, by = c("CountryCode"))
+* **Code Solution:**
+  ```r
+  # Regular expression ^ indicates matching at the beginning of the string
+  beginsUnited <- grepl("^United", dtGDP$Long.Name)
+  summary(beginsUnited)
+  # Mode   FALSE    TRUE    NA's 
+  # logical   211       3       0
+  ```
 
-FiscalEnd <- grepl("fiscal year end", 
-  tolower(ALL$Special.Notes))
-  
-June <- grepl("june", tolower(ALL$Special.Notes))
+---
 
-table(FiscalEnd, June)
-```
+### Question 4: Merging Datasets & Pattern Filtering
 
-%==========================================%
------------------------------------------
-### Quantmod R package
-%==========================================%
------------------------------------------
-### Question 5
-You can use the quantmod (http://www.quantmod.com/) package to get historical stock prices for publicly traded companies on the NASDAQ and NYSE. 
+Load the Gross Domestic Product data and Educational data:
+* GDP Data: [GDP.csv](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv)
+* Educational Data: [EDSTATS_Country.csv](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv)
 
-Use the following code to download data on Amazon's stock price and get the times the data was sampled.
+Match the data based on the country shortcode (`CountryCode`). Of the countries for which the end of the fiscal year is available, how many end in June?
 
-```{r}
+* **Options:**
+  * (i) `7`
+  * (ii) `31`
+  * (iii) `15`
+  * (iv) `13`
+
+* **Answer:** `13`
+
+* **Code Solution:**
+  ```r
+  library(data.table)
+
+  # Download Educational Data
+  urlEd <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+  fileEd <- file.path(getwd(), "EDSTATS_Country.csv")
+  download.file(urlEd, fileEd, method = "curl")
+
+  dtEd <- data.table(read.csv(fileEd))
+
+  # Merge datasets on CountryCode
+  dt <- merge(dtGDP, dtEd, all = TRUE, by = c("CountryCode"))
+
+  # Identify rows specifying fiscal year ends in June
+  isFiscalYearEnd <- grepl("fiscal year end", tolower(dt$Special.Notes))
+  isJune <- grepl("june", tolower(dt$Special.Notes))
+
+  table(isFiscalYearEnd, isJune)
+  # Result shows 13 matches for both conditions being TRUE
+  ```
+
+---
+
+### Question 5: Financial Date Processing with `quantmod`
+
+Use the `quantmod` package to download data on Amazon's stock price and get the sample times:
+
+```r
 library(quantmod)
-amzn = getSymbols("AMZN",auto.assign=FALSE)
-sampleTimes = index(amzn) 
+amzn <- getSymbols("AMZN", auto.assign = FALSE)
+sampleTimes <- index(amzn)
 ```
 
-####Questions
 How many values were collected in 2012? How many values were collected on Mondays in 2012?
-```{r}
-1. 250, 47
-2. 365, 52
-3. 251, 47
-4. 251, 51
-```
 
+* **Options:**
+  1. `250, 47`
+  2. `365, 52`
+  3. `251, 47`
+  4. `251, 51`
 
+* **Answer:** `250, 47`
 
-```{r}
-amazon <- getSymbols("AMZN", auto.assign = FALSE)
-sampleTimes <- index(amazon) 
-addmargins(table(year(sampleTimes),      
-   weekdays(sampleTimes)))
-```
+* **Code Solution:**
+  ```r
+  library(quantmod)
+  library(lubridate)
 
-\end{document
+  amzn <- getSymbols("AMZN", auto.assign = FALSE)
+  sampleTimes <- index(amzn)
 
-Quiz 4
-Attempts	Score
-1/3	15/15
-Question 1
+  # Cross-tabulate by year and day of week
+  addmargins(table(year(sampleTimes), weekdays(sampleTimes)))
 
-The American Community Survey distributes downloadable data about United States communities. Download the 2006 microdata survey about housing for the state of Idaho using download.file() from here:
+  # Filter specifically for 2012
+  sample2012 <- sampleTimes[year(sampleTimes) == 2012]
+  length(sample2012)
+  # [1] 250
 
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv
-
-and load the data into R. The code book, describing the variable names is here:
-
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf
-
-Apply strsplit() to split all the names of the data frame on the characters "wgtp". What is the value of the 123 element of the resulting list?
-
-Answer
-
-"" "15"
-
-Explanation
-
-
-Question 2
-
-Load the Gross Domestic Product data for the 190 ranked countries in this data set:
-
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv
-
-Remove the commas from the GDP numbers in millions of dollars and average them. What is the average?
-
-Original data sources: http://data.worldbank.org/data-catalog/GDP-ranking-table
-
-Answer
-
-377652.4
-
-Explanation
-
-
-Question 3
-
-In the data set from Question 2 what is a regular expression that would allow you to count the number of countries whose name begins with "United"? Assume that the variable with the country names in it is named countryNames. How many countries begin with United?
-
-
-Question 4
-
-Load the Gross Domestic Product data for the 190 ranked countries in this data set:
-
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv
-
-Load the educational data from this data set:
-
-https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv
-
-Match the data based on the country shortcode. Of the countries for which the end of the fiscal year is available, how many end in June?
-
-Original data sources: http://data.worldbank.org/data-catalog/GDP-ranking-table http://data.worldbank.org/data-catalog/ed-stats
-
-Answer
-
-13
-
-Explanation
-
-> url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
-> file <- file.path(getwd(), "EDSTATS_Country.csv")
-> download.file(url, file, method = "curl")
-> dtEd <- data.table(read.csv(file))
-> dt <- merge(dtGDP, dtEd, all = TRUE, by = c("CountryCode"))
-> isFiscalYearEnd <- grepl("fiscal year end", tolower(dt$Special.Notes))
-> isJune <- grepl("june", tolower(dt$Special.Notes))
-> table(isFiscalYearEnd, isJune)
+  # Count Mondays in 2012
+  sum(weekdays(sample2012) == "Monday")
+  # [1] 47
+  ```
