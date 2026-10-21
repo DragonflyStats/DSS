@@ -1,0 +1,58 @@
+# Getting and Cleaning Data: `swirl` Assignment Instructions
+
+## 1. Install `swirl`
+
+Since `swirl` is an R package, you can easily install it by running the following command in your R console:
+
+```r
+install.packages("swirl")
+```
+
+---
+
+## 2. Load `swirl` and Install the Course
+
+Run the following commands from the R console to load the package, install the **Getting and Cleaning Data** course, and launch `swirl`:
+
+```r
+library(swirl)
+install_from_swirl("Getting and Cleaning Data")
+swirl()
+```
+
+---
+
+## 3. Complete the Lessons
+
+* **Course Content:** There are **4 lessons** covering key topics in data extraction and cleaning.
+* **Extra Credit Structure:**
+  * Each completed lesson earns **1 extra credit point**.
+  * The maximum extra credit score for this assignment is capped at **3 points**.
+  * **Note:** If you use `skip()` on more than one question within a single lesson, you will **not** receive credit for that lesson.
+
+---
+
+## 4. Submitting for Extra Credit
+
+Upon completing a lesson, `swirl` will prompt you for your Coursera submission details:
+
+* **Course ID:** `getdata-007`
+* **Submission Login (Email):** The email address linked to your Coursera account.
+* **Submission Password:** *Do not use your main Coursera password.* Find your unique submission token at the top of the **Programming Assignments** page on Coursera.
+
+> `swirl` will attempt to submit your score automatically. If automatic submission fails, you will be given options to retry or complete a manual submission.
+
+---
+
+## Troubleshooting & Getting Help
+
+If you encounter issues:
+
+1. **Check the FAQ:** Review the course's Frequently Asked Questions page.
+2. **Search the Forums:** Look through the **`swirl` Programming Assignment** sub-forum on Coursera.
+3. **Post a Question:** If your issue isn't resolved, create a new thread in the `swirl` sub-forum including:
+   * A clear, descriptive title.
+   * Relevant console input/output or screenshots.
+   * Output from running `sessionInfo()` in R.
+
+*For further details about the package, visit [swirlstats.com](http://swirlstats.com).*
